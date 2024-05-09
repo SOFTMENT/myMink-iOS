@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Welcome View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="my_MINK" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="TGD-Ge-Rwi">
+                                <rect key="frame" x="115" y="342" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="LLN-Jd-h9L"/>
+                                    <constraint firstAttribute="height" constant="160" id="LOS-nJ-30m"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TGD-Ge-Rwi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Vzf-KM-wS0"/>
+                            <constraint firstItem="TGD-Ge-Rwi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZPt-k8-OZQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="1Ey-hs-6rT" kind="presentation" identifier="phoneVerificationSeg" modalPresentationStyle="fullScreen" id="i78-bi-a2n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14" y="138"/>
+        </scene>
+        <!--phoneVerificationVC-->
+        <scene sceneID="b8X-gz-1L2">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="AccountSetup" storyboardName="AccountSetup" referencedIdentifier="phoneVerificationVC" id="1Ey-hs-6rT" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DLb-OE-uWN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="606" y="-13"/>
+        </scene>
+        <!--entryVC-->
+        <scene sceneID="30c-Sv-eQs">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="entryVC" storyboardName="AccountSetup" referencedIdentifier="entryVC" id="Tqs-dE-ZDM" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2lu-WE-dze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="503" y="123"/>
+        </scene>
+        <!--completeProfileVC-->
+        <scene sceneID="WZ0-hQ-CIT">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="completeProfileVC" storyboardName="AccountSetup" referencedIdentifier="completeProfileVC" id="5Dm-gZ-lRO" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H5c-6g-fGh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="784" y="123"/>
+        </scene>
+        <!--membershipVC-->
+        <scene sceneID="Fv3-3s-44G">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="membershipVC" storyboardName="AccountSetup" referencedIdentifier="membershipVC" id="Tbw-Yp-8ac" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2A6-CT-24v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="123"/>
+        </scene>
+        <!--membershipVC-->
+        <scene sceneID="wkF-Wa-r0Z">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AccountSetup" referencedIdentifier="membershipVC" id="WPX-Gr-yfR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ONg-qy-kfn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1630" y="-454"/>
+        </scene>
+        <!--membershipVC-->
+        <scene sceneID="ZT8-ZZ-4wx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AccountSetup" referencedIdentifier="membershipVC" id="bc0-Ym-N5p" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h90-A0-Hbm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1630" y="-454"/>
+        </scene>
+        <!--membershipVC-->
+        <scene sceneID="amJ-ZU-Avx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AccountSetup" referencedIdentifier="membershipVC" id="YXv-QO-ye9" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VXX-sQ-SUp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1630" y="-454"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo" width="724" height="652"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,38 @@
+# file options
+
+--exclude Tests/XCTestManifests.swift,Tests/BadConfig,Snapshots,Build,PluginTests
+
+# format options
+
+--exclude Carthage
+--exclude Pods/, .build/checkouts/
+--indent 4
+--self insert
+--header "Copyright © 2023 SOFTMENT. All rights reserved."
+--ifdef no-indent
+--comments ignore
+--ranges space
+--empty void
+--commas inline
+--semicolons inline
+--trimwhitespace always
+--linebreaks lf
+--allman false
+--patternlet inline
+--wraparguments before-first
+--wrapelements before-first
+--hexliterals uppercase
+--operatorfunc spaced
+--elseposition same-line
+--binarygrouping 4,8
+--decimalgrouping 3,6
+--fractiongrouping disabled
+--importgrouping alphabetized
+--maxwidth 120
+--wrapcollections before-first
+--modifierorder convenience, override
+--disable unusedArguments
+
+
+
+

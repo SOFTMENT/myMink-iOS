@@ -1,0 +1,103 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mymink-myminkapp-190931-authRole",
+      "UnauthRoleArn": "arn:aws:iam::380853786987:role/amplify-mymink-myminkapp-190931-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::380853786987:role/amplify-mymink-myminkapp-190931-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-mymink-myminkapp-190931-deployment",
+      "UnauthRoleName": "amplify-mymink-myminkapp-190931-unauthRole",
+      "StackName": "amplify-mymink-myminkapp-190931",
+      "StackId": "arn:aws:cloudformation:us-east-1:380853786987:stack/amplify-mymink-myminkapp-190931/071c57e0-2c83-11ee-9701-0a41409e7635",
+      "AmplifyAppId": "d3gj22hivhbo27"
+    }
+  },
+  "api": {
+    "amplifyDatasource": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "description": "",
+              "apiKeyExpirationDays": 7
+            }
+          }
+        },
+        "GraphQLAPIIdOutput": "o6v34cj7qre5bosjkaqldmr5am",
+        "GraphQLAPIEndpointOutput": "https://zpqdotb6mra2jax4vo67fxpxo4.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-65k77sf4yfc5lcjvrisd6mo5vq"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mymink-myminkapp-190931-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiamplifyDatasource"
+      },
+      "lastPushTimeStamp": "2023-07-27T13:49:08.232Z",
+      "lastPushDirHash": "OJooMMG6s3XxdfWGW9JaIpYEejQ="
+    }
+  },
+  "auth": {
+    "mymink417353c1": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL",
+          "PHONE_NUMBER"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mymink-myminkapp-190931-deployment/amplify-cfn-templates/auth/mymink417353c1-cloudformation-template.json",
+        "logicalId": "authmymink417353c1"
+      },
+      "lastPushTimeStamp": "2023-07-27T13:49:08.232Z",
+      "output": {
+        "UserPoolId": "us-east-1_FKoR4zeYx",
+        "AppClientIDWeb": "2foi63rdk8d30q5hn8k73t140v",
+        "AppClientID": "a22spouu9ul1jek19jdqt5q45",
+        "IdentityPoolId": "us-east-1:f30a65a7-cf5a-4c45-bf33-26f54f68c4c0",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:380853786987:userpool/us-east-1_FKoR4zeYx",
+        "IdentityPoolName": "mymink417353c1_identitypool_417353c1__myminkapp",
+        "UserPoolName": "mymink417353c1_userpool_417353c1"
+      },
+      "lastPushDirHash": "K8pHoYEcAC5WUAJmA1HQmh8LGME="
+    }
+  },
+  "storage": {
+    "s3MyMinkFriend": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "lastPushTimeStamp": "2023-07-27T13:49:08.232Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mymink-myminkapp-190931-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "logicalId": "storages3MyMinkFriend"
+      },
+      "output": {
+        "BucketName": "myminkbucket190931-myminkapp",
+        "Region": "us-east-1"
+      },
+      "lastPushDirHash": "BK8ynEE0HTlECjE30bbsIfjKMHU="
+    }
+  }
+}

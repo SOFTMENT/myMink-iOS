@@ -1,0 +1,26 @@
+{
+  "myminkapp": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mymink-myminkapp-190931-authRole",
+      "UnauthRoleArn": "arn:aws:iam::380853786987:role/amplify-mymink-myminkapp-190931-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::380853786987:role/amplify-mymink-myminkapp-190931-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-mymink-myminkapp-190931-deployment",
+      "UnauthRoleName": "amplify-mymink-myminkapp-190931-unauthRole",
+      "StackName": "amplify-mymink-myminkapp-190931",
+      "StackId": "arn:aws:cloudformation:us-east-1:380853786987:stack/amplify-mymink-myminkapp-190931/071c57e0-2c83-11ee-9701-0a41409e7635",
+      "AmplifyAppId": "d3gj22hivhbo27"
+    },
+    "categories": {
+      "auth": {
+        "mymink417353c1": {}
+      },
+      "api": {
+        "amplifyDatasource": {}
+      },
+      "storage": {
+        "s3MyMinkFriend": {}
+      }
+    }
+  }
+}

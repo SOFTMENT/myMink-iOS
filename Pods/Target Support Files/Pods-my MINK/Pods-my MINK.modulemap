@@ -1,0 +1,6 @@
+framework module Pods_my_MINK {
+  umbrella header "Pods-my MINK-umbrella.h"
+
+  export *
+  module * { export * }
+}
