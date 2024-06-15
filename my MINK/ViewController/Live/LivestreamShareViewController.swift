@@ -23,7 +23,7 @@ class LivestreamShareViewController: UIViewController {
     }
 
     func fetchLiveRecording() {
-        FirebaseStoreManager.db.collection("LiveRecordings").document(FirebaseStoreManager.auth.currentUser!.uid)
+        FirebaseStoreManager.db.collection(Collections.LIVERECORDING.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
             .getDocument { snapshot, error in
 
                 if let snapshot = snapshot, snapshot.exists {

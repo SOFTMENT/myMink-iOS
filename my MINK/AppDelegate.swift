@@ -169,7 +169,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
        
             let db = Firestore.firestore()
-            db.collection("users").document(userId).addSnapshotListener { documentSnapshot, error in
+            db.collection(Collections.USERS.rawValue).document(userId).addSnapshotListener { documentSnapshot, error in
                 guard let document = documentSnapshot else {
                  
                     return

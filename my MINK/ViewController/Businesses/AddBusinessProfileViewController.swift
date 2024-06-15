@@ -162,7 +162,7 @@ class AddBusinessProfileViewController : UIViewController {
         }
         
         let businessModel = BusinessModel()
-        businessModel.businessId = FirebaseStoreManager.db.collection("Businesses").document().documentID
+        businessModel.businessId = FirebaseStoreManager.db.collection(Collections.BUSINESSES.rawValue).document().documentID
         businessModel.createdAt = Date()
         businessModel.isActive = true
         businessModel.name = sTitle
@@ -216,7 +216,7 @@ class AddBusinessProfileViewController : UIViewController {
         createDeepLinkForBusiness(businessModel: businessModel) { url, error in
             if let url = url {
                 businessModel.shareLink = url
-                try? FirebaseStoreManager.db.collection("Businesses").document(businessModel.businessId!).setData(from: businessModel,merge: true, completion: { error in
+                try? FirebaseStoreManager.db.collection(Collections.BUSINESSES.rawValue).document(businessModel.businessId!).setData(from: businessModel,merge: true, completion: { error in
                     self.ProgressHUDHide()
                     if let error = error {
                         self.showError(error.localizedDescription)

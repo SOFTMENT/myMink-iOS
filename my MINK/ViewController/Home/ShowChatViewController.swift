@@ -196,9 +196,9 @@ class ShowChatViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func sendMessage(sMessage: String) {
-        let messageID = FirebaseStoreManager.db.collection("Chats").document().documentID
+        let messageID = FirebaseStoreManager.db.collection(Collections.CHATS.rawValue).document().documentID
 
-        FirebaseStoreManager.db.collection("Chats").document(self.mInfo["uid"]!)
+        FirebaseStoreManager.db.collection(Collections.CHATS.rawValue).document(self.mInfo["uid"]!)
             .collection(self.lastMessage!.senderUid!).document(messageID)
             .setData([
                 "message": sMessage,
@@ -212,7 +212,7 @@ class ShowChatViewController: UIViewController, UITableViewDelegate, UITableView
                 if let error = error {
                     self.showError(error.localizedDescription)
                 } else {
-                    FirebaseStoreManager.db.collection("Chats").document(self.lastMessage!.senderUid!)
+                    FirebaseStoreManager.db.collection(Collections.CHATS.rawValue).document(self.lastMessage!.senderUid!)
                         .collection(self.mInfo["uid"]!).document(messageID)
                         .setData([
                             "message": sMessage,
@@ -222,8 +222,8 @@ class ShowChatViewController: UIViewController, UITableViewDelegate, UITableView
                             "date": FieldValue.serverTimestamp()
                         ])
 
-                    FirebaseStoreManager.db.collection("Chats").document(self.mInfo["uid"]!)
-                        .collection("LastMessage").document(self.lastMessage!.senderUid!)
+                    FirebaseStoreManager.db.collection(Collections.CHATS.rawValue).document(self.mInfo["uid"]!)
+                        .collection(Collections.LASTMESSAGE.rawValue).document(self.lastMessage!.senderUid!)
                         .setData([
                             "message": sMessage,
                             "senderUid": self.lastMessage!.senderUid!,
@@ -235,8 +235,8 @@ class ShowChatViewController: UIViewController, UITableViewDelegate, UITableView
                             "senderDeviceToken": self.lastMessage!.senderDeviceToken ?? ""
                         ])
 
-                    FirebaseStoreManager.db.collection("Chats").document(self.lastMessage!.senderUid!)
-                        .collection("LastMessage").document(self.mInfo["uid"]!)
+                    FirebaseStoreManager.db.collection(Collections.CHATS.rawValue).document(self.lastMessage!.senderUid!)
+                        .collection(Collections.LASTMESSAGE.rawValue).document(self.mInfo["uid"]!)
                         .setData([
                             "message": sMessage,
                             "senderUid": self.mInfo["uid"]!,
@@ -333,7 +333,7 @@ class ShowChatViewController: UIViewController, UITableViewDelegate, UITableView
             dismiss(animated: true, completion: nil)
             return
         }
-        FirebaseStoreManager.db.collection("Chats").document(self.mInfo["uid"]!)
+        FirebaseStoreManager.db.collection(Collections.CHATS.rawValue).document(self.mInfo["uid"]!)
             .collection(friendUid).order(by: "date").addSnapshotListener { snapshot, error in
                 self.ProgressHUDHide()
                 if error == nil {

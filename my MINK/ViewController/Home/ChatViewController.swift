@@ -91,8 +91,8 @@ class ChatViewController: UIViewController {
             uid = businessModel.businessId ?? "123"
         }
         
-        FirebaseStoreManager.db.collection("Chats").document(uid)
-            .collection("LastMessage").order(by: "date", descending: true).addSnapshotListener { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.CHATS.rawValue).document(uid)
+            .collection(Collections.LASTMESSAGE.rawValue).order(by: "date", descending: true).addSnapshotListener { snapshot, error in
                 self.ProgressHUDHide()
                 if error == nil {
                     self.lastMessages.removeAll()

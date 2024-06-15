@@ -39,7 +39,7 @@ class ResetPasswordViewController: UIViewController {
         } else {
             ProgressHUDShow(text: "Retrieving Password...")
 
-            FirebaseStoreManager.db.collection("Users").whereField("email", isEqualTo: sEmail!)
+            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("email", isEqualTo: sEmail!)
                 .whereField("regiType", isEqualTo: "custom").getDocuments { snapshot, _ in
 
                     if let snapshot = snapshot, !snapshot.isEmpty {

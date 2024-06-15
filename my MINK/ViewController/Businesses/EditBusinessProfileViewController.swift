@@ -190,7 +190,7 @@ class EditBusinessProfileViewController : UIViewController {
     
     func updateBusiness(businessModel : BusinessModel) {
         self.ProgressHUDShow(text: "")
-        try? FirebaseStoreManager.db.collection("Businesses").document(businessModel.businessId!).setData(from: businessModel,merge: true, completion: { error in
+        try? FirebaseStoreManager.db.collection(Collections.BUSINESSES.rawValue).document(businessModel.businessId!).setData(from: businessModel,merge: true, completion: { error in
             self.ProgressHUDHide()
             if let error = error {
                 self.showError(error.localizedDescription)

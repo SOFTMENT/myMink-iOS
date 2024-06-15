@@ -201,7 +201,7 @@ class CreatePostViewController: UIViewController {
         let sCaption = self.captionTV.text
 
         let postModel = PostModel()
-        let postID = FirebaseStoreManager.db.collection("Posts").document().documentID
+        let postID = FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document().documentID
         postModel.postID = postID
         postModel.isPromoted = true
         postModel.postImagesOrientations = self.orientations

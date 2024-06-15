@@ -50,7 +50,7 @@ class VIPCodeViewController: UIViewController {
                     UserModel.data?.daysLeft = 3
                     UserModel.data?.status = "active"
                     UserModel.data?.isAccountActive = true
-                    FirebaseStoreManager.db.collection("Users").document(FirebaseStoreManager.auth.currentUser!.uid).setData(["planID" : PriceID.LIFETIME.rawValue,"status" : "active","isAccountActive" : true],merge: true) { error in
+                    FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid).setData(["planID" : PriceID.LIFETIME.rawValue,"status" : "active","isAccountActive" : true],merge: true) { error in
                         self.ProgressHUDHide()
                         if let error = error {
                             self.showError(error.localizedDescription)

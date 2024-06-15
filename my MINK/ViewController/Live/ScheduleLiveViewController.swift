@@ -46,7 +46,7 @@ class ScheduleLiveViewController : UIViewController {
                 if let url = url, !url.isEmpty {
                     UserModel.data?.livestreamingURL = url
                     self.liveUrl.text = url
-                    FirebaseStoreManager.db.collection("Users").document(FirebaseStoreManager.auth.currentUser!.uid).setData(["livestreamingURL" : url], merge: true)
+                    FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid).setData(["livestreamingURL" : url], merge: true)
                 }
             }
         }

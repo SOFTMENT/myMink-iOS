@@ -573,7 +573,7 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
         alert.addAction(UIAlertAction(title: "Remove Autograph", style: .destructive, handler: { _ in
             self.addAutographBtn.isHidden = false
             self.signatureImage.isHidden = true
-            FirebaseStoreManager.db.collection("Users").document(FirebaseStoreManager.auth.currentUser!.uid)
+            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
                 .setData(["autoGraphImage": ""], merge: true)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -753,7 +753,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                             
                         
                             
-                            FirebaseStoreManager.db.collection("Users")
+                            FirebaseStoreManager.db.collection(Collections.USERS.rawValue)
                                 .document(FirebaseStoreManager.auth.currentUser!.uid)
                                 .setData(["autoGraphImage": downloadURL], merge: true) { _ in
                                     UserModel.data!.autoGraphImage = downloadURL

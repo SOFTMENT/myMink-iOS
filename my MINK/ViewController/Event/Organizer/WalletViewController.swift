@@ -56,7 +56,7 @@ class WalletViewController: UIViewController {
     
     func getTransactions(by uid : String) {
         ProgressHUDShow(text: "")
-        Firestore.firestore().collection("Users").document(uid).collection("Transactions").getDocuments { snapshot, error in
+        Firestore.firestore().collection(Collections.USERS.rawValue).document(uid).collection(Collections.TRANSACTIONS.rawValue).getDocuments { snapshot, error in
             self.ProgressHUDHide()
             if error == nil {
                 self.transactions.removeAll()

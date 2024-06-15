@@ -117,7 +117,7 @@ class PhoneNumberVerificationController: UIViewController {
                         self.showError(error)
                     } else {
                         if self.for2FA {
-                            FirebaseStoreManager.db.collection("Users")
+                            FirebaseStoreManager.db.collection(Collections.USERS.rawValue)
                                 .document(FirebaseStoreManager.auth.currentUser!.uid)
                                 .setData(
                                     ["is2FAActive": true, "phoneNumber2FA": self.phoneNumber ?? ""],

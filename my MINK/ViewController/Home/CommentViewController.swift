@@ -75,7 +75,7 @@ class CommentViewController: UIViewController, UITextViewDelegate {
 
     func getAllComments() {
         ProgressHUDShow(text: "")
-        FirebaseStoreManager.db.collection("Posts").document(self.postModel!.postID ?? "123").collection("Comments")
+        FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(self.postModel!.postID ?? "123").collection(Collections.COMMENTS.rawValue)
             .order(by: "commentDate", descending: true).addSnapshotListener { snapshot, error in
                 self.ProgressHUDHide()
                 if let error = error {
@@ -100,15 +100,15 @@ class CommentViewController: UIViewController, UITextViewDelegate {
         if sComment != "" {
             
             let commentModel = CommentModel()
-            let commentID = FirebaseStoreManager.db.collection("Posts").document(self.postModel!.postID ?? "123")
-                .collection("Comments").document().documentID
+            let commentID = FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(self.postModel!.postID ?? "123")
+                .collection(Collections.COMMENTS.rawValue).document().documentID
             commentModel.uid = FirebaseStoreManager.auth.currentUser!.uid
             commentModel.id = commentID
             commentModel.commentDate = Date()
             commentModel.comment = sComment
             self.chatTF.text = ""
-            try? FirebaseStoreManager.db.collection("Posts").document(self.postModel!.postID ?? "123")
-                .collection("Comments").document(commentID).setData(from: commentModel, completion: { error in
+            try? FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(self.postModel!.postID ?? "123")
+                .collection(Collections.COMMENTS.rawValue).document(commentID).setData(from: commentModel, completion: { error in
                     CommentManager.shared.reloadComment(for: self.postModel?.postID ?? "123")
                 })
                 
@@ -333,8 +333,8 @@ extension CommentViewController: UITableViewDelegate, UITableViewDataSource {
         let saveAction = UIAlertAction(title: "Edit", style: .default) { _ in
             let enteredText = textView.text
             if enteredText != "" {
-                FirebaseStoreManager.db.collection("Posts").document(self.postModel!.postID ?? "123")
-                    .collection("Comments").document(commentID).setData(["comment": enteredText ?? ""], merge: true)
+                FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(self.postModel!.postID ?? "123")
+                    .collection(Collections.COMMENTS.rawValue).document(commentID).setData(["comment": enteredText ?? ""], merge: true)
                 self.showSnack(messages: "Comment Updated")
             }
         }

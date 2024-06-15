@@ -132,7 +132,7 @@ class CompleteProfileViewController: UIViewController {
 
             ProgressHUDShow(text: "")
 
-            FirebaseStoreManager.db.collection("Users").whereField("username", isEqualTo: sUsername ?? "")
+            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("username", isEqualTo: sUsername ?? "")
                 .getDocuments { snapshot, error in
                     self.ProgressHUDHide()
                     if error != nil {
@@ -156,7 +156,7 @@ class CompleteProfileViewController: UIViewController {
                                         }
 
                                         self.ProgressHUDShow(text: "")
-                                        try? FirebaseStoreManager.db.collection("Users")
+                                        try? FirebaseStoreManager.db.collection(Collections.USERS.rawValue)
                                             .document(FirebaseStoreManager.auth.currentUser!.uid)
                                             .setData(from: UserModel.data!, merge: true, completion: { error in
 

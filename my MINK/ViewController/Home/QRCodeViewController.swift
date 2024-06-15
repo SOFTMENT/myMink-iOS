@@ -56,7 +56,7 @@ class QRCodeViewController: UIViewController {
                 if let url = url {
                     UserModel.data!.profileURL = url
                     self.loadQRCode(profileLink: url)
-                    FirebaseStoreManager.db.collection("Users").document(FirebaseStoreManager.auth.currentUser!.uid)
+                    FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
                         .setData(["profileURL": url], merge: true)
                 } else {
                     if let error = error {

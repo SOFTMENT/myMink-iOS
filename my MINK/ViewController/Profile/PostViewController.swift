@@ -564,7 +564,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
                         
                         self.ProgressHUDShow(text: "Promoting...")
                       
-                        FirebaseStoreManager.db.collection("Posts").document(postModel.postID!).setData(["isPromoted" : true], merge: true) { error in
+                        FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(postModel.postID!).setData(["isPromoted" : true], merge: true) { error in
                             self.ProgressHUDHide()
                             self.showSnack(messages: "Promoted")
                             postModel.isPromoted = true

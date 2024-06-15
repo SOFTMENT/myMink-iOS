@@ -181,7 +181,7 @@ class ReelViewController: UIViewController {
             ProgressHUDShow(text: "")
         }
 
-        var query = FirebaseStoreManager.db.collection("Posts").order(by: "postCreateDate", descending: true).whereField("isActive", isEqualTo: true)
+        var query = FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).order(by: "postCreateDate", descending: true).whereField("isActive", isEqualTo: true)
             .whereField("postType", isEqualTo: "video").whereField("isPromoted", isEqualTo: true)
 
         if let documentSnapshot = postDocumentSnapshot {

@@ -78,7 +78,7 @@ class AccountPrivacyViewController: UIViewController {
 
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
                 self.ProgressHUDShow(text: "")
-                FirebaseStoreManager.db.collection("Users").document(FirebaseStoreManager.auth.currentUser!.uid)
+                FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
                     .setData(["is2FAActive": false, "phoneNumber2FA": ""], merge: true) { error in
                         self.ProgressHUDHide()
                         if let error = error {

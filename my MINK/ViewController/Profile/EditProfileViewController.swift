@@ -194,7 +194,7 @@ class EditProfileViewController: UIViewController {
                                             message: sNewPassword!,
                                             encryptionKey: UserModel.data!.encryptKey!
                                         )
-                                        Firestore.firestore().collection("Users").document(user!.uid)
+                                        Firestore.firestore().collection(Collections.USERS.rawValue).document(user!.uid)
                                             .setData(
                                                 ["encryptPassword": UserModel.data!.encryptPassword!], merge: true,
                                                 completion: nil
@@ -378,7 +378,7 @@ class EditProfileViewController: UIViewController {
 
     func updateProfile() {
         ProgressHUDShow(text: "")
-        try? FirebaseStoreManager.db.collection("Users").document(FirebaseStoreManager.auth.currentUser!.uid)
+        try? FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
             .setData(from: UserModel.data!, merge: true, completion: { error in
                 self.ProgressHUDHide()
                 if let error = error {

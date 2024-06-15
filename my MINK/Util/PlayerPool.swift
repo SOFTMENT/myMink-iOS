@@ -53,7 +53,7 @@ class PlayerPool {
             return
         }
 
-        FirebaseStoreManager.db.collection("Posts").document(id)
+        FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(id)
             .setData(["watchCount": FieldValue.increment(Int64(1))], merge: true)
     }
 }

@@ -42,7 +42,7 @@ class OrganizerViewEventDetails: UIViewController {
 
     public func getOrders(by organizerId : String) {
         ProgressHUDShow(text: "")
-        Firestore.firestore().collection("Tickets").order(by: "ticketBookDate",descending: true).whereField("eventId", isEqualTo: event!.eventId!).addSnapshotListener(includeMetadataChanges: true) { snapshot, error in
+        Firestore.firestore().collection(Collections.TICKETS.rawValue).order(by: "ticketBookDate",descending: true).whereField("eventId", isEqualTo: event!.eventId!).addSnapshotListener(includeMetadataChanges: true) { snapshot, error in
             
             self.ProgressHUDHide()
             if error == nil {

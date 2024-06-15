@@ -72,7 +72,7 @@ class SignInPhoneNumberViewController: UIViewController {
                 ProgressHUDShow(text: "Signing in...")
             }
 
-            FirebaseStoreManager.db.collection("Users").whereField("phoneNumber", isEqualTo: phoneNumber)
+            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("phoneNumber", isEqualTo: phoneNumber)
                 .getDocuments { snapshot, error in
                     if let snapshot = snapshot, !snapshot.isEmpty {
                         self.verifyPhoneNumber(phoneNumber: phoneNumber, session: nil)

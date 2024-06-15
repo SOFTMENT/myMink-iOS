@@ -85,7 +85,7 @@ class SignUpPhoneNumberViewController: UIViewController {
             self.phoneNumber = phoneNumber
             ProgressHUDShow(text: "Creating Account...")
 
-            FirebaseStoreManager.db.collection("Users").whereField("phoneNumber", isEqualTo: phoneNumber)
+            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("phoneNumber", isEqualTo: phoneNumber)
                 .getDocuments { snapshot, error in
                     if let snapshot = snapshot, !snapshot.isEmpty {
                         self.ProgressHUDHide()

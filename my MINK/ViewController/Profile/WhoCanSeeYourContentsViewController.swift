@@ -34,7 +34,7 @@ class WhoCanSeeYourContentsViewController: UIViewController {
 
     @IBAction func statusChanged(_ sender: UISwitch) {
         UserModel.data!.isAccountPrivate = sender.isOn
-        FirebaseStoreManager.db.collection("Users").document(FirebaseStoreManager.auth.currentUser!.uid)
+        FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
             .setData(["isAccountPrivate": sender.isOn], merge: true)
     }
 

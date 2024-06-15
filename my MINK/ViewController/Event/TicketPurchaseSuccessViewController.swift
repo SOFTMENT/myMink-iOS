@@ -36,7 +36,7 @@ class TicketPurchaseSuccessViewController: UIViewController {
         ticketsModel.removeAll()
         
        
-            let docucmentRef =  Firestore.firestore().collection("Tickets").document()
+        let docucmentRef =  Firestore.firestore().collection(Collections.TICKETS.rawValue).document()
             do {
                 ticketModel.ticketId = docucmentRef.documentID
                 ticketsModel.append(ticketModel)
@@ -46,7 +46,7 @@ class TicketPurchaseSuccessViewController: UIViewController {
                 self.showError(error.localizedDescription)
             }
             
-        batch.setData(["eventTicketSold" : FieldValue.increment(Int64(ticketModel.quantity!))], forDocument: Firestore.firestore().collection("Events").document(ticketModel.eventId!),merge: true)
+        batch.setData(["eventTicketSold" : FieldValue.increment(Int64(ticketModel.quantity!))], forDocument: Firestore.firestore().collection(Collections.EVENTS.rawValue).document(ticketModel.eventId!),merge: true)
        
         
         

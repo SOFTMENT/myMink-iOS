@@ -140,7 +140,7 @@ class ScanCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
 
             DispatchQueue.main.async {
                 if let uid = uid {
-                    Firestore.firestore().collection("Users").document(uid).getDocument { snapshot, _ in
+                    Firestore.firestore().collection(Collections.USERS.rawValue).document(uid).getDocument { snapshot, _ in
                         DispatchQueue.main.async {
                             self.ProgressHUDHide()
                             if let snapshot = snapshot, snapshot.exists {

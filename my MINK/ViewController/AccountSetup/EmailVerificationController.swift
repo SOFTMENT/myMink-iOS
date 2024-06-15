@@ -136,7 +136,7 @@ class EmailVerificationController: UIViewController {
         } else {
             if self.type == .RESET_PASSWORD {
                 ProgressHUDShow(text: "")
-                FirebaseStoreManager.db.collection("Users").whereField("email", isEqualTo: self.email!)
+                FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("email", isEqualTo: self.email!)
                     .whereField("regiType", isEqualTo: "custom").getDocuments { snapshot, _ in
                         self.ProgressHUDHide()
                         if let snapshot = snapshot, !snapshot.isEmpty {

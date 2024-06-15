@@ -60,7 +60,7 @@ class AttendeeDetails: UIViewController {
         }
         
         ProgressHUDShow(text: "")
-        Firestore.firestore().collection("Tickets").document(ticket!.ticketId!).getDocument { snashot, error in
+        Firestore.firestore().collection(Collections.TICKETS.rawValue).document(ticket!.ticketId!).getDocument { snashot, error in
             if error == nil {
                 if let snapshot = snashot, snapshot.exists{
                     if let ticket = try? snashot?.data(as: TicketModel.self) {
@@ -76,7 +76,7 @@ class AttendeeDetails: UIViewController {
                             
                         }
                         else {
-                            Firestore.firestore().collection("Tickets").document(ticket.ticketId!).setData(["isCheckedIn" : true, "checkedInTime" : FieldValue.serverTimestamp()],merge: true) { error in
+                            Firestore.firestore().collection(Collections.TICKETS.rawValue).document(ticket.ticketId!).setData(["isCheckedIn" : true, "checkedInTime" : FieldValue.serverTimestamp()],merge: true) { error in
                                 self.ProgressHUDHide()
                                 if error == nil {
                                     self.showSnack(messages: "Checked In")

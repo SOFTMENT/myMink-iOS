@@ -63,7 +63,7 @@ class ToDoDashboardViewController : UIViewController {
     @objc func todoCheckClicked(value : MyGesture){
         value.todoCell.todoCheck.isSelected = !value.todoCell.todoCheck.isSelected
         let todoModel = todoModels[value.index]
-        FirebaseStoreManager.db.collection("Tasks").document(todoModel.id!).setData(["isFinished" : value.todoCell.todoCheck.isSelected],merge: true)
+        FirebaseStoreManager.db.collection(Collections.TASKS.rawValue).document(todoModel.id!).setData(["isFinished" : value.todoCell.todoCheck.isSelected],merge: true)
        
         if value.todoCell.isSelected {
             applyStrikethroughEffect(to: value.todoCell.todoTitle)

@@ -32,7 +32,7 @@ class AddToDoViewController : UIViewController {
         }
         else {
             let todoModel = ToDoModel()
-            todoModel.id = FirebaseStoreManager.db.collection("Tasks").document().documentID
+            todoModel.id = FirebaseStoreManager.db.collection(Collections.TASKS.rawValue).document().documentID
             
             todoModel.title = sTitle
             todoModel.date = calendarView.date
@@ -40,7 +40,7 @@ class AddToDoViewController : UIViewController {
             todoModel.uid = FirebaseStoreManager.auth.currentUser!.uid
             
             ProgressHUDShow(text: "Adding Task...")
-            try? FirebaseStoreManager.db.collection("Tasks").document(todoModel.id!).setData(from: todoModel,completion: { error in
+            try? FirebaseStoreManager.db.collection(Collections.TASKS.rawValue).document(todoModel.id!).setData(from: todoModel,completion: { error in
                 self.ProgressHUDHide()
                 if let error = error {
                     self.showError(error.localizedDescription)

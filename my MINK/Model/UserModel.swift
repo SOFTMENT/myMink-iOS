@@ -48,7 +48,6 @@ class UserModel: NSObject, Codable{
     var isBlocked : Bool?
     var isDuringTrial : Bool?
     var livestreamingURL : String?
- 
     
     static func clearUserData() {
        userData = nil

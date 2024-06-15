@@ -402,7 +402,7 @@ class AddTicketsViewController: UIViewController {
             let batch = Firestore.firestore().batch()
             
          
-                let docucmentRef =  Firestore.firestore().collection("Events").document()
+                let docucmentRef =  Firestore.firestore().collection(Collections.EVENTS.rawValue).document()
                 do {
                    
             

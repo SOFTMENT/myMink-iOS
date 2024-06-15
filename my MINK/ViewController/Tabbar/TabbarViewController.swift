@@ -125,12 +125,12 @@ class TabbarViewController: UIViewController {
             } else if let token = token {
                 if let currentUser = FirebaseStoreManager.auth.currentUser {
                     UserModel.data?.notificationToken = token
-                    FirebaseStoreManager.db.collection("Users").document(currentUser.uid)
+                    FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(currentUser.uid)
                         .setData(["notificationToken": token], merge: true)
                     
                     self.getBusinessesBy(currentUser.uid) { businessModel, error in
                         if let businessModel = businessModel {
-                            FirebaseStoreManager.db.collection("Businesses").document(businessModel.businessId ?? "123")
+                            FirebaseStoreManager.db.collection(Collections.BUSINESSES.rawValue).document(businessModel.businessId ?? "123")
                                 .setData(["notificationToken": token], merge: true)
                         }
                     }

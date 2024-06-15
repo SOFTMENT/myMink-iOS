@@ -284,7 +284,7 @@ extension UIViewController {
     }
 
     func getUserDataByID(uid: String, completion: @escaping (UserModel?, String?) -> Void) {
-        FirebaseStoreManager.db.collection("Users").document(uid)
+        FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(uid)
             .getDocument(as: UserModel.self, completion: { result in
                 switch result {
                 case .success(let userModel):
@@ -395,7 +395,7 @@ extension UIViewController {
 
         self.ProgressHUDShow(text: "")
         do {
-            try FirebaseStoreManager.db.collection("Users").document(uid).setData(from: userData) { [weak self] error in
+            try FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(uid).setData(from: userData) { [weak self] error in
                 self?.ProgressHUDHide()
 
                 if let error = error {
@@ -435,7 +435,7 @@ extension UIViewController {
     func getPostsBy(uid: String, accountType : AccountType, completion: @escaping ([PostModel]?, String?) -> Void) {
         
         
-        var postsQuery = FirebaseStoreManager.db.collection("Posts")
+        var postsQuery = FirebaseStoreManager.db.collection(Collections.POSTS.rawValue)
             .order(by: "postCreateDate", descending: true)
             .whereField(accountType == .USER ? "uid" : "bid", isEqualTo: uid)
         
@@ -476,7 +476,7 @@ extension UIViewController {
         var postModels = [PostModel]()
 
         // Step 1: Fetch saved post IDs
-        let savedPostsRef = db.collection("Users").document(userID).collection("SavePosts").order(by: "date",descending: false)
+        let savedPostsRef = db.collection(Collections.USERS.rawValue).document(userID).collection(Collections.SAVEPOSTS.rawValue).order(by: "date",descending: false)
         savedPostsRef.getDocuments { (querySnapshot, error) in
             if let error = error {
                 completion(nil, error)
@@ -495,7 +495,7 @@ extension UIViewController {
             }
             
             // Step 2: Fetch posts using the post IDs
-            let postsRef = db.collection("Posts")
+            let postsRef = db.collection(Collections.POSTS.rawValue)
             let dispatchGroup = DispatchGroup()
             
             for postID in postIDs {
@@ -652,8 +652,8 @@ extension UIViewController {
     }
 
     func addShares(postID: String) {
-        let id = FirebaseStoreManager.db.collection("Posts").document(postID).collection("Shares").document().documentID
-        FirebaseStoreManager.db.collection("Posts").document(postID).collection("Shares").document(id)
+        let id = FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(postID).collection(Collections.SHARES.rawValue).document().documentID
+        FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(postID).collection(Collections.SHARES.rawValue).document(id)
             .setData(["date": Data(), "uid": FirebaseStoreManager.auth.currentUser!.uid])
     }
     func checkCurrentUserLikedPost(postID: String, completion: @escaping (Bool) -> Void) {
@@ -663,7 +663,7 @@ extension UIViewController {
             return
         }
 
-        FirebaseStoreManager.db.collection("Posts").document(postID).collection("Likes")
+        FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(postID).collection(Collections.LIKES.rawValue)
             .document(userID).getDocument { snapshot, error in
                 if let error = error {
                     // Log the error or handle it as needed
@@ -691,10 +691,10 @@ extension UIViewController {
         savePostModel.postId = postID
 
         do {
-            try FirebaseStoreManager.db.collection("Users").document(userID).collection("SavePosts")
+            try FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(userID).collection(Collections.SAVEPOSTS.rawValue)
                 .document(postID).setData(from: savePostModel)
             
-            try FirebaseStoreManager.db.collection("Posts").document(postID).collection("SavePosts")
+            try FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(postID).collection(Collections.SAVEPOSTS.rawValue)
                 .document(userID).setData(from: savePostModel) { error in
                     if let error  = error {
                         completion(false, error.localizedDescription)
@@ -723,7 +723,7 @@ extension UIViewController {
         likeModel.likeDate = Date()
 
        
-            try? FirebaseStoreManager.db.collection("Posts").document(postID).collection("Likes")
+            try? FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(postID).collection(Collections.LIKES.rawValue)
                 .document(userID).setData(from: likeModel) { error in
                 
                     
@@ -746,7 +746,7 @@ extension UIViewController {
         subModel.subscribeDate = Date()
 
        
-            try? FirebaseStoreManager.db.collection("Businesses").document(bid).collection("Subscribers")
+            try? FirebaseStoreManager.db.collection(Collections.BUSINESSES.rawValue).document(bid).collection(Collections.SUBSCRIBERS.rawValue)
                 .document(userID).setData(from: subModel) { error in
                 
                     
@@ -770,7 +770,7 @@ extension UIViewController {
             return
         }
 
-        FirebaseStoreManager.db.collection("Businesses").document(bId).collection("Subscribers")
+        FirebaseStoreManager.db.collection(Collections.BUSINESSES.rawValue).document(bId).collection(Collections.SUBSCRIBERS.rawValue)
             .document(userID).getDocument { snapshot, error in
                 if let error = error {
                     // Log the error or handle it as needed
@@ -837,7 +837,7 @@ extension UIViewController {
             return
         }
 
-        FirebaseStoreManager.db.collection("Posts").document(postID).collection("SavePosts")
+        FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(postID).collection(Collections.SAVEPOSTS.rawValue)
             .document(userID).getDocument { snapshot, error in
                 if let error = error {
                     // Log the error or handle it as needed
@@ -1125,7 +1125,7 @@ extension UIViewController {
         self.deleteLivestreamingAllAudiences(uid: FirebaseStoreManager.auth.currentUser!.uid)
         generateAgoraToken(friendUid: FirebaseStoreManager.auth.currentUser!.uid) { token in
 
-            FirebaseStoreManager.db.collection("LiveStreamings").document(FirebaseStoreManager.auth.currentUser!.uid)
+            FirebaseStoreManager.db.collection(Collections.LIVESTREAMINGS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
                 .setData([
                     "token": token,
                     "fullName": UserModel.data!.fullName ?? "",
@@ -1149,7 +1149,7 @@ extension UIViewController {
     }
 
     func getLivestreamingByUid(uid : String, completion : @escaping (_ liveModel : LiveStreamingModel?)->Void){
-        FirebaseStoreManager.db.collection("LiveStreamings").document(uid).getDocument { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.LIVESTREAMINGS.rawValue).document(uid).getDocument { snapshot, error in
             if let snapshot = snapshot, !snapshot.exists {
                 if let liveModel = try? snapshot.data(as: LiveStreamingModel.self) {
                     completion(liveModel)
@@ -1266,7 +1266,7 @@ extension UIViewController {
  
     func getHoroscopeModel(completion : @escaping (_ horoscopeModel : HoroscopeModel?, _ error : String?)->Void){
         
-        FirebaseStoreManager.db.collection("Horoscopes").document("daily").getDocument { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.HOROSCOPES.rawValue).document("daily").getDocument { snapshot, error in
             if let error = error {
                 completion(nil, error.localizedDescription)
             }
@@ -1294,7 +1294,7 @@ extension UIViewController {
     }
     
     func getAllEvents(completion : @escaping (_ events : Array<Event>?, _ error : String?)->Void) {
-        FirebaseStoreManager.db.collection("Events").whereField("eventStartDate", isGreaterThan: Date()).whereField("isActive", isEqualTo: true).order(by: "eventCreateDate",descending: true).getDocuments { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.EVENTS.rawValue).whereField("eventStartDate", isGreaterThan: Date()).whereField("isActive", isEqualTo: true).order(by: "eventCreateDate",descending: true).getDocuments { snapshot, error in
             
             if let error  = error {
                 completion(nil, error.localizedDescription)
@@ -1316,7 +1316,7 @@ extension UIViewController {
     }
     
     func getAllBusinesses(completion : @escaping (_ businessModel : Array<BusinessModel>?, _ error : String?)->Void) {
-        FirebaseStoreManager.db.collection("Businesses").whereField("isActive", isEqualTo: true).order(by: "name").getDocuments { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.BUSINESSES.rawValue).whereField("isActive", isEqualTo: true).order(by: "name").getDocuments { snapshot, error in
             
             if let error  = error {
                 completion(nil, error.localizedDescription)
@@ -1338,7 +1338,7 @@ extension UIViewController {
     }
     
     func getEvent(by eventid : String, completion : @escaping (Event?) -> Void) {
-        Firestore.firestore().collection("Events").document(eventid).getDocument { snapshot, error in
+        Firestore.firestore().collection(Collections.EVENTS.rawValue).document(eventid).getDocument { snapshot, error in
             if error == nil {
                 if let snap = snapshot {
                     if let event = try? snap.data(as: Event.self) {
@@ -1462,7 +1462,7 @@ extension UIViewController {
     }
     
     func getMyToDo(uid : String, completion : @escaping (_ todoModels : Array<ToDoModel>?, _ error : String?)->Void){
-        FirebaseStoreManager.db.collection("Tasks").order(by: "date").whereField("uid", isEqualTo: uid).addSnapshotListener { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.TASKS.rawValue).order(by: "date").whereField("uid", isEqualTo: uid).addSnapshotListener { snapshot, error in
             if let error = error {
                 completion(nil,error.localizedDescription)
             }
@@ -1810,7 +1810,7 @@ extension UIViewController {
     }
 
     func addFollow(mUser: UserModel, fUser: UserModel) {
-        let followingRef = FirebaseStoreManager.db.collection("Users")
+        let followingRef = FirebaseStoreManager.db.collection(Collections.USERS.rawValue)
 
         // Creating a follow model for fUser
         let followModelForFUser = self.createFollowModel(from: fUser)
@@ -1827,7 +1827,7 @@ extension UIViewController {
     
     func getMarketplaceProductsBy(uid : String, completion : @escaping (_ products : Array<MarketplaceModel>?, _ error : String?)->Void){
         
-        FirebaseStoreManager.db.collection("Marketplace").whereField("uid", isEqualTo: uid).order(by: "dateCreated",descending: true).getDocuments { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.MARKETPLACE.rawValue).whereField("uid", isEqualTo: uid).order(by: "dateCreated",descending: true).getDocuments { snapshot, error in
             if let error = error {
                 completion(nil, error.localizedDescription)
             }
@@ -1852,7 +1852,7 @@ extension UIViewController {
     
     func getAllMarketplaceProducts(countryCode : String, completion : @escaping (_ products : Array<MarketplaceModel>?, _ error : String?)->Void){
         
-        FirebaseStoreManager.db.collection("Marketplace").whereField("isActive", isEqualTo: true).whereField("countryCode", isEqualTo: countryCode).order(by: "dateCreated",descending: true).getDocuments { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.MARKETPLACE.rawValue).whereField("isActive", isEqualTo: true).whereField("countryCode", isEqualTo: countryCode).order(by: "dateCreated",descending: true).getDocuments { snapshot, error in
             if let error = error {
                 completion(nil, error.localizedDescription)
             }
@@ -1874,7 +1874,7 @@ extension UIViewController {
     
      func increaseProfileView(mUid : String, mFriendUid : String){
     
-        FirebaseStoreManager.db.collection("Users").document(mFriendUid).collection("ProfileViews").document(mUid).setData(["uid" : mUid, "date" : Date()])
+         FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(mFriendUid).collection(Collections.PROFILEVIEWS.rawValue).document(mUid).setData(["uid" : mUid, "date" : Date()])
         
     }
     // Fetch users based on an array of user IDs
@@ -1910,7 +1910,7 @@ extension UIViewController {
       
       // Helper function to fetch a chunk of users
       private func fetchChunk(_ userIds: [String], completion: @escaping ([UserModel]?, Error?) -> Void) {
-          FirebaseStoreManager.db.collection("Users").whereField("uid", in: userIds).getDocuments { snapshot, error in
+          FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("uid", in: userIds).getDocuments { snapshot, error in
               if let error = error {
                   completion(nil, error)
                   return
@@ -1932,7 +1932,7 @@ extension UIViewController {
     
     func isUserFollowed(currentUserId: String, otherUserId: String, completion: @escaping (Bool) -> Void) {
        
-        let followingDocRef = FirebaseStoreManager.db.collection("Users").document(currentUserId).collection("Following").document(otherUserId)
+        let followingDocRef = FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(currentUserId).collection(Collections.FOLLOWING.rawValue).document(otherUserId)
 
         followingDocRef.getDocument { document, error in
             
@@ -1956,7 +1956,7 @@ extension UIViewController {
     
     
     func getFollowingByUid(uid : String,completion : @escaping (_ followModels : Array<FollowModel>?)->Void){
-        FirebaseStoreManager.db.collection("Users").document(uid).collection("Following").order(by: "name").getDocuments { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(uid).collection(Collections.FOLLOWING.rawValue).order(by: "name").getDocuments { snapshot, error in
             var followModels = Array<FollowModel>()
             if let snapshot = snapshot, !snapshot.isEmpty {
                 for qdr in snapshot.documents {
@@ -1970,7 +1970,7 @@ extension UIViewController {
     }
     
     func getFollowersByUid(uid : String,completion : @escaping (_ followModels : Array<FollowModel>?)->Void){
-        FirebaseStoreManager.db.collection("Users").document(uid).collection("Follow").order(by: "name").getDocuments { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(uid).collection(Collections.FOLLOW.rawValue).order(by: "name").getDocuments { snapshot, error in
             var followModels = Array<FollowModel>()
             if let snapshot = snapshot, !snapshot.isEmpty {
                 for qdr in snapshot.documents {
@@ -1984,7 +1984,7 @@ extension UIViewController {
     }
     
     func getLikes(postId : String, completion : @escaping (_ likeModels : Array<LikeModel>?)->Void){
-        FirebaseStoreManager.db.collection("Posts").document(postId).collection("Likes").getDocuments { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(postId).collection(Collections.LIKES.rawValue).getDocuments { snapshot, error in
             var likeModels = Array<LikeModel>()
             if let snapshot = snapshot, !snapshot.isEmpty {
                 for qdr in snapshot.documents {
@@ -2018,8 +2018,8 @@ extension UIViewController {
         }
 
         do {
-            try userRef.document(followUserId).collection("Follow").document(userId).setData(from: followModel)
-            try userRef.document(userId).collection("Following").document(followUserId).setData(from: followModel)
+            try userRef.document(followUserId).collection(Collections.FOLLOW.rawValue).document(userId).setData(from: followModel)
+            try userRef.document(userId).collection(Collections.FOLLOWING.rawValue).document(followUserId).setData(from: followModel)
         } catch {
             print("Error setting follow data: \(error.localizedDescription)")
         }
@@ -2029,7 +2029,7 @@ extension UIViewController {
         postModel.isActive = true
     
         
-        try? FirebaseStoreManager.db.collection("Posts").document(postModel.postID ?? "123")
+        try? FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(postModel.postID ?? "123")
             .setData(from: postModel) { error in
                 if let error = error {
                     completion(error.localizedDescription)
@@ -2039,7 +2039,7 @@ extension UIViewController {
             }
     }
     func addProduct(marketModel : MarketplaceModel, completion: @escaping (_ error: String?) -> Void) {
-        try? FirebaseStoreManager.db.collection("Marketplace").document(marketModel.id ?? "123")
+        try? FirebaseStoreManager.db.collection(Collections.MARKETPLACE.rawValue).document(marketModel.id ?? "123")
             .setData(from: marketModel) { error in
                 if let error = error {
                     completion(error.localizedDescription)
@@ -2281,7 +2281,7 @@ extension UIViewController {
             self.ProgressHUDShow(text: "")
         }
 
-        FirebaseStoreManager.db.collection("Users").document(uid)
+        FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(uid)
             .getDocument(as: UserModel.self, completion: { result in
                 if showProgress {
                     self.ProgressHUDHide()
@@ -2405,7 +2405,7 @@ extension UIViewController {
         }
 
         let db = Firestore.firestore()
-        let userDocRef = db.collection("Users").document(userId)
+        let userDocRef = db.collection(Collections.USERS.rawValue).document(userId)
 
         userDocRef.addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
@@ -2791,7 +2791,7 @@ extension UIViewController {
 
     func getUser2FAInfo(for userId: String, completion: @escaping (Bool, String?) -> Void) {
         let db = Firestore.firestore()
-        db.collection("Users").document(userId).getDocument { document, error in
+        db.collection(Collections.USERS.rawValue).document(userId).getDocument { document, error in
             if let document = document, document.exists {
                 let is2FAEnabled = document.data()?["is2FAActive"] as? Bool ?? false
                 let phoneNumber = document.data()?["phoneNumber2FA"] as? String
@@ -2863,7 +2863,7 @@ extension UIViewController {
                     } else {
                         self.ProgressHUDHide()
                         let user = authResult!.user
-                        let ref = FirebaseStoreManager.db.collection("Users").document(user.uid)
+                        let ref = FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(user.uid)
                         ref.getDocument { snapshot, error in
                             if error != nil {
                                 self.showError(error!.localizedDescription)
@@ -3266,12 +3266,12 @@ extension AppDelegate: PKPushRegistryDelegate, CXProviderDelegate {
     func pushRegistry(_: PKPushRegistry, didUpdate credentials: PKPushCredentials, for _: PKPushType) {
         let deviceToken = credentials.token.map { String(format: "%02x", $0) }.joined()
         if let user = FirebaseStoreManager.auth.currentUser {
-            FirebaseStoreManager.db.collection("Users").document(user.uid)
+            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(user.uid)
                 .setData(["deviceToken": deviceToken], merge: true)
             
             self.getBusinessesBy(user.uid) { businessModel, error in
                 if let businessModel = businessModel {
-                    FirebaseStoreManager.db.collection("Businesses").document(businessModel.businessId ?? "123")
+                    FirebaseStoreManager.db.collection(Collections.BUSINESSES.rawValue).document(businessModel.businessId ?? "123")
                         .setData(["deviceToken":deviceToken], merge: true)
                 }
             }
@@ -3458,7 +3458,7 @@ extension Array where Element: Equatable {
 extension NSObject {
     
     func getBusinessesBy(_ uid : String, completion : @escaping (_ businessModel : BusinessModel?, _ error : String?)->Void) {
-        FirebaseStoreManager.db.collection("Businesses").whereField("uid", isEqualTo: uid).getDocuments { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.BUSINESSES.rawValue).whereField("uid", isEqualTo: uid).getDocuments { snapshot, error in
             
             if let error  = error {
                 completion(nil, error.localizedDescription)
@@ -3485,7 +3485,7 @@ extension NSObject {
     
     func getBusinesses(by businessId : String, completion : @escaping (_ businessModel : BusinessModel?, _ error : String?)->Void) {
         
-        FirebaseStoreManager.db.collection("Businesses").document(businessId).getDocument { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.BUSINESSES.rawValue).document(businessId).getDocument { snapshot, error in
             
             if let error  = error {
                 completion(nil, error.localizedDescription)

@@ -183,7 +183,7 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
                 }
                 
                 self.ProgressHUDShow(text: "Scanning...")
-                Firestore.firestore().collection("Tickets").document(ticketId).getDocument { snashot, error in
+                Firestore.firestore().collection(Collections.TICKETS.rawValue).document(ticketId).getDocument { snashot, error in
                     if error == nil {
                         if let snapshot = snashot, snapshot.exists{
                             if let ticket = try? snashot?.data(as: TicketModel.self) {
@@ -200,7 +200,7 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
                                    
                                 }
                                 else {
-                                    Firestore.firestore().collection("Tickets").document(ticketId).setData(["isCheckedIn" : true, "checkedInTime" : FieldValue.serverTimestamp()],merge: true) { error in
+                                    Firestore.firestore().collection(Collections.TICKETS.rawValue).document(ticketId).setData(["isCheckedIn" : true, "checkedInTime" : FieldValue.serverTimestamp()],merge: true) { error in
                                         self.ProgressHUDHide()
                                         if error == nil {
                                             self.showSnack(messages: "Checked In")

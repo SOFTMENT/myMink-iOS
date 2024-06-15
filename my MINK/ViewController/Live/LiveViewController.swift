@@ -27,7 +27,7 @@ class LiveViewController: UIViewController {
         flowLayout.minimumInteritemSpacing = 0
         self.collectionView.collectionViewLayout = flowLayout
 
-        FirebaseStoreManager.db.collection("LiveStreamings").order(by: "date", descending: true)
+        FirebaseStoreManager.db.collection(Collections.LIVESTREAMINGS.rawValue).order(by: "date", descending: true)
             .whereField("isOnline", isEqualTo: true)
             .addSnapshotListener { snapshot, error in
 

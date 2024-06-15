@@ -181,7 +181,7 @@ class AddProductViewController : UIViewController {
         }
         else {
             let marketModel = MarketplaceModel()
-            let id = FirebaseStoreManager.db.collection("Marketplace").document().documentID
+            let id = FirebaseStoreManager.db.collection(Collections.MARKETPLACE.rawValue).document().documentID
             marketModel.id = id
             marketModel.title = sTitle
             marketModel.cost = sPrice

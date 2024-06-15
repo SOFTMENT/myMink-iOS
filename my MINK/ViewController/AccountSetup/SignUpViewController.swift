@@ -205,7 +205,7 @@ class SignUpViewController: UIViewController {
             userData.registredAt = Date()
             userData.regiType = "custom"
 
-            FirebaseStoreManager.db.collection("Users").whereField("email", isEqualTo: sEmail ?? "123")
+            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("email", isEqualTo: sEmail ?? "123")
                 .getDocuments { snapshot, error in
                     if let snapshot = snapshot {
                         if snapshot.isEmpty {

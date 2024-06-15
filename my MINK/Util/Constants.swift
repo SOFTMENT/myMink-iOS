@@ -5,6 +5,101 @@ import Foundation
 import UIKit
 import CountryPicker
 
+
+
+// MARK: - Collection
+
+enum Collections : String {
+    case USERS = "Users"
+    case POSTS = "Posts"
+    case SAVEPOSTS = "SavePosts"
+    case SHARES = "Shares"
+    case LIKES = "Likes"
+    case BUSINESSES = "Businesses"
+    case SUBSCRIBERS = "Subscribers"
+    case LIVESTREAMINGS = "LiveStreamings"
+    case HOROSCOPES = "Horoscopes"
+    case EVENTS = "Events"
+    case TASKS = "Tasks"
+    case MARKETPLACE = "Marketplace"
+    case PROFILEVIEWS = "ProfileViews"
+    case FOLLOWING = "Following"
+    case FOLLOW = "Follow"
+    case TICKETS = "Tickets"
+    case TRANSACTIONS = "Transactions"
+    case CHATS = "Chats"
+    case LASTMESSAGE = "LastMessage"
+    case LIVERECORDING = "LiveRecordings"
+    case BOT = "bot"
+    case AUDIENCES = "Audiences"
+    case FEEDS = "Feeds"
+    case COMMENTS = "Comments"
+}
+
+// MARK: - PostType
+
+enum PostType : String {
+    case IMAGE = "image"
+    case VIDEO = "video"
+    case TEXT = "text"
+}
+
+enum SearchIndex : String {
+    case POSTS = "Posts"
+    case USERS = "Users"
+    case EVENTS = "Events"
+}
+
+enum BranchIOFeature : String {
+    case PRODUCT
+    case LIVESTREAM
+    case USERPROFILE
+    case EVENT
+    case POST
+    case BUSINESS
+}
+
+// MARK: - Identifier
+
+enum Identifier: String {
+    
+    case ENTRYVIEWCONTROLLER = "entryVC"
+    case COMPLETEPROFILEVIEWCONTROLLER = "completeProfileVC"
+    case MEMBERSHIPVIEWCONTROLLER = "membershipVC"
+    case TABBARVIEWCONTROLLER = "TabbarViewController"
+    case HOMEVIEWCONTROLLER = "homeVC"
+    case CAMERAVIEWCONTROLLER = "cameraVC"
+    case PROFILEVIEWCONTROLLER = "profileVC"
+    case REELSVIEWCONTROLLER = "reelsVC"
+    case LIVESTREAMVIEWCONTROLLER = "liveStreamingVC"
+    case SEARCHVIEWCONTROLLER = "searchVC"
+    case NOTIFICATIONCONTROLLER = "notificationVC"
+    case ORGANIZERDASHBOARDCONTROLLER = "organizerVC"
+    
+}
+
+// MARK: - StoryBoard
+
+enum StoryBoard: String {
+    case Main
+    case AccountSetup
+    case Tabbar
+    case Reels = "Reel"
+    case LiveStream = "LiveStreaming"
+    case Home
+    case Profile = "Settings"
+    case Search
+    case Notification
+    case Event
+
+}
+
+enum AccountType : String{
+    case USER = "Users"
+    case BUSINESS = "Businesses"
+}
+
+
 // MARK: - Constants
 
 struct Constants {
@@ -48,7 +143,8 @@ struct Constants {
     static var channelName = ""
     static var callUUID: UUID!
     static var token = ""
-    
+    static var hasBlueTick = false
+ 
     public static var countryModels : Array<CountryModel>!
     public static let countryJSONString = """
 [
@@ -990,69 +1086,4 @@ struct Constants {
         "Wholesale Trade"
     ]
 }
-
-// MARK: - PostType
-
-enum PostType : String {
-    case IMAGE = "image"
-    case VIDEO = "video"
-    case TEXT = "text"
-}
-
-enum SearchIndex : String {
-    case POSTS = "Posts"
-    case USERS = "Users"
-    case EVENTS = "Events"
-}
-
-enum BranchIOFeature : String {
-    case PRODUCT
-    case LIVESTREAM
-    case USERPROFILE
-    case EVENT
-    case POST
-    case BUSINESS
-}
-
-// MARK: - Identifier
-
-enum Identifier: String {
-    
-    case ENTRYVIEWCONTROLLER = "entryVC"
-    case COMPLETEPROFILEVIEWCONTROLLER = "completeProfileVC"
-    case MEMBERSHIPVIEWCONTROLLER = "membershipVC"
-    case TABBARVIEWCONTROLLER = "TabbarViewController"
-    case HOMEVIEWCONTROLLER = "homeVC"
-    case CAMERAVIEWCONTROLLER = "cameraVC"
-    case PROFILEVIEWCONTROLLER = "profileVC"
-    case REELSVIEWCONTROLLER = "reelsVC"
-    case LIVESTREAMVIEWCONTROLLER = "liveStreamingVC"
-    case SEARCHVIEWCONTROLLER = "searchVC"
-    case NOTIFICATIONCONTROLLER = "notificationVC"
-    case ORGANIZERDASHBOARDCONTROLLER = "organizerVC"
-    
-}
-
-// MARK: - StoryBoard
-
-enum StoryBoard: String {
-    case Main
-    case AccountSetup
-    case Tabbar
-    case Reels = "Reel"
-    case LiveStream = "LiveStreaming"
-    case Home
-    case Profile = "Settings"
-    case Search
-    case Notification
-    case Event
-
-}
-
-enum AccountType : String{
-    
-    case USER = "Users"
-    case BUSINESS = "Businesses"
-}
-
 

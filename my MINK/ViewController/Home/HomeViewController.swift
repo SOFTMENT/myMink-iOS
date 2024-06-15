@@ -36,6 +36,7 @@ class HomeViewController: UIViewController {
     var postSelectedIndex = 0
     var cell: PostTableViewCell!
     var postModels = [PostModel]()
+ 
     var postDocumentSnapshot: DocumentSnapshot?
     var pageSize = 10
     var dataMayContinue = true
@@ -53,8 +54,10 @@ class HomeViewController: UIViewController {
     var weatherModel : WeatherModel?
     private var cancellables = Set<AnyCancellable>()
     var weatherTimer: Timer?
+    var feedListener: ListenerRegistration?
+    
     override func viewDidLoad() {
-        guard UserModel.data != nil else {
+        guard UserModel.data != nil,  let user = FirebaseStoreManager.auth.currentUser  else {
             DispatchQueue.main.async {
                 self.logoutPlease()
             }
@@ -75,10 +78,6 @@ class HomeViewController: UIViewController {
             Constants.countryModels = []
             
         }
-        
-        
-        
-       
         
         self.tableView.contentInsetAdjustmentBehavior = .never
         
@@ -109,10 +108,7 @@ class HomeViewController: UIViewController {
             action: #selector(self.searchBtnClicked)
         ))
         
-        FirebaseStoreManager.db.collection("Posts").addSnapshotListener { snapshot, error in
-            
-        }
-        
+       
         self.searchTF.layer.cornerRadius = 8
         self.searchTF.layer.borderColor = UIColor.lightGray.cgColor
         self.searchTF.layer.borderWidth = 0.4
@@ -170,7 +166,6 @@ class HomeViewController: UIViewController {
         }
         
         startWeatherTimer()
-        
         FavoritesManager.shared.favoriteChanged
                    .sink { [weak self] postID in
                        self?.updateFavoriteButton(for: postID)
@@ -191,11 +186,90 @@ class HomeViewController: UIViewController {
                     .store(in: &cancellables)
         
         
+        Constants.hasBlueTick = true
+        self.getFollowingPosts()
         
-        
-        self.getAllPosts()
+//        getCount(for: user.uid, countType: Collections.FOLLOW.rawValue) { count, error in
+//            if let count = count, count > 10 {
+//                Constants.hasBlueTick = true
+//                self.getFollowingPosts()
+//            }
+//            else {
+//                self.getAllPosts()
+//            }
+//        }
+     
+       
     }
     
+   
+
+    func getFollowingPosts(shouldScrollToTop : Bool  = false) {
+            showProgressHUDIfNeeded()
+            let userId = Auth.auth().currentUser?.uid ?? ""
+            let feedRef = FirebaseStoreManager.db.collection(Collections.FEEDS.rawValue).document(userId)
+
+            var query: Query = feedRef.collection("postIds")
+                .order(by: "postCreateDate", descending: true)
+                .limit(to: pageSize)
+
+            if let lastDocument = postDocumentSnapshot {
+                query = query.start(afterDocument: lastDocument)
+            }
+
+            query.getDocuments { [weak self] snapshot, error in
+                guard let self = self else { return }
+                self.refreshControl.endRefreshing()
+                if shouldScrollToTop {
+                    self.scrollToTop(animated: true)
+                }
+                if let error = error {
+                    self.handleError(error)
+                 
+                    return
+                }
+
+                guard let snapshot = snapshot, !snapshot.isEmpty else {
+                    self.ProgressHUDHide()
+                   
+                    return
+                }
+
+                self.postDocumentSnapshot = snapshot.documents.last
+
+                let postIds = snapshot.documents.map { $0.documentID }
+
+                self.fetchPosts(postIds: postIds)
+            }
+        }
+
+        func fetchPosts(postIds: [String]) {
+            let db = Firestore.firestore()
+            var query = db.collection(Collections.POSTS.rawValue)
+                .whereField(FieldPath.documentID(), in: postIds)
+                .whereField("isActive", isEqualTo: true)
+                .whereField("isPromoted", isEqualTo: true)
+                .order(by: "postCreateDate", descending: true)
+
+           
+            let dispatchGroup = DispatchGroup()
+
+            query.getDocuments { snapshot, error in
+                if let error = error {
+                    self.handleError(error)
+                    return
+                }
+
+                guard let snapshot = snapshot else {
+                   
+                    return
+                }
+                self.processSnapshot(snapshot)
+ 
+            }
+        }
+
+   
     func startWeatherTimer() {
            weatherTimer = Timer.scheduledTimer(timeInterval: 1800, target: self,
                                                selector: #selector(fetchWeatherUpdate),
@@ -360,7 +434,13 @@ class HomeViewController: UIViewController {
         self.uniquePostIDs.removeAll()
         self.postDocumentSnapshot = nil
         
-        self.getAllPosts()
+        if Constants.hasBlueTick {
+            self.getAllPosts(shouldScrollToTop: true)
+        }
+        else {
+            self.getAllPosts(shouldScrollToTop: true)
+        }
+      
     }
     
     override func viewWillAppear(_: Bool) {
@@ -378,15 +458,18 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func getAllPosts() {
+    func getAllPosts(shouldScrollToTop : Bool  = false) {
         self.showProgressHUDIfNeeded()
-        var query = FirebaseStoreManager.db.collection("Posts").order(by: "postCreateDate", descending: true).whereField("isActive", isEqualTo: true).whereField("isPromoted", isEqualTo: true)
+        var query = FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).order(by: "postCreateDate", descending: true).whereField("isActive", isEqualTo: true).whereField("isPromoted", isEqualTo: true)
         query = self.applyPaginationIfNeeded(to: query)
         
         query.limit(to: self.pageSize).getDocuments { [weak self] snapshot, error in
             guard let self = self else { return }
             self.refreshControl.endRefreshing()
-            self.scrollToTop(animated: true)
+            if shouldScrollToTop {
+                self.scrollToTop(animated: true)
+            }
+          
             
             if let error = error {
                 self.handleError(error)
@@ -540,7 +623,12 @@ class HomeViewController: UIViewController {
         spinner.startAnimating()
         self.tableView.tableFooterView = spinner
         
-        self.getAllPosts()
+        if Constants.hasBlueTick {
+            self.getFollowingPosts()
+        }
+        else {
+            self.getAllPosts()
+        }
     }
     
     override func viewWillDisappear(_: Bool) {
@@ -847,6 +935,7 @@ class HomeViewController: UIViewController {
     }
     
     deinit {
+        feedListener?.remove()
         NotificationCenter.default.removeObserver(self)
     }
 }

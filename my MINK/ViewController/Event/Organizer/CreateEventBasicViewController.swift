@@ -438,7 +438,7 @@ class CreateEventBasicViewController: UIViewController {
             
     
         
-        let docucmentRef =  FirebaseStoreManager.db.collection("Events").document()
+        let docucmentRef =  FirebaseStoreManager.db.collection(Collections.EVENTS.rawValue).document()
         
         event.eventId = docucmentRef.documentID
     

@@ -72,7 +72,7 @@ class OrganisorDashboardViewController : UIViewController {
         ProgressHUDShow(text: "")
         
         
-        Firestore.firestore().collection("Events").order(by: "eventStartDate",descending: true).whereField("eventOrganizerUid", isEqualTo: mUser.uid).addSnapshotListener { snapshot, error in
+        Firestore.firestore().collection(Collections.EVENTS.rawValue).order(by: "eventStartDate",descending: true).whereField("eventOrganizerUid", isEqualTo: mUser.uid).addSnapshotListener { snapshot, error in
             self.ProgressHUDHide()
             if error == nil {
                 Event.datas.removeAll()

@@ -49,7 +49,7 @@ class UpdateToDoViewController : UIViewController {
         alert.addAction(UIAlertAction(title: "DELETE", style: .destructive, handler: { action in
             
             self.ProgressHUDShow(text: "Deleting...")
-            FirebaseStoreManager.db.collection("Tasks").document(self.todoModel!.id!).delete { error in
+            FirebaseStoreManager.db.collection(Collections.TASKS.rawValue).document(self.todoModel!.id!).delete { error in
                 self.ProgressHUDHide()
                 if let error = error {
                     self.showError(error.localizedDescription)
@@ -84,7 +84,7 @@ class UpdateToDoViewController : UIViewController {
             self.todoModel!.date = calendarView.date
             
             ProgressHUDShow(text: "Updating Task...")
-            try? FirebaseStoreManager.db.collection("Tasks").document(self.todoModel!.id!).setData(from: todoModel,merge : true,completion: { error in
+            try? FirebaseStoreManager.db.collection(Collections.TASKS.rawValue).document(self.todoModel!.id!).setData(from: todoModel,merge : true,completion: { error in
                 self.ProgressHUDHide()
                 if let error = error {
                     self.showError(error.localizedDescription)

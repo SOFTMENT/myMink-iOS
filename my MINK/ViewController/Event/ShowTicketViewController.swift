@@ -77,7 +77,7 @@ class ShowTicketViewController: UIViewController {
     
     func getTickets(by orderNumber  : String) {
         self.ProgressHUDShow(text: "")
-        Firestore.firestore().collection("Tickets").order(by: "ticketBookDate").whereField("orderNumber", isEqualTo: orderNumber).addSnapshotListener { snapshot, error in
+        Firestore.firestore().collection(Collections.TICKETS.rawValue).order(by: "ticketBookDate").whereField("orderNumber", isEqualTo: orderNumber).addSnapshotListener { snapshot, error in
 
             self.ProgressHUDHide()
             if error == nil {

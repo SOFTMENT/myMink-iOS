@@ -56,7 +56,7 @@ class EditPostViewController: UIViewController {
 
     @IBAction func editPostClicked(_: Any) {
         ProgressHUDShow(text: "")
-        FirebaseStoreManager.db.collection("Posts").document(self.postModel!.postID ?? "123")
+        FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(self.postModel!.postID ?? "123")
             .setData(["caption": self.captionTV.text!], merge: true) { error in
                 self.ProgressHUDHide()
                 if let error = error {

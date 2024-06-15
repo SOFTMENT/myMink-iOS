@@ -122,8 +122,8 @@ class ViewUserProfileController: UIViewController {
             self.followBtn.layer.cornerRadius = 8
             self.followBtn.isSelected = false
             // checkFollow
-            FirebaseStoreManager.db.collection("Users").document(FirebaseStoreManager.auth.currentUser!.uid)
-                .collection("Following").document(user.uid ?? "123").getDocument { snapshot, error in
+            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
+                .collection(Collections.FOLLOWING.rawValue).document(user.uid ?? "123").getDocument { snapshot, error in
                     if error == nil {
                         if let snapshot = snapshot, snapshot.exists {
                             self.followBtn.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)

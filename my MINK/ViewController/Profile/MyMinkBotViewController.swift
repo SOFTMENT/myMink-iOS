@@ -72,7 +72,7 @@ class MyMinkBotViewController : UIViewController, UITableViewDelegate, UITableVi
  
 
     func sendMessage(sMessage: String) {
-        let messageID = FirebaseStoreManager.db.collection("Chats").document().documentID
+        let messageID = FirebaseStoreManager.db.collection(Collections.CHATS.rawValue).document().documentID
 
         self.ProgressHUDShow(text: "")
         self.getResponseFromChatbot(question: sMessage) { chatCompletion, error in
@@ -83,8 +83,8 @@ class MyMinkBotViewController : UIViewController, UITableViewDelegate, UITableVi
                     self.showError(error)
                 }
                 else {
-                    FirebaseStoreManager.db.collection("Chats").document(FirebaseStoreManager.auth.currentUser!.uid)
-                        .collection("bot").document(chatCompletion!.id)
+                    FirebaseStoreManager.db.collection(Collections.CHATS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
+                        .collection(Collections.BOT.rawValue).document(chatCompletion!.id)
                         .setData([
                             "message": chatCompletion!.choices.first!.message.content,
                             "senderUid": "bot",
@@ -103,8 +103,8 @@ class MyMinkBotViewController : UIViewController, UITableViewDelegate, UITableVi
             
         }
         
-        FirebaseStoreManager.db.collection("Chats").document(FirebaseStoreManager.auth.currentUser!.uid)
-            .collection("bot").document(messageID)
+        FirebaseStoreManager.db.collection(Collections.CHATS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
+            .collection(Collections.BOT.rawValue).document(messageID)
             .setData([
                 "message": sMessage,
                 "senderUid": FirebaseStoreManager.auth.currentUser!.uid,
@@ -172,8 +172,8 @@ class MyMinkBotViewController : UIViewController, UITableViewDelegate, UITableVi
     func loadData() {
         ProgressHUDShow(text: "Loading...")
       
-        FirebaseStoreManager.db.collection("Chats").document(FirebaseStoreManager.auth.currentUser!.uid)
-            .collection("bot").order(by: "date").addSnapshotListener { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.CHATS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
+            .collection(Collections.BOT.rawValue).order(by: "date").addSnapshotListener { snapshot, error in
                 self.ProgressHUDHide()
                 if error == nil {
                     self.messages.removeAll()
