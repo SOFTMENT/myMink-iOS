@@ -16,7 +16,6 @@ class UserModel: NSObject, Codable{
         }
     }
 
-
     var profilePic: String?
     var fullName: String?
     var email: String?

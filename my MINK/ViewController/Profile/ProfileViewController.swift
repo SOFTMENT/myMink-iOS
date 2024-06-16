@@ -349,7 +349,7 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
     
     func refresFromWillAppear() {
         
-        getCount(for: FirebaseStoreManager.auth.currentUser!.uid, countType: "Follow") { mcount, error in
+        getCount(for: FirebaseStoreManager.auth.currentUser!.uid, countType: Collections.FOLLOW.rawValue) { mcount, error in
             var count  = 0
             if let mcount = mcount {
                count = mcount
@@ -365,7 +365,7 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
                 self.verificationBadge.isHidden = false
                 self.verificationBadge.image = UIImage(named: "verification")
             }
-            else if count >= 10 {
+            else if count >= Constants.BLUE_TICK_REQUIREMENT {
                 self.verificationBadge.isHidden = false
                 self.verificationBadge.image = UIImage(named: "verified")
             }

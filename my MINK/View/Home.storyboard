@@ -513,7 +513,7 @@
                                                     <constraint firstAttribute="height" constant="400" id="0Ic-F7-jiV"/>
                                                 </constraints>
                                             </stackView>
-                                            <tableView contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="of2-DW-6eX">
+                                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="of2-DW-6eX">
                                                 <rect key="frame" x="24" y="0.0" width="366" height="896"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <view key="tableHeaderView" contentMode="scaleToFill" id="bi4-YA-73j">
@@ -3844,7 +3844,15 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="sWp-OR-GhP"/>
+        <designable name="BRA-4I-niA"/>
+        <designable name="SEe-g6-KVM"/>
+        <designable name="UYi-XT-n5Y"/>
+        <designable name="jwr-hI-FO9"/>
+        <designable name="s5w-AA-e3k"/>
+        <designable name="sWp-OR-GhP">
+            <size key="intrinsicContentSize" width="0.0" height="14"/>
+        </designable>
+        <designable name="uqY-OA-JYi"/>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="oxM-ey-AMz"/>

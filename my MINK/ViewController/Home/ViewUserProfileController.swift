@@ -263,7 +263,7 @@ class ViewUserProfileController: UIViewController {
         }
       
         
-        getCount(for: FirebaseStoreManager.auth.currentUser!.uid, countType: "ProfileViews") { count, error in
+        getCount(for: user!.uid ?? "123", countType: "ProfileViews") { count, error in
             self.viewsLoading.isHidden = true
             self.viewCount.isHidden = false
             self.topViewsLbl.text = (count ?? 0) > 1 ? "Views" : "View"
@@ -276,7 +276,7 @@ class ViewUserProfileController: UIViewController {
 
     
     func updateFollowersAndFollowingCount() {
-        getCount(for: FirebaseStoreManager.auth.currentUser!.uid, countType: "Follow") { mcount, error in
+        getCount(for: user!.uid ?? "123", countType: Collections.FOLLOWING.rawValue) { mcount, error in
             var count  = 0
             if let mcount = mcount {
                count = mcount
@@ -292,7 +292,7 @@ class ViewUserProfileController: UIViewController {
                 self.verificationBadge.isHidden = false
                 self.verificationBadge.image = UIImage(named: "verification")
             }
-            else if count >= 10 {
+            else if count >= Constants.BLUE_TICK_REQUIREMENT {
                 self.verificationBadge.isHidden = false
                 self.verificationBadge.image = UIImage(named: "verified")
             }
@@ -303,7 +303,10 @@ class ViewUserProfileController: UIViewController {
         
      
        
-        getCount(for: FirebaseStoreManager.auth.currentUser!.uid, countType: "Following") { count, error in
+        getCount(for: user!.uid ?? "123", countType: "Following") { count, error in
+            
+        
+            
             self.followingLoading.isHidden = true
             self.followingCount.isHidden = false
             self.followingCount.text = "\(count ?? 0)"

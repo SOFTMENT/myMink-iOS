@@ -49,7 +49,8 @@ class HomeViewController: UIViewController {
     var isMute: Bool = true
     var shouldHandleDynamicLink: Bool = false
   
-    private var listener: ListenerRegistration?
+  
+    private var followerListner : ListenerRegistration?
     let locationManager = CLLocationManager()
     var weatherModel : WeatherModel?
     private var cancellables = Set<AnyCancellable>()
@@ -143,8 +144,9 @@ class HomeViewController: UIViewController {
         
         self.refreshControl.attributedTitle = NSAttributedString(string: "")
         self.refreshControl.tintColor = .white
-        self.refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        self.refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         refreshView.addSubview(self.refreshControl)
+
         
         self.playerPool = PlayerPool(playerCount: 6)
         
@@ -186,24 +188,51 @@ class HomeViewController: UIViewController {
                     .store(in: &cancellables)
         
         
-        Constants.hasBlueTick = true
-        self.getFollowingPosts()
+        FollowingManager.shared.followingChanged
+                    .sink { [weak self] uid in
+                        self?.followingChanged(uid: uid)
+                    }
+                    .store(in: &cancellables)
         
-//        getCount(for: user.uid, countType: Collections.FOLLOW.rawValue) { count, error in
-//            if let count = count, count > 10 {
-//                Constants.hasBlueTick = true
-//                self.getFollowingPosts()
-//            }
-//            else {
-//                self.getAllPosts()
-//            }
-//        }
-     
-       
+      
+        getCount(for: user.uid, countType: Collections.FOLLOW.rawValue) { count, error in
+            if let count = count, count >= 10 {
+                Constants.hasBlueTick = true
+                self.getFollowingPosts()
+            }
+            else {
+                self.getAllPosts()
+            }
+        }
+        
+        followersCountListen(userId: user.uid)
+        
     }
     
-   
-
+    func followersCountListen(userId : String){
+        self.followerListner = FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(userId).collection(Collections.FOLLOW.rawValue).addSnapshotListener {snapshot, error in
+            if let snapshot = snapshot, !snapshot.isEmpty, snapshot.documents.count >= Constants.BLUE_TICK_REQUIREMENT {
+                self.getFollowingPosts()
+            }
+            else {
+                self.getAllPosts()
+            }
+        }
+        
+    }
+    
+    func followingChanged(uid : String?){
+        if let uid = uid {
+            postModels.removeAll { $0.uid == uid }
+            self.tableView.reloadData()
+        }
+        else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.refresh()
+            }
+        }
+    }
+  
     func getFollowingPosts(shouldScrollToTop : Bool  = false) {
             showProgressHUDIfNeeded()
             let userId = Auth.auth().currentUser?.uid ?? ""
@@ -214,6 +243,7 @@ class HomeViewController: UIViewController {
                 .limit(to: pageSize)
 
             if let lastDocument = postDocumentSnapshot {
+               
                 query = query.start(afterDocument: lastDocument)
             }
 
@@ -231,40 +261,42 @@ class HomeViewController: UIViewController {
 
                 guard let snapshot = snapshot, !snapshot.isEmpty else {
                     self.ProgressHUDHide()
-                   
+                    
+                    self.stopSpinner()
                     return
                 }
 
                 self.postDocumentSnapshot = snapshot.documents.last
-
+              
                 let postIds = snapshot.documents.map { $0.documentID }
+            
 
-                self.fetchPosts(postIds: postIds)
+                self.fetchPosts(postIds: postIds, documents: snapshot.documents)
             }
         }
 
-        func fetchPosts(postIds: [String]) {
+    func fetchPosts(postIds: [String], documents : [QueryDocumentSnapshot]) {
             let db = Firestore.firestore()
-            var query = db.collection(Collections.POSTS.rawValue)
-                .whereField(FieldPath.documentID(), in: postIds)
+            let query = db.collection(Collections.POSTS.rawValue)
+                .whereField("postID", in: postIds)
                 .whereField("isActive", isEqualTo: true)
                 .whereField("isPromoted", isEqualTo: true)
                 .order(by: "postCreateDate", descending: true)
 
-           
-            let dispatchGroup = DispatchGroup()
-
+     
+    
             query.getDocuments { snapshot, error in
                 if let error = error {
                     self.handleError(error)
                     return
                 }
-
-                guard let snapshot = snapshot else {
-                   
+                
+                guard let snapshot = snapshot,!snapshot.isEmpty else {
+                    self.stopSpinner()
                     return
                 }
-                self.processSnapshot(snapshot)
+            
+                self.processSnapshot(snapshot, documents: documents)
  
             }
         }
@@ -426,7 +458,7 @@ class HomeViewController: UIViewController {
         
     }
     
-    @objc func refresh(_: AnyObject) {
+    @objc func refresh() {
         let indexPathsToDelete = (0 ..< self.postModels.count).map { IndexPath(row: $0, section: 0) }
         self.postModels.removeAll()
         self.tableView.deleteRows(at: indexPathsToDelete, with: .automatic)
@@ -435,7 +467,7 @@ class HomeViewController: UIViewController {
         self.postDocumentSnapshot = nil
         
         if Constants.hasBlueTick {
-            self.getAllPosts(shouldScrollToTop: true)
+            self.getFollowingPosts(shouldScrollToTop: true)
         }
         else {
             self.getAllPosts(shouldScrollToTop: true)
@@ -477,12 +509,18 @@ class HomeViewController: UIViewController {
             }
             
             guard let snapshot = snapshot, !snapshot.isEmpty else {
+                self.stopSpinner()
                 self.ProgressHUDHide()
                 return
             }
             
-            self.processSnapshot(snapshot)
+            self.processSnapshot(snapshot, documents: snapshot.documents)
         }
+    }
+    
+    func cleanPostModels(){
+        self.postModels.removeAll()
+        self.tableView.reloadData()
     }
     
     func showProgressHUDIfNeeded() {
@@ -498,7 +536,7 @@ class HomeViewController: UIViewController {
         return query
     }
     
-    func processSnapshot(_ snapshot: QuerySnapshot) {
+    func processSnapshot(_ snapshot: QuerySnapshot, documents : [QueryDocumentSnapshot]) {
         self.postDocumentSnapshot = nil
         self.dataMayContinue = false
         
@@ -525,7 +563,7 @@ class HomeViewController: UIViewController {
         
         group.notify(queue: .main) {
             
-            self.handleNewPosts(newPostModels, in: snapshot)
+            self.handleNewPosts(newPostModels, documents: documents, in: snapshot)
         }
     }
     
@@ -586,9 +624,9 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func handleNewPosts(_ newPosts: [PostModel], in snapshot: QuerySnapshot) {
-        if snapshot.documents.count >= self.pageSize {
-            self.postDocumentSnapshot = snapshot.documents.last
+    func handleNewPosts(_ newPosts: [PostModel], documents : [QueryDocumentSnapshot],  in snapshot: QuerySnapshot) {
+        if  documents.count >= self.pageSize {
+            self.postDocumentSnapshot = documents.last
             self.dataMayContinue = true
         }
         
@@ -611,6 +649,8 @@ class HomeViewController: UIViewController {
     }
     
     func fetchMoreData() {
+        
+      
         guard self.postDocumentSnapshot != nil, self.dataMayContinue else {
             return
         }
@@ -624,6 +664,7 @@ class HomeViewController: UIViewController {
         self.tableView.tableFooterView = spinner
         
         if Constants.hasBlueTick {
+           
             self.getFollowingPosts()
         }
         else {
@@ -664,6 +705,14 @@ class HomeViewController: UIViewController {
         //  tableViewHeight.constant = tableView.contentSize.height
         self.tableView.layoutIfNeeded()
     }
+    
+    func stopSpinner() {
+            if let spinner = self.tableView.tableFooterView as? UIActivityIndicatorView {
+                spinner.stopAnimating()
+                self.tableView.tableFooterView = nil
+            }
+        }
+    
     
     @objc func shareBtnClicked(value: MyGesture) {
         let postModel = self.postModels[value.index]
@@ -935,6 +984,7 @@ class HomeViewController: UIViewController {
     }
     
     deinit {
+        self.followerListner?.remove()
         feedListener?.remove()
         NotificationCenter.default.removeObserver(self)
     }
@@ -953,6 +1003,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if scrollView.contentOffset.y >= 0
             && scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)
         {
+            
             self.fetchMoreData()
         } else {
             self.handleScroll()

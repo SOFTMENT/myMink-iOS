@@ -21,6 +21,7 @@
 		5D08E1AF2B9D473F00DC2EAA /* HoroscopeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D08E1AE2B9D473F00DC2EAA /* HoroscopeModel.swift */; };
 		5D0AF2AE2B169FD40014C5D9 /* liveback1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D0AF2AD2B169FD40014C5D9 /* liveback1.jpg */; };
 		5D0AF2B22B16AAB10014C5D9 /* hearts.json in Resources */ = {isa = PBXBuildFile; fileRef = 5D0AF2B12B16AAB10014C5D9 /* hearts.json */; };
+		5D0CF4FA2C1E3BEB00324AEE /* FollowingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CF4F92C1E3BEB00324AEE /* FollowingManager.swift */; };
 		5D1DC6B12A2DF6A700EE2D80 /* PhoneNumberVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC6B02A2DF6A700EE2D80 /* PhoneNumberVerificationController.swift */; };
 		5D1DC6B32A2E0D5A00EE2D80 /* VIPCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1DC6B22A2E0D5A00EE2D80 /* VIPCodeViewController.swift */; };
 		5D2004532A3E00CC00ECB76B /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2004522A3E00CC00ECB76B /* CreatePostViewController.swift */; };
@@ -280,6 +281,7 @@
 		5D08E1AE2B9D473F00DC2EAA /* HoroscopeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeModel.swift; sourceTree = "<group>"; };
 		5D0AF2AD2B169FD40014C5D9 /* liveback1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = liveback1.jpg; sourceTree = "<group>"; };
 		5D0AF2B12B16AAB10014C5D9 /* hearts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hearts.json; sourceTree = "<group>"; };
+		5D0CF4F92C1E3BEB00324AEE /* FollowingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingManager.swift; sourceTree = "<group>"; };
 		5D1DC6B02A2DF6A700EE2D80 /* PhoneNumberVerificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationController.swift; sourceTree = "<group>"; };
 		5D1DC6B22A2E0D5A00EE2D80 /* VIPCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPCodeViewController.swift; sourceTree = "<group>"; };
 		5D2004522A3E00CC00ECB76B /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 				5D389C3C2C079F3E00A45066 /* FavoritesManager.swift */,
 				5D742AAE2C08BEDC006605FC /* SavedManager.swift */,
 				5D742AC62C092CC0006605FC /* CommentManager.swift */,
+				5D0CF4F92C1E3BEB00324AEE /* FollowingManager.swift */,
 			);
 			path = GlobalState;
 			sourceTree = "<group>";
@@ -1202,6 +1205,7 @@
 				5D4E1DD02BCD81C9009B9497 /* EditProductViewController.swift in Sources */,
 				5D77D9C42B6C1053001BE3B5 /* WeatherReportViewController.swift in Sources */,
 				5D389C3A2C0732DF00A45066 /* SavedViewController.swift in Sources */,
+				5D0CF4FA2C1E3BEB00324AEE /* FollowingManager.swift in Sources */,
 				5D727E762A4A535E00F4CCC4 /* CryptoTableViewCell.swift in Sources */,
 				5D6E611B2A0336B700363488 /* AppDelegate.swift in Sources */,
 				5DF8C7AA2BF7E2E5008BAB8E /* ShowTicketViewController.swift in Sources */,
@@ -1492,7 +1496,7 @@
 				CODE_SIGN_ENTITLEMENTS = "my MINK/my MINKDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 122;
+				CURRENT_PROJECT_VERSION = 125;
 				DEVELOPMENT_TEAM = 3A38VTTBM4;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1523,7 +1527,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.99999999999995;
+				MARKETING_VERSION = 1.99999999999998;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1716,7 +1720,7 @@
 				CODE_SIGN_ENTITLEMENTS = "my MINK/my MINK.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 122;
+				CURRENT_PROJECT_VERSION = 125;
 				DEVELOPMENT_TEAM = 3A38VTTBM4;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1747,7 +1751,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.99999999999995;
+				MARKETING_VERSION = 1.99999999999998;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

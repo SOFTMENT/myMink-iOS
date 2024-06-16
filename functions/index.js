@@ -189,6 +189,171 @@ async function deletePost(id, postType, images, postVideo, videoImage) {
 }
 }
 
+
+// Trigger on FeedFollowChange
+exports.updateFeedOnFollowChange = functions.firestore
+.document('Users/{userId}/Following/{followingId}')
+.onWrite(async (change, context) => {
+    const userId = context.params.userId;
+
+    try {
+        // Get the list of followed users
+        const followingsSnapshot = await admin.firestore()
+            .collection('Users')
+            .doc(userId)
+            .collection('Following')
+            .get();
+
+        if (!followingsSnapshot || followingsSnapshot.empty) {
+            console.warn(`No following documents found for user ${userId}`);
+        }
+
+        const followedUserIds = followingsSnapshot.docs.map(doc => doc.id);
+
+        if (followedUserIds.length === 0) {
+            // If the user follows no one, clear the feed
+            const feedRef = admin.firestore().collection('Feeds').doc(userId).collection('postIds');
+            const feedSnapshot = await feedRef.get();
+
+            if (!feedSnapshot || feedSnapshot.empty) {
+                console.warn(`No feed documents found for user ${userId}`);
+            }
+
+            const batch = admin.firestore().batch();
+            feedSnapshot.docs.forEach(doc => batch.delete(doc.ref));
+            await batch.commit();
+            console.log(`Cleared feed for user ${userId} as they follow no one.`);
+            return null;
+        }
+
+        const batchSize = 10;
+        const batches = [];
+
+        for (let i = 0; i < followedUserIds.length; i += batchSize) {
+            batches.push(followedUserIds.slice(i, i + batchSize));
+        }
+
+        let allPosts = [];
+
+        for (const batch of batches) {
+            const postsSnapshot = await admin.firestore()
+                .collection('Posts')
+                .where('uid', 'in', batch)
+                .orderBy('postCreateDate', 'desc')
+                .get();
+
+            if (!postsSnapshot || postsSnapshot.empty) {
+                console.warn(`No posts found for batch: ${batch}`);
+            }
+
+            allPosts.push(...postsSnapshot.docs.map(doc => ({
+                id: doc.id,
+                data: doc.data(),
+                readTime: doc.readTime || new Date().toISOString() // Ensuring readTime is captured
+            })));
+        }
+
+        // Update the user's feed with the list of post IDs
+        const feedRef = admin.firestore().collection('Feeds').doc(userId).collection('postIds');
+        const feedBatch = admin.firestore().batch();
+        allPosts.forEach(post => {
+          if (!post.data.bid || post.data.bid.trim() === "") {
+            feedBatch.set(feedRef.doc(post.id), {postCreateDate: post.data.postCreateDate });
+          }
+        });
+
+        // Clear any existing feed items not in the new list
+        const existingFeedSnapshot = await feedRef.get();
+
+        if (!existingFeedSnapshot || existingFeedSnapshot.empty) {
+            console.warn(`No existing feed documents found for user ${userId}`);
+        }
+
+        existingFeedSnapshot.docs.forEach(doc => {
+            if (!allPosts.some(post => post.id === doc.id)) {
+                feedBatch.delete(doc.ref);
+            }
+        });
+
+        await feedBatch.commit();
+
+        console.log(`Updated feed for user ${userId} with ${allPosts.length} posts.`);
+        return null;
+    } catch (error) {
+        console.error(`Error updating feed for user ${userId}:`, error);
+        return { error: error.message };
+    }
+});
+
+// Trigger to update Feeds when a new post is created
+exports.updateFeedsOnNewPost = functions.firestore
+.document('Posts/{postId}')
+.onCreate(async (snapshot, context) => {
+    const postId = context.params.postId;
+    const postData = snapshot.data();
+    const userId = postData.userId;
+
+    try {
+        // Get all users who follow the user who created the post
+        const followersSnapshot = await admin.firestore()
+            .collectionGroup('Following')
+            .where('followingId', '==', userId)
+            .get();
+
+        const followerUpdates = followersSnapshot.docs.map(async doc => {
+            const followerId = doc.ref.parent.parent.id;
+            const feedRef = admin.firestore().collection('Feeds').doc(followerId).collection('postIds').doc(postId);
+
+            if (!postData.bid || postData.bid.trim() === "") {
+            await feedRef.set({postCreateDate: postData.postCreateDate});
+            }
+        });
+
+        await Promise.all(followerUpdates);
+        return null;
+    } catch (error) {
+        console.error(`Error updating feeds with new post ${postId}:`, error);
+        return { error: error.message };
+    }
+});
+
+
+// Trigger to update Feeds when a post is deleted
+exports.updateFeedsOnPostDeletion = functions.firestore
+.document('Posts/{postId}')
+.onDelete(async (snapshot, context) => {
+    const postId = context.params.postId;
+    const postData = snapshot.data();
+    const userId = postData.uid;
+
+    try {
+        // Get all users who follow the user who created the post
+        const followersSnapshot = await admin.firestore()
+            .collectionGroup('Following')
+            .where('uid', '==', userId)
+            .get();
+
+        const followerUpdates = followersSnapshot.docs.map(async doc => {
+            const followerId = doc.ref.parent.parent.id;
+            const feedRef = admin.firestore().collection('Feeds').doc(followerId).collection('postIds').doc(postId);
+
+            // Remove the post ID from the follower's feed
+            await feedRef.delete();
+        });
+
+        await Promise.all(followerUpdates);
+        return null;
+    } catch (error) {
+        console.error(`Error updating feeds on post deletion ${postId}:`, error);
+        return { error: error.message };
+    }
+});
+
+
+
+
+
+
 async function deleteSubcollection(collectionPath) {
   try {
       const snapshot = await admin.firestore().collection(collectionPath).get();
@@ -279,7 +444,7 @@ exports.deleteLike = functions.https.onCall(async (data, context) => {
 
 // Define the Cloud Function to delete a Subscribe
 exports.deleteSubscribe = functions.https.onCall(async (data, context) => {
-  const bID = data.bID;
+  const bID = data.bid;
   const userID = context.auth.uid;  // Assumes userID comes from authenticated user context
 
   // Check if the request is authenticated
@@ -300,141 +465,61 @@ exports.deleteSubscribe = functions.https.onCall(async (data, context) => {
 });
 
 // Define the Cloud Function to delete a Save
-exports.updateFeedOnFollowChange = functions.firestore
-    .document('Users/{userId}/Following/{followingId}')
-    .onWrite(async (change, context) => {
-        const userId = context.params.userId;
+exports.deleteSave = functions.https.onCall(async (data, context) => {
+  const postID = data.postID;
+  const userID = context.auth.uid;  // Assumes userID comes from authenticated user context
 
-        try {
-            // Get the list of followed users
-            const followingsSnapshot = await admin.firestore()
-                .collection('Users')
-                .doc(userId)
-                .collection('Following')
-                .get();
+  // Check if the request is authenticated
+  if (!context.auth) {
+      return { error: 'Authentication required to remove save posts.' };
+  }
 
-            const followedUserIds = followingsSnapshot.docs.map(doc => doc.id);
+  try {
+      // Deleting the Like document from the Likes subcollection
+      admin.firestore().collection('Users').doc(userID)
+          .collection('SavePosts').doc(postID).delete();
 
-            if (followedUserIds.length === 0) {
-                // If the user follows no one, clear the feed
-                const feedRef = admin.firestore().collection('Feeds').doc(userId).collection('postIds');
-                const feedSnapshot = await feedRef.get();
-                const batch = admin.firestore().batch();
-                feedSnapshot.docs.forEach(doc => batch.delete(doc.ref));
-                await batch.commit();
-                return null;
-            }
+       admin.firestore().collection('Posts').doc(postID)
+          .collection('SavePosts').doc(userID).delete();
 
-            const batchSize = 10;
-            const batches = [];
+      return { success: true, message: "Save Post Removed" };
+  } catch (error) {
+      console.error("Error removing save:", error);
+      return { error: error.message };
+  }
+});
 
-            for (let i = 0; i < followedUserIds.length; i += batchSize) {
-                batches.push(followedUserIds.slice(i, i + batchSize));
-            }
+exports.checkFollow = functions.https.onCall(async (data, context) => {
+  const currentUserID = context.auth.uid;
+  const userID = data.userID;
 
-            let allPosts = [];
+  if (!currentUserID) {
+      return {
+          success: false,
+          error: 'User not authenticated'
+      };
+  }
 
-            for (const batch of batches) {
-                const postsSnapshot = await admin.firestore()
-                    .collection('Posts')
-                    .where('uid', 'in', batch)
-                    .orderBy('postCreateDate', 'desc')
-                    .get();
+  try {
+      const followDoc = await admin.firestore()
+          .collection('Users')
+          .doc(currentUserID)
+          .collection('Followings')
+          .doc(userID)
+          .get();
 
-                allPosts.push(...postsSnapshot.docs.map(doc => ({
-                    id: doc.id,
-                    data: doc.data()
-                })));
-            }
-
-            // Update the user's feed with the list of post IDs
-            const feedRef = admin.firestore().collection('Feeds').doc(userId).collection('postIds');
-            const feedBatch = admin.firestore().batch();
-            allPosts.forEach(post => {
-                feedBatch.set(feedRef.doc(post.id), post.data);
-            });
-
-            // Clear any existing feed items not in the new list
-            const existingFeedSnapshot = await feedRef.get();
-            existingFeedSnapshot.docs.forEach(doc => {
-                if (!allPosts.some(post => post.id === doc.id)) {
-                    feedBatch.delete(doc.ref);
-                }
-            });
-
-            await feedBatch.commit();
-
-            return null;
-        } catch (error) {
-            console.error(`Error updating feed for user ${userId}:`, error);
-            return { error: error.message };
-        }
-    });
-
-
-// Trigger to update Feeds when a new post is created
-exports.updateFeedsOnNewPost = functions.firestore
-    .document('Posts/{postId}')
-    .onCreate(async (snapshot, context) => {
-        const postId = context.params.postId;
-        const postData = snapshot.data();
-        const userId = postData.userId;
-
-        try {
-            // Get all users who follow the user who created the post
-            const followersSnapshot = await admin.firestore()
-                .collectionGroup('Following')
-                .where('followingId', '==', userId)
-                .get();
-
-            const followerUpdates = followersSnapshot.docs.map(async doc => {
-                const followerId = doc.ref.parent.parent.id;
-                const feedRef = admin.firestore().collection('Feeds').doc(followerId).collection('postIds').doc(postId);
-
-                // Update the follower's feed with the new post
-                await feedRef.set(postData);
-            });
-
-            await Promise.all(followerUpdates);
-            return null;
-        } catch (error) {
-            console.error(`Error updating feeds with new post ${postId}:`, error);
-            return { error: error.message };
-        }
-    });
-
-
-// Trigger to update Feeds when a post is deleted
-exports.updateFeedsOnPostDeletion = functions.firestore
-    .document('Posts/{postId}')
-    .onDelete(async (snapshot, context) => {
-        const postId = context.params.postId;
-        const postData = snapshot.data();
-        const userId = postData.userId;
-
-        try {
-            // Get all users who follow the user who created the post
-            const followersSnapshot = await admin.firestore()
-                .collectionGroup('Following')
-                .where('followingId', '==', userId)
-                .get();
-
-            const followerUpdates = followersSnapshot.docs.map(async doc => {
-                const followerId = doc.ref.parent.parent.id;
-                const feedRef = admin.firestore().collection('Feeds').doc(followerId).collection('postIds').doc(postId);
-
-                // Remove the post ID from the follower's feed
-                await feedRef.delete();
-            });
-
-            await Promise.all(followerUpdates);
-            return null;
-        } catch (error) {
-            console.error(`Error updating feeds on post deletion ${postId}:`, error);
-            return { error: error.message };
-        }
-    });
-
+      if (followDoc.exists) {
+          return { success: true, isFollowing: true };
+      } else {
+          return { success: true, isFollowing: false };
+      }
+  } catch (error) {
+      return {
+          success: false,
+          error: error.message
+      };
+  }
+});
 
 exports.getCount = functions.https.onCall(async (data, context) => {
   const id = data.id;

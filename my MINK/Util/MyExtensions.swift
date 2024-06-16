@@ -758,7 +758,7 @@ extension UIViewController {
     
     func deleteSubscribe(bId: String, completion : @escaping ()->Void) {
         let functions = Functions.functions()
-        functions.httpsCallable("deleteSubscribe").call(["bID": bId]) { result, error in
+        functions.httpsCallable("deleteSubscribe").call(["bid": bId]) { result, error in
           completion()
         }
     }
@@ -1734,6 +1734,9 @@ extension UIViewController {
             "mUid": mainUserId,
             "fUid": followerUserId
         ]) { result, error in
+            
+            FollowingManager.shared.following(uid: followerUserId)
+            
             completion(self.hasError(result: result, error: error))
         }
     }
@@ -1813,12 +1816,12 @@ extension UIViewController {
         let followingRef = FirebaseStoreManager.db.collection(Collections.USERS.rawValue)
 
         // Creating a follow model for fUser
-        let followModelForFUser = self.createFollowModel(from: fUser)
+        let followModelForMUser = self.createFollowModel(from: mUser)
         self.setFollowData(
             userRef: followingRef,
             userId: mUser.uid,
             followUserId: fUser.uid,
-            followModel: followModelForFUser
+            followModel: followModelForMUser
         )
 
       
@@ -2019,7 +2022,9 @@ extension UIViewController {
 
         do {
             try userRef.document(followUserId).collection(Collections.FOLLOW.rawValue).document(userId).setData(from: followModel)
-            try userRef.document(userId).collection(Collections.FOLLOWING.rawValue).document(followUserId).setData(from: followModel)
+            try userRef.document(userId).collection(Collections.FOLLOWING.rawValue).document(followUserId).setData(from: followModel) { error in
+                FollowingManager.shared.following(uid: nil)
+            }
         } catch {
             print("Error setting follow data: \(error.localizedDescription)")
         }

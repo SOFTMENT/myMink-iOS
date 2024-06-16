@@ -130,7 +130,10 @@ struct Constants {
         }
         return countries
     }
+    
+    
 
+    static let BLUE_TICK_REQUIREMENT = 10
     static let MY_MINK_APP_DOMAIN = "app.mymink.com.au/"
     static let AWS_VIDEO_BASE_URL = "https://d3uhzx9vktk5vy.cloudfront.net/public/"
     static let AWS_IMAGE_BASE_URL = "https://d1bak4qdzgw57r.cloudfront.net"
