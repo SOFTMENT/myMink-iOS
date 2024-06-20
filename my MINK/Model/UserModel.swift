@@ -47,7 +47,7 @@ class UserModel: NSObject, Codable{
     var isBlocked : Bool?
     var isDuringTrial : Bool?
     var livestreamingURL : String?
-    
+    var isAccountDeactivate : Bool?
     static func clearUserData() {
        userData = nil
     }

@@ -1782,6 +1782,25 @@ extension UIViewController {
         }
     }
     
+    func deactivateUserAccount(userId: String, completion : @escaping (_ error : String?)->Void) {
+        let functions = Functions.functions()
+        functions.httpsCallable("deactivateUserAccount").call([
+            "userId": userId
+        ]) { result, error in
+            completion(self.hasError(result: result, error: error))
+        }
+    }
+    func reactivateUserAccount(userId: String) {
+        let functions = Functions.functions()
+        functions.httpsCallable("reactivateUserAccount").call([
+            "userId": userId
+        ]) { result, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func deleteUserAccount(userId: String, username: String, completion : @escaping (_ error : String?)->Void) {
         let functions = Functions.functions()
         functions.httpsCallable("deleteUserAccount").call([
@@ -1823,8 +1842,6 @@ extension UIViewController {
             followUserId: fUser.uid,
             followModel: followModelForMUser
         )
-
-      
     }
 
     
@@ -2309,9 +2326,13 @@ extension UIViewController {
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                         appDelegate.voipRegistration()
                     }
-
+                    
+                    if let isAccountDeactivate = userModel.isAccountDeactivate, isAccountDeactivate {
+                        self.reactivateUserAccount(userId: userModel.uid ?? "")
+                    }
+                    
                     if let username = userModel.username, !username.isEmpty {
-                      
+                        
                         self.beRootScreen(storyBoardName: .Tabbar, mIdentifier: .TABBARVIEWCONTROLLER)
                         
                     } else {
@@ -3132,9 +3153,9 @@ extension UIView {
     func dropShadow(scale: Bool = true) {
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.3
+        layer.shadowOpacity = 0.2
         layer.shadowOffset = .zero
-        layer.shadowRadius = 2
+        layer.shadowRadius = 1.5
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }

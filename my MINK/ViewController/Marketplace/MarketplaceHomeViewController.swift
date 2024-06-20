@@ -22,6 +22,7 @@ class MarketplaceHomeViewController : UIViewController {
     var selectedIndex = 0
     var categories = [String]()
     var products = Array<MarketplaceModel>()
+    var useProducts = Array<MarketplaceModel>()
     override func viewDidLoad() {
         backView.layer.cornerRadius = 8
         backView.dropShadow()
@@ -62,6 +63,8 @@ class MarketplaceHomeViewController : UIViewController {
             }
             else {
                 self.products.removeAll()
+                self.useProducts.removeAll()
+                self.useProducts.append(contentsOf: products ?? [])
                 self.products.append(contentsOf: products ?? [])
                 self.storeCollectionView.reloadData()
             }
@@ -75,7 +78,7 @@ class MarketplaceHomeViewController : UIViewController {
     
     @objc func marketplaceCellClicked(value : MyGesture) {
   
-        performSegue(withIdentifier: "productDetailSeg", sender: products[value.index])
+        performSegue(withIdentifier: "productDetailSeg", sender: useProducts[value.index])
 
     }
     
@@ -92,6 +95,7 @@ class MarketplaceHomeViewController : UIViewController {
     @objc func categoryCellSelected(value : MyGesture){
         selectedIndex = value.index
         self.collectionView.reloadData()
+        
     }
     
     @objc func backViewClicked(){
@@ -129,14 +133,11 @@ extension MarketplaceHomeViewController : UICollectionViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == storeCollectionView {
-            if products.count > 0 {
-                self.noProductsAvailable.isHidden = true
-            }
-            else {
-                self.noProductsAvailable.isHidden = false
-            }
             
-            return products.count
+            self.noProductsAvailable.isHidden = useProducts.count > 0 ? true : false
+            
+            
+            return useProducts.count
         }
         else {
             return categories.count
@@ -154,7 +155,7 @@ extension MarketplaceHomeViewController : UICollectionViewDelegate, UICollection
                 cell.mView.layer.cornerRadius = 12
                 cell.storeImage.layer.cornerRadius = 12
                 
-                let product = self.products[indexPath.row]
+                let product = self.useProducts[indexPath.row]
         
                 cell.storeName.text = product.title ?? ""
                 cell.storeCategory.text = product.categoryName ?? ""

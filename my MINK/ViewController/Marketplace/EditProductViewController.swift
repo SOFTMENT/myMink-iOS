@@ -182,6 +182,7 @@ class EditProductViewController : UIViewController {
                     self.showSnack(messages: "Product Deleted")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                         self.delegate?.removeProduct(productModel: self.product!)
+                        self.dismiss(animated: true)
                     }
                 }
             }
@@ -295,10 +296,6 @@ class EditProductViewController : UIViewController {
             }
         }
     }
-
-  
-
-   
 
     @objc func hideKeyboard() {
         view.endEditing(true)

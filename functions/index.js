@@ -959,6 +959,43 @@ exports.toggleUserBlockStatus = functions.https.onCall(async (data, context) => 
   }
 });
 
+exports.deactivateUserAccount = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+      return { error: "Authentication required" };
+  }
+
+  const userId = data.userId;
+  
+  try {
+      const userRef = admin.firestore().collection('Users').doc(userId);
+      setIsActive({userId, isActive: false})
+       await userRef.set({isAccountActive:false, isAccountDeactivate : true}, { merge: true });
+      return { success: true, message: "User account and all associated data deactivate successfully." };
+  } catch (error) {
+      console.error("Error deactivating user account:", error);
+      return { error: error.message};
+  }
+});
+
+exports.reactivateUserAccount = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+      return { error: "Authentication required" };
+  }
+
+  const userId = data.userId;
+ 
+  try {
+      const userRef = admin.firestore().collection('Users').doc(userId);
+      setIsActive({userId, isActive: true})
+       await userRef.set({isAccountActive:true, isAccountDeactivate : false}, { merge: true });
+      return { success: true, message: "User account and all associated data reactivate successfully." };
+  } catch (error) {
+      console.error("Error reactivating user account:", error);
+      return { error: error.message};
+  }
+});
+
+
 exports.deleteUserAccount = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         return { error: "Authentication required" };
@@ -1176,12 +1213,13 @@ exports.scheduledSubscriptionUpdate = functions.pubsub
       const updatePromises = [];
       usersSnapshot.forEach((userDoc) => {
         const userId = userDoc.data().uid;
+        const isAccountDeactivate = userDoc.data().isAccountDeactivate || false;
         const planId = userDoc.data().planID;
         const subscriptionId = userDoc.data().subscriptionId;
 
         if (subscriptionId) {
     
-          updatePromises.push(updateSubscriptionDetails(userId, subscriptionId,planId));
+          updatePromises.push(updateSubscriptionDetails(userId,isAccountDeactivate, subscriptionId,planId));
         }
       });
 
@@ -1197,7 +1235,7 @@ exports.scheduledSubscriptionUpdate = functions.pubsub
 
 
 // Utility function to update subscription details for a user
-async function updateSubscriptionDetails(userId, subscriptionId,planId) {
+async function updateSubscriptionDetails(userId,isAccountDeactivate, subscriptionId,planId) {
 
   const userRef = admin.firestore().collection('Users').doc(userId);
 
@@ -1215,9 +1253,16 @@ async function updateSubscriptionDetails(userId, subscriptionId,planId) {
       isDuringTrial, // New field indicating if the subscription is currently in a trial period
     };
 
-    setIsActive({userId, isActive: (daysLeft > 0 || planId == "ID_LIFETIME")})
+
+    if (isAccountDeactivate) {
+      setIsActive({userId, isActive: false})
+      await userRef.set({isAccountActive : false}, { merge: true });
+    }
+    else {
+      setIsActive({userId, isActive: (daysLeft > 0 || planId == "ID_LIFETIME")})
+      await userRef.set(subscriptionData, { merge: true });
+    }
    
-    await userRef.set(subscriptionData, { merge: true });
 
   } catch (error) {
     const subscriptionData = {
@@ -1226,8 +1271,15 @@ async function updateSubscriptionDetails(userId, subscriptionId,planId) {
     
     };
 
-    setIsActive({userId, isActive: planId == "ID_LIFETIME"})
-    await userRef.set(subscriptionData, { merge: true });
+    if (isAccountDeactivate) {
+      setIsActive({userId, isActive: false})
+      await userRef.set({isAccountActive : false}, { merge: true });
+    }
+    else {
+      setIsActive({userId, isActive: planId == "ID_LIFETIME"})
+      await userRef.set(subscriptionData, { merge: true });
+    }
+   
 
     console.error('Error updating subscription details for user', userId, error);
   }

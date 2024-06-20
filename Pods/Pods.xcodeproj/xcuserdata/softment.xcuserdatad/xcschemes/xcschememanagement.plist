@@ -32,11 +32,6 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>AlgoliaSearchClient.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
 		<key>AppAuth.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -85,11 +80,6 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>10</integer>
-		</dict>
-		<key>CountryPickerSwift.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>20</integer>
 		</dict>
 		<key>CropViewController-TOCropViewControllerBundle.xcscheme</key>
 		<dict>
@@ -329,11 +319,6 @@
 			<key>orderHint</key>
 			<integer>48</integer>
 		</dict>
-		<key>Logging.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>67</integer>
-		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -389,76 +374,6 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>59</integer>
-		</dict>
-		<key>Stripe-Stripe.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>79</integer>
-		</dict>
-		<key>Stripe.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>78</integer>
-		</dict>
-		<key>StripeApplePay.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>80</integer>
-		</dict>
-		<key>StripeCore-StripeCore.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>82</integer>
-		</dict>
-		<key>StripeCore.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>81</integer>
-		</dict>
-		<key>StripePaymentSheet-StripePaymentSheet.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>87</integer>
-		</dict>
-		<key>StripePaymentSheet.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>86</integer>
-		</dict>
-		<key>StripePayments-Stripe3DS2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>84</integer>
-		</dict>
-		<key>StripePayments-StripePayments.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>85</integer>
-		</dict>
-		<key>StripePayments.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>83</integer>
-		</dict>
-		<key>StripePaymentsUI-StripePaymentsUI.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>89</integer>
-		</dict>
-		<key>StripePaymentsUI.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>88</integer>
-		</dict>
-		<key>StripeUICore-StripeUICore.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>91</integer>
-		</dict>
-		<key>StripeUICore.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>90</integer>
 		</dict>
 		<key>TTGSnackbar.xcscheme</key>
 		<dict>

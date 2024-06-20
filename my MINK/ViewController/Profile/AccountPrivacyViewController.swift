@@ -42,6 +42,13 @@ class AccountPrivacyViewController: UIViewController {
             target: self,
             action: #selector(self.deleteAccountClicked)
         ))
+        
+        // DEACTIVATE ACCOUNT
+        self.deactivateAccount.isUserInteractionEnabled = true
+        self.deactivateAccount.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.deactivateAccountClicked)
+        ))
 
         // WHOCANSEE
         self.whoCanSeeView.isUserInteractionEnabled = true
@@ -123,6 +130,38 @@ class AccountPrivacyViewController: UIViewController {
         dismiss(animated: true)
     }
 
+    @objc func deactivateAccountClicked() {
+        dismiss(animated: true)
+
+        let alert = UIAlertController(
+            title: "DEACTIVATE ACCOUNT",
+            message: "Are you sure you want to deactivate your account?",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Deactivate", style: .destructive, handler: { _ in
+
+            if let user = FirebaseStoreManager.auth.currentUser {
+                self.ProgressHUDShow(text: "Account Deactivating...")
+               
+                self.deactivateUserAccount(userId: user.uid) { error in
+                    self.ProgressHUDHide()
+                    if let error = error {
+                        self.showError(error)
+                    }
+                    else {
+                        self.showSnack(messages: "Account Deactivated")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                            self.logoutPlease()
+                        }
+                    }
+                }
+         
+            }
+        }))
+        present(alert, animated: true)
+    }
+    
     @objc func deleteAccountClicked() {
         dismiss(animated: true)
 

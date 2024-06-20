@@ -72,6 +72,7 @@ class UsersProductViewController : UIViewController {
                 if let position = sender as? Int {
                     VC.product = self.products[position]
                     VC.position = position
+                    VC.delegate = self
                 }
             }
         }
