@@ -60,13 +60,13 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOG-BR-nZe">
-                                        <rect key="frame" x="166.33333333333334" y="15.333333333333327" width="60.666666666666657" height="23.333333333333329"/>
+                                        <rect key="frame" x="169" y="15.333333333333327" width="55.333333333333343" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z03-Z3-NET">
-                                        <rect key="frame" x="267" y="12.666666666666671" width="101" height="29"/>
+                                        <rect key="frame" x="271" y="12.666666666666671" width="97" height="29"/>
                                         <color key="backgroundColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="11"/>
                                         <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -151,7 +151,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWr-LE-f9I">
                                                     <rect key="frame" x="4" y="4" width="335" height="90"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Lz5-Re-bxa">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Lz5-Re-bxa" customClass="SDAnimatedImageView">
                                                             <rect key="frame" x="8" y="8" width="74" height="74"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="74" id="AWA-rP-WF3"/>
@@ -159,19 +159,19 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Movin Presents : Suaturday Night DJ Party Suaturday Night DJ Party" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LN-BF-dfV">
-                                                            <rect key="frame" x="90" y="27.666666666666668" width="233" height="32.666666666666657"/>
+                                                            <rect key="frame" x="89.999999999999986" y="27.666666666666671" width="228.66666666666663" height="31.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="14"/>
                                                             <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Sat, Jul 24 • 11:00 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1HM-uV-iwd">
-                                                            <rect key="frame" x="90.000000000000014" y="7.9999999999999991" width="129.33333333333337" height="15.666666666666664"/>
+                                                            <rect key="frame" x="90" y="7.9999999999999991" width="124.33333333333331" height="15.666666666666664"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                             <color key="textColor" systemColor="systemRedColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzc-Rn-3iB">
-                                                            <rect key="frame" x="90" y="66.333333333333329" width="37.333333333333343" height="14.666666666666671"/>
+                                                            <rect key="frame" x="90" y="65" width="37.333333333333343" height="14.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                             <nil key="highlightedColor"/>
@@ -213,7 +213,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="eventDate" destination="1HM-uV-iwd" id="5ue-D7-2SD"/>
-                                            <outlet property="eventImage" destination="Lz5-Re-bxa" id="9ZF-z4-Y2z"/>
+                                            <outlet property="eventImage" destination="Lz5-Re-bxa" id="t06-8O-Bfb"/>
                                             <outlet property="eventShare" destination="wTW-rz-KwB" id="SIg-2y-TDW"/>
                                             <outlet property="eventTitle" destination="2LN-BF-dfV" id="a0q-xL-3ja"/>
                                             <outlet property="eventType" destination="dzc-Rn-3iB" id="eUZ-OP-2LL"/>
@@ -277,10 +277,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3GG-Xd-1FC">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1157.3333333333333"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1152.3333333333333"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmu-9e-LLy">
-                                                <rect key="frame" x="0.0" y="290.66666666666669" width="393" height="806.66666666666652"/>
+                                                <rect key="frame" x="0.0" y="290.66666666666669" width="393" height="801.66666666666652"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="8ju-wG-3j2" customClass="SDAnimatedImageView">
                                                         <rect key="frame" x="20" y="20" width="44" height="44"/>
@@ -290,16 +290,16 @@
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="lQJ-Ps-07l">
-                                                        <rect key="frame" x="76" y="22.666666666666629" width="95" height="39"/>
+                                                        <rect key="frame" x="76" y="23.333333333333311" width="101" height="37.666666666666657"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEDxMileHigh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6J0-gb-zgg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="95" height="17.666666666666668"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="101" height="17"/>
                                                                 <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="15"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@Leo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cL4-Lp-uMO">
-                                                                <rect key="frame" x="0.0" y="23.666666666666686" width="95" height="15.333333333333336"/>
+                                                                <rect key="frame" x="0.0" y="23" width="101" height="14.666666666666664"/>
                                                                 <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                 <color key="textColor" systemColor="systemGrayColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -307,13 +307,13 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" How to prepare and deliver a TED Talk " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2PD-RG-CAK">
-                                                        <rect key="frame" x="20" y="100" width="300.66666666666669" height="20"/>
+                                                        <rect key="frame" x="20" y="100" width="290" height="19"/>
                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="17"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-H5-haG">
-                                                        <rect key="frame" x="20" y="152" width="353" height="227.66666666666663"/>
+                                                        <rect key="frame" x="20" y="151" width="353" height="227.66666666666663"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxH-dZ-Aor">
                                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="227.66666666666666"/>
@@ -327,13 +327,13 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri, 23 Jul 2021" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRT-fH-lFP">
-                                                                        <rect key="frame" x="33.999999999999993" y="0.0" width="96.333333333333314" height="16.333333333333332"/>
+                                                                        <rect key="frame" x="34.000000000000007" y="0.0" width="92.666666666666686" height="15.666666666666666"/>
                                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="14"/>
                                                                         <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-location-96" translatesAutoresizingMaskIntoConstraints="NO" id="10d-t0-boF">
-                                                                        <rect key="frame" x="0.0" y="106.33333333333331" width="21" height="21"/>
+                                                                        <rect key="frame" x="0.0" y="103.66666666666669" width="21" height="21"/>
                                                                         <color key="tintColor" systemColor="viewFlipsideBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="aBB-br-Q6N"/>
@@ -341,34 +341,34 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to calendar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IbL-ST-Aqi">
-                                                                        <rect key="frame" x="34" y="67" width="93" height="15.333333333333329"/>
+                                                                        <rect key="frame" x="34" y="65" width="90" height="14.666666666666671"/>
                                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                         <color key="textColor" systemColor="tintColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:30 PM - 1:30 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjG-yl-SVH">
-                                                                        <rect key="frame" x="34" y="22.333333333333314" width="117" height="15.333333333333336"/>
+                                                                        <rect key="frame" x="33.999999999999993" y="21.666666666666629" width="111.33333333333331" height="14.666666666666664"/>
                                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Times are displayed on your local timezone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9U7-VT-b2c">
-                                                                        <rect key="frame" x="34" y="43.666666666666629" width="251" height="15.333333333333336"/>
+                                                                        <rect key="frame" x="34.000000000000014" y="42.333333333333314" width="239.33333333333337" height="14.666666666666664"/>
                                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="fGr-yh-t5G">
-                                                                        <rect key="frame" x="37" y="106.33333333333331" width="316" height="121.33333333333331"/>
+                                                                        <rect key="frame" x="37" y="103.66666666666669" width="316" height="124"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AIIMS Hospital" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVP-yl-T7J">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="316" height="85"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="316" height="88.666666666666671"/>
                                                                                 <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="14"/>
                                                                                 <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Near saket nagar, hoshangabad road, Bhopal, 462024, India" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fg3-5r-4sD">
-                                                                                <rect key="frame" x="0.0" y="91" width="316" height="30.333333333333329"/>
+                                                                                <rect key="frame" x="0.0" y="94.666666666666629" width="316" height="29.333333333333329"/>
                                                                                 <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -399,37 +399,37 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aj-xI-WyZ">
-                                                        <rect key="frame" x="20" y="407.66666666666669" width="43" height="18.666666666666686"/>
+                                                        <rect key="frame" x="20" y="406.66666666666669" width="41" height="18"/>
                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="16"/>
                                                         <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flipkart, 'India ka Fashion Capital', is your one-stop fashion destination for anything and everything you need to look good." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7d-dE-eS8">
-                                                        <rect key="frame" x="20" y="434.33333333333331" width="326" height="49"/>
+                                                        <rect key="frame" x="20" y="432.66666666666669" width="344.33333333333331" height="47"/>
                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="14"/>
                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srk-1I-ADu">
-                                                        <rect key="frame" x="20" y="511.33333333333331" width="62" height="18.666666666666686"/>
+                                                        <rect key="frame" x="20.000000000000004" y="507.6666666666668" width="59.333333333333343" height="17.999999999999943"/>
                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="16"/>
                                                         <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="z9I-DF-p6O">
-                                                        <rect key="frame" x="0.0" y="550" width="393" height="128"/>
+                                                        <rect key="frame" x="0.0" y="545.66666666666674" width="393" height="128"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="128" id="25r-Ap-d6L"/>
                                                         </constraints>
                                                     </mapView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeY-pv-N2J">
-                                                        <rect key="frame" x="20.000000000000004" y="706" width="33.333333333333343" height="18.666666666666629"/>
+                                                        <rect key="frame" x="20" y="701.66666666666674" width="33" height="18"/>
                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="16"/>
                                                         <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lE3-DQ-JGT">
-                                                        <rect key="frame" x="20" y="736.66666666666652" width="353" height="50"/>
+                                                        <rect key="frame" x="20" y="731.66666666666674" width="353" height="50"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="PvC-wR-AQn"/>
@@ -442,14 +442,14 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="tagcell" id="3K8-SI-Tar" customClass="TagCell" customModule="my_MINK" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="7" width="81" height="36"/>
+                                                                <rect key="frame" x="0.0" y="7.666666666666667" width="81" height="35"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mQD-kL-jU5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="81" height="36"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="81" height="35"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcq-Ol-T60">
-                                                                            <rect key="frame" x="2" y="2" width="63" height="32"/>
+                                                                            <rect key="frame" x="2" y="2" width="63" height="31"/>
                                                                             <color key="backgroundColor" red="0.86666666670000003" green="0.93725490199999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                             <inset key="contentEdgeInsets" minX="16" minY="8" maxX="16" maxY="8"/>
@@ -472,10 +472,10 @@
                                                         </cells>
                                                     </collectionView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZH-US-aFg">
-                                                        <rect key="frame" x="290.33333333333331" y="20" width="82.666666666666686" height="28"/>
+                                                        <rect key="frame" x="289.66666666666669" y="20" width="83.333333333333314" height="28"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWM-GD-nn0">
-                                                                <rect key="frame" x="9.9999999999999964" y="7" width="62.666666666666657" height="14"/>
+                                                                <rect key="frame" x="10.000000000000004" y="7.3333333333333135" width="63.333333333333343" height="13.666666666666664"/>
                                                                 <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                                 <color key="textColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -636,16 +636,16 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xrS-rq-P1w">
-                                        <rect key="frame" x="11.999999999999996" y="14.999999999999998" width="63.666666666666657" height="30.333333333333329"/>
+                                        <rect key="frame" x="12" y="15.333333333333369" width="68.666666666666671" height="29.333333333333329"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="US$ 20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Q0-qS-k2L">
-                                                <rect key="frame" x="0.0" y="0.0" width="63.666666666666664" height="16.333333333333332"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="68.666666666666671" height="15.666666666666666"/>
                                                 <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="14"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="on myMINK" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUh-Ke-COA">
-                                                <rect key="frame" x="0.0" y="16.333333333333371" width="63.666666666666664" height="14"/>
+                                                <rect key="frame" x="0.0" y="15.666666666666629" width="68.666666666666671" height="13.666666666666664"/>
                                                 <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                 <color key="textColor" systemColor="underPageBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
@@ -672,7 +672,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to prepare and deliver a TED Talk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBv-gK-1PH">
-                                        <rect key="frame" x="68" y="16.333333333333329" width="309" height="17.666666666666671"/>
+                                        <rect key="frame" x="68" y="16.666666666666668" width="309" height="17.000000000000004"/>
                                         <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="15"/>
                                         <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                         <nil key="highlightedColor"/>
@@ -808,10 +808,10 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="7jv-qW-dTC">
-                                <rect key="frame" x="25" y="73" width="162.33333333333334" height="50.666666666666657"/>
+                                <rect key="frame" x="25" y="73" width="165.33333333333334" height="50.666666666666657"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saturday, 26 July" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gZ-6s-QSp">
-                                        <rect key="frame" x="0.0" y="0.0" width="115.33333333333333" height="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="111.33333333333333" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="kmU-ei-Fgd"/>
                                         </constraints>
@@ -820,7 +820,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi, Vijay Rathore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymg-pl-yL8">
-                                        <rect key="frame" x="0.0" y="24" width="162.33333333333334" height="26.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="24" width="165.33333333333334" height="26.666666666666671"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26.5" id="k5g-fX-PEx"/>
                                         </constraints>
@@ -899,7 +899,7 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVn-p1-FZk">
-                                <rect key="frame" x="25" y="20" width="76" height="29"/>
+                                <rect key="frame" x="25" y="20" width="73" height="29"/>
                                 <color key="backgroundColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="11"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -997,13 +997,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movin Presents : Suaturday Night DJ Party Suaturday Night DJ Party" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWi-nT-P7t">
-                                                            <rect key="frame" x="142" y="32.666666666666664" width="181" height="30.333333333333336"/>
+                                                            <rect key="frame" x="142" y="32.666666666666664" width="181" height="29.333333333333336"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DB Mall Bhopal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Qk-Fc-qRt">
-                                                            <rect key="frame" x="142" y="71" width="90.666666666666686" height="15.333333333333329"/>
+                                                            <rect key="frame" x="142" y="70" width="92.666666666666686" height="14.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                             <color key="textColor" systemColor="underPageBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1015,13 +1015,13 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQc-PX-2RB">
-                                                                            <rect key="frame" x="16.333333333333336" y="38" width="27.333333333333336" height="14"/>
+                                                                            <rect key="frame" x="17.333333333333329" y="38.333333333333343" width="25.666666666666671" height="13.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                                             <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="78$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i37-xm-7GK">
-                                                                            <rect key="frame" x="19" y="8" width="22" height="15.333333333333336"/>
+                                                                            <rect key="frame" x="20.333333333333336" y="7.9999999999999991" width="19.666666666666664" height="14.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                             <color key="textColor" red="0.16078431372549018" green="0.56470588235294117" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -1040,13 +1040,13 @@
                                                                     <rect key="frame" x="68" y="0.0" width="60" height="60"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Sold" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EM-OQ-uq4">
-                                                                            <rect key="frame" x="17.666666666666671" y="38" width="24.666666666666671" height="14"/>
+                                                                            <rect key="frame" x="18.333333333333329" y="38.333333333333343" width="23.333333333333329" height="13.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                                             <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="78" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6W-oE-Uc8">
-                                                                            <rect key="frame" x="22.666666666666671" y="8" width="14.666666666666664" height="15.333333333333336"/>
+                                                                            <rect key="frame" x="23.666666666666671" y="7.9999999999999991" width="13" height="14.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                             <color key="textColor" red="0.16078431369999999" green="0.56470588239999997" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -1065,7 +1065,7 @@
                                                                     <rect key="frame" x="136" y="0.0" width="60" height="60"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Total" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHS-QP-Hzp">
-                                                                            <rect key="frame" x="17.333333333333343" y="38" width="25.333333333333329" height="14"/>
+                                                                            <rect key="frame" x="16" y="38.333333333333343" width="28" height="13.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                                             <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -1090,7 +1090,7 @@
                                                                     <rect key="frame" x="204" y="0.0" width="109" height="60"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Registered" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBR-Oi-59S">
-                                                                            <rect key="frame" x="25.666666666666657" y="38" width="58" height="14"/>
+                                                                            <rect key="frame" x="27.333333333333346" y="38.333333333333343" width="54.333333333333343" height="13.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                                             <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -1165,7 +1165,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Upcoming Events Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHm-zc-OdN">
-                                <rect key="frame" x="75" y="284.33333333333331" width="193" height="16.333333333333314"/>
+                                <rect key="frame" x="76.333333333333329" y="284.66666666666669" width="190.33333333333337" height="15.666666666666686"/>
                                 <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="14"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1201,23 +1201,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkM-Wz-yTn">
-                                <rect key="frame" x="0.0" y="144.33333333333331" width="374" height="855.66666666666674"/>
+                                <rect key="frame" x="0.0" y="143.66666666666669" width="374" height="856.33333333333326"/>
                                 <connections>
                                     <segue destination="Hes-C1-3qG" kind="embed" id="tyW-hX-zq6"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s7b-VN-6ok">
-                                <rect key="frame" x="0.0" y="144.33333333333331" width="374" height="855.66666666666674"/>
+                                <rect key="frame" x="0.0" y="143.66666666666669" width="374" height="856.33333333333326"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="HOa-Gn-U3b" kind="embed" id="WpZ-zn-JAL"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2lp-4l-fIJ">
-                                <rect key="frame" x="0.0" y="0.0" width="374" height="144.33333333333334"/>
+                                <rect key="frame" x="0.0" y="0.0" width="374" height="143.66666666666666"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4FY-zj-C7X">
-                                        <rect key="frame" x="20" y="97.333333333333329" width="147" height="31.999999999999986"/>
+                                        <rect key="frame" x="20" y="96.666666666666671" width="147" height="32.000000000000014"/>
                                         <color key="backgroundColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="0.12024340986394558" colorSpace="custom" customColorSpace="sRGB"/>
                                         <segments>
                                             <segment title="Check In"/>
@@ -1229,7 +1229,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8h-g7-Hdl">
-                                        <rect key="frame" x="0.0" y="72.666666666666671" width="374" height="0.6666666666666714"/>
+                                        <rect key="frame" x="0.0" y="72" width="374" height="0.6666666666666714"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.59999999999999998" id="OH8-U4-xyZ"/>
@@ -1254,7 +1254,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat, Sep 18, 2021 12:00 PM - 9:00 PM" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZv-RR-9a9">
-                                        <rect key="frame" x="20" y="45.333333333333336" width="334" height="15.333333333333336"/>
+                                        <rect key="frame" x="20" y="45.333333333333336" width="334" height="14.666666666666664"/>
                                         <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                         <color key="textColor" systemColor="underPageBackgroundColor"/>
                                         <nil key="highlightedColor"/>
@@ -1340,19 +1340,19 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat, Jul 24 • 11:00 AM " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olx-Ho-Gtb">
-                                                            <rect key="frame" x="142" y="10" width="181" height="15.333333333333336"/>
+                                                            <rect key="frame" x="142" y="10" width="181" height="14.666666666666664"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                             <color key="textColor" systemColor="systemRedColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movin Presents : Suaturday Night DJ Party Suaturday Night DJ Party" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4p-vq-ld5">
-                                                            <rect key="frame" x="142" y="33.333333333333336" width="181" height="30.333333333333336"/>
+                                                            <rect key="frame" x="142" y="32.666666666666664" width="181" height="29.333333333333336"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DB Mall Bhopal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iv3-no-eMP">
-                                                            <rect key="frame" x="142" y="71.666666666666671" width="90.666666666666686" height="15.333333333333329"/>
+                                                            <rect key="frame" x="142" y="70" width="92.666666666666686" height="14.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                             <color key="textColor" systemColor="underPageBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1364,7 +1364,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cL-fr-rAZ">
-                                                                            <rect key="frame" x="16.333333333333336" y="38" width="27.333333333333336" height="14"/>
+                                                                            <rect key="frame" x="17.333333333333329" y="38.333333333333343" width="25.666666666666671" height="13.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                                             <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -1389,7 +1389,7 @@
                                                                     <rect key="frame" x="68" y="0.0" width="60" height="60"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Sold" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGG-2H-gN6">
-                                                                            <rect key="frame" x="17.666666666666671" y="38" width="24.666666666666671" height="14"/>
+                                                                            <rect key="frame" x="18.333333333333329" y="38.333333333333343" width="23.333333333333329" height="13.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                                             <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -1414,7 +1414,7 @@
                                                                     <rect key="frame" x="136" y="0.0" width="60" height="60"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Total" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOm-Kt-YQs">
-                                                                            <rect key="frame" x="17.333333333333343" y="38" width="25.333333333333329" height="14"/>
+                                                                            <rect key="frame" x="16" y="38.333333333333343" width="28" height="13.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                                             <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -1439,7 +1439,7 @@
                                                                     <rect key="frame" x="204" y="0.0" width="109" height="60"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Registered" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahW-Wf-dQ0">
-                                                                            <rect key="frame" x="25.666666666666657" y="38" width="58" height="14"/>
+                                                                            <rect key="frame" x="27.333333333333346" y="38.333333333333343" width="54.333333333333343" height="13.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                                             <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -1513,7 +1513,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Past Events Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqC-8g-rZQ">
-                                <rect key="frame" x="93.333333333333329" y="284.33333333333331" width="156.33333333333337" height="16.333333333333314"/>
+                                <rect key="frame" x="95.333333333333329" y="284.66666666666669" width="152.66666666666669" height="15.666666666666686"/>
                                 <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="14"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -3180,17 +3180,17 @@ Example - fun, holiday, party</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="orderscell" id="llN-5i-GuH" customClass="OrdersTabbleViewCell" customModule="my_MINK" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="342" height="91"/>
+                                        <rect key="frame" x="0.0" y="50" width="342" height="90.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="llN-5i-GuH" id="awT-tc-87y">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="91"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="90.333335876464844"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aBB-Ea-tXl">
-                                                    <rect key="frame" x="4" y="4" width="334" height="77"/>
+                                                    <rect key="frame" x="4" y="4" width="334" height="76.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="iamvijay67@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBI-c8-Hiq">
-                                                            <rect key="frame" x="8" y="33" width="122" height="14"/>
+                                                            <rect key="frame" x="7.9999999999999929" y="33" width="120.33333333333331" height="13.666666666666664"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -3202,19 +3202,19 @@ Example - fun, holiday, party</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order no.: 1811657839" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdo-d6-FHQ">
-                                                            <rect key="frame" x="7.9999999999999929" y="51" width="124.33333333333331" height="14"/>
+                                                            <rect key="frame" x="7.9999999999999929" y="50.666666666666664" width="116.33333333333331" height="13.666666666666664"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                             <color key="textColor" systemColor="underPageBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05/08/21" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJQ-yG-3XP">
-                                                            <rect key="frame" x="277.66666666666669" y="13.666666666666668" width="48.333333333333314" height="14"/>
+                                                            <rect key="frame" x="283" y="13.666666666666668" width="43" height="13.666666666666668"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                             <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvw-ZP-XqA">
-                                                            <rect key="frame" x="304.33333333333331" y="31.666666666666668" width="21.666666666666686" height="12.999999999999996"/>
+                                                            <rect key="frame" x="304.66666666666669" y="31.333333333333332" width="21.333333333333314" height="12.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="11"/>
                                                             <color key="textColor" systemColor="underPageBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
@@ -3310,7 +3310,7 @@ Example - fun, holiday, party</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please align the QR Code within the scanner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGK-cY-zHx">
-                                <rect key="frame" x="47.666666666666657" y="594.33333333333337" width="279" height="16.333333333333371"/>
+                                <rect key="frame" x="55" y="594.33333333333337" width="264.33333333333331" height="16.333333333333371"/>
                                 <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="14"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -3654,22 +3654,22 @@ Example - fun, holiday, party</string>
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank Transfer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNB-14-Mqj">
-                                                                    <rect key="frame" x="51.999999999999993" y="15.999999999999998" width="86.333333333333314" height="16.333333333333329"/>
+                                                                    <rect key="frame" x="52" y="16" width="85" height="15.666666666666664"/>
                                                                     <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="14"/>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="j7X-nh-2xB">
-                                                                    <rect key="frame" x="52.000000000000014" y="34.333333333333336" width="173.33333333333337" height="16"/>
+                                                                    <rect key="frame" x="51.999999999999986" y="33.666666666666664" width="168.66666666666663" height="16"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Withdraw to a bank account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w91-t5-Wig">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="151.33333333333334" height="16"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="146.66666666666666" height="16"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fkM-Zs-IMp">
-                                                                            <rect key="frame" x="157.33333333333334" y="0.99999999999999822" width="16" height="14.666666666666668"/>
+                                                                            <rect key="frame" x="152.66666666666666" y="0.99999999999999822" width="16" height="14.666666666666668"/>
                                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="16" id="gnZ-uZ-am0"/>
@@ -3679,19 +3679,19 @@ Example - fun, holiday, party</string>
                                                                     </subviews>
                                                                 </stackView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oh-v6-f6a">
-                                                                    <rect key="frame" x="292.66666666666669" y="15.999999999999998" width="36.666666666666686" height="16.333333333333329"/>
+                                                                    <rect key="frame" x="295.33333333333331" y="16" width="32.666666666666686" height="15.666666666666664"/>
                                                                     <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="14"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVY-0d-R1E">
-                                                                    <rect key="frame" x="334.33333333333331" y="20.666666666666668" width="18.666666666666686" height="10.666666666666668"/>
+                                                                    <rect key="frame" x="333" y="20.333333333333332" width="20" height="10.333333333333332"/>
                                                                     <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="9"/>
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hour ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJT-8B-Hnm">
-                                                                    <rect key="frame" x="305" y="35.333333333333336" width="48" height="14"/>
+                                                                    <rect key="frame" x="306.66666666666669" y="35" width="46.333333333333314" height="13.666666666666664"/>
                                                                     <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -3738,7 +3738,7 @@ Example - fun, holiday, party</string>
                                 </prototypes>
                             </tableView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Transactions Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NA8-ad-48g">
-                                <rect key="frame" x="116.00000000000001" y="418" width="161.33333333333337" height="16.333333333333314"/>
+                                <rect key="frame" x="116.33333333333333" y="418.33333333333331" width="160.66666666666669" height="15.666666666666686"/>
                                 <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="14"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -3809,7 +3809,7 @@ Example - fun, holiday, party</string>
                                 <rect key="frame" x="0.0" y="59" width="371" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Ticket" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCG-Bn-utR">
-                                        <rect key="frame" x="142" y="13.333333333333327" width="87.333333333333314" height="23.333333333333329"/>
+                                        <rect key="frame" x="141" y="13.999999999999998" width="89" height="22.333333333333329"/>
                                         <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -3859,14 +3859,14 @@ Example - fun, holiday, party</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="showticketcell" id="PYp-tk-y8X" customClass="ShowTicketTableViewCell" customModule="my_MINK" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="371" height="883.33331298828125"/>
+                                        <rect key="frame" x="0.0" y="50" width="371" height="882"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PYp-tk-y8X" id="T71-eg-JYa">
-                                            <rect key="frame" x="0.0" y="0.0" width="371" height="883.33331298828125"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="371" height="882"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fT8-2O-oVk">
-                                                    <rect key="frame" x="20" y="16" width="331" height="851.33333333333337"/>
+                                                    <rect key="frame" x="20" y="16" width="331" height="850"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTN-BD-Kui">
                                                             <rect key="frame" x="0.0" y="0.0" width="331" height="140"/>
@@ -3960,58 +3960,58 @@ Example - fun, holiday, party</string>
                                                             <rect key="frame" x="0.0" y="143" width="331" height="300"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z41-tQ-YdG">
-                                                                    <rect key="frame" x="12" y="24" width="34.666666666666664" height="15.333333333333336"/>
+                                                                    <rect key="frame" x="12" y="24" width="33.666666666666664" height="14.666666666666664"/>
                                                                     <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vijay Rathore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pu1-8z-g32">
-                                                                    <rect key="frame" x="12" y="47.333333333333343" width="100" height="20"/>
+                                                                    <rect key="frame" x="12" y="46.666666666666657" width="103" height="19"/>
                                                                     <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="17"/>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mr2-OP-xim">
-                                                                    <rect key="frame" x="12" y="83.333333333333343" width="33" height="15.333333333333329"/>
+                                                                    <rect key="frame" x="12" y="81.666666666666657" width="32.666666666666664" height="14.666666666666671"/>
                                                                     <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Premum Fashion &amp; Lifestyle Exhibitaion" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfT-hI-dA4">
-                                                                    <rect key="frame" x="12" y="104.66666666666669" width="307" height="15.333333333333329"/>
+                                                                    <rect key="frame" x="12" y="102.33333333333331" width="307" height="14.666666666666671"/>
                                                                     <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Free Entery Pass For Bhopal" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5C-wP-Y3D">
-                                                                    <rect key="frame" x="12" y="157.33333333333331" width="307" height="20.333333333333343"/>
+                                                                    <rect key="frame" x="12" y="153.66666666666669" width="307" height="26.666666666666657"/>
                                                                     <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fq5-dP-f1O">
-                                                                    <rect key="frame" x="12" y="136" width="35.333333333333336" height="15.333333333333343"/>
+                                                                    <rect key="frame" x="12" y="133" width="35.333333333333336" height="14.666666666666657"/>
                                                                     <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGS-TA-8Ez">
-                                                                    <rect key="frame" x="198.66666666666663" y="193.66666666666669" width="132.33333333333337" height="63"/>
+                                                                    <rect key="frame" x="198.66666666666663" y="196.33333333333331" width="132.33333333333337" height="61"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd1-0d-ei1">
-                                                                            <rect key="frame" x="4" y="0.0" width="35.666666666666664" height="15.333333333333334"/>
+                                                                            <rect key="frame" x="4" y="0.0" width="35.333333333333336" height="14.666666666666666"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DB Mall" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zol-s5-jEA">
-                                                                            <rect key="frame" x="4" y="23.333333333333314" width="128.33333333333334" height="15.333333333333336"/>
+                                                                            <rect key="frame" x="4" y="22.666666666666686" width="128.33333333333334" height="14.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfb-RC-E2G">
-                                                                            <rect key="frame" x="3.9999999999999964" y="46.666666666666629" width="61.666666666666657" height="16.333333333333329"/>
+                                                                            <rect key="frame" x="4.0000000000000036" y="45.333333333333371" width="62.333333333333343" height="15.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="14"/>
                                                                             <color key="textColor" red="0.16078431369999999" green="0.56470588239999997" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -4031,28 +4031,28 @@ Example - fun, holiday, party</string>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xxx-pX-DcF">
-                                                                    <rect key="frame" x="12" y="193.66666666666669" width="182" height="82.333333333333314"/>
+                                                                    <rect key="frame" x="12" y="196.33333333333331" width="182" height="79.666666666666686"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zoi-Ut-SIz">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="27.333333333333332" height="15.333333333333334"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="27.333333333333332" height="14.666666666666666"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat, 28-Sun, 29 Aug 2021" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeZ-s1-VVv">
-                                                                            <rect key="frame" x="0.0" y="21.333333333333314" width="182" height="15.333333333333336"/>
+                                                                            <rect key="frame" x="0.0" y="20.666666666666686" width="182" height="14.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:30 AM - 8:30 PM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocm-Fa-G8Q">
-                                                                            <rect key="frame" x="0.0" y="42.666666666666629" width="182" height="15.333333333333336"/>
+                                                                            <rect key="frame" x="0.0" y="41.333333333333371" width="182" height="14.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to calendar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fc-YL-CJv">
-                                                                            <rect key="frame" x="0.0" y="66" width="100" height="16.333333333333329"/>
+                                                                            <rect key="frame" x="0.0" y="63.999999999999993" width="96.666666666666671" height="15.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="14"/>
                                                                             <color key="textColor" red="0.16078431369999999" green="0.56470588239999997" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -4105,22 +4105,22 @@ Example - fun, holiday, party</string>
                                                             <rect key="frame" x="16" y="140" width="299" height="3"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFp-IH-1gZ">
-                                                                    <rect key="frame" x="0.0" y="-2" width="117" height="7"/>
+                                                                    <rect key="frame" x="0.0" y="-2" width="117.66666666666667" height="7"/>
                                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="6"/>
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" text="─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Yq-Wc-lx7">
-                                                                    <rect key="frame" x="182.33333333333334" y="-2" width="116.66666666666666" height="7"/>
+                                                                    <rect key="frame" x="181.33333333333334" y="-2" width="117.66666666666666" height="7"/>
                                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="6"/>
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iqt-wA-W1h">
-                                                                    <rect key="frame" x="117" y="-7.3333333333333428" width="65.333333333333314" height="18"/>
+                                                                    <rect key="frame" x="117.66666666666667" y="-7.3333333333333428" width="63.666666666666671" height="18"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket 1 of 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j0-vh-EA5">
-                                                                            <rect key="frame" x="5.0000000000000036" y="2.9999999999999991" width="55.333333333333343" height="11.666666666666664"/>
+                                                                            <rect key="frame" x="5" y="3.3333333333333437" width="53.666666666666657" height="11.333333333333336"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="10"/>
                                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -4170,22 +4170,22 @@ Example - fun, holiday, party</string>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2aV-SG-SYV">
-                                                            <rect key="frame" x="0.0" y="446" width="331" height="377.33333333333326"/>
+                                                            <rect key="frame" x="0.0" y="446" width="331" height="376"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ht7-Ia-TV6">
-                                                                    <rect key="frame" x="12" y="24" width="83.333333333333329" height="15.333333333333336"/>
+                                                                    <rect key="frame" x="12" y="24" width="82.666666666666671" height="14.666666666666664"/>
                                                                     <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="#902389430049" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXw-Ne-SQ4">
-                                                                    <rect key="frame" x="12" y="45.333333333333314" width="94" height="15.333333333333336"/>
+                                                                    <rect key="frame" x="12" y="44.666666666666686" width="89.666666666666671" height="14.666666666666664"/>
                                                                     <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0J-cF-7BS">
-                                                                    <rect key="frame" x="12" y="76.666666666666629" width="94" height="15.333333333333329"/>
+                                                                    <rect key="frame" x="12" y="75.333333333333371" width="89.666666666666671" height="15.333333333333329"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="15.333333333333329" id="AuU-uI-7PG"/>
                                                                     </constraints>
@@ -4194,7 +4194,7 @@ Example - fun, holiday, party</string>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwa-Dh-ULJ">
-                                                                    <rect key="frame" x="12" y="98" width="307" height="106.33333333333331"/>
+                                                                    <rect key="frame" x="12" y="96.666666666666629" width="307" height="106.33333333333331"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="106.33333333333331" id="dj6-rd-KCa"/>
                                                                     </constraints>
@@ -4204,7 +4204,7 @@ Example - fun, holiday, party</string>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View event listing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5e2-N4-cB8">
-                                                                    <rect key="frame" x="11.999999999999993" y="212.33333333333337" width="108.33333333333331" height="16.333333333333343"/>
+                                                                    <rect key="frame" x="12" y="211" width="105" height="16.333333333333343"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="16.333333333333343" id="0rz-Sf-syB"/>
                                                                     </constraints>
@@ -4213,7 +4213,7 @@ Example - fun, holiday, party</string>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organizer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8G-Ck-Y4A">
-                                                                    <rect key="frame" x="12" y="244.66666666666663" width="56" height="15.333333333333314"/>
+                                                                    <rect key="frame" x="12.000000000000004" y="243.33333333333337" width="55.333333333333343" height="15.333333333333314"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="15.333333333333314" id="jZK-w2-jPz"/>
                                                                     </constraints>
@@ -4222,7 +4222,7 @@ Example - fun, holiday, party</string>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Fashion Mantra Exhibitions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5l-mo-M0N">
-                                                                    <rect key="frame" x="12" y="266" width="157.66666666666666" height="15.333333333333314"/>
+                                                                    <rect key="frame" x="12" y="264.66666666666663" width="158" height="15.333333333333314"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="15.333333333333314" id="iBe-33-nG0"/>
                                                                     </constraints>
@@ -4231,7 +4231,7 @@ Example - fun, holiday, party</string>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mf7-Eq-V2u">
-                                                                    <rect key="frame" x="12" y="305.33333333333337" width="307" height="48"/>
+                                                                    <rect key="frame" x="12" y="304" width="307" height="48"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="48" id="O25-gY-Dwn"/>
                                                                     </constraints>
@@ -4430,19 +4430,19 @@ Example - fun, holiday, party</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="underPageBackgroundColor">
             <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -1983,6 +1983,34 @@ exports.myWebhook = functions.https.onRequest(app);
 
 
 
+const firestore = require('@google-cloud/firestore');
+const firebaseclient = new firestore.v1.FirestoreAdminClient();
+// Replace BUCKET_NAME
+const bucket = 'gs://mymink-backup';
 
+exports.scheduledFirestoreExport = functions.pubsub
+                                            .schedule('every 24 hours')
+                                            .onRun((context) => {
 
+  const projectId = process.env.GCP_PROJECT || 'my-mink';;
+  const databaseName = 
+  firebaseclient.databasePath(projectId, '(default)');
 
+  return firebaseclient.exportDocuments({
+    name: databaseName,
+    outputUriPrefix: bucket,
+    // Leave collectionIds empty to export all collections
+    // or set to a list of collection IDs to export,
+    // collectionIds: ['users', 'posts']
+    collectionIds: []
+    })
+  .then(responses => {
+    const response = responses[0];
+    console.log(`Operation Name: ${response['name']}`);
+    return;
+  })
+  .catch(err => {
+    console.error(err);
+    throw new Error('Export operation failed');
+  });
+});

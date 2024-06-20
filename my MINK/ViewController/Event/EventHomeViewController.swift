@@ -131,7 +131,7 @@ extension EventHomeViewController : UITableViewDelegate, UITableViewDataSource {
             cell.eventView.addGestureRecognizer(mGest)
          
             if let image = event.eventImage1, !image.isEmpty {
-                cell.eventImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: "placeholder"), options: .continueInBackground, completed: nil)
+                cell.eventImage.setImage(imageKey: image, placeholder: "placeholder",width: 120, height: 120, shouldShowAnimationPlaceholder: true)
             }
             
             

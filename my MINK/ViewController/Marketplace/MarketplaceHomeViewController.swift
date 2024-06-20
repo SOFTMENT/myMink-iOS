@@ -94,8 +94,19 @@ class MarketplaceHomeViewController : UIViewController {
     
     @objc func categoryCellSelected(value : MyGesture){
         selectedIndex = value.index
-        self.collectionView.reloadData()
         
+        self.useProducts.removeAll()
+        
+        if selectedIndex == 0 {
+           
+            self.useProducts.append(contentsOf: products)
+            
+        }
+        else {
+            self.useProducts.append(contentsOf: products.filter { $0.categoryName!.lowercased() == self.categories[selectedIndex].lowercased()})
+        }
+        self.collectionView.reloadData()
+        self.storeCollectionView.reloadData()
     }
     
     @objc func backViewClicked(){
@@ -128,7 +139,6 @@ extension MarketplaceHomeViewController : UICollectionViewDelegateFlowLayout {
 }
 
 extension MarketplaceHomeViewController : UICollectionViewDelegate, UICollectionViewDataSource {
-    
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -143,7 +153,6 @@ extension MarketplaceHomeViewController : UICollectionViewDelegate, UICollection
             return categories.count
         }
       
-       
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

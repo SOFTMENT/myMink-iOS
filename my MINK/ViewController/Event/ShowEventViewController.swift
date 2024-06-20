@@ -411,14 +411,8 @@ extension ShowEventViewController : UICollectionViewDelegate, UICollectionViewDa
         else {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "headercell", for: indexPath) as? HeaderViewCell {
               
-                let mImage = SDAnimatedImageView()
-                let placeholder1 = SDAnimatedImage(named: "imageload.gif")
-                mImage.image = placeholder1
-                
                 let img = imgArr[indexPath.row]
-                cell.mImage.sd_setImage(with: URL(string: img), placeholderImage: placeholder1) { _, _, _, _ in
-                    mImage.stopAnimating()
-                }
+                cell.mImage.setImage(imageKey: img, placeholder: "placeholder",width: 600, height: 400, shouldShowAnimationPlaceholder: true)
                 return cell
                 
             }

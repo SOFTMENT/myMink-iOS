@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class EventTableViewCell: UITableViewCell {
    
@@ -14,7 +15,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var eventShare: UIImageView!
     @IBOutlet weak var eventType: UILabel!
     @IBOutlet weak var eventTitle: UILabel!
-    @IBOutlet weak var eventImage: UIImageView!
+    @IBOutlet weak var eventImage: SDAnimatedImageView!
     @IBOutlet weak var eventDate: UILabel!
     
     
