@@ -6,9 +6,28 @@ import UIKit
 import CountryPicker
 
 
+// MARK: - SocialMedia
+enum SocialMedia : String{
+    case Twitter
+    case Instagram
+    case TikTok
+    case Facebook
+    case YouTube
+    case Rumble
+    case Twitch
+    case Reddit
+    case Tumblr
+    case Discord
+    case Telegram
+    case Mastodon
+    case Pinterest
+    case Etsy
+    case LinkedIn
+    case Whatsapp
+ 
+}
 
 // MARK: - Collection
-
 enum Collections : String {
     case USERS = "Users"
     case POSTS = "Posts"
@@ -34,6 +53,7 @@ enum Collections : String {
     case AUDIENCES = "Audiences"
     case FEEDS = "Feeds"
     case COMMENTS = "Comments"
+    case SOCIALMEDIA = "SocialMedia"
 }
 
 // MARK: - PostType

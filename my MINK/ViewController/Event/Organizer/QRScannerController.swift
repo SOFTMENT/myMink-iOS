@@ -42,19 +42,27 @@ class QRScannerController: UIViewController, CLLocationManagerDelegate {
     
     
     @objc func update() {
-        captureSession.startRunning()
-        scan.contentMode = .scaleAspectFit
+        DispatchQueue.global(qos: .default).async {
+            self.captureSession.startRunning()
+            
+            DispatchQueue.main.async {
+                self.scan.contentMode = .scaleAspectFit
+                
+                // 2. Set animation loop mode
+                
+                self.scan.loopMode = .loop
+                
+                // 3. Adjust animation speed
+                
+                self.scan.animationSpeed = 0.5
+                
+                // 4. Play animation
+                self.scan.play()
+            }
+            
+        }
+            
         
-        // 2. Set animation loop mode
-        
-        scan.loopMode = .loop
-        
-        // 3. Adjust animation speed
-        
-        scan.animationSpeed = 0.5
-        
-        // 4. Play animation
-        scan.play()
     }
     
     override func viewDidLoad() {
@@ -101,8 +109,13 @@ class QRScannerController: UIViewController, CLLocationManagerDelegate {
         scannerView.layer.addSublayer(videoPreviewLayer!)
         
         // Start video capture.
-        captureSession.startRunning()
-        update()
+        DispatchQueue.global(qos: .default).async {
+            self.captureSession.startRunning()
+            DispatchQueue.main.async {
+                self.update()
+            }
+        }
+        
         
         // Initialize QR Code Frame to highlight the QR code
         
@@ -179,7 +192,11 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
             if let ticketId = metadataObj.stringValue {
                 
                 if metadataObj.stringValue != nil {
-                    captureSession.stopRunning()
+                    DispatchQueue.global(qos: .default).async {
+                        self.captureSession.stopRunning() 
+                       
+                    }
+                   
                 }
                 
                 self.ProgressHUDShow(text: "Scanning...")

@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SDWebImage
 
 class DashboardTicketTableViewCell : UITableViewCell {
     
-    @IBOutlet weak var event_image: UIImageView!
+   
+    @IBOutlet weak var event_image: SDAnimatedImageView!
     @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventLocation: UILabel!

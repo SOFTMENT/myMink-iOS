@@ -80,10 +80,10 @@ extension OrganisorUpcomingDashboard: UITableViewDelegate, UITableViewDataSource
             cell.mView.dropShadow()
             cell.event_image.layer.cornerRadius = 8
             
-            if let image = event.eventImage1 {
-                if image != "" {
-                    cell.event_image.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: "placeholder"), options: .continueInBackground, completed: nil)
-                }
+            if let image = event.eventImage1, !image.isEmpty {
+               
+                cell.event_image.setImage(imageKey: image, placeholder: "placeholder",width: 400,height: 300,shouldShowAnimationPlaceholder: true)
+                
             }
             
             cell.eventDate.text = self.convertDateForEvent(event.eventStartDate ?? Date())

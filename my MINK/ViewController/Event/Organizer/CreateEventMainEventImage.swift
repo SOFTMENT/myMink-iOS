@@ -331,42 +331,35 @@ extension CreateEventMainEventImage : UIImagePickerControllerDelegate, UINavigat
     
     func uploadImageOnFirebase(imageNo : Int,completion : @escaping (String) -> Void ) {
         
-        let storage = Storage.storage().reference().child("EventImages").child(event!.eventId!).child("\(imageNo).png")
-        var downloadUrl = ""
-        
-        var uploadData : Data!
+
+      
+
+        var image : UIImage!
     
         if imageNo == 1 {
-            uploadData = (self.img1.image?.jpegData(compressionQuality: 0.4))!
+            image = self.img1.image
         }
         else if imageNo == 2 {
-            uploadData = (self.img2.image?.jpegData(compressionQuality: 0.4))!
+            image = self.img2.image
         }
         else if imageNo == 3 {
-            uploadData = (self.img3.image?.jpegData(compressionQuality: 0.4))!
+            image = self.img3.image
         }
         else if imageNo == 4 {
-            uploadData = (self.img4.image?.jpegData(compressionQuality: 0.4))!
+            image = self.img4.image
         }
        
        
-    
+       
+        uploadFilesOnAWS(
+            photo: image,
+            folderName: "EventImages",
+            postType: .IMAGE
+        ) { downloadURL in
+            completion(downloadURL ?? "")
+           
+        }
         
-        storage.putData(uploadData, metadata: nil) { (metadata, error) in
-            
-            if error == nil {
-                storage.downloadURL { (url, error) in
-                    if error == nil {
-                        downloadUrl = url!.absoluteString
-                    }
-                    completion(downloadUrl)
-               
-                }
-            }
-            else {
-                completion(downloadUrl)
-            }
-            
-        }
+      
     }
 }

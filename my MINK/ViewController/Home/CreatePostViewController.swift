@@ -39,6 +39,7 @@ class CreatePostViewController: UIViewController {
     var businessId : String?
 
     override func viewDidLoad() {
+    
         guard let postType = postType else {
             DispatchQueue.main.async {
                 self.dismiss(animated: true)
@@ -293,7 +294,7 @@ class CreatePostViewController: UIViewController {
             if let error = error {
                 self.showError(error)
             } else {
-                if let businessId = self.businessId {
+                if self.businessId != nil {
                     self.showSnack(messages: "Post Added")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                         self.dismiss(animated: true)

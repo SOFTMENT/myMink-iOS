@@ -377,6 +377,7 @@ class AddTicketsViewController: UIViewController {
             event!.ticketName = sName
             event!.ticketQuantity = Int(sQuantity ?? "1")
             event!.ticketPrice = Int(sPrice ?? "1")
+            event!.isActive = true
             
 
             var startDate = salesStartDatePicker.date

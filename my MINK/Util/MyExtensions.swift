@@ -1292,7 +1292,30 @@ extension UIViewController {
         let model: String
         let messages: [ChatMessage]
     }
-    
+    func getAllSocialMedia(uid : String,completion: @escaping ((Array<SocialMediaModel>?)-> Void)) {
+        
+        var socialMediaModels = Array<SocialMediaModel>()
+        FirebaseStoreManager.db.collection("Users").document(uid).collection("SocialMedia").addSnapshotListener { snapshot, error in
+            
+            if error != nil {
+                completion(nil)
+            }
+            else {
+                socialMediaModels.removeAll()
+                if let snapshot = snapshot, !snapshot.isEmpty {
+                    for qdr in snapshot.documents {
+                        if let socialMedia = try? qdr.data(as: SocialMediaModel.self) {
+                            socialMediaModels.append(socialMedia)
+                        }
+                    }
+                    completion(socialMediaModels)
+                }
+                else {
+                    completion(nil)
+                }
+            }
+        }
+    }
     func getAllEvents(completion : @escaping (_ events : Array<Event>?, _ error : String?)->Void) {
         FirebaseStoreManager.db.collection(Collections.EVENTS.rawValue).whereField("eventStartDate", isGreaterThan: Date()).whereField("isActive", isEqualTo: true).order(by: "eventCreateDate",descending: true).getDocuments { snapshot, error in
             

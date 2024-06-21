@@ -144,7 +144,7 @@ extension EventHomeViewController : UITableViewDelegate, UITableViewDataSource {
             cell.eventDate.text = self.convertDateForEvent(event.eventStartDate ?? Date())
             cell.eventTitle.text = event.eventTitle ?? "Something Went Wrong"
           
-                if let address = event.addressName {
+            if let address = event.address {
                     cell.eventType.text = address
                 }
        

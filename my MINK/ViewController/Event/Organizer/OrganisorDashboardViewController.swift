@@ -55,15 +55,12 @@ class OrganisorDashboardViewController : UIViewController {
         settingsView.isUserInteractionEnabled = true
         settingsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(settingsViewClicked)))
    
-      
         switchUser.layer.cornerRadius = 6
         
-    
         //GET MY EVENTS
         getMyEvents()
     }
-    
-   
+     
     @IBAction func switchUserClicked(_ sender: Any) {
         self.dismiss(animated: true)
     }

@@ -52,10 +52,7 @@ class CreatePostPopupViewController: UIViewController {
     }
 
     @objc func textViewClicked() {
-        self.dismiss(animated: true) {
-            self.performSegue(withIdentifier: "createPostSeg", sender: PostType.TEXT)
-        }
-       
+        self.performSegue(withIdentifier: "createPostSeg", sender: PostType.TEXT)
     }
 
     func uploadImages() {
@@ -144,9 +141,13 @@ class CreatePostPopupViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       
         if segue.identifier == "createPostSeg" {
+          
             if let VC = segue.destination as? CreatePostViewController {
+                
                 if let postType = sender as? PostType {
+                    
                     if postType == .IMAGE {
                         VC.images = self.photoArray
                     } else {

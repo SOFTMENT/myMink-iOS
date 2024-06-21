@@ -17,4 +17,5 @@ class MyGesture: UITapGestureRecognizer {
     var longitude : Double?
     var ticket : TicketModel?
     var mView : UIView?
+    var socialType : SocialMedia?
 }
