@@ -1857,14 +1857,29 @@ extension UIViewController {
     func addFollow(mUser: UserModel, fUser: UserModel) {
         let followingRef = FirebaseStoreManager.db.collection(Collections.USERS.rawValue)
 
-        // Creating a follow model for fUser
-        let followModelForMUser = self.createFollowModel(from: mUser)
-        self.setFollowData(
-            userRef: followingRef,
-            userId: mUser.uid,
-            followUserId: fUser.uid,
-            followModel: followModelForMUser
-        )
+       
+        guard let userId = mUser.uid, !userId.isEmpty,
+              let followUserId = fUser.uid, !followUserId.isEmpty
+        else {
+            print("Invalid user or follow user ID")
+            return
+        }
+
+        
+            
+            let mfollowModel = FollowModel()
+            mfollowModel.name = mUser.fullName ?? ""
+            mfollowModel.uid = mUser.uid ?? ""
+            
+            let ffollowModel = FollowModel()
+            ffollowModel.name = fUser.fullName ?? ""
+            ffollowModel.uid = fUser.uid ?? ""
+           
+            
+            try? followingRef.document(followUserId).collection(Collections.FOLLOW.rawValue).document(userId).setData(from: mfollowModel)
+            try? followingRef.document(userId).collection(Collections.FOLLOWING.rawValue).document(followUserId).setData(from: ffollowModel) { error in
+                FollowingManager.shared.following(uid: nil)
+            }
     }
 
     
@@ -2040,35 +2055,8 @@ extension UIViewController {
         }
     }
     
-    private func createFollowModel(from user: UserModel) -> FollowModel {
-        let followModel = FollowModel()
-        followModel.name = user.fullName ?? ""
-        followModel.uid = user.uid ?? ""
-        return followModel
-    }
-
-    private func setFollowData(
-        userRef: CollectionReference,
-        userId: String?,
-        followUserId: String?,
-        followModel: FollowModel
-    ) {
-        guard let userId = userId, !userId.isEmpty,
-              let followUserId = followUserId, !followUserId.isEmpty
-        else {
-            print("Invalid user or follow user ID")
-            return
-        }
-
-        do {
-            try userRef.document(followUserId).collection(Collections.FOLLOW.rawValue).document(userId).setData(from: followModel)
-            try userRef.document(userId).collection(Collections.FOLLOWING.rawValue).document(followUserId).setData(from: followModel) { error in
-                FollowingManager.shared.following(uid: nil)
-            }
-        } catch {
-            print("Error setting follow data: \(error.localizedDescription)")
-        }
-    }
+   
+  
 
     func addPost(postModel: PostModel, completion: @escaping (_ error: String?) -> Void) {
         postModel.isActive = true

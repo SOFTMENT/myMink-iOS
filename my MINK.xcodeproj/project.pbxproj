@@ -140,6 +140,10 @@
 		5D8357D42A31FB3300C3DF81 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8357D32A31FB3300C3DF81 /* SuccessViewController.swift */; };
 		5D92EBE92B56AAB400164D73 /* CustomPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D92EBE82B56AAB400164D73 /* CustomPlayerItem.swift */; };
 		5D96D0732C05CCB60028326B /* SavePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D96D0722C05CCB60028326B /* SavePostModel.swift */; };
+		5D980EA72C256F8800AD381D /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D980EA62C256F8800AD381D /* CircleView.swift */; };
+		5D980EA92C25721A00AD381D /* SocialMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D980EA82C25721A00AD381D /* SocialMediaModel.swift */; };
+		5D980EAB2C25855600AD381D /* AddSocialMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D980EAA2C25855600AD381D /* AddSocialMediaViewController.swift */; };
+		5D980EAD2C2587F400AD381D /* EditSocialMediaViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D980EAC2C2587F400AD381D /* EditSocialMediaViewContoller.swift */; };
 		5D999ABB2BA108920056D9B1 /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D999ABA2BA108920056D9B1 /* UsersListViewController.swift */; };
 		5D999ABD2BA25CE40056D9B1 /* Marketplace.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D999ABC2BA25CE40056D9B1 /* Marketplace.storyboard */; };
 		5D999ABF2BA261550056D9B1 /* ProductCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D999ABE2BA261550056D9B1 /* ProductCategoryCell.swift */; };
@@ -392,6 +396,10 @@
 		5D8357D32A31FB3300C3DF81 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
 		5D92EBE82B56AAB400164D73 /* CustomPlayerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerItem.swift; sourceTree = "<group>"; };
 		5D96D0722C05CCB60028326B /* SavePostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePostModel.swift; sourceTree = "<group>"; };
+		5D980EA62C256F8800AD381D /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		5D980EA82C25721A00AD381D /* SocialMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaModel.swift; sourceTree = "<group>"; };
+		5D980EAA2C25855600AD381D /* AddSocialMediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSocialMediaViewController.swift; sourceTree = "<group>"; };
+		5D980EAC2C2587F400AD381D /* EditSocialMediaViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSocialMediaViewContoller.swift; sourceTree = "<group>"; };
 		5D999ABA2BA108920056D9B1 /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
 		5D999ABC2BA25CE40056D9B1 /* Marketplace.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Marketplace.storyboard; sourceTree = "<group>"; };
 		5D999ABE2BA261550056D9B1 /* ProductCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategoryCell.swift; sourceTree = "<group>"; };
@@ -727,6 +735,7 @@
 				5D96D0722C05CCB60028326B /* SavePostModel.swift */,
 				5D212D0A2C10756700E26017 /* BusinessModel.swift */,
 				5D5566492C13226900AF7AB5 /* SubscribeModel.swift */,
+				5D980EA82C25721A00AD381D /* SocialMediaModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -797,6 +806,7 @@
 				5DF8C7D42BF95262008BAB8E /* OrdersTabbleViewCell.swift */,
 				5DF8C7DA2BF96043008BAB8E /* WalletTableViewCell.swift */,
 				5D212D0C2C10DA1C00E26017 /* BusinessTableViewCell.swift */,
+				5D980EA62C256F8800AD381D /* CircleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -911,6 +921,8 @@
 				5DD784C42B823B1F008A218F /* DailyHoroscopeViewController.swift */,
 				5DD784C62B824349008A218F /* MyHoroscopeViewController.swift */,
 				5D05194F2B86CCBE004226BB /* MyMinkBotViewController.swift */,
+				5D980EAA2C25855600AD381D /* AddSocialMediaViewController.swift */,
+				5D980EAC2C2587F400AD381D /* EditSocialMediaViewContoller.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1197,6 +1209,7 @@
 				5DDBB9742A3A953F006876D7 /* LiveViewController.swift in Sources */,
 				5D6579932A2C165E00486C2B /* MyGesture.swift in Sources */,
 				5DF8C7BB2BF94A78008BAB8E /* OrganizerViewEventDetails.swift in Sources */,
+				5D980EA72C256F8800AD381D /* CircleView.swift in Sources */,
 				5D032C6F2B72217700F083ED /* ToDoModel.swift in Sources */,
 				5D999AC22BA267A20056D9B1 /* MarketplaceHomeViewController.swift in Sources */,
 				5D3521912A37B017005117CA /* ResetPasswordModel.swift in Sources */,
@@ -1246,6 +1259,7 @@
 				5DF8C7CD2BF94E13008BAB8E /* WalletViewController.swift in Sources */,
 				5D6579992A2C16D100486C2B /* FirebaseStoreManager.swift in Sources */,
 				5D5EC6B12B14A5740097CC47 /* LivestreamShareViewController.swift in Sources */,
+				5D980EAB2C25855600AD381D /* AddSocialMediaViewController.swift in Sources */,
 				5DDBB9702A3A9506006876D7 /* HomeViewController.swift in Sources */,
 				5D65798F2A2C15DC00486C2B /* Constants.swift in Sources */,
 				5DDBB97A2A3A958D006876D7 /* NotificationViewController.swift in Sources */,
@@ -1280,6 +1294,7 @@
 				5D4922412B715206008711B9 /* ProfileViewController.swift in Sources */,
 				5D032C6D2B72209C00F083ED /* TodoTableViewCell.swift in Sources */,
 				5DE5D5E72A58FFF9001CB4E8 /* HomeChatTableViewCell.swift in Sources */,
+				5D980EA92C25721A00AD381D /* SocialMediaModel.swift in Sources */,
 				5DF8C7C72BF94B5F008BAB8E /* CreateEventMainEventImage.swift in Sources */,
 				5DD8ACE52B00899800FB882E /* MusicDashboardController.swift in Sources */,
 				5DF8C7D52BF95262008BAB8E /* OrdersTabbleViewCell.swift in Sources */,
@@ -1310,6 +1325,7 @@
 				5D742AAF2C08BEDC006605FC /* SavedManager.swift in Sources */,
 				5D5B661A2A510BA9007E0EFA /* EditProfileViewController.swift in Sources */,
 				5D2347062A3AB26100AE02D7 /* PostModel.swift in Sources */,
+				5D980EAD2C2587F400AD381D /* EditSocialMediaViewContoller.swift in Sources */,
 				5D9C94602B6B977B003925C6 /* WeatherModel.swift in Sources */,
 				5D3CB67C2A4F0AC600113F05 /* GooglePlacesCell.swift in Sources */,
 				5D4E1DD22BCE257A009B9497 /* ProductDelegate.swift in Sources */,
@@ -1411,7 +1427,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1428,6 +1444,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1496,7 +1513,7 @@
 				CODE_SIGN_ENTITLEMENTS = "my MINK/my MINKDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 125;
+				CURRENT_PROJECT_VERSION = 128;
 				DEVELOPMENT_TEAM = 3A38VTTBM4;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1527,7 +1544,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.99999999999998;
+				MARKETING_VERSION = 2.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1704,6 +1721,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "myMINK-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1720,7 +1738,7 @@
 				CODE_SIGN_ENTITLEMENTS = "my MINK/my MINK.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 125;
+				CURRENT_PROJECT_VERSION = 128;
 				DEVELOPMENT_TEAM = 3A38VTTBM4;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1751,7 +1769,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.99999999999998;
+				MARKETING_VERSION = 2.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

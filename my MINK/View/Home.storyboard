@@ -2072,7 +2072,7 @@
             <objects>
                 <viewController storyboardIdentifier="viewUserProfileVC" modalPresentationStyle="fullScreen" id="PWM-7j-MbB" customClass="ViewUserProfileController" customModule="my_MINK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l2X-dT-SpA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1175"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Dz-al-39v">
@@ -2563,7 +2563,7 @@
                                                                 <rect key="frame" x="0.0" y="86" width="364" height="446.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dt0-ST-cXn">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="364" height="121"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="364" height="86"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wd2-zS-ifp">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="22"/>
@@ -2622,11 +2622,11 @@
                                                                                     </label>
                                                                                 </subviews>
                                                                             </stackView>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjY-HK-DeK">
-                                                                                <rect key="frame" x="0.0" y="96" width="364" height="25"/>
+                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjY-HK-DeK">
+                                                                                <rect key="frame" x="0.0" y="86" width="364" height="0.0"/>
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="njg-3g-ff9">
-                                                                                        <rect key="frame" x="0.0" y="1" width="22" height="23"/>
+                                                                                        <rect key="frame" x="0.0" y="-11.5" width="22" height="23"/>
                                                                                         <color key="tintColor" red="0.60392156860000001" green="0.60392156860000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="22" id="AYt-PZ-jD8"/>
@@ -2634,12 +2634,12 @@
                                                                                         </constraints>
                                                                                     </imageView>
                                                                                     <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3I6-Sg-Nh1">
-                                                                                        <rect key="frame" x="30" y="0.0" width="334" height="25"/>
+                                                                                        <rect key="frame" x="30" y="0.0" width="334" height="0.0"/>
                                                                                         <subviews>
                                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Oa2-gc-Ouk">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="242" height="25"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="334" height="0.0"/>
                                                                                                 <subviews>
-                                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2c-kc-Oxi">
+                                                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2c-kc-Oxi">
                                                                                                         <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter" translatesAutoresizingMaskIntoConstraints="NO" id="jZ5-TN-Nm3">
@@ -2649,7 +2649,7 @@
                                                                                                                     <constraint firstAttribute="height" constant="24" id="tuD-QM-fw9"/>
                                                                                                                 </constraints>
                                                                                                             </imageView>
-                                                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHt-en-E5U" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
+                                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHt-en-E5U" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
                                                                                                                 <rect key="frame" x="18" y="-5" width="9" height="9"/>
                                                                                                                 <subviews>
                                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJt-GH-nqP">
@@ -2678,8 +2678,8 @@
                                                                                                             <constraint firstAttribute="height" constant="25" id="vmm-Rl-lqd"/>
                                                                                                         </constraints>
                                                                                                     </view>
-                                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uca-ei-o8t">
-                                                                                                        <rect key="frame" x="31" y="0.0" width="25" height="25"/>
+                                                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uca-ei-o8t">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instagram" translatesAutoresizingMaskIntoConstraints="NO" id="MQI-3r-JVC">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -2688,7 +2688,7 @@
                                                                                                                     <constraint firstAttribute="width" constant="24" id="UaW-5W-BaB"/>
                                                                                                                 </constraints>
                                                                                                             </imageView>
-                                                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9A0-8K-gAl" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
+                                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9A0-8K-gAl" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
                                                                                                                 <rect key="frame" x="18" y="-5" width="9" height="9"/>
                                                                                                                 <subviews>
                                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMd-SB-GcH">
@@ -2717,8 +2717,8 @@
                                                                                                             <constraint firstAttribute="trailing" secondItem="9A0-8K-gAl" secondAttribute="trailing" constant="-2" id="vb6-2L-cGZ"/>
                                                                                                         </constraints>
                                                                                                     </view>
-                                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BmZ-jy-v8a">
-                                                                                                        <rect key="frame" x="62" y="0.0" width="25" height="25"/>
+                                                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BmZ-jy-v8a">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tiktok" translatesAutoresizingMaskIntoConstraints="NO" id="IDA-jO-IMn">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -2727,7 +2727,7 @@
                                                                                                                     <constraint firstAttribute="width" constant="24" id="f9w-xa-szs"/>
                                                                                                                 </constraints>
                                                                                                             </imageView>
-                                                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="otd-4E-BQT" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
+                                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="otd-4E-BQT" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
                                                                                                                 <rect key="frame" x="18" y="-5" width="9" height="9"/>
                                                                                                                 <subviews>
                                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffh-e7-1Ix">
@@ -2756,8 +2756,8 @@
                                                                                                             <constraint firstItem="IDA-jO-IMn" firstAttribute="centerY" secondItem="BmZ-jy-v8a" secondAttribute="centerY" id="sHS-LM-SCX"/>
                                                                                                         </constraints>
                                                                                                     </view>
-                                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ad8-TG-lFk">
-                                                                                                        <rect key="frame" x="93" y="0.0" width="25" height="25"/>
+                                                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ad8-TG-lFk">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook" translatesAutoresizingMaskIntoConstraints="NO" id="9gF-cX-bWO">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -2766,7 +2766,7 @@
                                                                                                                     <constraint firstAttribute="width" constant="24" id="dDk-r1-emI"/>
                                                                                                                 </constraints>
                                                                                                             </imageView>
-                                                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVw-zr-YkH" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
+                                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVw-zr-YkH" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
                                                                                                                 <rect key="frame" x="18" y="-5" width="9" height="9"/>
                                                                                                                 <subviews>
                                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dy5-Eg-HmE">
@@ -2795,8 +2795,8 @@
                                                                                                             <constraint firstItem="9gF-cX-bWO" firstAttribute="centerY" secondItem="ad8-TG-lFk" secondAttribute="centerY" id="lFO-kZ-HBn"/>
                                                                                                         </constraints>
                                                                                                     </view>
-                                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cnb-v6-gqs">
-                                                                                                        <rect key="frame" x="124" y="0.0" width="25" height="25"/>
+                                                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cnb-v6-gqs">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youtube" translatesAutoresizingMaskIntoConstraints="NO" id="JnE-73-L6D">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -2805,7 +2805,7 @@
                                                                                                                     <constraint firstAttribute="width" constant="24" id="xvg-vc-Wb8"/>
                                                                                                                 </constraints>
                                                                                                             </imageView>
-                                                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcZ-QN-B0C" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
+                                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcZ-QN-B0C" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
                                                                                                                 <rect key="frame" x="18" y="-5" width="9" height="9"/>
                                                                                                                 <subviews>
                                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1M8-a3-WEH">
@@ -2834,8 +2834,8 @@
                                                                                                             <constraint firstItem="JnE-73-L6D" firstAttribute="centerY" secondItem="Cnb-v6-gqs" secondAttribute="centerY" id="zIp-bk-Z0S"/>
                                                                                                         </constraints>
                                                                                                     </view>
-                                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EHR-iq-CUv">
-                                                                                                        <rect key="frame" x="155" y="0.0" width="25" height="25"/>
+                                                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EHR-iq-CUv">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rumble" translatesAutoresizingMaskIntoConstraints="NO" id="OJT-8M-YBO">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -2844,7 +2844,7 @@
                                                                                                                     <constraint firstAttribute="height" constant="24" id="eAT-ZR-etl"/>
                                                                                                                 </constraints>
                                                                                                             </imageView>
-                                                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5pI-kv-KbR" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
+                                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5pI-kv-KbR" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
                                                                                                                 <rect key="frame" x="18" y="-5" width="9" height="9"/>
                                                                                                                 <subviews>
                                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSP-Ih-JHf">
@@ -2873,8 +2873,8 @@
                                                                                                             <constraint firstItem="OJT-8M-YBO" firstAttribute="centerY" secondItem="EHR-iq-CUv" secondAttribute="centerY" id="jSo-Az-I8a"/>
                                                                                                         </constraints>
                                                                                                     </view>
-                                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2n-7l-Xpg">
-                                                                                                        <rect key="frame" x="186" y="0.0" width="25" height="25"/>
+                                                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2n-7l-Xpg">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitch" translatesAutoresizingMaskIntoConstraints="NO" id="HIK-ax-iyV">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -2883,7 +2883,7 @@
                                                                                                                     <constraint firstAttribute="height" constant="24" id="bfF-WP-K14"/>
                                                                                                                 </constraints>
                                                                                                             </imageView>
-                                                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDt-CM-sDh" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
+                                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDt-CM-sDh" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
                                                                                                                 <rect key="frame" x="18" y="-5" width="9" height="9"/>
                                                                                                                 <subviews>
                                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJ8-O5-eav">
@@ -2912,8 +2912,8 @@
                                                                                                             <constraint firstItem="HIK-ax-iyV" firstAttribute="centerY" secondItem="b2n-7l-Xpg" secondAttribute="centerY" id="hQk-lf-kIs"/>
                                                                                                         </constraints>
                                                                                                     </view>
-                                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydY-8o-uCB">
-                                                                                                        <rect key="frame" x="217" y="0.0" width="25" height="25"/>
+                                                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydY-8o-uCB">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reddit" translatesAutoresizingMaskIntoConstraints="NO" id="GkJ-RP-HRt">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -2922,7 +2922,7 @@
                                                                                                                     <constraint firstAttribute="height" constant="24" id="ng3-jE-l0p"/>
                                                                                                                 </constraints>
                                                                                                             </imageView>
-                                                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqs-nT-Okd" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
+                                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqs-nT-Okd" customClass="CircleView" customModule="my_MINK" customModuleProvider="target">
                                                                                                                 <rect key="frame" x="18" y="-5" width="9" height="9"/>
                                                                                                                 <subviews>
                                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYi-EC-vnu">
@@ -2952,7 +2952,7 @@
                                                                                                         </constraints>
                                                                                                     </view>
                                                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvE-eE-43B">
-                                                                                                        <rect key="frame" x="242" y="0.0" width="25" height="25"/>
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tumblr" translatesAutoresizingMaskIntoConstraints="NO" id="GvA-IB-vVW">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -2991,7 +2991,7 @@
                                                                                                         </constraints>
                                                                                                     </view>
                                                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xkm-6y-R9a">
-                                                                                                        <rect key="frame" x="242" y="0.0" width="25" height="25"/>
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="discord" translatesAutoresizingMaskIntoConstraints="NO" id="Y3L-5p-j4I">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -3030,7 +3030,7 @@
                                                                                                         </constraints>
                                                                                                     </view>
                                                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PPe-Dk-Dxy">
-                                                                                                        <rect key="frame" x="242" y="0.0" width="25" height="25"/>
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="telegram" translatesAutoresizingMaskIntoConstraints="NO" id="bJO-3Q-2lJ">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -3069,7 +3069,7 @@
                                                                                                         </constraints>
                                                                                                     </view>
                                                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYF-u4-wpJ">
-                                                                                                        <rect key="frame" x="242" y="0.0" width="25" height="25"/>
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mastodon" translatesAutoresizingMaskIntoConstraints="NO" id="4DF-MG-u05">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -3108,7 +3108,7 @@
                                                                                                         </constraints>
                                                                                                     </view>
                                                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VQg-nk-16y">
-                                                                                                        <rect key="frame" x="242" y="0.0" width="25" height="25"/>
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pintrest" translatesAutoresizingMaskIntoConstraints="NO" id="2Eq-wa-FQ7">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -3147,7 +3147,7 @@
                                                                                                         </constraints>
                                                                                                     </view>
                                                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xX9-XK-uKZ">
-                                                                                                        <rect key="frame" x="242" y="0.0" width="25" height="25"/>
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="etsy" translatesAutoresizingMaskIntoConstraints="NO" id="PzI-Tg-Icv">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -3186,7 +3186,7 @@
                                                                                                         </constraints>
                                                                                                     </view>
                                                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DbK-dU-fzl">
-                                                                                                        <rect key="frame" x="242" y="0.0" width="25" height="25"/>
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="linkedin" translatesAutoresizingMaskIntoConstraints="NO" id="jPD-od-ElV">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -3225,7 +3225,7 @@
                                                                                                         </constraints>
                                                                                                     </view>
                                                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yG6-hd-Wst">
-                                                                                                        <rect key="frame" x="242" y="0.0" width="25" height="25"/>
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                                                         <subviews>
                                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whatsapp" translatesAutoresizingMaskIntoConstraints="NO" id="TAn-6b-oSK">
                                                                                                                 <rect key="frame" x="0.5" y="0.5" width="24" height="24"/>
@@ -3289,7 +3289,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-26" translatesAutoresizingMaskIntoConstraints="NO" id="s05-D4-aAJ">
-                                                                        <rect key="frame" x="0.0" y="162" width="22" height="22"/>
+                                                                        <rect key="frame" x="0.0" y="127" width="22" height="22"/>
                                                                         <color key="tintColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="22" id="JFT-42-pzf"/>
@@ -3297,13 +3297,13 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developer" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYr-uM-BwM">
-                                                                        <rect key="frame" x="30" y="166.5" width="314" height="15"/>
+                                                                        <rect key="frame" x="30" y="131.5" width="314" height="15"/>
                                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Kdd-5j-cps">
-                                                                        <rect key="frame" x="0.0" y="191.5" width="0.0" height="255"/>
+                                                                        <rect key="frame" x="0.0" y="156.5" width="0.0" height="290"/>
                                                                         <subviews>
                                                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnr-dw-HL7">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="98" height="40"/>
@@ -3337,7 +3337,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location-7" translatesAutoresizingMaskIntoConstraints="NO" id="Amv-Eg-NRe">
-                                                                        <rect key="frame" x="0.0" y="131" width="22" height="21"/>
+                                                                        <rect key="frame" x="0.0" y="96" width="22" height="21"/>
                                                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="22" id="aJc-up-mZE"/>
@@ -3345,7 +3345,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45/23, near shiv shree cinema, totalaa marg tarana" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4L-eS-eg5">
-                                                                        <rect key="frame" x="30" y="135" width="334" height="15"/>
+                                                                        <rect key="frame" x="30" y="100" width="334" height="15"/>
                                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                         <color key="textColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -3426,9 +3426,18 @@
                         <outlet property="chatFollowStack" destination="Fgx-Pg-8Yr" id="Ea6-si-NWt"/>
                         <outlet property="collectionView" destination="sbn-Uq-MUE" id="lu2-oK-hl8"/>
                         <outlet property="collectionViewHeight" destination="zAg-eG-2cb" id="y9w-3w-2Ol"/>
+                        <outlet property="discordCircle" destination="dc0-sI-7tf" id="OqS-YE-QJB"/>
+                        <outlet property="discordNumber" destination="d6F-Tr-dBD" id="zYg-E2-kqN"/>
+                        <outlet property="discordView" destination="Xkm-6y-R9a" id="J1Z-W0-OQ1"/>
                         <outlet property="dotsView" destination="6aU-ZO-X5Y" id="aWb-Q5-tJB"/>
                         <outlet property="emailAddress" destination="O9g-tj-qRK" id="4y9-sr-0uQ"/>
                         <outlet property="emailAddressView" destination="CgY-Bi-KmP" id="8Jx-Qa-cBy"/>
+                        <outlet property="etsyCircle" destination="uRq-O8-PjT" id="5L8-ii-maW"/>
+                        <outlet property="etsyNumber" destination="0Xg-aV-Xoo" id="afc-Ep-qHx"/>
+                        <outlet property="etsyView" destination="xX9-XK-uKZ" id="GJe-Nv-ZeO"/>
+                        <outlet property="facebookCircle" destination="CVw-zr-YkH" id="g00-DW-JuE"/>
+                        <outlet property="facebookNumber" destination="Dy5-Eg-HmE" id="vur-wB-nZr"/>
+                        <outlet property="facebookView" destination="ad8-TG-lFk" id="ykM-Rq-EpZ"/>
                         <outlet property="filterBtn" destination="z1J-aF-Vuy" id="94r-7e-M6s"/>
                         <outlet property="followBtn" destination="0om-0c-qbB" id="26N-v7-wVI"/>
                         <outlet property="followerLoading" destination="BRA-4I-niA" id="0au-xH-ZcZ"/>
@@ -3438,21 +3447,55 @@
                         <outlet property="followingLoading" destination="SEe-g6-KVM" id="Nej-a8-S7z"/>
                         <outlet property="followingView" destination="oFa-IE-Yuv" id="Zcm-VC-Z4G"/>
                         <outlet property="fullName" destination="49B-zY-0tU" id="8h6-Yg-R7p"/>
+                        <outlet property="instagramCircle" destination="9A0-8K-gAl" id="VhH-HE-GgE"/>
+                        <outlet property="instagramNumber" destination="wMd-SB-GcH" id="f2r-tI-534"/>
+                        <outlet property="instagramView" destination="uca-ei-o8t" id="WOK-cs-8GF"/>
                         <outlet property="joiningDate" destination="0Nw-bu-ELF" id="8JZ-ni-nne"/>
+                        <outlet property="linkedinCircle" destination="U7j-IZ-FL6" id="B61-Ts-89M"/>
+                        <outlet property="linkedinNumber" destination="myr-1A-gO5" id="Sxa-Tk-7ff"/>
+                        <outlet property="linkedinView" destination="DbK-dU-fzl" id="wPG-WX-fua"/>
+                        <outlet property="mastodonCircle" destination="A6m-5l-yKG" id="GAh-hZ-GpD"/>
+                        <outlet property="mastodonNumber" destination="x3Z-n8-vZL" id="eFc-Px-NKa"/>
+                        <outlet property="mastodonView" destination="gYF-u4-wpJ" id="5TS-9j-3Xn"/>
                         <outlet property="messageBtn" destination="ldw-rR-UWE" id="9cb-Bc-xoR"/>
                         <outlet property="noPostsAvailable" destination="x3W-35-wjI" id="hWz-Iy-9Sd"/>
                         <outlet property="phoneNumber" destination="gwm-IA-lRs" id="2OR-W0-6Mq"/>
                         <outlet property="phoneNumberView" destination="wd2-zS-ifp" id="4BH-fV-slW"/>
+                        <outlet property="pintrestCircle" destination="SOs-pC-iio" id="hiP-4V-dsB"/>
+                        <outlet property="pintrestNumber" destination="4Y2-vZ-if5" id="38L-f3-roV"/>
+                        <outlet property="pintrestView" destination="VQg-nk-16y" id="ZfX-PZ-cQW"/>
                         <outlet property="postCount" destination="j8E-gp-j9Y" id="IhP-az-CCd"/>
                         <outlet property="postsLoading" destination="s5w-AA-e3k" id="2IU-K3-fN4"/>
+                        <outlet property="redditCircle" destination="wqs-nT-Okd" id="a46-Cm-DQz"/>
+                        <outlet property="redditNumber" destination="bYi-EC-vnu" id="Pcw-mW-Fub"/>
+                        <outlet property="redditView" destination="ydY-8o-uCB" id="R6X-yk-h8C"/>
+                        <outlet property="rumCircle" destination="5pI-kv-KbR" id="gyv-V8-DhH"/>
+                        <outlet property="rumNumber" destination="FSP-Ih-JHf" id="sZ4-c0-FQ7"/>
+                        <outlet property="rumView" destination="EHR-iq-CUv" id="mAs-UJ-mss"/>
                         <outlet property="scrollView" destination="3Dz-al-39v" id="I3W-96-4Q1"/>
                         <outlet property="searchTF" destination="NZw-e6-Eam" id="DQ9-o1-u2G"/>
                         <outlet property="signView" destination="hnr-dw-HL7" id="Zid-yj-lwY"/>
                         <outlet property="signatureImage" destination="h88-NV-NT6" id="8RI-7P-8Ha"/>
+                        <outlet property="socialMediaView" destination="YjY-HK-DeK" id="eem-Sr-tgk"/>
+                        <outlet property="telegramCircle" destination="vCp-ha-66k" id="Eo8-WQ-mqh"/>
+                        <outlet property="telegramNumber" destination="ST9-aC-3ju" id="wUp-iw-HLc"/>
+                        <outlet property="telegramView" destination="PPe-Dk-Dxy" id="XMC-jd-eQn"/>
+                        <outlet property="tikTokNumber" destination="ffh-e7-1Ix" id="DHy-ri-Ezl"/>
+                        <outlet property="tiktokCircle" destination="otd-4E-BQT" id="J3G-QX-1jn"/>
+                        <outlet property="tiktokView" destination="BmZ-jy-v8a" id="fjA-KU-uyh"/>
                         <outlet property="topFollowersLbl" destination="nH0-oc-Bql" id="epw-tk-zgM"/>
                         <outlet property="topPostCount" destination="9aA-RD-6jF" id="pWl-K0-wAG"/>
                         <outlet property="topPostsLbl" destination="rZe-hY-PQJ" id="Rr2-OI-fUP"/>
                         <outlet property="topViewsLbl" destination="m2e-DT-Mqk" id="Gn0-qy-8Fw"/>
+                        <outlet property="tumblr" destination="fvE-eE-43B" id="axS-6E-Ysk"/>
+                        <outlet property="tumblrCircle" destination="AlZ-os-tG0" id="Oa8-km-OzF"/>
+                        <outlet property="tumblrNumer" destination="lkF-ic-JTv" id="93H-5b-Bwy"/>
+                        <outlet property="twitchCircle" destination="pDt-CM-sDh" id="lMC-1G-WRM"/>
+                        <outlet property="twitchNumber" destination="pJ8-O5-eav" id="7Z7-YR-k5H"/>
+                        <outlet property="twitchView" destination="b2n-7l-Xpg" id="0pZ-HC-VmQ"/>
+                        <outlet property="twitterCircle" destination="wHt-en-E5U" id="GY7-Ku-t09"/>
+                        <outlet property="twitterNumber" destination="lJt-GH-nqP" id="oPM-Ay-pDP"/>
+                        <outlet property="twitterView" destination="u2c-kc-Oxi" id="SsC-ad-eX9"/>
                         <outlet property="userPersonalnfoView" destination="8g8-Ia-hKR" id="uYV-zc-LPU"/>
                         <outlet property="userPostView" destination="6fJ-X6-wxP" id="7e2-JG-bX4"/>
                         <outlet property="userProfile" destination="HtN-gR-aWR" id="USe-m2-qsS"/>
@@ -3463,6 +3506,12 @@
                         <outlet property="viewsLoading" destination="jwr-hI-FO9" id="6rD-uU-tNA"/>
                         <outlet property="website" destination="LYG-6O-faE" id="CZ8-f8-HOz"/>
                         <outlet property="websiteView" destination="MsM-S4-BHy" id="dib-UJ-eDS"/>
+                        <outlet property="whatsAppCircle" destination="XSq-B3-c3w" id="SDg-Ns-FYm"/>
+                        <outlet property="whatsAppNumber" destination="ecn-W1-i0N" id="E0T-y7-XyJ"/>
+                        <outlet property="whatsAppView" destination="yG6-hd-Wst" id="LOn-8T-STe"/>
+                        <outlet property="youtubeCircle" destination="rcZ-QN-B0C" id="5hn-kG-Eu4"/>
+                        <outlet property="youtubeNumber" destination="1M8-a3-WEH" id="6x8-cV-8oz"/>
+                        <outlet property="youtubeView" destination="Cnb-v6-gqs" id="xi2-jj-ZKs"/>
                         <segue destination="hSo-lR-GHv" kind="showDetail" identifier="viewprofilePostViewSeg" id="VSS-yJ-Apj"/>
                         <segue destination="uHW-6G-3SV" kind="showDetail" identifier="viewProfileChatSeg" id="D5y-P5-l9D"/>
                         <segue destination="b7M-Yr-Loz" kind="showDetail" identifier="usersListSeg" id="aFM-8B-1Nc"/>
@@ -4600,7 +4649,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="underPageBackgroundColor">
             <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
