@@ -3056,15 +3056,7 @@ extension UIViewController {
         return hashed.compactMap { String(format: "%02x", $0) }.joined()
     }
 
-    func generateUniqueCode(using phoneNumber: String) -> String {
-        let hash = self.hashPhoneNumber(phoneNumber)
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let desiredLength = 28
-        let randomLength = desiredLength - min(desiredLength, hash.count)
-        let randomChars = (0 ..< randomLength).compactMap { _ in letters.randomElement() }
-        let randomString = String(randomChars)
-        return hash.prefix(desiredLength - randomLength) + randomString
-    }
+  
 
     public func logoutPlease() {
        

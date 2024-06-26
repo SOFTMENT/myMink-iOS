@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
             }
         }
     }
-
+    
     @IBOutlet weak var topFollowersLbl: UILabel!
     @IBOutlet weak var verificationBadge: UIImageView!
     @IBOutlet var followingView: UIView!
@@ -345,6 +345,14 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         refresFromWillAppear()
+       
+        DispatchQueue.main.async {
+            if Constants.FROM_EVENT_CREATE {
+                Constants.FROM_EVENT_CREATE = false
+                self.performSegue(withIdentifier: "eventSeg", sender: nil)
+            }
+        }
+        
     }
     
     func refresFromWillAppear() {

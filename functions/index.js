@@ -12,8 +12,13 @@ const { format } = require('date-fns');
 const fetch = require('node-fetch');
 const AWS = require('aws-sdk');
 const algoliasearch = require('algoliasearch');
-const s3 = new AWS.S3();
+
+const fs = require('fs');
 const vision = require('@google-cloud/vision');
+const videoIntelligence = require('@google-cloud/video-intelligence').v1;
+const { Storage } = require('@google-cloud/storage');
+const { PassThrough } = require('stream');
+const { v4: uuidv4 } = require('uuid');
 admin.initializeApp({
   credential: admin.credential.cert({
   "type": "service_account",
@@ -30,20 +35,20 @@ admin.initializeApp({
 })
 });
 const db = admin.firestore();
-
+const storage = new Storage();
 // Initialize Algolia, replace with your own credentials
 const client = algoliasearch('9XQY8DOXRV', '0904fb732ab2992c81a3129991bb5100');
 
-// Configure AWS SDK with IAM credentials
-AWS.config.update({
+
+const s3 = new AWS.S3({
   accessKeyId: 'AKIAVRLFHTFV2Y7OUZPD',
   secretAccessKey: 'IbRXcyR1uNGOuZDfFa77MISVur0p5YLLAOpPM4Qx',
-  region: 'us-east-1', 
+  region: 'us-east-1' // Specify your region if necessary
 });
-
 
 // Initialize Google Cloud Vision client with service account
 const visionClient = new vision.ImageAnnotatorClient();
+const videoIntelligenceClient = new videoIntelligence.VideoIntelligenceServiceClient();
 
 exports.searchByAlgolia = functions.https.onCall((data, context) => {
   // Check user authentication
@@ -272,120 +277,143 @@ exports.updateFeedOnFollowChange = functions.firestore
     }
 });
 
-// Trigger to update Feeds when a new post is created
-exports.updateFeedsOnNewPost = functions.firestore
+exports.updateFeedsOnNewPost = functions
+.runWith({
+  timeoutSeconds: 540, // Set timeout to 9 minutes (maximum is 9 minutes)
+  memory: '1GB', // Options: '128MB', '256MB', '512MB', '1GB', '2GB', '4GB'
+}).firestore
     .document('Posts/{postId}')
     .onCreate(async (snapshot, context) => {
-        const postId = context.params.postId;
+       
         const postData = snapshot.data();
         const userId = postData.uid;
-    
         const postType = postData.postType;
+        const postId = postData.postID;
         const images = postData.postImages || [];
-        const postVideo = postData.postVideo;     
+        const postVideo = postData.postVideo;
         const videoImage = postData.videoImage;
         const image_base_url = "https://d1bak4qdzgw57r.cloudfront.net/fit-in/500x500/public/";
         const video_base_url = "https://d3uhzx9vktk5vy.cloudfront.net/public/";
-        try {
 
-             // Update the feed for the user who created the post
-             const feedRef = admin.firestore().collection('Feeds').doc(userId).collection('postIds').doc(postId);
-             if (!postData.bid || postData.bid.trim() === "") {
-                 await feedRef.set({ postCreateDate: postData.postCreateDate });
-             }
- 
-             // Get all users who follow the user who created the post
-             const followersSnapshot = await admin.firestore()
-                 .collectionGroup('Following')
-                 .where('uid', '==', userId)
-                 .get();
- 
-             const followerUpdates = followersSnapshot.docs.map(async doc => {
-                 const followerId = doc.ref.parent.parent.id;
-                 const followerFeedRef = admin.firestore().collection('Feeds').doc(followerId).collection('postIds').doc(postId);
- 
-                 if (!postData.bid || postData.bid.trim() === "") {
-                     await followerFeedRef.set({ postCreateDate: postData.postCreateDate });
-                 }
-             });
- 
-             await Promise.all(followerUpdates);
-         
-        
-          if (postType === 'image') {
-            let explicitContentDetected = false;
-            const checkImages = async () => {
-              for (const imageUrl of images) {
-                  await detectExplicitContent(image_base_url + imageUrl).then(isExplicit => {
-                      if (isExplicit) {
-                          explicitContentDetected = true;
-                          // Break out of the loop by returning a rejected promise
-                          return Promise.reject('Explicit content detected');
-                      }
-                  }).catch(error => {
-                      if (error !== 'Explicit content detected') {
-                          // Handle other errors
-                          console.error('Error during explicit content detection:', error);
-                      }
-                      // If explicit content was detected, just continue to the end
-                  });
-          
-                  if (explicitContentDetected) {
-                      break; // Explicitly break the loop if content is detected
-                  }
-              }
-    
-              if (explicitContentDetected) {
-  
-                deletePost(postId,postType, images, postVideo, videoImage);
-  
-              } else {
-                  console.log('All images are clean.');
-              }
-          };
-          
-          checkImages().catch((error) => {
-              console.error('Error during explicit content detection:', error);
-          });
-          }
-          
-          else if(postType === "video") {
-            let explicitContentDetected = false;
-            const checkVideo = async () => {
-              try {
-                const isExplicit = await detectExplicitContentInVideo(video_base_url + postVideo);
-                if (isExplicit) {
-                  explicitContentDetected = true;
-                  console.log('Explicit content detected');
-                  deletePost(postId, postType, images, postVideo, videoImage);
-                } else {
-                  console.log('Video is clean.');
+
+       
+
+        try {
+            // Update the feed for the user who created the post
+            const feedRef = admin.firestore().collection('Feeds').doc(userId).collection('postIds').doc(postId);
+            if (!postData.bid || postData.bid.trim() === "") {
+                await feedRef.set({ postCreateDate: postData.postCreateDate });
+            }
+
+            // Get all users who follow the user who created the post
+            const followersSnapshot = await admin.firestore()
+                .collectionGroup('Following')
+                .where('uid', '==', userId)
+                .get();
+
+            const followerUpdates = followersSnapshot.docs.map(async doc => {
+                const followerId = doc.ref.parent.parent.id;
+                const followerFeedRef = admin.firestore().collection('Feeds').doc(followerId).collection('postIds').doc(postId);
+
+                if (!postData.bid || postData.bid.trim() === "") {
+                    await followerFeedRef.set({ postCreateDate: postData.postCreateDate });
                 }
-              } catch (error) {
-                console.error('Error during explicit content detection:', error);
-              }
-            };
-            
-            // Example usage
-            checkVideo().catch((error) => {
-              console.error('Error in checkVideo function:', error);
             });
-          }
-          return null;
+
+            await Promise.all(followerUpdates);
+
+       
+            
+            if (postType === 'image') {
+              
+                let explicitContentDetected = false;
+                let aggregatedLabels = [];
+
+                const checkImages = async () => {
+                    for (const imageUrl of images) {
+                        await detectExplicitContent(image_base_url + imageUrl).then(isExplicit => {
+                            if (isExplicit) {
+                                explicitContentDetected = true;
+                                return Promise.reject('Explicit content detected');
+                            }
+                        }).catch(error => {
+                            if (error !== 'Explicit content detected') {
+                                console.error('Error during explicit content detection:', error);
+                            }
+                        });
+
+                        if (explicitContentDetected) {
+                            break;
+                        }
+                         // Generate metadata for the image
+                        const labels = await generateImageMetadata(image_base_url + imageUrl);
+                         aggregatedLabels = aggregatedLabels.concat(labels);
+                    }
+
+                    if (explicitContentDetected) {
+                        await deletePost(postId, postType, images, postVideo, videoImage);
+                    } else {
+
+                         // Store aggregated metadata in Firestore
+                        const metadataRef = admin.firestore().collection('Posts').doc(postId);
+                        await metadataRef.set({ metadata: aggregatedLabels }, { merge: true });
+                        console.log('All images are clean.');
+                    }
+                };
+
+                await checkImages();
+            } else if (postType === 'video') {
+
+
+                // Example usage
+                const s3Bucket = 'myminkbucket190931-myminkapp';
+                const s3Key = `public/${postVideo}`;
+                const gcsBucket = 'mymink-bucket-video-intelligent';
+                const gcsDestination = `${uuidv4()}.mp4`;
+                const gcsUri = `gs://${gcsBucket}/${gcsDestination}`;
+
+
+                const checkVideo = async () => {
+                    try {
+
+                      
+                      await downloadVideoFromS3ToGCS(s3Bucket, s3Key, gcsBucket, gcsDestination);
+                      console.log(`Video uploaded to ${gcsUri}`);
+
+                        const isExplicit = await detectExplicitContentInVideo(gcsUri);
+                        // Delete the file from GCS after processing
+                         deleteFileFromGCS(gcsBucket, gcsDestination);
+                        if (isExplicit) {
+                          
+                            console.log('Explicit content detected');
+                            await deletePost(postId, postType, images, postVideo, videoImage);
+                        } else {
+                            console.log('Video is clean.');
+                        }
+                    } catch (error) {
+                        console.error('Error during explicit content detection:', error);
+                    }
+                };
+
+                await checkVideo();
+            }
+
+            return null;
         } catch (error) {
+          
             console.error(`Error updating feeds with new post ${postId}:`, error);
             return { error: error.message };
         }
     });
 
 
-
 // Trigger to update Feeds when a post is deleted
 exports.updateFeedsOnPostDeletion = functions.firestore
 .document('Posts/{postId}')
 .onDelete(async (snapshot, context) => {
-    const postId = context.params.postId;
+   
     const postData = snapshot.data();
+    const postId = postData.postID;
     const userId = postData.uid;
 
     try {
@@ -438,30 +466,115 @@ async function detectExplicitContent(imageUrl) {
 }
 
 // Function to detect explicit content using Video intelligent
-async function detectExplicitContentInVideo(videoURL) {
+const detectExplicitContentInVideo = async (videoURL) => {
   const request = {
-    inputUri: gcsUri,
+    inputUri: videoURL,
     features: ['EXPLICIT_CONTENT_DETECTION'],
   };
 
-  // Detects explicit content in the video
-  const [operation] = await client.annotateVideo(request);
   console.log('Waiting for operation to complete...');
+  const [operation] = await videoIntelligenceClient.annotateVideo(request);
   const [operationResult] = await operation.promise();
 
-  // Gets annotations for video
   const explicitContentResults = operationResult.annotationResults[0].explicitAnnotation;
+  
+  let isExplicit = false;
 
-  // Define the threshold for explicit content
-  const explicitThreshold = ['LIKELY', 'VERY_LIKELY'];
+  explicitContentResults.frames.forEach(result => {
+    const timeOffsetSeconds = result.timeOffset?.seconds || 0;
+    const timeOffsetNanos = result.timeOffset?.nanos || 0;
 
-  // Check if any frame meets or exceeds the explicit content threshold
-  const explicitContentDetected = explicitContentResults.frames.some(frame => 
-    explicitThreshold.includes(frame.pornographyLikelihood)
-  );
+    console.log(
+      `Time: ${timeOffsetSeconds}.${(timeOffsetNanos / 1e6).toFixed(0)}s`
+    );
+    console.log(`Pornography likelihood: ${result.pornographyLikelihood}`);
 
-  return explicitContentDetected;
-}
+    // Determine if any frame has a high likelihood of explicit content
+    if (result.pornographyLikelihood >= 4) { // 4 is LIKELY and 5 is VERY_LIKELY
+      isExplicit = true;
+    }
+  });
+
+  console.log(`Overall video explicitness: ${isExplicit}`);
+  return isExplicit;
+};
+
+
+const downloadVideoFromS3ToGCS = async (s3Bucket, s3Key, gcsBucket, gcsDestination) => {
+  const passThroughStream = new PassThrough();
+  const s3Params = { Bucket: s3Bucket, Key: s3Key };
+  
+  // Create a stream from S3
+  const s3Stream = s3.getObject(s3Params).createReadStream();
+  
+  // Pipe the S3 stream to the pass-through stream
+  s3Stream.pipe(passThroughStream);
+  
+  // Pipe the pass-through stream to GCS
+  const gcsStream = storage.bucket(gcsBucket).file(gcsDestination).createWriteStream({
+    resumable: false,
+    validation: false
+  });
+
+  return new Promise((resolve, reject) => {
+    passThroughStream.pipe(gcsStream)
+      .on('finish', resolve)
+      .on('error', reject);
+  });
+};
+
+const deleteFileFromGCS = async (bucketName, fileName) => {
+   storage.bucket(bucketName).file(fileName).delete();
+  console.log(`gs://${bucketName}/${fileName} deleted.`);
+};
+
+
+const generateImageMetadata = async (imageUrl) => {
+  const [result] = await visionClient.annotateImage({
+    image: { source: { imageUri: imageUrl } },
+    features: [
+      { type: 'LABEL_DETECTION', maxResults: 10 },
+      { type: 'OBJECT_LOCALIZATION', maxResults: 10 },
+      { type: 'WEB_DETECTION', maxResults: 10 }
+    ],
+  });
+
+  // Combine labels, objects, and web detections
+  const labels = (result.labelAnnotations || []).map(label => ({
+    description: label.description,
+    score: label.score
+  }));
+
+  const objects = (result.localizedObjectAnnotations || []).map(object => ({
+    description: object.name,
+    score: object.score
+  }));
+
+  const webEntities = (result.webDetection.webEntities || []).map(entity => ({
+    description: entity.description,
+    score: entity.score
+  }));
+
+  const combinedAnnotations = [...labels, ...objects, ...webEntities];
+
+  // Sort by score in descending order
+  combinedAnnotations.sort((a, b) => b.score - a.score);
+
+  // Filter out any undefined descriptions and remove duplicates
+  const uniqueAnnotations = [];
+  const seenDescriptions = new Set();
+
+  for (const annotation of combinedAnnotations) {
+    if (annotation.description && !seenDescriptions.has(annotation.description)) {
+      uniqueAnnotations.push(annotation);
+      seenDescriptions.add(annotation.description);
+    }
+  }
+
+  // Return only the top 5 results
+  return uniqueAnnotations.slice(0, 5);
+};
+
 
 async function deleteSubcollection(collectionPath) {
   try {

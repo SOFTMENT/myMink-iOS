@@ -94,7 +94,7 @@ class SignUpPhoneNumberViewController: UIViewController {
                             message: "There is a account already available with same phone number. Please Sign In."
                         )
                     } else {
-                        let uid = self.generateUniqueCode(using: phoneNumber)
+                        let uid = FirebaseStoreManager.db.collection("Users").document().documentID
 
                         self.sendTwilioVerification(to: phoneNumber) { error in
                             DispatchQueue.main.async {

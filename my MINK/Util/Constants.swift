@@ -153,6 +153,7 @@ struct Constants {
     
     
 
+    static var FROM_EVENT_CREATE = false
     static let BLUE_TICK_REQUIREMENT = 10
     static let MY_MINK_APP_DOMAIN = "app.mymink.com.au/"
     static let AWS_VIDEO_BASE_URL = "https://d3uhzx9vktk5vy.cloudfront.net/public/"

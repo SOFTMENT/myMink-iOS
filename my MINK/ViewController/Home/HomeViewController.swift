@@ -16,7 +16,6 @@ import CountryPicker
 import FirebaseFirestore
 
 // MARK: - HomeViewController
-
 class HomeViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     @IBOutlet var headerView: UIView!
@@ -150,8 +149,7 @@ class HomeViewController: UIViewController {
         
         self.playerPool = PlayerPool(playerCount: 6)
         
-        
-        
+            
         self.getDeletedPostId { postID in
             if let index = self.postModels.firstIndex(where: { postModel in
                 if postModel.postID == postID {

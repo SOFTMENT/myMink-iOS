@@ -62,7 +62,22 @@ class OrganisorDashboardViewController : UIViewController {
     }
      
     @IBAction func switchUserClicked(_ sender: Any) {
-        self.dismiss(animated: true)
+        if self.presentingViewController != nil {
+                   self.dismiss(animated: true) {
+                       // Check if the view controller is actually dismissed
+                       if self.presentingViewController != nil {
+                           self.onDismissFailed()
+                       }
+                   }
+               } else {
+                   self.onDismissFailed()
+               }
+    }
+    
+    func onDismissFailed() {
+        Constants.FROM_EVENT_CREATE = true
+        Constants.selectedTabbarPosition = 6
+        self.beRootScreen(storyBoardName: .Tabbar, mIdentifier: .TABBARVIEWCONTROLLER)
     }
     
     public func getMyEvents(){

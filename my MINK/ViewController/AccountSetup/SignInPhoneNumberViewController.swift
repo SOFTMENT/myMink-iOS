@@ -74,8 +74,19 @@ class SignInPhoneNumberViewController: UIViewController {
 
             FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("phoneNumber", isEqualTo: phoneNumber)
                 .getDocuments { snapshot, error in
-                    if let snapshot = snapshot, !snapshot.isEmpty {
-                        self.verifyPhoneNumber(phoneNumber: phoneNumber, session: nil)
+                    if let snapshot = snapshot, !snapshot.documents.isEmpty {
+                        if let userModel = try? snapshot.documents.first?.data(as: UserModel.self), let uid = userModel.uid{
+                            
+                            self.verifyPhoneNumber(phoneNumber: phoneNumber, uid : uid, session: nil)
+                        }
+                        else {
+                            self.ProgressHUDHide()
+                            self.showMessage(
+                                title: "Account Not Found.",
+                                message: "There is no account link with this phone number. Please sign up new account first."
+                            )
+                        }
+                      
                     } else {
                         self.ProgressHUDHide()
                         self.showMessage(
@@ -87,14 +98,14 @@ class SignInPhoneNumberViewController: UIViewController {
         }
     }
 
-    func verifyPhoneNumber(phoneNumber: String, session: MultiFactorSession?) {
+    func verifyPhoneNumber(phoneNumber: String,uid : String, session: MultiFactorSession?) {
         self.sendTwilioVerification(to: phoneNumber) { error in
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
                 if let error = error {
                     self.showError(error)
                 } else {
-                    let uid = self.generateUniqueCode(using: phoneNumber)
+                    
                     self.performSegue(
                         withIdentifier: "signInPhoneVerificationSeg",
                         sender: uid
