@@ -1,0 +1,81 @@
+name: Backup Repository to Google Drive
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
+
+    - name: Setup Google Drive API credentials
+      run: echo "${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}" > credentials.json
+
+    - name: Zip source code
+      run: zip -r source_code_backup.zip .
+
+    - name: Upload to Google Drive
+      run: |
+        python <<EOF
+        from google.oauth2 import service_account
+        from googleapiclient.discovery import build
+        from googleapiclient.http import MediaFileUpload
+        import os
+
+        SCOPES = ['https://www.googleapis.com/auth/drive.file']
+        creds = service_account.Credentials.from_service_account_file('credentials.json', scopes=SCOPES)
+        drive_service = build('drive', 'v3', credentials=creds)
+
+        folder_name = "SourceCodeBackups"
+        repo_name = "${{ github.repository }}"
+
+        # Check if the main backup folder exists, if not create it
+        results = drive_service.files().list(q=f"name='{folder_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false").execute()
+        items = results.get('files', [])
+        if not items:
+            folder_metadata = {
+                'name': folder_name,
+                'mimeType': 'application/vnd.google-apps.folder'
+            }
+            main_folder = drive_service.files().create(body=folder_metadata, fields='id').execute()
+            main_folder_id = main_folder.get('id')
+        else:
+            main_folder_id = items[0]['id']
+
+        # Check if the repo folder exists inside the main backup folder, if not create it
+        results = drive_service.files().list(q=f"'{main_folder_id}' in parents and name='{repo_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false").execute()
+        items = results.get('files', [])
+        if not items:
+            folder_metadata = {
+                'name': repo_name,
+                'parents': [main_folder_id],
+                'mimeType': 'application/vnd.google-apps.folder'
+            }
+            repo_folder = drive_service.files().create(body=folder_metadata, fields='id').execute()
+            repo_folder_id = repo_folder.get('id')
+        else:
+            repo_folder_id = items[0]['id']
+
+        # Upload the zip file to the repository folder
+        file_metadata = {
+            'name': 'source_code_backup.zip',
+            'parents': [repo_folder_id]
+        }
+        media = MediaFileUpload('source_code_backup.zip', mimetype='application/zip')
+        drive_service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+        EOF
