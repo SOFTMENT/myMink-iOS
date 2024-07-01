@@ -397,7 +397,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="kuM-Gs-mDd" secondAttribute="bottom" constant="12" id="v9W-dj-Tnk"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="iQN-bN-klF">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="iQN-bN-klF" customClass="SDAnimatedImageView">
                                                     <rect key="frame" x="0.0" y="10" width="36" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="QT8-QF-cig"/>
@@ -425,7 +425,7 @@
                                             <outlet property="maindateandtime" destination="kuM-Gs-mDd" id="jF8-Zt-6fz"/>
                                             <outlet property="myLabel" destination="uLx-8B-BjS" id="Wrc-mA-q1o"/>
                                             <outlet property="myView" destination="BSp-0i-jtF" id="rTO-xi-Lcc"/>
-                                            <outlet property="myimage" destination="iQN-bN-klF" id="ftg-BG-9OE"/>
+                                            <outlet property="myimage" destination="iQN-bN-klF" id="sqe-kh-EjY"/>
                                             <outlet property="senderLabel" destination="909-Bd-Hxl" id="rQ6-nN-z7i"/>
                                             <outlet property="senderMessage" destination="fb7-qn-OL1" id="mRs-ZL-uwi"/>
                                             <outlet property="senderView" destination="Hve-2V-cu1" id="cd1-7S-ap5"/>
@@ -436,7 +436,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gg0-KR-o4i">
                                 <rect key="frame" x="73" y="18" width="109.5" height="40"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="q2B-Cs-ht0">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="q2B-Cs-ht0" customClass="SDAnimatedImageView">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="26k-CC-2zH"/>
@@ -478,7 +478,7 @@
                         <outlet property="backView" destination="c1E-EY-9Hc" id="paI-Sg-tzk"/>
                         <outlet property="bottomConst" destination="imY-FW-BVD" id="4Yg-2i-g2e"/>
                         <outlet property="mName" destination="mAB-AL-Dw6" id="pMY-02-Lcf"/>
-                        <outlet property="mProfile" destination="q2B-Cs-ht0" id="rY6-Yp-YuE"/>
+                        <outlet property="mProfile" destination="q2B-Cs-ht0" id="vkX-SE-kUs"/>
                         <outlet property="myTextField" destination="r3m-wy-cQ1" id="G1k-4R-h06"/>
                         <outlet property="tableView" destination="UO2-lR-ebA" id="BRp-GO-6hb"/>
                         <outlet property="userImageAndName" destination="gg0-KR-o4i" id="mQG-Om-nLG"/>
@@ -4565,9 +4565,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="aFM-8B-1Nc"/>
         <segue reference="VSS-yJ-Apj"/>
-        <segue reference="3vz-dV-3yn"/>
+        <segue reference="UUy-rr-VvJ"/>
         <segue reference="vwa-uC-qPJ"/>
-        <segue reference="D5y-P5-l9D"/>
+        <segue reference="hoA-Ac-ZWU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Atmospheric Pressure" width="96" height="96"/>

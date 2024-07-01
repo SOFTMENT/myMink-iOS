@@ -22,7 +22,8 @@ class ShowProductDetailsViewController : UIViewController {
     
     @IBOutlet weak var navigationBar: UIView!
     
-    @IBOutlet weak var topProfileImage: UIImageView!
+   
+    @IBOutlet weak var topProfileImage: SDAnimatedImageView!
     
  
     @IBOutlet weak var categoryLbl: UILabel!
@@ -97,7 +98,7 @@ class ShowProductDetailsViewController : UIViewController {
                 self.userName.text = "@\(userModel.username!)"
                 
                 if let path = userModel.profilePic,!path.isEmpty {
-                    self.topProfileImage.setImage(imageKey: path, placeholder: "profile-placeholder")
+                    self.topProfileImage.setImage(imageKey: path, placeholder: "profile-placeholder", width: 100, height: 100, shouldShowAnimationPlaceholder: true)
                 }
                 
             }

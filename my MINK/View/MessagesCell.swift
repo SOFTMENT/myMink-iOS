@@ -2,6 +2,7 @@
 
 import SDWebImage
 import UIKit
+import SDWebImage
 
 class MessagesCell: UITableViewCell {
     @IBOutlet var senderView: UIView!
@@ -9,7 +10,8 @@ class MessagesCell: UITableViewCell {
     @IBOutlet var senderMessage: UITextView!
     @IBOutlet var myView: UIView!
     @IBOutlet var myLabel: UITextView!
-    @IBOutlet var myimage: UIImageView!
+    @IBOutlet weak var myimage: SDAnimatedImageView!
+    
     var message: AllMessageModel!
     @IBOutlet var maindateandtime: UILabel!
     @IBOutlet var dateandtime: UILabel!
@@ -51,7 +53,7 @@ class MessagesCell: UITableViewCell {
         } else {
             self.myimage.isHidden = false
             if !image.isEmpty {
-                self.myimage.setImage(imageKey: image, placeholder: "profile-placeholder", width: 80, height: 80)
+                self.myimage.setImage(imageKey: image, placeholder: "profile-placeholder", width: 80, height: 80, shouldShowAnimationPlaceholder: true)
             }
 
             self.dateandtime.text = (message.date ?? Date()).timeAgoSinceDate()

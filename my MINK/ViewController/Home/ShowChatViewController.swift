@@ -3,6 +3,7 @@
 import Firebase
 import IQKeyboardManagerSwift
 import UIKit
+import SDWebImage
 
 class ShowChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
@@ -10,7 +11,8 @@ class ShowChatViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet var videoCallBtn: UIView!
     @IBOutlet var bottomConst: NSLayoutConstraint!
     @IBOutlet var backView: UIView!
-    @IBOutlet var mProfile: UIImageView!
+    @IBOutlet weak var mProfile: SDAnimatedImageView!
+    
     @IBOutlet var mName: UILabel!
     @IBOutlet var myTextField: UITextView!
     @IBOutlet var tableView: UITableView!
@@ -19,6 +21,7 @@ class ShowChatViewController: UIViewController, UITableViewDelegate, UITableView
     var callUUID = ""
     var mInfo = [String : String]()
     var businessModel : BusinessModel?
+    
     
     override func viewDidLoad() {
         
@@ -44,7 +47,8 @@ class ShowChatViewController: UIViewController, UITableViewDelegate, UITableView
             imageKey: lastMessage.senderImage,
             placeholder: "profile-placeholder",
             width: 100,
-            height: 100
+            height: 100,
+            shouldShowAnimationPlaceholder: true
         )
 
         self.mName.text = lastMessage.senderName ?? "Error"

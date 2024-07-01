@@ -5,6 +5,14 @@ import Foundation
 import UIKit
 import CountryPicker
 
+// MARK: - PriceID
+
+enum PriceID: String {
+    case MONTH = "ID_MONTHLY"
+    case YEAR = "ID_YEARLY"
+    case LIFETIME = "ID_LIFETIME"
+}
+
 
 // MARK: - SocialMedia
 enum SocialMedia : String{

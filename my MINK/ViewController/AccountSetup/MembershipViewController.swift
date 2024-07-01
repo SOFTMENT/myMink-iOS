@@ -15,6 +15,12 @@ class MembershipViewController: UIViewController {
     @IBOutlet var yearView: UIView!
     @IBOutlet var lifetimeView: UIView!
 
+    @IBOutlet weak var monthPrice: UILabel!
+    @IBOutlet weak var yearlyPrice: UILabel!
+    @IBOutlet weak var lifetimePrice: UILabel!
+    
+    
+    
     @IBOutlet var monthCheck: UIButton!
     @IBOutlet var yearCheck: UIButton!
     @IBOutlet var lifetimeCheck: UIButton!
@@ -25,6 +31,9 @@ class MembershipViewController: UIViewController {
     @IBOutlet var startFreeBtn: UIButton!
     var membershipType: PriceID?
 
+    
+    
+    
     override var prefersStatusBarHidden: Bool {
         true
     }
@@ -76,7 +85,35 @@ class MembershipViewController: UIViewController {
 
         self.crown.isUserInteractionEnabled = true
         self.crown.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.crownClicked)))
+        
+        self.ProgressHUDShow(text: "")
+        getSubscriptionInfo(planID: PriceID.MONTH.rawValue) { price, isActive in
+            self.ProgressHUDHide()
+            self.montView.isHidden = !isActive
+            self.monthPrice.text = "$\(price) per month"
+            
+        }
+        
+        getSubscriptionInfo(planID: PriceID.YEAR.rawValue) { price, isActive in
+           
+            self.yearView.isHidden = !isActive
+            self.yearlyPrice.text = "$\(price) per year"
+            
+        }
+        
+        getSubscriptionInfo(planID: PriceID.LIFETIME.rawValue) { price, isActive in
+          
+            self.lifetimeView.isHidden = !isActive
+            self.lifetimePrice.text = "$\(price)"
+            
+        }
+        
+        
+        
     }
+    
+   
+    
 
     func showDropIn(clientTokenOrTokenizationKey: String, planID: PriceID) {
         let request = BTDropInRequest()
@@ -200,10 +237,3 @@ class MembershipViewController: UIViewController {
     }
 }
 
-// MARK: - PriceID
-
-enum PriceID: String {
-    case MONTH = "ID_MONTHLY"
-    case YEAR = "ID_YEARLY"
-    case LIFETIME = "ID_LIFETIME"
-}

@@ -71,6 +71,27 @@ class MarketplaceHomeViewController : UIViewController {
         }
         
     }
+    @objc func searchBtnClicked(){
+        if let searchText = searchTF.text, !searchText.isEmpty {
+            self.searchProducts(searchText: searchText)
+        }
+    }
+    
+    func searchProducts(searchText : String){
+        ProgressHUDShow(text: "Searching...")
+        algoliaSearch(searchText: searchText, indexName: .POSTS, filters: "isActive:true OR countryCode:\(getCountryCode())") { models in
+            
+            DispatchQueue.main.async {
+                self.ProgressHUDHide()
+                self.useProducts.removeAll()
+                self.useProducts.append(contentsOf: models as? [MarketplaceModel] ?? [])
+                self.collectionView.reloadData()
+                
+            }
+            
+            
+        }
+    }
     
     @IBAction func myStoreClicked(_ sender: Any) {
             performSegue(withIdentifier: "myStoreSeg", sender: nil)
@@ -112,7 +133,7 @@ class MarketplaceHomeViewController : UIViewController {
     @objc func backViewClicked(){
         self.dismiss(animated: true)
     }
-    @IBOutlet weak var searchBtnClicked: UIView!
+ 
     
 }
 extension MarketplaceHomeViewController : UICollectionViewDelegateFlowLayout {
@@ -216,4 +237,41 @@ extension MarketplaceHomeViewController : UICollectionViewDelegate, UICollection
     
     }
     
+}
+extension MarketplaceHomeViewController : UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // Get the current text, assuming it is a Swift string
+        let currentText = textField.text ?? ""
+        
+        // Calculate the new text string after the change
+        guard let stringRange = Range(range, in: currentText) else {
+            return false
+        }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        
+        // Check if the updated text is empty
+        if updatedText.isEmpty {
+            self.useProducts.removeAll()
+            self.useProducts.append(contentsOf: self.products)
+            self.collectionView.reloadData()
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            if textField == searchTF {
+                if let searchText = textField.text, !searchText.isEmpty {
+                    self.searchProducts(searchText: searchText)
+                }
+                else {
+                    self.useProducts.removeAll()
+                    self.useProducts.append(contentsOf: self.products)
+                    self.collectionView.reloadData()
+                }
+               
+            }
+            return true
+        }
 }

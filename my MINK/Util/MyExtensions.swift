@@ -1843,6 +1843,24 @@ extension UIViewController {
             completion(self.hasError(result: result, error: error))
         }
     }
+    
+    func getSubscriptionInfo(planID : String, completion : @escaping (_ price : String, _ isActive : Bool)-> Void){
+        
+        FirebaseStoreManager.db.collection("SubscriptionPlans").document(planID).getDocument { snapshot, error in
+            if let snapshot = snapshot, snapshot.exists {
+                if let data = snapshot.data() {
+                    if let isActive = data["isActive"] as? Bool, let price = data["price"] as? String {
+                        completion(price, isActive)
+                        return
+                    }
+                }
+               
+            }
+           
+            completion("", false)
+            
+        }
+    }
 
     func encryptMessage(message: String, encryptionKey: String) throws -> String {
         let messageData = message.data(using: .utf8)!

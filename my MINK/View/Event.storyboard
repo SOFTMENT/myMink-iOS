@@ -66,12 +66,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z03-Z3-NET">
-                                        <rect key="frame" x="271" y="12.666666666666671" width="97" height="29"/>
+                                        <rect key="frame" x="261" y="12.666666666666671" width="107" height="29"/>
                                         <color key="backgroundColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="11"/>
                                         <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Switch Organiser">
+                                        <state key="normal" title="Switch to organiser">
                                             <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -411,7 +411,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srk-1I-ADu">
-                                                        <rect key="frame" x="20.000000000000004" y="507.66666666666674" width="59.333333333333343" height="18"/>
+                                                        <rect key="frame" x="20.000000000000004" y="507.6666666666668" width="59.333333333333343" height="17.999999999999943"/>
                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="16"/>
                                                         <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
@@ -899,12 +899,12 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVn-p1-FZk">
-                                <rect key="frame" x="25" y="20" width="73" height="29"/>
+                                <rect key="frame" x="25" y="20" width="83" height="29"/>
                                 <color key="backgroundColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="11"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Switch User">
+                                <state key="normal" title="Switch to user">
                                     <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -1021,7 +1021,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="78$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i37-xm-7GK">
-                                                                            <rect key="frame" x="20.333333333333336" y="7.9999999999999991" width="19.666666666666664" height="14.666666666666661"/>
+                                                                            <rect key="frame" x="20.333333333333336" y="7.9999999999999991" width="19.666666666666664" height="14.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                             <color key="textColor" red="0.16078431372549018" green="0.56470588235294117" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -1046,7 +1046,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="78" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6W-oE-Uc8">
-                                                                            <rect key="frame" x="23.666666666666671" y="7.9999999999999991" width="13" height="14.666666666666661"/>
+                                                                            <rect key="frame" x="23.666666666666671" y="7.9999999999999991" width="13" height="14.666666666666664"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                             <color key="textColor" red="0.16078431369999999" green="0.56470588239999997" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -3214,7 +3214,7 @@ Example - fun, holiday, party</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvw-ZP-XqA">
-                                                            <rect key="frame" x="304.66666666666669" y="31.333333333333332" width="21.333333333333314" height="12.333333333333332"/>
+                                                            <rect key="frame" x="304.66666666666669" y="31.333333333333336" width="21.333333333333314" height="12.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="11"/>
                                                             <color key="textColor" systemColor="underPageBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
@@ -3310,7 +3310,7 @@ Example - fun, holiday, party</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please align the QR Code within the scanner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGK-cY-zHx">
-                                <rect key="frame" x="55" y="594.33333333333337" width="264.33333333333331" height="16.333333333333371"/>
+                                <rect key="frame" x="55" y="594.33333333333337" width="264.33333333333326" height="16.333333333333371"/>
                                 <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="14"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -4120,7 +4120,7 @@ Example - fun, holiday, party</string>
                                                                     <rect key="frame" x="117.66666666666667" y="-7.3333333333333428" width="63.666666666666671" height="18"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket 1 of 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j0-vh-EA5">
-                                                                            <rect key="frame" x="5" y="3.3333333333333437" width="53.666666666666664" height="11.333333333333336"/>
+                                                                            <rect key="frame" x="5" y="3.3333333333333437" width="53.666666666666657" height="11.333333333333336"/>
                                                                             <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="10"/>
                                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -4394,10 +4394,6 @@ Example - fun, holiday, party</string>
             <point key="canvasLocation" x="-407" y="560"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="azN-5H-CH5"/>
-        <designable name="nb6-Nj-spE"/>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="0X4-dq-Zuf"/>
     </inferredMetricsTieBreakers>
@@ -4430,19 +4426,19 @@ Example - fun, holiday, party</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="underPageBackgroundColor">
             <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

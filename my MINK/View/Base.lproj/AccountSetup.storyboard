@@ -1109,133 +1109,138 @@
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEv-NY-Oag">
-                                                <rect key="frame" x="35" y="415" width="320" height="56.333333333333314"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JMB-Zy-zmt">
+                                                <rect key="frame" x="35" y="415" width="330" height="209"/>
                                                 <subviews>
-                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPk-uV-dy5">
-                                                        <rect key="frame" x="16" y="12" width="19.666666666666671" height="22"/>
-                                                        <color key="tintColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" image="circle" catalog="system"/>
-                                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Monthly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcj-1L-UQ9">
-                                                        <rect key="frame" x="45.666666666666671" y="12" width="50.333333333333329" height="15.666666666666664"/>
-                                                        <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$14.99 per month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRU-Kw-kCU">
-                                                        <rect key="frame" x="45.666666666666664" y="30.666666666666689" width="89.666666666666686" height="13.666666666666668"/>
-                                                        <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
-                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstItem="nRU-Kw-kCU" firstAttribute="top" secondItem="bcj-1L-UQ9" secondAttribute="bottom" constant="3" id="5kH-qK-n4m"/>
-                                                    <constraint firstItem="nRU-Kw-kCU" firstAttribute="leading" secondItem="bcj-1L-UQ9" secondAttribute="leading" id="6e5-LZ-jGm"/>
-                                                    <constraint firstAttribute="bottom" secondItem="nRU-Kw-kCU" secondAttribute="bottom" constant="12" id="Tom-5z-Q6Y"/>
-                                                    <constraint firstItem="bcj-1L-UQ9" firstAttribute="leading" secondItem="cPk-uV-dy5" secondAttribute="trailing" constant="10" id="Uun-cK-zEB"/>
-                                                    <constraint firstAttribute="height" constant="56.329999999999998" id="VC1-oh-KIH"/>
-                                                    <constraint firstItem="cPk-uV-dy5" firstAttribute="top" secondItem="XEv-NY-Oag" secondAttribute="top" constant="12" id="oVy-a8-jp5"/>
-                                                    <constraint firstItem="bcj-1L-UQ9" firstAttribute="top" secondItem="cPk-uV-dy5" secondAttribute="top" id="tXx-vm-Pez"/>
-                                                    <constraint firstItem="cPk-uV-dy5" firstAttribute="leading" secondItem="XEv-NY-Oag" secondAttribute="leading" constant="16" id="xbF-Xo-Bc6"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVM-ZN-bkk">
-                                                <rect key="frame" x="35" y="491.33333333333331" width="320" height="56.333333333333314"/>
-                                                <subviews>
-                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnO-vC-FXt">
-                                                        <rect key="frame" x="16" y="12" width="19.666666666666671" height="22"/>
-                                                        <color key="tintColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" image="circle" catalog="system"/>
-                                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Yearly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QT-Sp-Vvh">
-                                                        <rect key="frame" x="45.666666666666671" y="12" width="39.666666666666671" height="15.666666666666664"/>
-                                                        <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$26.99 per year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c36-g6-zcS">
-                                                        <rect key="frame" x="45.666666666666664" y="30.666666666666689" width="77.666666666666686" height="13.666666666666668"/>
-                                                        <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
-                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="85% OFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fxr-l0-tRg">
-                                                        <rect key="frame" x="258" y="11.666666666666686" width="46" height="12.333333333333336"/>
-                                                        <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="11"/>
-                                                        <color key="textColor" systemColor="systemGreenColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstItem="DnO-vC-FXt" firstAttribute="top" secondItem="xVM-ZN-bkk" secondAttribute="top" constant="12" id="0Py-wa-coK"/>
-                                                    <constraint firstItem="9QT-Sp-Vvh" firstAttribute="top" secondItem="DnO-vC-FXt" secondAttribute="top" id="9QD-PW-HcX"/>
-                                                    <constraint firstItem="c36-g6-zcS" firstAttribute="leading" secondItem="9QT-Sp-Vvh" secondAttribute="leading" id="AAk-MR-gAB"/>
-                                                    <constraint firstItem="DnO-vC-FXt" firstAttribute="leading" secondItem="xVM-ZN-bkk" secondAttribute="leading" constant="16" id="DfQ-8z-ej0"/>
-                                                    <constraint firstItem="c36-g6-zcS" firstAttribute="top" secondItem="9QT-Sp-Vvh" secondAttribute="bottom" constant="3" id="OFV-6d-kpl"/>
-                                                    <constraint firstAttribute="height" constant="56.329999999999998" id="Zl7-qO-hoj"/>
-                                                    <constraint firstItem="Fxr-l0-tRg" firstAttribute="centerY" secondItem="9QT-Sp-Vvh" secondAttribute="centerY" constant="-2" id="nVp-Zd-Nn3"/>
-                                                    <constraint firstAttribute="bottom" secondItem="c36-g6-zcS" secondAttribute="bottom" constant="12" id="oip-in-435"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Fxr-l0-tRg" secondAttribute="trailing" constant="16" id="rVP-53-FiT"/>
-                                                    <constraint firstItem="9QT-Sp-Vvh" firstAttribute="leading" secondItem="DnO-vC-FXt" secondAttribute="trailing" constant="10" id="rrd-dc-COH"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7U-Kr-f0j">
-                                                <rect key="frame" x="35" y="567.66666666666663" width="320" height="56.333333333333371"/>
-                                                <subviews>
-                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VQ-mY-2pE">
-                                                        <rect key="frame" x="16" y="12" width="19.666666666666671" height="22"/>
-                                                        <color key="tintColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" image="circle" catalog="system"/>
-                                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lifetime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CaC-nj-0OM">
-                                                        <rect key="frame" x="45.666666666666671" y="12" width="49.333333333333329" height="15.666666666666664"/>
-                                                        <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osH-Hn-waO">
-                                                        <rect key="frame" x="45.666666666666671" y="30.666666666666746" width="33.333333333333329" height="13.666666666666668"/>
-                                                        <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
-                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ctt-R4-Y7D">
-                                                        <rect key="frame" x="227" y="18" width="77" height="20"/>
-                                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEv-NY-Oag">
+                                                        <rect key="frame" x="0.0" y="0.0" width="330" height="56.333333333333336"/>
+                                                        <subviews>
+                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPk-uV-dy5">
+                                                                <rect key="frame" x="16" y="12" width="19.666666666666671" height="22"/>
+                                                                <color key="tintColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" image="circle" catalog="system"/>
+                                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Monthly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcj-1L-UQ9">
+                                                                <rect key="frame" x="45.666666666666671" y="12" width="50.333333333333329" height="15.666666666666664"/>
+                                                                <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="14"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$14.99 per month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRU-Kw-kCU">
+                                                                <rect key="frame" x="45.666666666666664" y="30.666666666666689" width="89.666666666666686" height="13.666666666666668"/>
+                                                                <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
+                                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="UQN-uY-OpF"/>
+                                                            <constraint firstItem="nRU-Kw-kCU" firstAttribute="top" secondItem="bcj-1L-UQ9" secondAttribute="bottom" constant="3" id="5kH-qK-n4m"/>
+                                                            <constraint firstItem="nRU-Kw-kCU" firstAttribute="leading" secondItem="bcj-1L-UQ9" secondAttribute="leading" id="6e5-LZ-jGm"/>
+                                                            <constraint firstAttribute="bottom" secondItem="nRU-Kw-kCU" secondAttribute="bottom" constant="12" id="Tom-5z-Q6Y"/>
+                                                            <constraint firstItem="bcj-1L-UQ9" firstAttribute="leading" secondItem="cPk-uV-dy5" secondAttribute="trailing" constant="10" id="Uun-cK-zEB"/>
+                                                            <constraint firstAttribute="height" constant="56.329999999999998" id="VC1-oh-KIH"/>
+                                                            <constraint firstItem="cPk-uV-dy5" firstAttribute="top" secondItem="XEv-NY-Oag" secondAttribute="top" constant="12" id="oVy-a8-jp5"/>
+                                                            <constraint firstItem="bcj-1L-UQ9" firstAttribute="top" secondItem="cPk-uV-dy5" secondAttribute="top" id="tXx-vm-Pez"/>
+                                                            <constraint firstItem="cPk-uV-dy5" firstAttribute="leading" secondItem="XEv-NY-Oag" secondAttribute="leading" constant="16" id="xbF-Xo-Bc6"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="9"/>
-                                                        <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="RECOMMEND">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVM-ZN-bkk">
+                                                        <rect key="frame" x="0.0" y="76.333333333333314" width="330" height="56.333333333333343"/>
+                                                        <subviews>
+                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnO-vC-FXt">
+                                                                <rect key="frame" x="16" y="12" width="19.666666666666671" height="22"/>
+                                                                <color key="tintColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" image="circle" catalog="system"/>
+                                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Yearly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QT-Sp-Vvh">
+                                                                <rect key="frame" x="45.666666666666671" y="12" width="39.666666666666671" height="15.666666666666664"/>
+                                                                <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="14"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$26.99 per year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c36-g6-zcS">
+                                                                <rect key="frame" x="45.666666666666664" y="30.666666666666689" width="77.666666666666686" height="13.666666666666668"/>
+                                                                <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
+                                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="85% OFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fxr-l0-tRg">
+                                                                <rect key="frame" x="268" y="11.666666666666686" width="46" height="12.333333333333336"/>
+                                                                <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="11"/>
+                                                                <color key="textColor" systemColor="systemGreenColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="DnO-vC-FXt" firstAttribute="top" secondItem="xVM-ZN-bkk" secondAttribute="top" constant="12" id="0Py-wa-coK"/>
+                                                            <constraint firstItem="9QT-Sp-Vvh" firstAttribute="top" secondItem="DnO-vC-FXt" secondAttribute="top" id="9QD-PW-HcX"/>
+                                                            <constraint firstItem="c36-g6-zcS" firstAttribute="leading" secondItem="9QT-Sp-Vvh" secondAttribute="leading" id="AAk-MR-gAB"/>
+                                                            <constraint firstItem="DnO-vC-FXt" firstAttribute="leading" secondItem="xVM-ZN-bkk" secondAttribute="leading" constant="16" id="DfQ-8z-ej0"/>
+                                                            <constraint firstItem="c36-g6-zcS" firstAttribute="top" secondItem="9QT-Sp-Vvh" secondAttribute="bottom" constant="3" id="OFV-6d-kpl"/>
+                                                            <constraint firstAttribute="height" constant="56.329999999999998" id="Zl7-qO-hoj"/>
+                                                            <constraint firstItem="Fxr-l0-tRg" firstAttribute="centerY" secondItem="9QT-Sp-Vvh" secondAttribute="centerY" constant="-2" id="nVp-Zd-Nn3"/>
+                                                            <constraint firstAttribute="bottom" secondItem="c36-g6-zcS" secondAttribute="bottom" constant="12" id="oip-in-435"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Fxr-l0-tRg" secondAttribute="trailing" constant="16" id="rVP-53-FiT"/>
+                                                            <constraint firstItem="9QT-Sp-Vvh" firstAttribute="leading" secondItem="DnO-vC-FXt" secondAttribute="trailing" constant="10" id="rrd-dc-COH"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7U-Kr-f0j">
+                                                        <rect key="frame" x="0.0" y="152.66666666666663" width="330" height="56.333333333333343"/>
+                                                        <subviews>
+                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VQ-mY-2pE">
+                                                                <rect key="frame" x="16" y="12" width="19.666666666666671" height="22"/>
+                                                                <color key="tintColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" image="circle" catalog="system"/>
+                                                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lifetime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CaC-nj-0OM">
+                                                                <rect key="frame" x="45.666666666666671" y="12" width="49.333333333333329" height="15.666666666666664"/>
+                                                                <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="14"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osH-Hn-waO">
+                                                                <rect key="frame" x="45.666666666666671" y="30.666666666666746" width="33.333333333333329" height="13.666666666666668"/>
+                                                                <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="12"/>
+                                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ctt-R4-Y7D">
+                                                                <rect key="frame" x="237" y="18" width="77" height="20"/>
+                                                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="20" id="UQN-uY-OpF"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="9"/>
+                                                                <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="RECOMMEND">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="CaC-nj-0OM" firstAttribute="leading" secondItem="4VQ-mY-2pE" secondAttribute="trailing" constant="10" id="6Hd-J8-IXH"/>
+                                                            <constraint firstItem="osH-Hn-waO" firstAttribute="top" secondItem="CaC-nj-0OM" secondAttribute="bottom" constant="3" id="BMs-jw-RHV"/>
+                                                            <constraint firstItem="osH-Hn-waO" firstAttribute="leading" secondItem="CaC-nj-0OM" secondAttribute="leading" id="CYa-at-zWK"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Ctt-R4-Y7D" secondAttribute="trailing" constant="16" id="FBr-Is-UQ5"/>
+                                                            <constraint firstItem="4VQ-mY-2pE" firstAttribute="top" secondItem="D7U-Kr-f0j" secondAttribute="top" constant="12" id="Lcq-X0-pDP"/>
+                                                            <constraint firstItem="Ctt-R4-Y7D" firstAttribute="centerY" secondItem="D7U-Kr-f0j" secondAttribute="centerY" id="Qqf-lt-9tU"/>
+                                                            <constraint firstItem="4VQ-mY-2pE" firstAttribute="leading" secondItem="D7U-Kr-f0j" secondAttribute="leading" constant="16" id="RzH-N3-pQ8"/>
+                                                            <constraint firstAttribute="height" constant="56.329999999999998" id="pZn-Ea-cH8"/>
+                                                            <constraint firstItem="CaC-nj-0OM" firstAttribute="top" secondItem="4VQ-mY-2pE" secondAttribute="top" id="w7e-TG-MuW"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstItem="CaC-nj-0OM" firstAttribute="leading" secondItem="4VQ-mY-2pE" secondAttribute="trailing" constant="10" id="6Hd-J8-IXH"/>
-                                                    <constraint firstItem="osH-Hn-waO" firstAttribute="top" secondItem="CaC-nj-0OM" secondAttribute="bottom" constant="3" id="BMs-jw-RHV"/>
-                                                    <constraint firstItem="osH-Hn-waO" firstAttribute="leading" secondItem="CaC-nj-0OM" secondAttribute="leading" id="CYa-at-zWK"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Ctt-R4-Y7D" secondAttribute="trailing" constant="16" id="FBr-Is-UQ5"/>
-                                                    <constraint firstItem="4VQ-mY-2pE" firstAttribute="top" secondItem="D7U-Kr-f0j" secondAttribute="top" constant="12" id="Lcq-X0-pDP"/>
-                                                    <constraint firstItem="Ctt-R4-Y7D" firstAttribute="centerY" secondItem="D7U-Kr-f0j" secondAttribute="centerY" id="Qqf-lt-9tU"/>
-                                                    <constraint firstItem="4VQ-mY-2pE" firstAttribute="leading" secondItem="D7U-Kr-f0j" secondAttribute="leading" constant="16" id="RzH-N3-pQ8"/>
-                                                    <constraint firstAttribute="height" constant="56.329999999999998" id="pZn-Ea-cH8"/>
-                                                    <constraint firstItem="CaC-nj-0OM" firstAttribute="top" secondItem="4VQ-mY-2pE" secondAttribute="top" id="w7e-TG-MuW"/>
-                                                </constraints>
-                                            </view>
+                                            </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8j3-JS-g2E">
                                                 <rect key="frame" x="35" y="656" width="320" height="46"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1285,33 +1290,27 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="XEv-NY-Oag" secondAttribute="trailing" constant="35" id="4v5-Cz-pNa"/>
+                                            <constraint firstItem="JMB-Zy-zmt" firstAttribute="leading" secondItem="0Eg-5f-1S5" secondAttribute="leading" constant="35" id="4rN-H3-NQO"/>
+                                            <constraint firstAttribute="trailing" secondItem="JMB-Zy-zmt" secondAttribute="trailing" constant="25" id="5Il-eW-mm8"/>
                                             <constraint firstItem="ucg-1W-gFk" firstAttribute="leading" secondItem="0Eg-5f-1S5" secondAttribute="leading" id="8Gq-F0-M3K"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="w6t-4O-fpA" secondAttribute="bottom" constant="20" id="AQc-qv-cji"/>
+                                            <constraint firstItem="8j3-JS-g2E" firstAttribute="leading" secondItem="0Eg-5f-1S5" secondAttribute="leading" constant="35" id="Bnv-A2-bTi"/>
+                                            <constraint firstItem="JMB-Zy-zmt" firstAttribute="top" secondItem="Wbw-Eg-uT7" secondAttribute="bottom" constant="20" id="CcW-lL-VG7"/>
                                             <constraint firstItem="MRJ-3A-x4S" firstAttribute="centerX" secondItem="0Eg-5f-1S5" secondAttribute="centerX" id="ET9-si-80V"/>
                                             <constraint firstItem="aeG-wq-DEd" firstAttribute="top" secondItem="0Eg-5f-1S5" secondAttribute="top" constant="22" id="L3P-3e-2hg"/>
-                                            <constraint firstItem="xVM-ZN-bkk" firstAttribute="leading" secondItem="XEv-NY-Oag" secondAttribute="leading" id="MlU-Vl-jHm"/>
-                                            <constraint firstItem="8j3-JS-g2E" firstAttribute="top" secondItem="D7U-Kr-f0j" secondAttribute="bottom" constant="32" id="SFa-uP-a9W"/>
-                                            <constraint firstItem="xVM-ZN-bkk" firstAttribute="trailing" secondItem="XEv-NY-Oag" secondAttribute="trailing" id="U0d-Bn-Ddo"/>
                                             <constraint firstItem="MRJ-3A-x4S" firstAttribute="top" secondItem="0Eg-5f-1S5" secondAttribute="top" constant="110" id="UTO-XI-Pr0"/>
                                             <constraint firstAttribute="trailing" secondItem="ucg-1W-gFk" secondAttribute="trailing" id="V2w-3I-8or"/>
+                                            <constraint firstItem="8j3-JS-g2E" firstAttribute="top" secondItem="JMB-Zy-zmt" secondAttribute="bottom" constant="32" id="Wjl-Dg-RHy"/>
                                             <constraint firstItem="w6t-4O-fpA" firstAttribute="top" secondItem="8j3-JS-g2E" secondAttribute="bottom" constant="15" id="Xst-VY-N4M"/>
                                             <constraint firstItem="ZPO-wB-Qgk" firstAttribute="leading" secondItem="0Eg-5f-1S5" secondAttribute="leading" constant="35" id="aOl-JZ-Aor"/>
                                             <constraint firstAttribute="trailing" secondItem="aeG-wq-DEd" secondAttribute="trailing" constant="25" id="dj2-kC-F0K"/>
                                             <constraint firstItem="Wbw-Eg-uT7" firstAttribute="top" secondItem="ZPO-wB-Qgk" secondAttribute="bottom" constant="20" id="eKD-dK-BFG"/>
-                                            <constraint firstItem="D7U-Kr-f0j" firstAttribute="trailing" secondItem="xVM-ZN-bkk" secondAttribute="trailing" id="eel-iR-NMR"/>
-                                            <constraint firstItem="XEv-NY-Oag" firstAttribute="top" secondItem="Wbw-Eg-uT7" secondAttribute="bottom" constant="20" id="gFL-U5-45a"/>
                                             <constraint firstAttribute="trailing" secondItem="ZPO-wB-Qgk" secondAttribute="trailing" constant="35" id="gGh-aA-VOx"/>
                                             <constraint firstItem="w6t-4O-fpA" firstAttribute="centerX" secondItem="0Eg-5f-1S5" secondAttribute="centerX" id="kmn-KU-Xia"/>
-                                            <constraint firstItem="XEv-NY-Oag" firstAttribute="leading" secondItem="0Eg-5f-1S5" secondAttribute="leading" constant="35" id="lV8-s3-4kS"/>
-                                            <constraint firstItem="D7U-Kr-f0j" firstAttribute="leading" secondItem="xVM-ZN-bkk" secondAttribute="leading" id="n4C-hl-6H3"/>
                                             <constraint firstItem="ucg-1W-gFk" firstAttribute="top" secondItem="0Eg-5f-1S5" secondAttribute="top" id="nEY-Vz-p3f"/>
                                             <constraint firstItem="Wbw-Eg-uT7" firstAttribute="centerX" secondItem="0Eg-5f-1S5" secondAttribute="centerX" id="oMb-vh-8FQ"/>
                                             <constraint firstItem="ZPO-wB-Qgk" firstAttribute="top" secondItem="ucg-1W-gFk" secondAttribute="bottom" id="s9y-ge-ERq"/>
-                                            <constraint firstItem="8j3-JS-g2E" firstAttribute="trailing" secondItem="D7U-Kr-f0j" secondAttribute="trailing" id="sUE-MF-OmE"/>
-                                            <constraint firstItem="xVM-ZN-bkk" firstAttribute="top" secondItem="XEv-NY-Oag" secondAttribute="bottom" constant="20" id="wHD-Wk-H5d"/>
-                                            <constraint firstItem="8j3-JS-g2E" firstAttribute="leading" secondItem="D7U-Kr-f0j" secondAttribute="leading" id="xaU-bZ-rtN"/>
-                                            <constraint firstItem="D7U-Kr-f0j" firstAttribute="top" secondItem="xVM-ZN-bkk" secondAttribute="bottom" constant="20" id="zUr-oO-0vn"/>
+                                            <constraint firstAttribute="trailing" secondItem="8j3-JS-g2E" secondAttribute="trailing" constant="35" id="zIv-dJ-IaT"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1360,15 +1359,18 @@
                         <outlet property="backView" destination="15z-KY-2I9" id="nVn-VI-f2f"/>
                         <outlet property="crown" destination="aeG-wq-DEd" id="nYs-HY-FfB"/>
                         <outlet property="lifetimeCheck" destination="4VQ-mY-2pE" id="zBJ-7z-aQn"/>
+                        <outlet property="lifetimePrice" destination="osH-Hn-waO" id="pDS-5z-OCc"/>
                         <outlet property="lifetimeView" destination="D7U-Kr-f0j" id="Ay3-vf-ZSs"/>
                         <outlet property="montView" destination="XEv-NY-Oag" id="Gie-EB-weT"/>
                         <outlet property="monthCheck" destination="cPk-uV-dy5" id="XDG-uS-lQr"/>
+                        <outlet property="monthPrice" destination="nRU-Kw-kCU" id="u4v-3g-p3P"/>
                         <outlet property="mostPopularView" destination="Ctt-R4-Y7D" id="dN8-d0-S2T"/>
                         <outlet property="privacyPolicy" destination="ylU-5L-ddS" id="pkK-Ag-xBe"/>
                         <outlet property="startFreeBtn" destination="8j3-JS-g2E" id="5f4-Vw-T0e"/>
                         <outlet property="termsOfUse" destination="CEF-Tf-gu3" id="mmm-ga-Lp0"/>
                         <outlet property="yearCheck" destination="DnO-vC-FXt" id="ucR-TF-Xwm"/>
                         <outlet property="yearView" destination="xVM-ZN-bkk" id="39g-b5-gWo"/>
+                        <outlet property="yearlyPrice" destination="c36-g6-zcS" id="cp5-GX-bZZ"/>
                         <segue destination="v5r-wd-VPF" kind="presentation" identifier="vipCodeSeg" modalPresentationStyle="fullScreen" id="M62-sB-drO"/>
                         <segue destination="Yk3-6s-s4g" kind="presentation" identifier="successSeg" modalPresentationStyle="fullScreen" id="huc-a1-spI"/>
                     </connections>
@@ -1933,7 +1935,7 @@
                                         <rect key="frame" x="0.0" y="45" width="320" height="135.33333333333334"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="support@softment.in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGH-Jd-xls">
-                                                <rect key="frame" x="92.000000000000014" y="15.999999999999998" width="136.33333333333337" height="18.333333333333321"/>
+                                                <rect key="frame" x="92.000000000000014" y="15.999999999999998" width="136.33333333333337" height="18.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="15"/>
                                                 <color key="textColor" red="0.86686116459999996" green="0.1220662966" blue="0.00049702438989999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -2291,9 +2293,6 @@
             <point key="canvasLocation" x="2075" y="1612"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="4Af-fT-ZTn"/>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="Zf7-al-EMY"/>
         <segue reference="huc-a1-spI"/>
