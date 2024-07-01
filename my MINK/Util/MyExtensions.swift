@@ -1833,6 +1833,16 @@ extension UIViewController {
             completion(self.hasError(result: result, error: error))
         }
     }
+    
+    func deleteBusiness(bId: String, completion : @escaping (_ error : String?)->Void) {
+        let functions = Functions.functions()
+        functions.httpsCallable("deleteBusiness").call([
+            "bid": bId,
+            
+        ]) { result, error in
+            completion(self.hasError(result: result, error: error))
+        }
+    }
 
     func encryptMessage(message: String, encryptionKey: String) throws -> String {
         let messageData = message.data(using: .utf8)!

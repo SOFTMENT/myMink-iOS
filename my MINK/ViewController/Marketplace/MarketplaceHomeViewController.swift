@@ -168,7 +168,7 @@ extension MarketplaceHomeViewController : UICollectionViewDelegate, UICollection
         
                 cell.storeName.text = product.title ?? ""
                 cell.storeCategory.text = product.categoryName ?? ""
-                cell.cost.text = "\(product.currency ?? "AUD") \(product.cost ?? "")"
+                cell.cost.text = "\(product.currency ?? "INR") \(product.cost ?? "")"
                 if let sStoreImage = product.productImages!.first, !sStoreImage.isEmpty {
                     cell.storeImage.setImage(imageKey: sStoreImage, placeholder: "placeholder",width: 400, height: 400,shouldShowAnimationPlaceholder: true)
                 }

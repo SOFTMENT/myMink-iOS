@@ -243,6 +243,7 @@ class ShowBusinessProfileViewController : UIViewController {
                 if let businessModel = sender as? BusinessModel {
                   
                     VC.businessModel = businessModel
+                    VC.delegate = self
                 }
               
             }
@@ -361,4 +362,12 @@ extension ShowBusinessProfileViewController : UICollectionViewDelegate, UICollec
 
         return ProfilePosCollectionViewCell()
     }
+}
+
+extension ShowBusinessProfileViewController : ReloadTableViewDelegate {
+    func reloadTableView() {
+        self.businessModel = nil
+    }
+    
+    
 }

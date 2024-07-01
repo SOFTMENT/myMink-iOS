@@ -22,7 +22,8 @@ class EditBusinessProfileViewController : UIViewController {
     @IBOutlet weak var businessType: UITextField!
     @IBOutlet weak var addBtn: UIButton!
   
-   
+    @IBOutlet weak var deleteBtn: UIView!
+    
   
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var businessNameTF: UITextField!
@@ -83,6 +84,11 @@ class EditBusinessProfileViewController : UIViewController {
         coverPhoto.isUserInteractionEnabled = true
         coverPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(coverPhotoUpload)))
         
+        deleteBtn.layer.cornerRadius = 8
+        deleteBtn.dropShadow()
+        deleteBtn.isUserInteractionEnabled = true
+        deleteBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deleteBtnClicked)))
+        
         // ToolBar
         let selectCategoryBar = UIToolbar()
         selectCategoryBar.barStyle = .default
@@ -101,6 +107,23 @@ class EditBusinessProfileViewController : UIViewController {
         
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewClicked)))
+    }
+    
+    @objc func deleteBtnClicked() {
+        let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this business?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
+            self.ProgressHUDShow(text: "Deleting...")
+            self.deleteBusiness(bId: self.businessModel!.businessId ?? "123") { error in
+                self.ProgressHUDHide()
+                self.showSnack(messages: "Business Deleted")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                    self.delegate?.reloadTableView()
+                    self.dismiss(animated: true)
+                }
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(alert, animated: true)
     }
     
     @objc func businessTypePickerDoneClicked(){

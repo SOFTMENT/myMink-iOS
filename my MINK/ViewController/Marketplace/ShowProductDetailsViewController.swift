@@ -122,7 +122,7 @@ class ShowProductDetailsViewController : UIViewController {
         myPageView.numberOfPages = imgArr.count
         
        
-            ticketPrice.text = "\(product.currency ?? "AUD") \(product.cost!)"
+            ticketPrice.text = "\(product.currency ?? "INR") \(product.cost!)"
             ticketBtn.setTitle("Contact", for: .normal)
        
         

@@ -839,7 +839,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IyD-9A-Te9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1338" y="578"/>
+            <point key="canvasLocation" x="-1352" y="578"/>
         </scene>
         <!--postPopup-->
         <scene sceneID="zqg-h5-z6r">
@@ -1014,6 +1014,26 @@
                                     <constraint firstAttribute="height" constant="32" id="JcY-SD-xoU"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1X3-tH-ZGt">
+                                <rect key="frame" x="369" y="240" width="36" height="36"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Kyb-dI-i0H">
+                                        <rect key="frame" x="8" y="7.3333333333333321" width="20" height="20.33333333333335"/>
+                                        <color key="tintColor" systemColor="systemRedColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="LsY-9H-V6S"/>
+                                            <constraint firstAttribute="width" constant="20" id="zWJ-Yu-fSm"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Kyb-dI-i0H" firstAttribute="centerY" secondItem="1X3-tH-ZGt" secondAttribute="centerY" id="ESV-9f-iHf"/>
+                                    <constraint firstAttribute="width" constant="36" id="Iuu-lo-7Y1"/>
+                                    <constraint firstAttribute="height" constant="36" id="WGF-2Z-cSM"/>
+                                    <constraint firstItem="Kyb-dI-i0H" firstAttribute="centerX" secondItem="1X3-tH-ZGt" secondAttribute="centerX" id="qZ9-m3-DuL"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8ax-Gz-KiR"/>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1027,10 +1047,12 @@
                             <constraint firstItem="8ax-Gz-KiR" firstAttribute="trailing" secondItem="eJr-da-KoF" secondAttribute="trailing" constant="25" id="F4B-eN-ksb"/>
                             <constraint firstItem="QSE-ic-Ix5" firstAttribute="leading" secondItem="8ax-Gz-KiR" secondAttribute="leading" constant="25" id="H1Z-E5-tU3"/>
                             <constraint firstItem="b9F-fB-vlF" firstAttribute="centerX" secondItem="e39-Gb-5DG" secondAttribute="centerX" id="Ibu-UY-y3s"/>
+                            <constraint firstItem="1X3-tH-ZGt" firstAttribute="centerY" secondItem="la1-e0-yUi" secondAttribute="centerY" id="JOE-LF-HtQ"/>
                             <constraint firstItem="ND4-9f-p9P" firstAttribute="leading" secondItem="8ax-Gz-KiR" secondAttribute="leading" constant="25" id="JkT-hD-Hri"/>
                             <constraint firstItem="eJr-da-KoF" firstAttribute="leading" secondItem="8ax-Gz-KiR" secondAttribute="leading" constant="25" id="KJc-m9-bLH"/>
                             <constraint firstItem="QSE-ic-Ix5" firstAttribute="top" secondItem="zqF-ol-sP0" secondAttribute="bottom" constant="16" id="Odc-sA-x5h"/>
                             <constraint firstItem="SQF-RQ-cuQ" firstAttribute="top" secondItem="e39-Gb-5DG" secondAttribute="top" id="Ojg-17-tH2"/>
+                            <constraint firstItem="8ax-Gz-KiR" firstAttribute="trailing" secondItem="1X3-tH-ZGt" secondAttribute="trailing" constant="25" id="PvU-UU-aC4"/>
                             <constraint firstItem="bBp-2Q-wwi" firstAttribute="top" secondItem="eJr-da-KoF" secondAttribute="bottom" constant="32" id="Pxw-rr-byY"/>
                             <constraint firstItem="zqF-ol-sP0" firstAttribute="top" secondItem="b9F-fB-vlF" secondAttribute="bottom" constant="24" id="VvT-X1-cQ0"/>
                             <constraint firstItem="7ne-g8-Vxm" firstAttribute="leading" secondItem="8ax-Gz-KiR" secondAttribute="leading" constant="25" id="aj1-kG-5Hb"/>
@@ -1062,6 +1084,7 @@
                         <outlet property="businessNameTF" destination="zqF-ol-sP0" id="bzd-3j-Ik6"/>
                         <outlet property="businessType" destination="7ne-g8-Vxm" id="Fu7-ey-uvH"/>
                         <outlet property="coverPhoto" destination="SQF-RQ-cuQ" id="XOd-0J-NxI"/>
+                        <outlet property="deleteBtn" destination="1X3-tH-ZGt" id="Fuu-Ro-MB2"/>
                         <outlet property="descriptionTF" destination="eJr-da-KoF" id="RhF-8l-NdE"/>
                         <outlet property="profilePic" destination="FdO-y5-LMi" id="R3G-Td-1zG"/>
                         <outlet property="uploadBtn" destination="b9F-fB-vlF" id="69C-wx-oX5"/>
@@ -1070,7 +1093,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNv-il-InO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1338" y="-135"/>
+            <point key="canvasLocation" x="-1416" y="-135"/>
         </scene>
     </scenes>
     <resources>
@@ -1085,6 +1108,7 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="profile-placeholder" width="668" height="668"/>
         <image name="share-7" width="128" height="128"/>
+        <image name="trash" catalog="system" width="117" height="128"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

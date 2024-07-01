@@ -1217,6 +1217,40 @@ exports.reactivateUserAccount = functions.https.onCall(async (data, context) => 
   }
 });
 
+exports.deleteBusiness = functions.https.onCall(async (data, context) => {
+  try {
+
+    if (!context.auth) {
+      return { error: "Authentication required" };
+  }
+
+      // Get the business ID from the data
+      const businessId = data.bid;
+
+      if (!businessId) {
+          return { success: false, message: 'Business ID is required.' };
+      }
+
+      // Reference to the business document
+      const businessRef = admin.firestore().collection('Businesses').doc(businessId);
+
+      // Check if the business exists
+      const doc = await businessRef.get();
+      if (!doc.exists) {
+          return { success: false, message: 'Business not found.' };
+      }
+
+      // Delete the business document
+      await businessRef.delete();
+
+
+      proceedOtherBusinessDataDeletion(businessId);
+      return { success: true, message: 'Business successfully deleted.' };
+  } catch (error) {
+      console.error('Error deleting business:', error);
+      return { success: false, message: 'Internal Server Error' };
+  }
+});
 
 exports.deleteUserAccount = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
@@ -1243,6 +1277,30 @@ exports.deleteUserAccount = functions.https.onCall(async (data, context) => {
         return { error: error.message};
     }
 });
+
+async function proceedOtherBusinessDataDeletion(businessId) {
+
+  // Step 1: Delete all posts by the user
+  const postsRef = admin.firestore().collection("Posts");
+  const userPostsSnapshot = await postsRef.where('bid', '==', businessId).get();
+  userPostsSnapshot.forEach(doc => {
+    
+    const postID = doc.data().postID;
+ 
+    const postType = doc.data().postType;
+    const images = doc.data().postImages || [];
+    const postVideo = doc.data().postVideo;     
+    const videoImage = doc.data().videoImage;
+    
+    deletePost(postID,postType, images, postVideo, videoImage);
+  });
+
+  // Step 2: Delete subscribers
+  deleteSubcollection(`Businesses/${businessId}/Subscribers`)
+
+
+
+}
 
 async function proceedOtherUserDeletionFunction(userId, userName, userDocRef) {
 
