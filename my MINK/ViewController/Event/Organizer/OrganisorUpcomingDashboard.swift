@@ -63,19 +63,7 @@ extension OrganisorUpcomingDashboard: UITableViewDelegate, UITableViewDataSource
             
             let event = self.upcomingEvents[indexPath.row]
             
-            cell.priceView.layer.cornerRadius = 12
-            cell.priceView.layer.borderColor = UIColor.lightGray.cgColor
-            cell.priceView.layer.borderWidth = 1
-            cell.soldView.layer.cornerRadius = 12
-            cell.soldView.layer.borderColor = UIColor.lightGray.cgColor
-            cell.soldView.layer.borderWidth = 1
-            cell.totalView.layer.cornerRadius = 12
-            cell.totalView.layer.borderColor = UIColor.lightGray.cgColor
-            cell.totalView.layer.borderWidth = 1
-            cell.progressView.layer.cornerRadius = 12
-            cell.progressBar.layer.cornerRadius = 16
-            cell.progressView.layer.borderColor = UIColor.lightGray.cgColor
-            cell.progressView.layer.borderWidth = 1
+    
             cell.mView.layer.cornerRadius = 12
             cell.mView.dropShadow()
             cell.event_image.layer.cornerRadius = 8
@@ -89,21 +77,8 @@ extension OrganisorUpcomingDashboard: UITableViewDelegate, UITableViewDataSource
             cell.eventDate.text = self.convertDateForEvent(event.eventStartDate ?? Date())
             cell.eventTitle.text = event.eventTitle ?? ""
             cell.eventLocation.text = event.address ?? ""
-            if let isFree = event.isFree, isFree {
-                cell.price.text = "Free"
-            }
-            else {
-                cell.price.text = "\(event.ticketPrice!)$"
-            }
-            
-            let ticketSold = event.eventTicketSold ?? 0
-            let ticketTotal = event.ticketQuantity ?? 0
-            
-            cell.sold.text = String(ticketSold)
-            cell.total.text = String(ticketTotal)
-            cell.progressBar.progress = Float(ticketSold) / Float(ticketTotal)
-            
-            
+           
+        
             
             return cell
         }

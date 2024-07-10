@@ -1461,6 +1461,96 @@ extension UIViewController {
         })
         task.resume()
     }
+    
+    
+    func getMostPopularBooks(completion: @escaping (_ bookModel: BookModel?, _ error: String?) -> Void) {
+        let urlString = "https://gutendex.com/books/?sort=downloads"
+        guard let url = URL(string: urlString) else {
+            completion(nil, "Invalid URL")
+            return
+        }
+
+        var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                completion(nil, error?.localizedDescription ?? "No data received")
+                return
+            }
+
+            let decoder = JSONDecoder()
+            do {
+                let bookModel = try decoder.decode(BookModel.self, from: data)
+                completion(bookModel, nil)
+            } catch {
+                // Detailed error logging
+                print("Decoding error: \(error.localizedDescription)")
+                if let decodingError = error as? DecodingError {
+                    switch decodingError {
+                    case .typeMismatch(let type, let context):
+                        print("Type mismatch error: \(type) - \(context.debugDescription) - \(context.codingPath)")
+                    case .valueNotFound(let type, let context):
+                        print("Value not found error: \(type) - \(context.debugDescription) - \(context.codingPath)")
+                    case .keyNotFound(let key, let context):
+                        print("Key not found error: \(key) - \(context.debugDescription) - \(context.codingPath)")
+                    case .dataCorrupted(let context):
+                        print("Data corrupted error: \(context.debugDescription) - \(context.codingPath)")
+                    @unknown default:
+                        print("Unknown decoding error: \(error)")
+                    }
+                }
+                completion(nil, error.localizedDescription)
+            }
+        }
+        task.resume()
+    }
+    
+    func searchBooks(bookName: String, completion: @escaping (_ bookModel: BookModel?, _ error: String?) -> Void) {
+        let urlString = "https://gutendex.com/books/?search=\(bookName)"
+        guard let url = URL(string: urlString) else {
+            completion(nil, "Invalid URL")
+            return
+        }
+
+        var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                completion(nil, error?.localizedDescription ?? "No data received")
+                return
+            }
+
+            let decoder = JSONDecoder()
+            do {
+                let bookModel = try decoder.decode(BookModel.self, from: data)
+                completion(bookModel, nil)
+            } catch {
+                // Detailed error logging
+                print("Decoding error: \(error.localizedDescription)")
+                if let decodingError = error as? DecodingError {
+                    switch decodingError {
+                    case .typeMismatch(let type, let context):
+                        print("Type mismatch error: \(type) - \(context.debugDescription) - \(context.codingPath)")
+                    case .valueNotFound(let type, let context):
+                        print("Value not found error: \(type) - \(context.debugDescription) - \(context.codingPath)")
+                    case .keyNotFound(let key, let context):
+                        print("Key not found error: \(key) - \(context.debugDescription) - \(context.codingPath)")
+                    case .dataCorrupted(let context):
+                        print("Data corrupted error: \(context.debugDescription) - \(context.codingPath)")
+                    @unknown default:
+                        print("Unknown decoding error: \(error)")
+                    }
+                }
+                completion(nil, error.localizedDescription)
+            }
+        }
+        task.resume()
+    }
+
+
+
 
     func applyStrikethroughEffect(to label: UILabel) {
         guard let text = label.text else { return }
@@ -1692,6 +1782,11 @@ extension UIViewController {
                   case .USERS:
                       let users = try decoder.decode([UserModel].self, from: jsonData)
                       completion(users)
+                      return
+                  case .MARKETPLACE:
+                      let marketplaces = try decoder.decode([MarketplaceModel].self, from: jsonData)
+                      completion(marketplaces)
+                      
                       return
                   case .EVENTS:
                       let events = try decoder.decode([Event].self, from: jsonData)
@@ -3567,3 +3662,6 @@ extension NSObject {
         }
     }
 }
+
+
+

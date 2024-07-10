@@ -173,12 +173,12 @@ class ShowEventViewController : UIViewController {
         
         if let isFree = event.isFree, isFree {
             ticketPrice.text = "Free!"
-            ticketBtn.setTitle("Register", for: .normal)
+          
         }
         else {
             let price = event.ticketPrice ?? 0
             ticketPrice.text = "US$ \(String(format: "%.2f", Double(price)))"
-            ticketBtn.setTitle("Ticket", for: .normal)
+           
         }
         
 

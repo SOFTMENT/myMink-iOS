@@ -48,7 +48,8 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
     @IBOutlet var marketView: UIView!
     @IBOutlet var todoView: UIView!
     @IBOutlet var cryptoView: UIView!
-
+    @IBOutlet weak var libraryView: UIView!
+    
     @IBOutlet var userProfile: SDAnimatedImageView!
     @IBOutlet var fullName: UILabel!
     @IBOutlet var username: UILabel!
@@ -248,6 +249,10 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
         self.businessView.isUserInteractionEnabled = true
         self.businessView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(businessClicked)))
 
+        //LibraryClicked
+        self.libraryView.isUserInteractionEnabled = true
+        self.libraryView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.libraryClicked)))
+        
         // MusicClicked
         self.musicView.isUserInteractionEnabled = true
         self.musicView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.musicClicked)))
@@ -286,6 +291,10 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
             sceneDelegate.spotifyDelegate = self
         }
         
+    }
+    
+    @objc func libraryClicked(){
+        performSegue(withIdentifier: "librarySeg", sender: nil)
     }
     
     @objc func businessClicked(){

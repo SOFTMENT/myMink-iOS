@@ -921,6 +921,8 @@ PODS:
   - SDWebImage (5.18.3):
     - SDWebImage/Core (= 5.18.3)
   - SDWebImage/Core (5.18.3)
+  - SSZipArchive (2.4.3)
+  - SWXMLHash (7.0.2)
   - TTGSnackbar (1.11.1)
 
 DEPENDENCIES:
@@ -952,6 +954,8 @@ DEPENDENCIES:
   - RevenueCat
   - RNCryptor
   - SDWebImage (~> 5.0)
+  - SSZipArchive
+  - SWXMLHash
   - TTGSnackbar
 
 SPEC REPOS:
@@ -1011,6 +1015,8 @@ SPEC REPOS:
     - RevenueCat
     - RNCryptor
     - SDWebImage
+    - SSZipArchive
+    - SWXMLHash
     - TTGSnackbar
 
 SPEC CHECKSUMS:
@@ -1069,8 +1075,10 @@ SPEC CHECKSUMS:
   RevenueCat: 7adc0e1d66c97bed32c85520b98f7ee8f621ee03
   RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
   SDWebImage: 96e0c18ef14010b7485210e92fac888587ebb958
+  SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
+  SWXMLHash: dd733a457e9c4fe93b1538654057aefae4acb382
   TTGSnackbar: fea91c62637b5662f808a4c3b55f7631cb7e1ef7
 
-PODFILE CHECKSUM: 579d9f1baa4548595dab5f7d2063b516414e393f
+PODFILE CHECKSUM: b165e75a6d7c93396002e2e8362c55532b62f0b1
 
 COCOAPODS: 1.15.2

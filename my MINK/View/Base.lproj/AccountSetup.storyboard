@@ -2293,6 +2293,9 @@
             <point key="canvasLocation" x="2075" y="1612"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="4Af-fT-ZTn"/>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="Zf7-al-EMY"/>
         <segue reference="huc-a1-spI"/>

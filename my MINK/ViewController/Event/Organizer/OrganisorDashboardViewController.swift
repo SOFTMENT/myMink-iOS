@@ -21,7 +21,7 @@ class OrganisorDashboardViewController : UIViewController {
     @IBOutlet weak var bottomNavigation: UIView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var dateAndTime: UILabel!
-    @IBOutlet weak var settingsView: UIView!
+
 
     var isProfilePicChanged = false
     var downloadURL : String = ""
@@ -47,13 +47,12 @@ class OrganisorDashboardViewController : UIViewController {
         dateAndTime.text = self.convertDateForHomePage(Date())
         
        
-        settingsView.layer.cornerRadius = 12
+      
         createEvent.layer.cornerRadius = 8
         bottomNavigation.installBlurEffect(isTop: false)
         pastContainer.isHidden  = true
         UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
-        settingsView.isUserInteractionEnabled = true
-        settingsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(settingsViewClicked)))
+       
    
         switchUser.layer.cornerRadius = 6
         
@@ -109,8 +108,7 @@ class OrganisorDashboardViewController : UIViewController {
             }
         }
     }
-    
-    
+
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -121,11 +119,6 @@ class OrganisorDashboardViewController : UIViewController {
             self.pastOrganizer = pastVC
         }
     }
-    
-    @objc func settingsViewClicked() {
-        performSegue(withIdentifier: "walletSeg", sender: nil)
-    }
-    
     
     @IBAction func createEventBtnClicked(_ sender: Any) {
         performSegue(withIdentifier: "createeventseg", sender: nil)

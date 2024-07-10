@@ -4560,7 +4560,15 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="sWp-OR-GhP"/>
+        <designable name="BRA-4I-niA"/>
+        <designable name="SEe-g6-KVM"/>
+        <designable name="UYi-XT-n5Y"/>
+        <designable name="jwr-hI-FO9"/>
+        <designable name="s5w-AA-e3k"/>
+        <designable name="sWp-OR-GhP">
+            <size key="intrinsicContentSize" width="0.0" height="14"/>
+        </designable>
+        <designable name="uqY-OA-JYi"/>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="aFM-8B-1Nc"/>

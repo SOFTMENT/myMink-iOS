@@ -47,8 +47,6 @@ class HomeViewController: UIViewController {
     var playerPool: PlayerPool!
     var isMute: Bool = true
     var shouldHandleDynamicLink: Bool = false
-  
-  
     private var followerListner : ListenerRegistration?
     let locationManager = CLLocationManager()
     var weatherModel : WeatherModel?
@@ -63,7 +61,7 @@ class HomeViewController: UIViewController {
             }
             return
         }
-    
+
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -193,31 +191,51 @@ class HomeViewController: UIViewController {
                     .store(in: &cancellables)
         
       
+        
+        
         getCount(for: user.uid, countType: Collections.FOLLOW.rawValue) { count, error in
             if let count = count, count >= 10 {
                 Constants.hasBlueTick = true
                 self.getFollowingPosts()
+            
             }
             else {
+                Constants.hasBlueTick = false
                 self.getAllPosts()
             }
+          
         }
         
-        followersCountListen(userId: user.uid)
+       followersCountListen(userId: user.uid)
+        
+   
+        listenForNewPosts()
+        
+        
         
     }
+
     
     func followersCountListen(userId : String){
         self.followerListner = FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(userId).collection(Collections.FOLLOW.rawValue).addSnapshotListener {snapshot, error in
             if let snapshot = snapshot, !snapshot.isEmpty, snapshot.documents.count >= Constants.BLUE_TICK_REQUIREMENT {
-                self.getFollowingPosts()
+                if !Constants.hasBlueTick {
+                    Constants.hasBlueTick = true
+                    self.getFollowingPosts()
+                }
+               
             }
             else {
-                self.getAllPosts()
+                if Constants.hasBlueTick {
+                    Constants.hasBlueTick = false
+                    self.getAllPosts()
+                }
+               
             }
         }
         
     }
+    
     
     func followingChanged(uid : String?){
         if let uid = uid {
@@ -428,8 +446,6 @@ class HomeViewController: UIViewController {
     
     func searchStart(searchText: String) {
 
-        
-        
         ProgressHUDShow(text: "Searching...")
         algoliaSearch(searchText: searchText, indexName: .POSTS, filters: "") { models in
             
@@ -486,6 +502,37 @@ class HomeViewController: UIViewController {
             }
             self.mName.text = userModel.fullName ?? ""
         }
+    }
+    
+    func listenForNewPosts() {
+        FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).order(by: "postCreateDate", descending: true).whereField("isActive", isEqualTo: true).whereField("isPromoted", isEqualTo: true).addSnapshotListener { (querySnapshot, error) in
+                if let error = error {
+                    print("Error listening for document changes: \(error)")
+                    return
+                }
+                
+                guard let snapshot = querySnapshot else { return }
+                
+            snapshot.documentChanges.forEach { diff in
+                    if diff.type == .added {
+                        let indexPathsToDelete = (0 ..< self.postModels.count).map { IndexPath(row: $0, section: 0) }
+                        self.postModels.removeAll()
+                        self.tableView.deleteRows(at: indexPathsToDelete, with: .automatic)
+                        
+                        self.uniquePostIDs.removeAll()
+                        self.postDocumentSnapshot = nil
+                        
+                        if Constants.hasBlueTick {
+                            self.getFollowingPosts()
+                        }
+                        else {
+                            self.getAllPosts()
+                        }
+                    }
+                }
+            
+          
+            }
     }
     
     func getAllPosts(shouldScrollToTop : Bool  = false) {

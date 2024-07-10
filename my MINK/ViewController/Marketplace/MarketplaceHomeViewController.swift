@@ -31,7 +31,11 @@ class MarketplaceHomeViewController : UIViewController {
         
         collectionView.showsHorizontalScrollIndicator = false
         
+        searchTF.delegate = self
+        
         searchBtn.layer.cornerRadius = 8
+        searchBtn.isUserInteractionEnabled = true
+        searchBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchBtnClicked)))
         
         categories.append(contentsOf: Constants.product_categories)
         categories.insert("All", at: 0)
@@ -79,13 +83,13 @@ class MarketplaceHomeViewController : UIViewController {
     
     func searchProducts(searchText : String){
         ProgressHUDShow(text: "Searching...")
-        algoliaSearch(searchText: searchText, indexName: .POSTS, filters: "isActive:true OR countryCode:\(getCountryCode())") { models in
+        algoliaSearch(searchText: searchText, indexName: .MARKETPLACE, filters: "isActive:true AND countryCode:\(getCountryCode())") { models in
             
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
                 self.useProducts.removeAll()
                 self.useProducts.append(contentsOf: models as? [MarketplaceModel] ?? [])
-                self.collectionView.reloadData()
+                self.storeCollectionView.reloadData()
                 
             }
             
@@ -254,7 +258,7 @@ extension MarketplaceHomeViewController : UITextFieldDelegate {
         if updatedText.isEmpty {
             self.useProducts.removeAll()
             self.useProducts.append(contentsOf: self.products)
-            self.collectionView.reloadData()
+            self.storeCollectionView.reloadData()
         }
         
         return true
@@ -268,7 +272,7 @@ extension MarketplaceHomeViewController : UITextFieldDelegate {
                 else {
                     self.useProducts.removeAll()
                     self.useProducts.append(contentsOf: self.products)
-                    self.collectionView.reloadData()
+                    self.storeCollectionView.reloadData()
                 }
                
             }

@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import Lottie
 
 class ShowBusinessProfileViewController : UIViewController {
     
@@ -14,6 +15,7 @@ class ShowBusinessProfileViewController : UIViewController {
     @IBOutlet weak var noPostsAvailable: UILabel!
     
     @IBOutlet weak var postCount: UILabel!
+    @IBOutlet weak var subsriberLoading: LottieAnimationView!
     
     @IBOutlet weak var coverPicture: SDAnimatedImageView!
     @IBOutlet weak var backView: UIView!
@@ -40,6 +42,11 @@ class ShowBusinessProfileViewController : UIViewController {
             }
             return
         }
+        
+        
+        subsriberLoading.loopMode = .loop
+        subsriberLoading.contentMode = .scaleAspectFit
+        subsriberLoading.play()
             
         backView.layer.cornerRadius = 8
         backView.dropShadow()
@@ -64,6 +71,8 @@ class ShowBusinessProfileViewController : UIViewController {
         addPostBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addPostClicked)))
 
         self.getCount(for: businessModel.businessId!, countType: "Subscribers") { count, error in
+            self.subsriberLoading.isHidden = true
+            self.mSubscriber.isHidden = false
             if let count = count {
                 self.mSubscriber.text =  count > 1 ? "\(count) Subscribers" : "\(count) Subscriber"
             }

@@ -21,9 +21,7 @@ class AddTicketsViewController: UIViewController {
     @IBOutlet weak var nameCounter: UILabel!
     @IBOutlet weak var availableQuantity: UITextField!
     @IBOutlet weak var price: UITextField!
-    @IBOutlet weak var ticketRevenu: UILabel!
-    @IBOutlet weak var viewDetails: UILabel!
-    @IBOutlet weak var revenueView: UIStackView!
+   
     
     @IBOutlet weak var salesStart: UITextField!
     @IBOutlet weak var startTime: UITextField!
@@ -78,7 +76,7 @@ class AddTicketsViewController: UIViewController {
         price.layer.cornerRadius = 8
         price.delegate = self
         
-        price.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
+      
         
         salesStart.layer.cornerRadius = 8
         salesStart.delegate = self
@@ -106,10 +104,8 @@ class AddTicketsViewController: UIViewController {
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
         
-        revenueView.isHidden = true
-        
-        viewDetails.isUserInteractionEnabled  = true
-        viewDetails.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showViewDetailsPopup)))
+      
+      
         
         
     }
@@ -138,27 +134,7 @@ class AddTicketsViewController: UIViewController {
     }
     
     
-    @objc func textFieldDidChange(textField : UITextField){
-       
-        let buyerTotalString = "Buyer total"
-        guard let query = textField.text, !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-            revenueView.isHidden = true
-            ticketRevenu.text = "\(buyerTotalString) : 0.0"
-            return
-        }
-        revenueView.isHidden = false
-        
-        if let price = Double(query) {
-            let finalPrice = price + (price / Double(10))
-            ticketRevenu.text =  String(format: "\(buyerTotalString) : %.2f", finalPrice)
-            
-        }
-      
-        
-        
-        
-      
-    }
+  
     
     @objc func hideKeyboard(){
         view.endEditing(true)
@@ -400,10 +376,10 @@ class AddTicketsViewController: UIViewController {
             event!.eventCreateDate = Date()
             self.ProgressHUDShow(text: "Publishing...")
             
-            let batch = Firestore.firestore().batch()
+            let batch = FirebaseStoreManager.db.batch()
             
          
-                let docucmentRef =  Firestore.firestore().collection(Collections.EVENTS.rawValue).document()
+                let docucmentRef =  FirebaseStoreManager.db.collection(Collections.EVENTS.rawValue).document()
                 do {
                    
             

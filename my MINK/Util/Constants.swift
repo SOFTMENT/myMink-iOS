@@ -76,6 +76,7 @@ enum SearchIndex : String {
     case POSTS = "Posts"
     case USERS = "Users"
     case EVENTS = "Events"
+    case MARKETPLACE = "Marketplace"
 }
 
 enum BranchIOFeature : String {

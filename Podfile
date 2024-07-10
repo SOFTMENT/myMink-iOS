@@ -35,6 +35,9 @@ target 'my MINK' do
   pod 'BranchSDK'
   pod 'FLAnimatedImage'
   pod 'ActiveLabel'
+ pod 'SWXMLHash'
+  pod 'SSZipArchive'
+
 end
 
 post_install do |installer|

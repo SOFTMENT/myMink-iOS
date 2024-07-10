@@ -15,15 +15,9 @@ class DashboardTicketTableViewCell : UITableViewCell {
     @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
-    @IBOutlet weak var priceView: UIView!
-    @IBOutlet weak var soldView: UIView!
-    @IBOutlet weak var totalView: UIView!
-    @IBOutlet weak var price: UILabel!
-    @IBOutlet weak var sold: UILabel!
-    @IBOutlet weak var total: UILabel!
+   
     @IBOutlet weak var mView: UIView!
-    @IBOutlet weak var progressView: UIView!
-    @IBOutlet weak var progressBar: UIProgressView!
+   
     
     override func prepareForReuse() {
         super.prepareForReuse()

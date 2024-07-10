@@ -536,31 +536,48 @@
                                                         <rect key="frame" x="0.0" y="44" width="311" height="20"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGM-Lt-Im0">
-                                                                <rect key="frame" x="52.666666666666671" y="1" width="205.66666666666663" height="18"/>
+                                                                <rect key="frame" x="63" y="0.0" width="185" height="20"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Software Development," textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wT-g3-saX">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="131" height="18"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="131" height="20"/>
                                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
                                                                         <color key="textColor" systemColor="linkColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Subscriber" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7di-Lx-Ace">
-                                                                        <rect key="frame" x="137" y="0.0" width="68.666666666666686" height="18"/>
-                                                                        <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
-                                                                        <color key="textColor" systemColor="scrollViewTexturedBackgroundColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLW-p3-Fos">
+                                                                        <rect key="frame" x="135" y="0.0" width="50" height="20"/>
+                                                                        <subviews>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Top-UL-1DF" customClass="LottieAnimationView" customModule="Lottie">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="20" id="5Mw-5l-2a5"/>
+                                                                                </constraints>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="labelloading"/>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </view>
+                                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Subscriber" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7di-Lx-Ace">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="20"/>
+                                                                                <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
+                                                                                <color key="textColor" systemColor="scrollViewTexturedBackgroundColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="20" id="nhn-Vg-Ng9"/>
+                                                                        </constraints>
+                                                                    </stackView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="7di-Lx-Ace" firstAttribute="top" secondItem="eGM-Lt-Im0" secondAttribute="top" id="4aW-LE-Dp4"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="7di-Lx-Ace" secondAttribute="bottom" id="CPv-aZ-Ws2"/>
                                                                     <constraint firstAttribute="bottom" secondItem="4wT-g3-saX" secondAttribute="bottom" id="ILf-cE-04h"/>
-                                                                    <constraint firstAttribute="height" constant="18" id="LAt-d4-UMZ"/>
                                                                     <constraint firstItem="4wT-g3-saX" firstAttribute="leading" secondItem="eGM-Lt-Im0" secondAttribute="leading" id="WRd-ig-bHM"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="7di-Lx-Ace" secondAttribute="trailing" id="map-9f-hzK"/>
-                                                                    <constraint firstItem="7di-Lx-Ace" firstAttribute="leading" secondItem="4wT-g3-saX" secondAttribute="trailing" constant="6" id="nhh-M3-di4"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="bLW-p3-Fos" secondAttribute="trailing" id="gBI-Ez-ulT"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="bLW-p3-Fos" secondAttribute="bottom" id="h95-J4-ce3"/>
+                                                                    <constraint firstItem="bLW-p3-Fos" firstAttribute="leading" secondItem="4wT-g3-saX" secondAttribute="trailing" constant="4" id="jX5-V7-ZXF"/>
                                                                     <constraint firstItem="4wT-g3-saX" firstAttribute="top" secondItem="eGM-Lt-Im0" secondAttribute="top" id="waJ-jF-ozB"/>
+                                                                    <constraint firstItem="bLW-p3-Fos" firstAttribute="top" secondItem="eGM-Lt-Im0" secondAttribute="top" id="wvp-kf-Aog"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -830,6 +847,7 @@
                         <outlet property="postCount" destination="C0F-gE-Dxr" id="QYR-al-cGU"/>
                         <outlet property="profilePicture" destination="F7j-sH-0fV" id="rqC-LR-Qkj"/>
                         <outlet property="subscribeBtn" destination="NXT-hB-jyb" id="Ahk-S7-7vW"/>
+                        <outlet property="subsriberLoading" destination="Top-UL-1DF" id="4Nd-il-bMv"/>
                         <segue destination="axs-n1-d0H" kind="presentation" identifier="updateBusinessSeg" modalPresentationStyle="fullScreen" id="4TP-Zd-Cbh"/>
                         <segue destination="08w-gL-8gt" kind="presentation" identifier="showChatSeg" modalPresentationStyle="fullScreen" id="49F-TY-qjF"/>
                         <segue destination="HT6-e4-oJR" kind="presentation" identifier="showChatHistorySeg" modalPresentationStyle="fullScreen" id="IGg-Ux-SE2"/>
@@ -839,7 +857,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IyD-9A-Te9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1352" y="578"/>
+            <point key="canvasLocation" x="-1352.0930232558139" y="577.46781115879833"/>
         </scene>
         <!--postPopup-->
         <scene sceneID="zqg-h5-z6r">
@@ -1096,6 +1114,9 @@
             <point key="canvasLocation" x="-1416" y="-135"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Top-UL-1DF"/>
+    </designables>
     <resources>
         <image name="camera.circle.fill" catalog="system" width="128" height="123"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
@@ -1110,7 +1131,7 @@
         <image name="share-7" width="128" height="128"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="scrollViewTexturedBackgroundColor">
             <color red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1119,10 +1140,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="underPageBackgroundColor">
             <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
