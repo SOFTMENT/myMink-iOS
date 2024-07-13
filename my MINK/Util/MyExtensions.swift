@@ -1885,6 +1885,16 @@ extension UIViewController {
             completion(self.hasError(result: result, error: error))
         }
     }
+    
+    func deleteEvent(eventId: String, completion : @escaping (_ error : String?)->Void) {
+        let functions = Functions.functions()
+        functions.httpsCallable("deleteEvent").call([
+            "eventId": eventId,
+          
+        ]) { result, error in
+            completion(self.hasError(result: result, error: error))
+        }
+    }
 
     func deleteCoupon(sCode: String) {
         let functions = Functions.functions()

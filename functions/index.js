@@ -922,6 +922,23 @@ exports.deleteComment = functions.https.onCall(async (data, context) => {
   }
 });
 
+exports.deleteEvent = functions.https.onCall(async (data, context) => {
+  const eventId = data.eventId; 
+ 
+
+  if (!context.auth) {
+      return { error: "Authentication required" }; // Ensure the user is authenticated
+  }
+
+  try {
+      await admin.firestore().collection("Events").doc(eventId).delete();
+      return { success: true, message: "Event deleted successfully." };
+  } catch (error) {
+      console.error("Error deleting Event:", error);
+      return { error: error.message };
+  }
+});
+
 exports.deleteCoupon = functions.https.onCall(async (data, context) => {
   const sCode = data.sCode; // Code of the coupon to delete
 

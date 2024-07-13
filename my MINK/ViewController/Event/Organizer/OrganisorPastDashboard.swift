@@ -33,15 +33,7 @@ class OrganisorPastDashboard: UIViewController {
 
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "vieweventdetailsseg" {
-            if let vc = segue.destination as? OrganizerViewEventDetails {
-                if let event = sender as? Event {
-                    vc.event = event
-                }
-            }
-        }
-    }
+   
 }
 
 
@@ -91,9 +83,7 @@ extension OrganisorPastDashboard: UITableViewDelegate, UITableViewDataSource {
         return DashboardTicketTableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "vieweventdetailsseg", sender: pastEvents[indexPath.row])
-    }
+   
     
 }
 

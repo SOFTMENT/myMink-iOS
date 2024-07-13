@@ -65,6 +65,7 @@ class MembershipDetailsViewController: UIViewController {
                             self.unsubscribeBtn.isHidden = true
                             self.status.textColor = .red
                             self.status.text = "Cancelled"
+                            UserModel.data!.status = "Cancelled"
                         } else {
                             self.showError("Something went wrong. Please contact us.")
                         }

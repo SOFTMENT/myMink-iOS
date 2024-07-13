@@ -388,14 +388,9 @@ class CreateEventBasicViewController: UIViewController {
         event.country = sCountry
         event.isFree = true
         
-        if let countryModel = Constants.countryModels.first(where: { countryModel in
-            if countryModel.name == sCountry {
-                return true
-            }
-            return false
-        }) {
-            event.countryCode = countryModel.code
-        }
+      
+            event.countryCode = getCountryCode()
+      
         
             event.addressName = googleAddress
             

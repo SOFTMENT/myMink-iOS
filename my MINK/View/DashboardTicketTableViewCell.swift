@@ -15,7 +15,8 @@ class DashboardTicketTableViewCell : UITableViewCell {
     @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
-   
+    @IBOutlet weak var moreBtn: UIButton!
+    
     @IBOutlet weak var mView: UIView!
    
     

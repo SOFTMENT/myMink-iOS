@@ -68,7 +68,8 @@ class EventHomeViewController : UIViewController {
     
     func searchEvents(searchText : String){
         ProgressHUDShow(text: "Searching...")
-        algoliaSearch(searchText: searchText, indexName: .POSTS, filters: "isActive:true AND countryCode:\(getCountryCode())") { models in
+       
+        algoliaSearch(searchText: searchText, indexName: .EVENTS, filters: "isActive:true AND countryCode:\(getCountryCode())") { models in
             
             DispatchQueue.main.async {
                 self.ProgressHUDHide()

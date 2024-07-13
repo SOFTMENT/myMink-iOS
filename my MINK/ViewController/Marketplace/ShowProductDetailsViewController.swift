@@ -89,7 +89,7 @@ class ShowProductDetailsViewController : UIViewController {
         topProfileImage.makeRounded()
         ticketBtn.layer.cornerRadius = 8
         
-        
+        self.topProfileImage.setImage(imageKey: "", placeholder: "profile-placeholder", width: 100, height: 100, shouldShowAnimationPlaceholder: true)
         
         getUserDataByID(uid: product.uid!) { userModel, error in
             if let userModel = userModel {

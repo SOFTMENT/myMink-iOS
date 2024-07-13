@@ -405,7 +405,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srk-1I-ADu">
-                                                        <rect key="frame" x="20.000000000000004" y="507.66666666666674" width="59.333333333333343" height="18"/>
+                                                        <rect key="frame" x="20.000000000000004" y="507.6666666666668" width="59.333333333333343" height="17.999999999999943"/>
                                                         <fontDescription key="fontDescription" name="TimesNRCyrMT-Bold" family="Times New Roman Cyr" pointSize="16"/>
                                                         <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
@@ -961,7 +961,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat, Jul 24 • 11:00 AM " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TA8-jj-BPI">
-                                                            <rect key="frame" x="142" y="10" width="181" height="14.666666666666664"/>
+                                                            <rect key="frame" x="142" y="10" width="157" height="14.666666666666664"/>
                                                             <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="13"/>
                                                             <color key="textColor" red="0.82352941180000006" green="0.0" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -978,20 +978,35 @@
                                                             <color key="textColor" systemColor="underPageBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Tg-Up-qO5">
+                                                            <rect key="frame" x="311" y="9.3333333333333357" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="6r1-Pq-Pzw"/>
+                                                                <constraint firstAttribute="height" constant="16" id="Njh-ZO-g9F"/>
+                                                            </constraints>
+                                                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="dots-2">
+                                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="medium"/>
+                                                            </state>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="RWi-nT-P7t" firstAttribute="leading" secondItem="dm3-jH-4ZJ" secondAttribute="trailing" constant="12" id="0Hv-QL-0F9"/>
                                                         <constraint firstItem="6Qk-Fc-qRt" firstAttribute="leading" secondItem="dm3-jH-4ZJ" secondAttribute="trailing" constant="12" id="1Kp-T4-a7d"/>
+                                                        <constraint firstItem="9Tg-Up-qO5" firstAttribute="leading" secondItem="TA8-jj-BPI" secondAttribute="trailing" constant="12" id="8rV-xu-0dG"/>
                                                         <constraint firstItem="dm3-jH-4ZJ" firstAttribute="leading" secondItem="Epc-fe-nln" secondAttribute="leading" constant="10" id="8tW-KV-H6B"/>
-                                                        <constraint firstAttribute="trailing" secondItem="TA8-jj-BPI" secondAttribute="trailing" constant="12" id="Vib-aA-tZI"/>
                                                         <constraint firstItem="TA8-jj-BPI" firstAttribute="leading" secondItem="dm3-jH-4ZJ" secondAttribute="trailing" constant="12" id="XJA-lG-X0p"/>
                                                         <constraint firstItem="6Qk-Fc-qRt" firstAttribute="top" secondItem="RWi-nT-P7t" secondAttribute="bottom" constant="8" id="YJs-6m-D1X"/>
                                                         <constraint firstItem="RWi-nT-P7t" firstAttribute="top" secondItem="TA8-jj-BPI" secondAttribute="bottom" constant="8" id="bjd-2w-n18"/>
+                                                        <constraint firstItem="9Tg-Up-qO5" firstAttribute="centerY" secondItem="TA8-jj-BPI" secondAttribute="centerY" id="elT-kn-2aV"/>
                                                         <constraint firstAttribute="trailing" secondItem="RWi-nT-P7t" secondAttribute="trailing" constant="12" id="emG-TA-eOt"/>
                                                         <constraint firstItem="TA8-jj-BPI" firstAttribute="top" secondItem="dm3-jH-4ZJ" secondAttribute="top" id="hnL-YZ-EVV"/>
                                                         <constraint firstItem="dm3-jH-4ZJ" firstAttribute="top" secondItem="Epc-fe-nln" secondAttribute="top" constant="10" id="kkl-CC-OEy"/>
                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6Qk-Fc-qRt" secondAttribute="trailing" constant="12" id="laQ-iY-K9Y"/>
+                                                        <constraint firstAttribute="trailing" secondItem="9Tg-Up-qO5" secondAttribute="trailing" constant="8" id="odO-bu-Hrd"/>
                                                         <constraint firstAttribute="bottom" secondItem="dm3-jH-4ZJ" secondAttribute="bottom" constant="10" id="pOJ-z5-Iwb"/>
                                                     </constraints>
                                                 </view>
@@ -1010,6 +1025,7 @@
                                             <outlet property="eventTitle" destination="RWi-nT-P7t" id="dTG-LZ-VT2"/>
                                             <outlet property="event_image" destination="dm3-jH-4ZJ" id="zGt-eb-8GW"/>
                                             <outlet property="mView" destination="Epc-fe-nln" id="jTQ-1n-dRX"/>
+                                            <outlet property="moreBtn" destination="9Tg-Up-qO5" id="PWe-Dd-vQv"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2492,6 +2508,7 @@ Example - fun, holiday, party</string>
     </scenes>
     <resources>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
+        <image name="dots-2" width="128" height="128"/>
         <image name="email" width="64" height="64"/>
         <image name="festival-image-2" width="600" height="600"/>
         <image name="icons8-calendar-48" width="48" height="48"/>

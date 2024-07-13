@@ -35,15 +35,6 @@ class OrganisorUpcomingDashboard: UIViewController {
 
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "vieweventdetailsseg" {
-            if let vc = segue.destination as? OrganizerViewEventDetails {
-                if let event = sender as? Event {
-                    vc.event = event
-                }
-            }
-        }
-    }
 }
 
 extension OrganisorUpcomingDashboard: UITableViewDelegate, UITableViewDataSource {
@@ -62,6 +53,27 @@ extension OrganisorUpcomingDashboard: UITableViewDelegate, UITableViewDataSource
         if let cell = tableView.dequeueReusableCell(withIdentifier: "organisorticketcell", for: indexPath) as? DashboardTicketTableViewCell{
             
             let event = self.upcomingEvents[indexPath.row]
+            
+            var uiMenuElement = [UIMenuElement]()
+            let delete = UIAction(
+                title: "Delete",
+                image: UIImage(systemName: "trash.fill")
+            ) { _ in
+              
+                self.ProgressHUDShow(text: "Deleting...")
+                self.deleteEvent(eventId: event.eventId ?? "123") { error in
+                    self.ProgressHUDHide()
+                    self.showSnack(messages: "Event Deleted")
+                    self.upcomingEvents.remove(event)
+                    self.tableView.reloadData()
+                }
+            }
+          
+            uiMenuElement.append(delete)
+            cell.moreBtn.isUserInteractionEnabled = true
+            cell.moreBtn.showsMenuAsPrimaryAction = true
+
+            cell.moreBtn.menu = UIMenu(title: "", children: uiMenuElement)
             
     
             cell.mView.layer.cornerRadius = 12
@@ -86,9 +98,7 @@ extension OrganisorUpcomingDashboard: UITableViewDelegate, UITableViewDataSource
         return DashboardTicketTableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "vieweventdetailsseg", sender: upcomingEvents[indexPath.row])
-    }
+    
     
     
 }
