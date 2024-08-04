@@ -7,34 +7,40 @@ class QRCodeViewController: UIViewController {
     @IBOutlet var mView: UIView!
     @IBOutlet var backView: UIView!
     @IBOutlet var mProfile: SDAnimatedImageView!
-
     @IBOutlet var mName: UILabel!
     @IBOutlet var qrView: UIView!
     @IBOutlet var qrImage: UIImageView!
     @IBOutlet var copyLinkBtn: UIButton!
-
     @IBOutlet var scanQr: UIButton!
     @IBOutlet var shareBtn: UIButton!
 
     override func viewDidLoad() {
-        self.mProfile.makeRounded()
-        self.qrView.layer.cornerRadius = 10
-        self.qrView.dropShadow()
-        self.shareBtn.layer.cornerRadius = 8
-        self.copyLinkBtn.layer.cornerRadius = 8
-        self.scanQr.layer.cornerRadius = 8
+        super.viewDidLoad()
+        setupUI()
+        DispatchQueue.main.async {
+            self.loadUI()
+        }
+    }
 
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
-        self.backView.isUserInteractionEnabled = true
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(
+    private func setupUI() {
+        mProfile.makeRounded()
+        [qrView, backView].forEach { view in
+            view?.layer.cornerRadius = 8
+            view?.dropShadow()
+        }
+        [shareBtn, copyLinkBtn, scanQr].forEach { button in
+            button?.layer.cornerRadius = 8
+        }
+
+        backView.isUserInteractionEnabled = true
+        backView.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
             action: #selector(self.backViewClicked)
         ))
 
-        self.mName.text = UserModel.data!.fullName ?? "Name"
-        if let path = UserModel.data!.profilePic, !path.isEmpty {
-            self.mProfile.setImage(
+        mName.text = UserModel.data?.fullName ?? "Name"
+        if let path = UserModel.data?.profilePic, !path.isEmpty {
+            mProfile.setImage(
                 imageKey: path,
                 placeholder: "profile-placeholder",
                 width: 150,
@@ -42,65 +48,52 @@ class QRCodeViewController: UIViewController {
                 shouldShowAnimationPlaceholder: true
             )
         }
-
-        DispatchQueue.main.async {
-            self.loadUI()
-        }
     }
 
-    func loadUI() {
-        if let profileLink = UserModel.data!.profileURL, !profileLink.isEmpty {
-            self.loadQRCode(profileLink: profileLink)
+    private func loadUI() {
+        if let profileLink = UserModel.data?.profileURL, !profileLink.isEmpty {
+            loadQRCode(profileLink: profileLink)
         } else {
-            createDeepLinkForUserProfile(userModel: UserModel.data!, completion: { url, error in
+            createDeepLinkForUserProfile(userModel: UserModel.data!) { url, error in
                 if let url = url {
-                    UserModel.data!.profileURL = url
+                    UserModel.data?.profileURL = url
                     self.loadQRCode(profileLink: url)
-                    FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
+                    FirebaseStoreManager.db.collection(Collections.users.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
                         .setData(["profileURL": url], merge: true)
-                } else {
-                    if let error = error {
-                        print("CREATE DEEP LINK ERROR " + error.localizedDescription)
-                    }
+                } else if let error = error {
+                    print("CREATE DEEP LINK ERROR " + error.localizedDescription)
                 }
-            })
+            }
         }
     }
 
-    func loadQRCode(profileLink: String) {
-        let image = self.generateQRCode(from: profileLink)
-        self.qrImage.image = image
-        let smallLogo = UIImage(named: "roundicon")
-        smallLogo?.addToCenter(of: self.qrImage)
+    private func loadQRCode(profileLink: String) {
+        if let image = generateQRCode(from: profileLink) {
+            qrImage.image = image
+            let smallLogo = UIImage(named: "roundicon")
+            smallLogo?.addToCenter(of: qrImage)
+        }
     }
 
     @IBAction func copyLinkClicked(_: Any) {
-        let link = UserModel.data!.profileURL ?? ""
-
-        if UIPasteboard.general.string == link {
-            return
-        }
+        guard let link = UserModel.data?.profileURL, UIPasteboard.general.string != link else { return }
         UIPasteboard.general.string = link
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         showSnack(messages: "Link has copied.")
     }
 
-    @objc func backViewClicked() {
+    @objc private func backViewClicked() {
         dismiss(animated: true)
     }
 
     @IBAction func shareClicked(_: Any) {
         if let image = preparePostScreenshot(view: mView) {
-            var imagesToShare = [AnyObject]()
-            imagesToShare.append(image)
-
             let activityViewController = UIActivityViewController(
-                activityItems: imagesToShare,
+                activityItems: [image],
                 applicationActivities: nil
             )
             activityViewController.popoverPresentationController?.sourceView = view
-            present(activityViewController, animated: true, completion: nil)
+            present(activityViewController, animated: true)
         }
     }
 
@@ -109,22 +102,23 @@ class QRCodeViewController: UIViewController {
     }
 
     func generateQRCode(from string: String) -> UIImage? {
-        let data = string.data(using: String.Encoding.ascii)
+           let data = string.data(using: String.Encoding.ascii)
 
-        if let filter = CIFilter(name: "CIQRCodeGenerator") {
-            filter.setValue(data, forKey: "inputMessage")
+           if let filter = CIFilter(name: "CIQRCodeGenerator") {
+               filter.setValue(data, forKey: "inputMessage")
 
-            guard let qrImage = filter.outputImage else {
-                return nil
-            }
-            let scaleX = self.qrImage.frame.size.width / qrImage.extent.size.width
-            let scaleY = self.qrImage.frame.size.height / qrImage.extent.size.height
-            let transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
+               guard let qrImage = filter.outputImage else {
+                   return nil
+               }
+               let scaleX = self.qrImage.frame.size.width / qrImage.extent.size.width
+               let scaleY = self.qrImage.frame.size.height / qrImage.extent.size.height
+               let transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
 
-            if let output = filter.outputImage?.transformed(by: transform) {
-                return UIImage(ciImage: output)
-            }
-        }
-        return nil
-    }
+               if let output = filter.outputImage?.transformed(by: transform) {
+                   return UIImage(ciImage: output)
+               }
+           }
+           return nil
+       }
+   
 }

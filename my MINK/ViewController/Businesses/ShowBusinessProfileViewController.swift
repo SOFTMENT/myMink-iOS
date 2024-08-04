@@ -105,7 +105,7 @@ class ShowBusinessProfileViewController : UIViewController {
     
     func searchBtnClicked(searchText : String){
         ProgressHUDShow(text: "Searching...")
-        algoliaSearch(searchText: searchText, indexName: .POSTS, filters: "uid:\(FirebaseStoreManager.auth.currentUser!.uid)") { models in
+        algoliaSearch(searchText: searchText, indexName: .posts, filters: "uid:\(FirebaseStoreManager.auth.currentUser!.uid)") { models in
             
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
@@ -173,7 +173,7 @@ class ShowBusinessProfileViewController : UIViewController {
         }
         
         
-        getPostsBy(uid: self.businessModel!.businessId ?? "", accountType: .BUSINESS) { pModels, error in
+        getPostsBy(uid: self.businessModel!.businessId ?? "", accountType: .business) { pModels, error in
 
             if let error = error {
                 self.showError(error)
@@ -236,7 +236,6 @@ class ShowBusinessProfileViewController : UIViewController {
     
     @IBAction func messageBtnClicked(_ sender: Any) {
 
-        
         performSegue(withIdentifier: "showChatSeg", sender: nil)
     }
     

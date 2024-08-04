@@ -7,201 +7,167 @@
 
 import UIKit
 
-class BusinessesViewController : UIViewController {
-    
+class BusinessesViewController: UIViewController {
+
     @IBOutlet weak var myBusinessBtn: UIButton!
     @IBOutlet weak var backView: UIView!
-    
     @IBOutlet weak var searchTF: UITextField!
-    @IBOutlet weak var no_business_available: UILabel!
-    
+    @IBOutlet weak var noBusinessAvailableLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBtn: UIView!
-    var businessModels = Array<BusinessModel>()
-    var useBusinessModels = Array<BusinessModel>()
+    
+    var businessModels = [BusinessModel]()
+    var useBusinessModels = [BusinessModel]()
+    
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
+        setupUI()
+        setupTableView()
+        ProgressHUDShow(text: "")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadBusinesses()
+    }
+    
+    private func setupUI() {
         myBusinessBtn.layer.cornerRadius = 8
-        
         searchTF.delegate = self
-        
         backView.layer.cornerRadius = 8
         backView.isUserInteractionEnabled = true
         backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backBtnClicked)))
-        
         searchBtn.layer.cornerRadius = 8
         searchBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchBtnClicked)))
-        
+        backView.dropShadow()
+    }
+    
+    private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
-        
-        backView.dropShadow()
-        
-        ProgressHUDShow(text: "")
-       
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        loadBusinesses()
-    }
-    
-    func loadBusinesses(){
-        
-        self.getAllBusinesses { businesses, error in
+    private func loadBusinesses() {
+        getAllBusinesses { businesses, error in
             self.ProgressHUDHide()
             if let error = error {
                 self.showError(error)
-            }
-            else {
-                
-                self.businessModels.removeAll()
-                self.useBusinessModels.removeAll()
-                
-                self.useBusinessModels.append(contentsOf: businesses ?? [])
-                self.businessModels.append(contentsOf: businesses ?? [])
+            } else {
+                self.businessModels = businesses ?? []
+                self.useBusinessModels = self.businessModels
                 self.tableView.reloadData()
             }
         }
     }
     
     @IBAction func businessBtnClicked(_ sender: Any) {
-        self.ProgressHUDShow(text: "")
-        
-        self.getBusinessesBy(FirebaseStoreManager.auth.currentUser!.uid) { businessModel, error in
+        ProgressHUDShow(text: "")
+        getBusinessesBy(FirebaseStoreManager.auth.currentUser!.uid) { businessModel, error in
             self.ProgressHUDHide()
             if let businessModel = businessModel {
                 self.performSegue(withIdentifier: "showBusinessProfile", sender: businessModel)
-            }
-            else {
+            } else {
                 self.performSegue(withIdentifier: "addBusinessSeg", sender: nil)
             }
         }
-        
     }
     
-    @objc func searchBtnClicked(){
-        if let searchText = searchTF.text, !searchText.isEmpty {
-            self.searchEvents(searchText: searchText)
-        }
+    @objc private func searchBtnClicked() {
+        guard let searchText = searchTF.text, !searchText.isEmpty else { return }
+        searchEvents(searchText: searchText)
     }
     
-    func searchEvents(searchText : String){
+    private func searchEvents(searchText: String) {
         ProgressHUDShow(text: "Searching...")
-        algoliaSearch(searchText: searchText, indexName: .POSTS, filters: "isActive:true") { models in
-            
+        algoliaSearch(searchText: searchText, indexName: .posts, filters: "isActive:true") { models in
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
-                
-                self.useBusinessModels.removeAll()
-                self.useBusinessModels.append(contentsOf: models as? [BusinessModel] ?? [])
+                self.useBusinessModels = models as? [BusinessModel] ?? []
                 self.tableView.reloadData()
-                
             }
-            
-            
         }
     }
     
-    
-    
-    @objc func backBtnClicked(){
-        self.dismiss(animated: true)
+    @objc private func backBtnClicked() {
+        dismiss(animated: true)
     }
-    @objc func shareBusinessBtnClicked(myGes : MyGesture){
-        let businessModel = self.businessModels[myGes.index]
-        
+    
+    @objc private func shareBusinessBtnClicked(myGesture: MyGesture) {
+        let businessModel = businessModels[myGesture.index]
         if let shareURL = businessModel.shareLink, !shareURL.isEmpty {
-            self.shareImageAndVideo(postCell: nil, link: shareURL, postId: nil)
+            shareImageAndVideo(postCell: nil, link: shareURL, postId: nil)
         }
-        
     }
     
-    @objc func businessClicked(value : MyGesture){
+    @objc private func businessClicked(value: MyGesture) {
         let businessModel = useBusinessModels[value.index]
         performSegue(withIdentifier: "showBusinessProfile", sender: businessModel)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showBusinessProfile" {
-            if let VC = segue.destination as? ShowBusinessProfileViewController {
-                if let eventModel = sender as? BusinessModel {
-                    VC.businessModel = eventModel
-                }
-            }
+        if segue.identifier == "showBusinessProfile", let VC = segue.destination as? ShowBusinessProfileViewController, let businessModel = sender as? BusinessModel {
+            VC.businessModel = businessModel
         }
-        if segue.identifier == "addBusinessSeg" {
-            if let VC = segue.destination as? AddBusinessProfileViewController {
-                VC.delegate = self
-            }
+        if segue.identifier == "addBusinessSeg", let VC = segue.destination as? AddBusinessProfileViewController {
+            VC.delegate = self
         }
-        
     }
 }
 
-extension BusinessesViewController : UITableViewDelegate, UITableViewDataSource {
+extension BusinessesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.no_business_available.isHidden = useBusinessModels.count > 0 ? true : false
+        noBusinessAvailableLabel.isHidden = useBusinessModels.count > 0
         return useBusinessModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "businessCell", for: indexPath) as? BusinessTableViewCell {
-            
-            let businessModel = self.useBusinessModels[indexPath.row]
-            
-            cell.mView.layer.cornerRadius  = 12
-            cell.mView.dropShadow()
-            cell.mImage.layer.cornerRadius = 8
-            
-            cell.mView.isUserInteractionEnabled = true
-            let mGest = MyGesture(target: self, action: #selector(businessClicked(value: )))
-            mGest.index = indexPath.row
-            cell.mView.addGestureRecognizer(mGest)
-            
-            if let image = businessModel.profilePicture, !image.isEmpty {
-                cell.mImage.setImage(imageKey: image, placeholder: "profile-placeholder",width: 100, height: 100,shouldShowAnimationPlaceholder: true)
-            }
-            
-            
-            //Share Event
-            cell.mShare.isUserInteractionEnabled = true
-            let myGes = MyGesture(target: self, action: #selector(shareBusinessBtnClicked(myGes:)))
-            myGes.index = indexPath.row
-            cell.mShare.addGestureRecognizer(myGes)
-            
-            cell.mName.text = businessModel.name ?? ""
-            cell.mWebsite.text = businessModel.website ?? ""
-            cell.mCategory.text = businessModel.businessCategory ?? ""
-            
-            
-            
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "businessCell", for: indexPath) as? BusinessTableViewCell else {
+            return BusinessTableViewCell()
         }
         
-        return BusinessTableViewCell()
+        let businessModel = useBusinessModels[indexPath.row]
+        configureCell(cell, with: businessModel, at: indexPath.row)
         
+        return cell
     }
     
+    private func configureCell(_ cell: BusinessTableViewCell, with businessModel: BusinessModel, at index: Int) {
+        cell.mView.layer.cornerRadius = 12
+        cell.mView.dropShadow()
+        cell.mImage.layer.cornerRadius = 8
+        
+        let mGest = MyGesture(target: self, action: #selector(businessClicked(value:)))
+        mGest.index = index
+        cell.mView.addGestureRecognizer(mGest)
+        
+        if let image = businessModel.profilePicture, !image.isEmpty {
+            cell.mImage.setImage(imageKey: image, placeholder: "profile-placeholder", width: 100, height: 100, shouldShowAnimationPlaceholder: true)
+        }
+        
+        cell.mShare.isUserInteractionEnabled = true
+        let myGes = MyGesture(target: self, action: #selector(shareBusinessBtnClicked(myGesture:)))
+        myGes.index = index
+        cell.mShare.addGestureRecognizer(myGes)
+        
+        cell.mName.text = businessModel.name
+        cell.mWebsite.text = businessModel.website
+        cell.mCategory.text = businessModel.businessCategory
+    }
 }
-extension BusinessesViewController : UITextFieldDelegate {
+
+extension BusinessesViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // Get the current text, assuming it is a Swift string
         let currentText = textField.text ?? ""
-        
-        // Calculate the new text string after the change
-        guard let stringRange = Range(range, in: currentText) else {
-            return false
-        }
+        guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         
-        // Check if the updated text is empty
         if updatedText.isEmpty {
-            self.useBusinessModels.removeAll()
-            self.useBusinessModels.append(contentsOf: self.businessModels)
-            self.tableView.reloadData()
+            useBusinessModels = businessModels
+            tableView.reloadData()
         }
         
         return true
@@ -210,22 +176,18 @@ extension BusinessesViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == searchTF {
             if let searchText = textField.text, !searchText.isEmpty {
-                self.searchEvents(searchText: searchText)
+                searchEvents(searchText: searchText)
+            } else {
+                useBusinessModels = businessModels
+                tableView.reloadData()
             }
-            else {
-                self.useBusinessModels.removeAll()
-                self.useBusinessModels.append(contentsOf: self.businessModels)
-                self.tableView.reloadData()
-            }
-            
         }
         return true
     }
 }
 
-extension BusinessesViewController : ReloadTableViewDelegate {
+extension BusinessesViewController: ReloadTableViewDelegate {
     func reloadTableView() {
         loadBusinesses()
     }
-    
 }

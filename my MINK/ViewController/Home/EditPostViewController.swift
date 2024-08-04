@@ -5,75 +5,93 @@ import ATGMediaBrowser
 import AVKit
 import Combine
 import CropViewController
-import DSPhotoEditorSDK
 import MobileCoreServices
 import UIKit
 
 class EditPostViewController: UIViewController {
+
+    // MARK: - Outlets
     @IBOutlet var topView: UIView!
     @IBOutlet var mView: UIView!
     @IBOutlet var captionTV: UITextView!
     @IBOutlet var backView: UIView!
     @IBOutlet var editPostBtn: UIButton!
+
+    // MARK: - Properties
     var postModel: PostModel?
     var row: Int?
     var updatePostDelegate: UpdatePostDelegate?
 
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
-        guard let postModel = postModel else {
-            DispatchQueue.main.async {
-                self.dismiss(animated: true)
-            }
-            return
-        }
-
-        self.mView.clipsToBounds = true
-        self.mView.layer.cornerRadius = 20
-        self.mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-
-        self.topView.isUserInteractionEnabled = true
-        self.topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backBtnClicked)))
-
-        self.captionTV.layer.cornerRadius = 8
-        self.captionTV.layer.borderWidth = 1
-        self.captionTV.layer.borderColor = UIColor(red: 221 / 255, green: 221 / 255, blue: 221 / 255, alpha: 1).cgColor
-        self.captionTV.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        self.captionTV.text = "Write a caption here"
-        self.captionTV.textColor = UIColor.lightGray
-
-        self.captionTV.text = postModel.caption ?? ""
-
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
-        self.backView.isUserInteractionEnabled = true
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backBtnClicked)))
-
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard)))
-
-        self.editPostBtn.layer.cornerRadius = 8
+        super.viewDidLoad()
+        setupViews()
+        configurePostModel()
+        setupGestures()
     }
 
+    // MARK: - Setup Methods
+    private func setupViews() {
+        mView.clipsToBounds = true
+        mView.layer.cornerRadius = 20
+        mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+
+        captionTV.layer.cornerRadius = 8
+        captionTV.layer.borderWidth = 1
+        captionTV.layer.borderColor = UIColor(red: 221 / 255, green: 221 / 255, blue: 221 / 255, alpha: 1).cgColor
+        captionTV.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        captionTV.text = "Write a caption here"
+        captionTV.textColor = UIColor.lightGray
+
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
+
+        editPostBtn.layer.cornerRadius = 8
+    }
+
+    private func configurePostModel() {
+        guard let postModel = postModel else {
+            dismiss(animated: true)
+            return
+        }
+        captionTV.text = postModel.caption ?? ""
+    }
+
+    private func setupGestures() {
+        setupGesture(for: topView, action: #selector(backBtnClicked))
+        setupGesture(for: backView, action: #selector(backBtnClicked))
+
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
+    }
+
+    private func setupGesture(for view: UIView, action: Selector) {
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: action))
+    }
+
+    // MARK: - Action Methods
     @IBAction func editPostClicked(_: Any) {
         ProgressHUDShow(text: "")
-        FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(self.postModel!.postID ?? "123")
-            .setData(["caption": self.captionTV.text!], merge: true) { error in
+        guard let postID = postModel?.postID else { return }
+        FirebaseStoreManager.db.collection(Collections.posts.rawValue).document(postID)
+            .setData(["caption": captionTV.text!], merge: true) { error in
                 self.ProgressHUDHide()
                 if let error = error {
                     self.showError(error.localizedDescription)
                 } else {
-                    self.postModel!.caption = self.captionTV.text
+                    self.postModel?.caption = self.captionTV.text
                     self.updatePostDelegate?.updatePost(postModel: self.postModel!)
                     self.dismiss(animated: true)
                 }
             }
     }
 
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
 
-    @objc func backBtnClicked() {
+    @objc private func backBtnClicked() {
         dismiss(animated: true)
     }
 }

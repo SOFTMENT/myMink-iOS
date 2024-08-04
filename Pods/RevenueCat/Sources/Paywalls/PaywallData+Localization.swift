@@ -18,17 +18,49 @@ public extension PaywallData {
     /// - Returns: the ``PaywallData/LocalizedConfiguration-swift.struct``  to be used
     /// based on `Locale.current` or `Locale.preferredLocales`.
     var localizedConfiguration: LocalizedConfiguration {
-        let locales: [Locale] = [.current] + Locale.preferredLocales
-
-        return locales
-            .lazy
-            .compactMap(self.config(for:))
-            .first ?? self.fallbackLocalizedConfiguration
+        return self.localizedConfiguration(for: Self.localesOrderedByPriority)
     }
 
-    private var fallbackLocalizedConfiguration: LocalizedConfiguration {
+    // Visible for testing
+    internal func localizedConfiguration(for preferredLocales: [Locale]) -> LocalizedConfiguration {
+        // Allows us to search each locale in order of priority, both with the region and without.
+        // Example: [en_UK, es_ES] => [en_UK, en, es_ES, es]
+        let locales: [Locale] = preferredLocales.flatMap { [$0, $0.removingRegion].compactMap { $0 } }
+
+        Logger.verbose(Strings.paywalls.looking_up_localization(preferred: preferredLocales,
+                                                                search: locales))
+
+        let result: (locale: Locale, config: LocalizedConfiguration)? = locales
+            .lazy
+            .compactMap { locale in
+                self.config(for: locale)
+                    .map { (locale, $0) }
+            }
+            .first { _ in true } // See https://github.com/apple/swift/issues/55374
+
+        if let result {
+            Logger.verbose(Strings.paywalls.found_localization(result.locale))
+
+            return result.config
+        } else {
+            let (locale, fallback) = self.fallbackLocalizedConfiguration
+
+            Logger.warn(Strings.paywalls.fallback_localization(localeIdentifier: locale))
+
+            return fallback
+        }
+    }
+
+    // Visible for testing
+    /// - Returns: The list of locales that paywalls should try to search for.
+    /// Includes `Locale.current` and `Locale.preferredLanguages`.
+    internal static var localesOrderedByPriority: [Locale] {
+        return [.current] + Locale.preferredLocales
+    }
+
+    private var fallbackLocalizedConfiguration: (String, LocalizedConfiguration) {
         // This can't happen because `localization` has `@EnsureNonEmptyCollectionDecodable`.
-        guard let result = self.localization.first?.value else {
+        guard let result = self.localization.first else {
             fatalError("Corrupted data: localization is empty.")
         }
 
@@ -39,9 +71,9 @@ public extension PaywallData {
 
 // MARK: -
 
-private extension Locale {
+extension Locale {
 
-    static var preferredLocales: [Self] {
+    fileprivate static var preferredLocales: [Self] {
         return Self.preferredLanguages.map(Locale.init(identifier:))
     }
 

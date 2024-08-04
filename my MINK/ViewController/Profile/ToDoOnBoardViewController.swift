@@ -7,19 +7,23 @@
 
 import UIKit
 
-class ToDoOnBoardViewController : UIViewController {
+class ToDoOnBoardViewController: UIViewController {
     
     @IBOutlet weak var getStartedBtn: UIButton!
     @IBOutlet weak var mView: UIView!
-    
     @IBOutlet weak var mDesign: UIImageView!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+    
+    private func setupUI() {
         getStartedBtn.layer.cornerRadius = 8
         
-        self.mView.clipsToBounds = true
-        self.mView.layer.cornerRadius = 20
-        self.mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        mView.clipsToBounds = true
+        mView.layer.cornerRadius = 20
+        mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         mDesign.clipsToBounds = true
         mDesign.layer.cornerRadius = 20
@@ -27,10 +31,8 @@ class ToDoOnBoardViewController : UIViewController {
     }
     
     @IBAction func getStartedClicked(_ sender: Any) {
-        let standard = UserDefaults.standard
-        standard.setValue(true, forKey: "todo2ndTime")
-        
-        self.performSegue(withIdentifier: "todoDetailsSeg", sender: nil)
+        UserDefaults.standard.setValue(true, forKey: "todo2ndTime")
+        performSegue(withIdentifier: "todoDetailsSeg", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

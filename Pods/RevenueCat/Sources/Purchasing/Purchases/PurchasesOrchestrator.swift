@@ -42,8 +42,8 @@ final class PurchasesOrchestrator {
     @objc weak var delegate: PurchasesOrchestratorDelegate?
 
     private let _allowSharingAppStoreAccount: Atomic<Bool?> = nil
-    private let presentedOfferingIDsByProductID: Atomic<[String: String]> = .init([:])
-    private let presentedPaywall: Atomic<PaywallEvent.Data?> = nil
+    private let presentedOfferingContextsByProductID: Atomic<[String: PresentedOfferingContext]> = .init([:])
+    private let presentedPaywall: Atomic<PaywallEvent?> = nil
     private let purchaseCompleteCallbacksByProductID: Atomic<[String: PurchaseCompletedBlock]> = .init([:])
 
     private var appUserID: String { self.currentUserProvider.currentAppUserID }
@@ -74,6 +74,7 @@ final class PurchasesOrchestrator {
     // swiftlint:disable identifier_name
     var _storeKit2TransactionListener: Any?
     var _storeKit2StorefrontListener: Any?
+    var _diagnosticsSynchronizer: Any?
     // swiftlint:enable identifier_name
 
     @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
@@ -86,6 +87,11 @@ final class PurchasesOrchestrator {
     var storeKit2StorefrontListener: StoreKit2StorefrontListener {
         // swiftlint:disable:next force_cast
         return self._storeKit2StorefrontListener! as! StoreKit2StorefrontListener
+    }
+
+    @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+    var diagnosticsSynchronizer: DiagnosticsSynchronizerType? {
+        return self._diagnosticsSynchronizer as? DiagnosticsSynchronizerType
     }
 
     @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
@@ -108,7 +114,8 @@ final class PurchasesOrchestrator {
                      beginRefundRequestHelper: BeginRefundRequestHelper,
                      storeKit2TransactionListener: StoreKit2TransactionListenerType,
                      storeKit2StorefrontListener: StoreKit2StorefrontListener,
-                     storeMessagesHelper: StoreMessagesHelperType?
+                     storeMessagesHelper: StoreMessagesHelperType?,
+                     diagnosticsSynchronizer: DiagnosticsSynchronizerType?
     ) {
         self.init(
             productsManager: productsManager,
@@ -131,6 +138,8 @@ final class PurchasesOrchestrator {
             storeMessagesHelper: storeMessagesHelper
         )
 
+        self._diagnosticsSynchronizer = diagnosticsSynchronizer
+
         self._storeKit2TransactionListener = storeKit2TransactionListener
         self._storeKit2StorefrontListener = storeKit2StorefrontListener
 
@@ -152,10 +161,11 @@ final class PurchasesOrchestrator {
         #endif
 
         Task {
-            await storeKit2TransactionListener.set(delegate: self)
-            if systemInfo.storeKit2Setting == .enabledForCompatibleDevices {
-                await storeKit2TransactionListener.listenForTransactions()
-            }
+            await setSK2DelegateAndStartListening()
+        }
+
+        Task {
+            await syncDiagnosticsIfNeeded()
         }
     }
 
@@ -384,7 +394,7 @@ final class PurchasesOrchestrator {
 
         payment.applicationUsername = self.appUserID
 
-        self.cachePresentedOfferingIdentifier(package: package, productIdentifier: productIdentifier)
+        self.cachePresentedOfferingContext(package: package, productIdentifier: productIdentifier)
 
         self.productsManager.cache(StoreProduct(sk1Product: sk1Product))
 
@@ -472,7 +482,7 @@ final class PurchasesOrchestrator {
                 options.insert(try signedData.sk2PurchaseOption)
             }
 
-            self.cachePresentedOfferingIdentifier(package: package, productIdentifier: sk2Product.id)
+            self.cachePresentedOfferingContext(package: package, productIdentifier: sk2Product.id)
 
             result = try await self.purchase(sk2Product, options)
         } catch StoreKitError.userCancelled {
@@ -541,14 +551,14 @@ final class PurchasesOrchestrator {
         }
     }
 
-    func cachePresentedOfferingIdentifier(_ identifier: String, productIdentifier: String) {
-        self.presentedOfferingIDsByProductID.modify { $0[productIdentifier] = identifier }
+    func cachePresentedOfferingContext(_ context: PresentedOfferingContext, productIdentifier: String) {
+        self.presentedOfferingContextsByProductID.modify { $0[productIdentifier] = context }
     }
 
     func track(paywallEvent: PaywallEvent) {
         switch paywallEvent {
-        case let .impression(data):
-            self.cachePresentedPaywall(data)
+        case .impression:
+            self.cachePresentedPaywall(paywallEvent)
 
         case .close:
             self.clearPresentedPaywall()
@@ -875,12 +885,13 @@ extension PurchasesOrchestrator: StoreKit2TransactionListenerDelegate {
         _ listener: StoreKit2TransactionListenerType,
         updatedTransaction transaction: StoreTransactionType
     ) async throws {
+
         let storefront = await self.storefront(from: transaction)
         let subscriberAttributes = self.unsyncedAttributes
         let adServicesToken = await self.attribution.unsyncedAdServicesToken
         let transactionData: PurchasedTransactionData = .init(
             appUserID: self.appUserID,
-            presentedOfferingID: nil,
+            presentedOfferingContext: nil,
             unsyncedAttributes: subscriberAttributes,
             aadAttributionToken: adServicesToken,
             storefront: storefront,
@@ -1060,7 +1071,7 @@ private extension PurchasesOrchestrator {
                     self.createProductRequestData(with: receiptData) { productRequestData in
                         let transactionData: PurchasedTransactionData = .init(
                             appUserID: currentAppUserID,
-                            presentedOfferingID: nil,
+                            presentedOfferingContext: nil,
                             unsyncedAttributes: unsyncedAttributes,
                             storefront: productRequestData?.storefront,
                             source: .init(isRestore: isRestore, initiationSource: initiationSource)
@@ -1102,16 +1113,18 @@ private extension PurchasesOrchestrator {
                     return
                 }
 
+                let receipt = await self.encodedReceipt(transaction: transaction, jwsRepresentation: jwsRepresentation)
+
                 self.createProductRequestData(with: transaction.productIdentifier) { productRequestData in
                     let transactionData: PurchasedTransactionData = .init(
                         appUserID: currentAppUserID,
-                        presentedOfferingID: nil,
+                        presentedOfferingContext: nil,
                         unsyncedAttributes: unsyncedAttributes,
                         storefront: transaction.storefront,
                         source: .init(isRestore: isRestore, initiationSource: initiationSource)
                     )
 
-                    self.backend.post(receipt: .jws(jwsRepresentation),
+                    self.backend.post(receipt: receipt,
                                       productData: productRequestData,
                                       transactionData: transactionData,
                                       observerMode: self.observerMode) { result in
@@ -1168,13 +1181,13 @@ private extension PurchasesOrchestrator {
     func handlePurchasedTransaction(_ purchasedTransaction: StoreTransaction,
                                     storefront: StorefrontType?,
                                     restored: Bool) {
-        let offeringID = self.getAndRemovePresentedOfferingIdentifier(for: purchasedTransaction)
+        let offeringContext = self.getAndRemovePresentedOfferingContext(for: purchasedTransaction)
         let paywall = self.getAndRemovePresentedPaywall()
         let unsyncedAttributes = self.unsyncedAttributes
         self.attribution.unsyncedAdServicesToken { adServicesToken in
             let transactionData: PurchasedTransactionData = .init(
                 appUserID: self.appUserID,
-                presentedOfferingID: offeringID,
+                presentedOfferingContext: offeringContext,
                 presentedPaywall: paywall,
                 unsyncedAttributes: unsyncedAttributes,
                 aadAttributionToken: adServicesToken,
@@ -1224,13 +1237,14 @@ private extension PurchasesOrchestrator {
         self.offeringsManager.invalidateAndReFetchCachedOfferingsIfAppropiate(appUserID: self.appUserID)
     }
 
-    func cachePresentedOfferingIdentifier(package: Package?, productIdentifier: String) {
+    func cachePresentedOfferingContext(package: Package?, productIdentifier: String) {
         if let package = package {
-            self.cachePresentedOfferingIdentifier(package.offeringIdentifier, productIdentifier: productIdentifier)
+            self.cachePresentedOfferingContext(package.presentedOfferingContext,
+                                               productIdentifier: productIdentifier)
         }
     }
 
-    func cachePresentedPaywall(_ paywall: PaywallEvent.Data) {
+    func cachePresentedPaywall(_ paywall: PaywallEvent) {
         Logger.verbose(Strings.paywalls.caching_presented_paywall)
         self.presentedPaywall.value = paywall
     }
@@ -1240,17 +1254,17 @@ private extension PurchasesOrchestrator {
         self.presentedPaywall.value = nil
     }
 
-    func getAndRemovePresentedOfferingIdentifier(for productIdentifier: String) -> String? {
-        return self.presentedOfferingIDsByProductID.modify {
+    func getAndRemovePresentedOfferingContext(for productIdentifier: String) -> PresentedOfferingContext? {
+        return self.presentedOfferingContextsByProductID.modify {
             $0.removeValue(forKey: productIdentifier)
         }
     }
 
-    func getAndRemovePresentedOfferingIdentifier(for transaction: StoreTransaction) -> String? {
-        return self.getAndRemovePresentedOfferingIdentifier(for: transaction.productIdentifier)
+    func getAndRemovePresentedOfferingContext(for transaction: StoreTransaction) -> PresentedOfferingContext? {
+        return self.getAndRemovePresentedOfferingContext(for: transaction.productIdentifier)
     }
 
-    func getAndRemovePresentedPaywall() -> PaywallEvent.Data? {
+    func getAndRemovePresentedPaywall() -> PaywallEvent? {
         return self.presentedPaywall.getAndSet(nil)
     }
 
@@ -1309,11 +1323,13 @@ private extension PurchasesOrchestrator {
                 return
             }
 
+            let receipt = await self.encodedReceipt(transaction: transaction, jwsRepresentation: jwsRepresentation)
+
             self.handlePromotionalOffer(forProductDiscount: productDiscount,
                                         discountIdentifier: discountIdentifier,
                                         product: product,
                                         subscriptionGroupIdentifier: subscriptionGroupIdentifier,
-                                        receipt: .jws(jwsRepresentation)) { result in
+                                        receipt: receipt) { result in
                 completion(result)
             }
         }
@@ -1386,6 +1402,15 @@ private extension PurchasesOrchestrator {
 
 private extension PurchasesOrchestrator {
 
+    @available(iOS 15.0, tvOS 15.0, macOS 12.0, watchOS 8.0, *)
+    func encodedReceipt(transaction: StoreTransactionType, jwsRepresentation: String) async -> EncodedAppleReceipt {
+        if transaction.environment == .xcode {
+            return .sk2receipt(await self.transactionFetcher.fetchReceipt(containing: transaction))
+        } else {
+            return .jws(jwsRepresentation)
+        }
+    }
+
     static func logPurchase(product: StoreProduct, package: Package?, offer: PromotionalOffer.SignedData? = nil) {
         let string: PurchaseStrings = {
             switch (package, offer) {
@@ -1413,13 +1438,13 @@ extension PurchasesOrchestrator {
         _ initiationSource: ProductRequestData.InitiationSource
     ) async throws -> CustomerInfo {
         let storefront = await Storefront.currentStorefront
-        let offeringID = self.getAndRemovePresentedOfferingIdentifier(for: transaction)
+        let offeringContext = self.getAndRemovePresentedOfferingContext(for: transaction)
         let paywall = self.getAndRemovePresentedPaywall()
         let unsyncedAttributes = self.unsyncedAttributes
         let adServicesToken = await self.attribution.unsyncedAdServicesToken
         let transactionData: PurchasedTransactionData = .init(
             appUserID: self.appUserID,
-            presentedOfferingID: offeringID,
+            presentedOfferingContext: offeringContext,
             presentedPaywall: paywall,
             unsyncedAttributes: unsyncedAttributes,
             aadAttributionToken: adServicesToken,
@@ -1451,6 +1476,26 @@ extension PurchasesOrchestrator {
                                isRestore: isRestore,
                                initiationSource: initiationSource,
                                completion: completion)
+        }
+    }
+
+}
+
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+extension PurchasesOrchestrator {
+
+    private func syncDiagnosticsIfNeeded() async {
+        do {
+            try await diagnosticsSynchronizer?.syncDiagnosticsIfNeeded()
+        } catch {
+            Logger.error(Strings.diagnostics.could_not_synchronize_diagnostics(error: error))
+        }
+    }
+
+    private func setSK2DelegateAndStartListening() async {
+        await storeKit2TransactionListener.set(delegate: self)
+        if systemInfo.storeKit2Setting == .enabledForCompatibleDevices {
+            await storeKit2TransactionListener.listenForTransactions()
         }
     }
 

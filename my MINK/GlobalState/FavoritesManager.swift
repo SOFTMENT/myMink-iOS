@@ -30,6 +30,7 @@ class FavoritesManager : ObservableObject {
        }
     
     func setFavorites(with postID : String, isLiked : Bool) {
+    
         favoritePosts[postID] = isLiked
     }
     

@@ -10,118 +10,82 @@ class MembershipViewController: UIViewController {
     
     @IBOutlet weak var backView: UIView!
     @IBOutlet var crown: UIImageView!
-
     @IBOutlet var montView: UIView!
     @IBOutlet var yearView: UIView!
     @IBOutlet var lifetimeView: UIView!
-
     @IBOutlet weak var monthPrice: UILabel!
     @IBOutlet weak var yearlyPrice: UILabel!
     @IBOutlet weak var lifetimePrice: UILabel!
-    
-    
-    
     @IBOutlet var monthCheck: UIButton!
     @IBOutlet var yearCheck: UIButton!
     @IBOutlet var lifetimeCheck: UIButton!
     @IBOutlet var mostPopularView: UIButton!
-
     @IBOutlet var privacyPolicy: UILabel!
     @IBOutlet var termsOfUse: UILabel!
     @IBOutlet var startFreeBtn: UIButton!
+    
     var membershipType: PriceID?
-
-    
-    
     
     override var prefersStatusBarHidden: Bool {
         true
     }
 
     override func viewDidLoad() {
-        self.montView.layer.cornerRadius = 8
-        self.yearView.layer.cornerRadius = 8
-        self.lifetimeView.layer.cornerRadius = 8
+        super.viewDidLoad()
+        setupViews()
+        fetchSubscriptionInfo()
+    }
 
-        self.startFreeBtn.layer.cornerRadius = 8
-
-        self.mostPopularView.layer.cornerRadius = 6
-
-        self.montView.isUserInteractionEnabled = true
-        self.yearView.isUserInteractionEnabled = true
-        self.lifetimeView.isUserInteractionEnabled = true
-
-        self.montView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.monthClicked)))
-        self.montView.dropShadow()
-
-        self.yearView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.yearClicked)))
-        self.yearView.dropShadow()
-
-        self.lifetimeView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.lifetimeClicked)
-        ))
-        self.lifetimeView.dropShadow()
-
-        self.termsOfUse.isUserInteractionEnabled = true
-        self.termsOfUse.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.termsOfUseClicked)
-        ))
-
-        self.privacyPolicy.isUserInteractionEnabled = true
-        self.privacyPolicy.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.privacyPolicyClicked)
-        ))
-
-        self.backView.isUserInteractionEnabled = true
-        self.backView.dropShadow()
-        self.backView.layer.cornerRadius = 8
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.backBtnClicked)
-        ))
-
-        self.crown.isUserInteractionEnabled = true
-        self.crown.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.crownClicked)))
+    private func setupViews() {
+        [montView, yearView, lifetimeView, startFreeBtn, mostPopularView].forEach {
+            $0?.layer.cornerRadius = 8
+        }
+        mostPopularView.layer.cornerRadius = 6
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
         
-        self.ProgressHUDShow(text: "")
-        getSubscriptionInfo(planID: PriceID.MONTH.rawValue) { price, isActive in
+        [montView, yearView, lifetimeView].forEach {
+            $0?.isUserInteractionEnabled = true
+            $0?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlePlanSelection(_:))))
+            $0?.dropShadow()
+        }
+
+        termsOfUse.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(termsOfUseClicked)))
+        privacyPolicy.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(privacyPolicyClicked)))
+        backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backBtnClicked)))
+        crown.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(crownClicked)))
+
+        [termsOfUse, privacyPolicy, backView, crown].forEach {
+            $0?.isUserInteractionEnabled = true
+        }
+    }
+
+    private func fetchSubscriptionInfo() {
+        ProgressHUDShow(text: "")
+        
+        getSubscriptionInfo(planID: PriceID.month.rawValue) { [weak self] price, isActive in
+            guard let self = self else { return }
             self.ProgressHUDHide()
             self.montView.isHidden = !isActive
             self.monthPrice.text = "$\(price) per month"
-            
         }
         
-        getSubscriptionInfo(planID: PriceID.YEAR.rawValue) { price, isActive in
-           
+        getSubscriptionInfo(planID: PriceID.year.rawValue) { [weak self] price, isActive in
+            guard let self = self else { return }
             self.yearView.isHidden = !isActive
             self.yearlyPrice.text = "$\(price) per year"
-            
         }
         
-        getSubscriptionInfo(planID: PriceID.LIFETIME.rawValue) { price, isActive in
-          
+        getSubscriptionInfo(planID: PriceID.lifetime.rawValue) { [weak self] price, isActive in
+            guard let self = self else { return }
             self.lifetimeView.isHidden = !isActive
             self.lifetimePrice.text = "$\(price)"
-            
         }
-        
-        
-        
     }
-    
-   
-    
 
-    func showDropIn(clientTokenOrTokenizationKey: String, planID: PriceID) {
+    private func showDropIn(clientTokenOrTokenizationKey: String, planID: PriceID) {
         let request = BTDropInRequest()
-
-        let dropIn = BTDropInController(
-            authorization: clientTokenOrTokenizationKey,
-            request: request
-        ) { controller, result, error in
+        let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request) { controller, result, error in
             if let error = error {
                 DispatchQueue.main.async {
                     self.showError(error.localizedDescription)
@@ -131,109 +95,90 @@ class MembershipViewController: UIViewController {
             } else if let result = result, let paymentMethod = result.paymentMethod {
                 self.handlePaymentMethodSelected(paymentMethod, planID: planID)
             }
-
             controller.dismiss(animated: true, completion: nil)
         }
-        present(dropIn!, animated: true, completion: nil)
+        if let dropInController = dropIn {
+            present(dropInController, animated: true, completion: nil)
+        }
     }
 
-    func handlePaymentMethodSelected(_ paymentMethod: BTPaymentMethodNonce, planID: PriceID) {
-        self.ProgressHUDShow(text: "")
-        self.handleSubscriptionCreation(paymentMethodNonce: paymentMethod.nonce, planId: planID)
+    private func handlePaymentMethodSelected(_ paymentMethod: BTPaymentMethodNonce, planID: PriceID) {
+        ProgressHUDShow(text: "")
+        handleSubscriptionCreation(paymentMethodNonce: paymentMethod.nonce, planId: planID)
     }
-            
-    func handleSubscriptionCreation(paymentMethodNonce: String, planId: PriceID) {
     
-        self.callCreateSubscriptionFunction(nonce: paymentMethodNonce, planId: planId.rawValue) { success, error in
+    private func handleSubscriptionCreation(paymentMethodNonce: String, planId: PriceID) {
+        callCreateSubscriptionFunction(nonce: paymentMethodNonce, planId: planId.rawValue) { [weak self] success, error in
+            guard let self = self else { return }
+            self.ProgressHUDHide()
             if let error = error {
-                self.ProgressHUDHide()
                 self.showError(error)
             } else {
-                self.ProgressHUDHide()
-                
-                UserModel.data?.isFreeTrial = true
-                UserModel.data?.isDuringTrial = true
-                UserModel.data?.daysLeft = 3
-                UserModel.data?.status = "active"
-                UserModel.data?.isAccountActive = true
-                UserModel.data?.planID = planId.rawValue
-                
-                self.performSegue(withIdentifier: "successSeg", sender: nil)
+                self.updateUserModel(planId: planId)
+                self.gotoSuccessPage()
             }
         }
     }
 
-    @objc func crownClicked() {
+    private func updateUserModel(planId: PriceID) {
+        UserModel.data?.isFreeTrial = true
+        UserModel.data?.isDuringTrial = true
+        UserModel.data?.daysLeft = 3
+        UserModel.data?.status = "active"
+        UserModel.data?.isAccountActive = true
+        UserModel.data?.planID = planId.rawValue
+    }
+    
+    private func gotoSuccessPage() {
+        performSegue(withIdentifier: "successSeg", sender: nil)
+    }
+
+    @objc private func crownClicked() {
         performSegue(withIdentifier: "vipCodeSeg", sender: nil)
     }
 
-  
-    @objc func backBtnClicked(){
-        self.dismiss(animated: true)
+    @objc private func backBtnClicked() {
+        dismiss(animated: true)
     }
 
-    @objc func termsOfUseClicked() {
-        guard let url = URL(string: "https://mymink.com.au/terms-of-use/") else {
-            return
-        }
-        UIApplication.shared.open(url)
-    }
-
-    @objc func privacyPolicyClicked() {
-        guard let url = URL(string: "https://mymink.com.au/privacy-policy/") else {
-            return
-        }
-        UIApplication.shared.open(url)
-    }
-
-    @objc func monthClicked() {
-        self.setChecks(type: .MONTH)
-    }
-
-    @objc func yearClicked() {
-        self.setChecks(type: .YEAR)
-    }
-
-    @objc func lifetimeClicked() {
-        self.setChecks(type: .LIFETIME)
-    }
-
-    func setChecks(type: PriceID) {
-        self.membershipType = type
-        self.monthCheck.isSelected = false
-        self.yearCheck.isSelected = false
-        self.lifetimeCheck.isSelected = false
-
-        if type == .MONTH {
-            self.monthCheck.isSelected = true
-        } else if type == .YEAR {
-            self.yearCheck.isSelected = true
-        } else if type == .LIFETIME {
-            self.lifetimeCheck.isSelected = true
+    @objc private func termsOfUseClicked() {
+        if let url = URL(string: "https://mymink.com.au/terms-of-use/") {
+            UIApplication.shared.open(url)
         }
     }
 
-    @IBAction func startFreeTrialClicked(_: Any) {
-        if self.membershipType == nil {
+    @objc private func privacyPolicyClicked() {
+        if let url = URL(string: "https://mymink.com.au/privacy-policy/") {
+            UIApplication.shared.open(url)
+        }
+    }
+
+    @objc private func handlePlanSelection(_ sender: UITapGestureRecognizer) {
+        if sender.view == montView {
+            setChecks(type: .month)
+        } else if sender.view == yearView {
+            setChecks(type: .year)
+        } else if sender.view == lifetimeView {
+            setChecks(type: .lifetime)
+        }
+    }
+
+    private func setChecks(type: PriceID) {
+        membershipType = type
+        monthCheck.isSelected = (type == .month)
+        yearCheck.isSelected = (type == .year)
+        lifetimeCheck.isSelected = (type == .lifetime)
+    }
+
+    @IBAction private func startFreeTrialClicked(_ sender: Any) {
+        guard let membershipType = membershipType else {
             showSnack(messages: "Select membership")
-        } else {
-            self.brainTreePaymentProcess()
+            return
         }
+        brainTreePaymentProcess(for: membershipType)
     }
 
-    func gotoSuccessPage() {
-        DispatchQueue.main.async {
-            self.performSegue(withIdentifier: "successSeg", sender: nil)
-        }
-    }
-
-    func brainTreePaymentProcess() {
-       
-            self.showDropIn(
-                clientTokenOrTokenizationKey: ENV.ClientTokenOrTokenizationKey,
-                planID: self.membershipType!
-            )
-        
+    private func brainTreePaymentProcess(for planID: PriceID) {
+        showDropIn(clientTokenOrTokenizationKey: ENV.ClientTokenOrTokenizationKey, planID: planID)
     }
 }
-

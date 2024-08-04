@@ -11,8 +11,8 @@ class SuccessPostViewController: UIViewController {
         self.animationView.play()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-            Constants.selectedTabbarPosition = 0
-            self.beRootScreen(storyBoardName: .Tabbar, mIdentifier: .TABBARVIEWCONTROLLER)
+            Constants.selectedTabBarPosition = 0
+            self.beRootScreen(storyBoardName: .tabBar, mIdentifier: .tabBarViewController)
         }
     }
 }

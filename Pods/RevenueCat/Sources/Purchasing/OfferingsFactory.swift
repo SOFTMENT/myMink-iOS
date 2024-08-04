@@ -31,6 +31,8 @@ class OfferingsFactory {
 
         return Offerings(offerings: offerings,
                          currentOfferingID: data.currentOfferingId,
+                         placements: createPlacement(with: data.placements),
+                         targeting: data.targeting.flatMap { .init(revision: $0.revision, ruleId: $0.ruleId) },
                          response: data)
     }
 
@@ -68,6 +70,16 @@ class OfferingsFactory {
                      offeringIdentifier: offeringIdentifier)
     }
 
+    func createPlacement(
+        with data: OfferingsResponse.Placements?
+    ) -> Offerings.Placements? {
+        guard let data else {
+            return nil
+        }
+
+        return .init(fallbackOfferingId: data.fallbackOfferingId,
+                     offeringIdsByPlacement: data.offeringIdsByPlacement)
+    }
 }
 
 // @unchecked because:

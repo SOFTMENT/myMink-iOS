@@ -11,70 +11,83 @@ class MembershipDetailsViewController: UIViewController {
     @IBOutlet var unsubscribeBtn: UIButton!
 
     override func viewDidLoad() {
-        self.mView.clipsToBounds = true
-        self.mView.layer.cornerRadius = 20
-        self.mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-
-        if UserModel.data!.planID == PriceID.MONTH.rawValue {
-            self.membershipPrice.text = "$14.99/month"
-        } else if UserModel.data!.planID == PriceID.YEAR.rawValue {
-            self.membershipPrice.text = "$26.99/year"
-        }
-
-        self.status.text = UserModel.data!.status?.capitalized
-
-        if UserModel.data!.status == "active" {
-            self.status.textColor = UIColor(red: 92 / 255, green: 184 / 255, blue: 92 / 255, alpha: 1)
-            self.unsubscribeBtn.isHidden = false
-        } else {
-            self.status.textColor = .red
-            self.unsubscribeBtn.isHidden = true
-        }
-
-        self.unsubscribeBtn.layer.cornerRadius = 8
-
-        self.backView.isUserInteractionEnabled = true
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.backViewClicked)
-        ))
-
-        self.topView.isUserInteractionEnabled = true
-        self.topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backViewClicked)))
+        super.viewDidLoad()
+        setupUI()
+        configureMembershipDetails()
     }
 
-    @objc func backViewClicked() {
+    private func setupUI() {
+        mView.clipsToBounds = true
+        mView.layer.cornerRadius = 20
+        mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+
+        unsubscribeBtn.layer.cornerRadius = 8
+
+        backView.isUserInteractionEnabled = true
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
+        backView.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(backViewClicked)
+        ))
+
+        topView.isUserInteractionEnabled = true
+        topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backViewClicked)))
+    }
+
+    private func configureMembershipDetails() {
+        guard let userModel = UserModel.data else { return }
+
+        switch userModel.planID {
+        case PriceID.month.rawValue:
+            membershipPrice.text = "$14.99/month"
+        case PriceID.year.rawValue:
+            membershipPrice.text = "$26.99/year"
+        default:
+            membershipPrice.text = ""
+        }
+
+        status.text = userModel.status?.capitalized
+
+        if userModel.status == "active" {
+            status.textColor = UIColor(red: 92 / 255, green: 184 / 255, blue: 92 / 255, alpha: 1)
+            unsubscribeBtn.isHidden = false
+        } else {
+            status.textColor = .red
+            unsubscribeBtn.isHidden = true
+        }
+    }
+
+    @objc private func backViewClicked() {
         dismiss(animated: true)
     }
 
-    @IBAction func unsubscribeBtnClicked(_: Any) {
-        if let sub_id = UserModel.data!.subscriptionId {
-            let alert = UIAlertController(
-                title: "UNSUBSCRIBE",
-                message: "Are you sure you want to unsubscribe my MINK membership?",
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: "Unsubscribe", style: .destructive, handler: { _ in
-                self.ProgressHUDShow(text: "")
-                self.callCancelSubscriptionFunction(subId: sub_id) { success, error in
-                    DispatchQueue.main.async {
-                        self.ProgressHUDHide()
-                        if let sucess = success,sucess {
-                            self.unsubscribeBtn.isHidden = true
-                            self.status.textColor = .red
-                            self.status.text = "Cancelled"
-                            UserModel.data!.status = "Cancelled"
-                        } else {
-                            self.showError("Something went wrong. Please contact us.")
-                        }
+    @IBAction private func unsubscribeBtnClicked(_: Any) {
+        guard let sub_id = UserModel.data?.subscriptionId else { return }
+
+        let alert = UIAlertController(
+            title: "UNSUBSCRIBE",
+            message: "Are you sure you want to unsubscribe my MINK membership?",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Unsubscribe", style: .destructive, handler: { _ in
+            self.ProgressHUDShow(text: "")
+            self.callCancelSubscriptionFunction(subId: sub_id) { success, error in
+                DispatchQueue.main.async {
+                    self.ProgressHUDHide()
+                    if let success = success, success {
+                        self.unsubscribeBtn.isHidden = true
+                        self.status.textColor = .red
+                        self.status.text = "Cancelled"
+                        UserModel.data?.status = "Cancelled"
+                    } else {
+                        self.showError("Something went wrong. Please contact us.")
                     }
                 }
-            }))
+            }
+        }))
 
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            present(alert, animated: true)
-        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(alert, animated: true)
     }
 }

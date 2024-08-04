@@ -48,6 +48,8 @@ class UserModel: NSObject, Codable{
     var isDuringTrial : Bool?
     var livestreamingURL : String?
     var isAccountDeactivate : Bool?
+    var haveBlueTick : Bool?
+    var haveBlackTick : Bool?
     static func clearUserData() {
        userData = nil
     }

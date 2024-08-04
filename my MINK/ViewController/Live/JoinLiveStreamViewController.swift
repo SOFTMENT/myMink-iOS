@@ -82,8 +82,8 @@ class JoinLiveStreamViewController: UIViewController, AVCaptureMetadataOutputObj
                     self.dismiss(animated: true)
                 } else {
                     self.beRootScreen(
-                        storyBoardName: StoryBoard.Tabbar,
-                        mIdentifier: Identifier.TABBARVIEWCONTROLLER
+                        storyBoardName: StoryBoard.tabBar,
+                        mIdentifier: Identifier.tabBarViewController
                     )
                 }
             }
@@ -212,8 +212,8 @@ class JoinLiveStreamViewController: UIViewController, AVCaptureMetadataOutputObj
             liveChatModel.message = sMessage
             liveChatModel.name = UserModel.data!.fullName
             liveChatModel.profile = UserModel.data!.profilePic
-            let ref = FirebaseStoreManager.db.collection(Collections.LIVESTREAMINGS.rawValue).document(self.channelName!)
-                .collection(Collections.CHATS.rawValue)
+            let ref = FirebaseStoreManager.db.collection(Collections.liveStreamings.rawValue).document(self.channelName!)
+                .collection(Collections.chats.rawValue)
             liveChatModel.id = ref.document().documentID
 
             try? ref.document(liveChatModel.id!).setData(from: liveChatModel)
@@ -222,7 +222,7 @@ class JoinLiveStreamViewController: UIViewController, AVCaptureMetadataOutputObj
 
     func registerLikeListener(channelName: String, isAdmin: Bool) {
         if isAdmin {
-            let documentReference = FirebaseStoreManager.db.collection(Collections.LIVESTREAMINGS.rawValue).document(channelName)
+            let documentReference = FirebaseStoreManager.db.collection(Collections.liveStreamings.rawValue).document(channelName)
             documentReference.addSnapshotListener { documentSnapshot, error in
                 guard let document = documentSnapshot else {
                     print("Error fetching document: \(error!)")
@@ -245,8 +245,8 @@ class JoinLiveStreamViewController: UIViewController, AVCaptureMetadataOutputObj
     }
 
     func registerChatListener(channelName: String) {
-        self.chatListener = FirebaseStoreManager.db.collection(Collections.LIVESTREAMINGS.rawValue).document(channelName)
-            .collection(Collections.CHATS.rawValue).order(by: "time", descending: true)
+        self.chatListener = FirebaseStoreManager.db.collection(Collections.liveStreamings.rawValue).document(channelName)
+            .collection(Collections.chats.rawValue).order(by: "time", descending: true)
             .limit(to: 50)
             .addSnapshotListener { snapshot, error in
                 self.liveChatModels.removeAll()
@@ -267,8 +267,8 @@ class JoinLiveStreamViewController: UIViewController, AVCaptureMetadataOutputObj
     }
 
     func registerCountListener(channelName: String) {
-        self.listener = FirebaseStoreManager.db.collection(Collections.LIVESTREAMINGS.rawValue).document(channelName)
-            .collection(Collections.AUDIENCES.rawValue)
+        self.listener = FirebaseStoreManager.db.collection(Collections.liveStreamings.rawValue).document(channelName)
+            .collection(Collections.audiences.rawValue)
             .addSnapshotListener { snapshot, error in
                 if let snapshot = snapshot, !snapshot.isEmpty {
                     self.audienceCounter.text = "\(snapshot.count)"
@@ -352,7 +352,7 @@ class JoinLiveStreamViewController: UIViewController, AVCaptureMetadataOutputObj
         self.hearts.play()
 
         if !self.isAdmin {
-            FirebaseStoreManager.db.collection(Collections.LIVESTREAMINGS.rawValue).document(self.channelName!)
+            FirebaseStoreManager.db.collection(Collections.liveStreamings.rawValue).document(self.channelName!)
                 .setData(["likeCount": FieldValue.increment(Int64(1))], merge: true)
         }
     }
@@ -436,7 +436,7 @@ class JoinLiveStreamViewController: UIViewController, AVCaptureMetadataOutputObj
             joinSuccess: { _, uid, _ in
 
                 if self.isAdmin {
-                    FirebaseStoreManager.db.collection(Collections.LIVESTREAMINGS.rawValue)
+                    FirebaseStoreManager.db.collection(Collections.liveStreamings.rawValue)
                         .document(FirebaseStoreManager.auth.currentUser!.uid).setData(
                             ["isOnline": true, "agoraUID": uid],
                             merge: true

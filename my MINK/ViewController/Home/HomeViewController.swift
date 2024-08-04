@@ -1,7 +1,4 @@
-// Copyright © 2023 SOFTMENT. All rights reserved.
-
 import ActiveLabel
-
 import Amplify
 import ATGMediaBrowser
 import AVFoundation
@@ -17,7 +14,8 @@ import FirebaseFirestore
 
 // MARK: - HomeViewController
 class HomeViewController: UIViewController {
-    let refreshControl = UIRefreshControl()
+
+    // MARK: - Outlets
     @IBOutlet var headerView: UIView!
     @IBOutlet var noPostsAvailable: UILabel!
     @IBOutlet var mName: UILabel!
@@ -32,16 +30,15 @@ class HomeViewController: UIViewController {
     @IBOutlet var filterBtn: UIView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var mProfilePic: SDAnimatedImageView!
+
+    // MARK: - Properties
+    let refreshControl = UIRefreshControl()
     var postSelectedIndex = 0
     var cell: PostTableViewCell!
     var postModels = [PostModel]()
- 
     var postDocumentSnapshot: DocumentSnapshot?
     var pageSize = 10
     var dataMayContinue = true
-    let textView = UITextView(frame: CGRect.zero)
-    
-    var tabbar: TabbarViewController?
     var uniquePostIDs: Set<String> = Set()
     var activePlayers: [AVPlayer] = []
     var playerPool: PlayerPool!
@@ -52,789 +49,290 @@ class HomeViewController: UIViewController {
     var weatherModel : WeatherModel?
     private var cancellables = Set<AnyCancellable>()
     var weatherTimer: Timer?
-    var feedListener: ListenerRegistration?
-    
+
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
-        guard UserModel.data != nil,  let user = FirebaseStoreManager.auth.currentUser  else {
-            DispatchQueue.main.async {
-                self.logoutPlease()
-            }
+        super.viewDidLoad()
+        setupInitialViews()
+        setupLocationManager()
+        setupRefreshControl()
+        setupProfilePic()
+        setupAddView()
+        setupNotificationView()
+        setupMessageView()
+        setupScannerView()
+        setupFilterButton()
+        setupSearchTextField()
+        setupTableView()
+        setupPlayerPool()
+        startWeatherTimer()
+        setupObservers()
+        setupCountryModel()
+        
+        if haveBlueTick() {
+            getFollowingPosts()
+        } else {
+            getAllPosts()
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateProfilePicAndName()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        pauseAllPlayers()
+    }
+
+    private func setupCountryModel(){
+        let jsonData = Data(Constants.countryJSONString.utf8)
+              let decoder = JSONDecoder()
+              do {
+                  Constants.countryModels = try decoder.decode([CountryModel].self, from: jsonData)
+                  
+              } catch {
+                  Constants.countryModels = []
+                  
+              }
+    }
+    
+    // MARK: - Setup Methods
+    private func setupInitialViews() {
+        guard UserModel.data != nil, FirebaseStoreManager.auth.currentUser != nil else {
+            DispatchQueue.main.async { self.logoutPlease() }
             return
         }
+    }
 
-        
+    private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        
-        let jsonData = Data(Constants.countryJSONString.utf8)
-        let decoder = JSONDecoder()
-        do {
-            Constants.countryModels = try decoder.decode([CountryModel].self, from: jsonData)
-            
-        } catch {
-            Constants.countryModels = []
-            
-        }
-        
-        self.tableView.contentInsetAdjustmentBehavior = .never
-        
-        self.mProfilePic.makeRounded()
-        
-        self.addView.layer.cornerRadius = 8
-        tempView.layer.cornerRadius = 8
-        self.notificationView.layer.cornerRadius = 8
-        
-        self.messageView.layer.cornerRadius = 8
-        self.messageView.isUserInteractionEnabled = true
-        self.messageView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.messageViewClicked)
-        ))
-        
-        self.scannerView.layer.cornerRadius = 8
-        self.scannerView.isUserInteractionEnabled = true
-        self.scannerView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.scannerViewClicked)
-        ))
-        
-        self.filterBtn.layer.cornerRadius = 8
-        self.filterBtn.isUserInteractionEnabled = true
-        self.filterBtn.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.searchBtnClicked)
-        ))
-        
-       
-        self.searchTF.layer.cornerRadius = 8
-        self.searchTF.layer.borderColor = UIColor.lightGray.cgColor
-        self.searchTF.layer.borderWidth = 0.4
-        self.searchTF.attributedPlaceholder = NSAttributedString(
-            string: self.searchTF.placeholder ?? "",
-            attributes: [
-                NSAttributedString.Key
-                    .foregroundColor: UIColor(
-                        red: 225 / 255,
-                        green: 225 / 255,
-                        blue: 225 / 255,
-                        alpha: 1
-                    )
-            ]
-        )
-        self.searchTF.setLeftPaddingPoints(16)
-        self.searchTF.setRightPaddingPoints(10)
-        self.searchTF.setLeftIcons(icon: UIImage(systemName: "magnifyingglass")!)
-        self.searchTF.delegate = self
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.showsVerticalScrollIndicator = false
-        self.scrollView.showsVerticalScrollIndicator = false
-        
-        // AddPost
-        self.addView.isUserInteractionEnabled = true
-        self.addView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.addPostClicked)))
-        
+    }
+
+    private func setupRefreshControl() {
         let refreshView = UIView(frame: CGRect(x: 0, y: 70, width: 0, height: 0))
-        self.tableView.addSubview(refreshView)
-        
-        self.refreshControl.attributedTitle = NSAttributedString(string: "")
-        self.refreshControl.tintColor = .white
-        self.refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-        refreshView.addSubview(self.refreshControl)
-
-        
-        self.playerPool = PlayerPool(playerCount: 6)
-        
-            
-        self.getDeletedPostId { postID in
-            if let index = self.postModels.firstIndex(where: { postModel in
-                if postModel.postID == postID {
-                    return true
-                }
-                return false
-            }) {
-                self.postModels.remove(at: index)
-                
-                self.tableView.reloadData()
-            }
-            
-            
-        }
-        
-        startWeatherTimer()
-        FavoritesManager.shared.favoriteChanged
-                   .sink { [weak self] postID in
-                       self?.updateFavoriteButton(for: postID)
-                   }
-                   .store(in: &cancellables)
-        
-        SavedManager.shared.saveChanged
-                   .sink { [weak self] postID in
-                       self?.updateSavedButton(for: postID)
-                   }
-                   .store(in: &cancellables)
-        
-
-        CommentManager.shared.commentChanged
-                    .sink { [weak self] postID in
-                        self?.updateCommentCount(for: postID)
-                    }
-                    .store(in: &cancellables)
-        
-        
-        FollowingManager.shared.followingChanged
-                    .sink { [weak self] uid in
-                        self?.followingChanged(uid: uid)
-                    }
-                    .store(in: &cancellables)
-        
-      
-        
-        
-        getCount(for: user.uid, countType: Collections.FOLLOW.rawValue) { count, error in
-            if let count = count, count >= 10 {
-                Constants.hasBlueTick = true
-                self.getFollowingPosts()
-            
-            }
-            else {
-                Constants.hasBlueTick = false
-                self.getAllPosts()
-            }
-          
-        }
-        
-       followersCountListen(userId: user.uid)
-        
-   
-        listenForNewPosts()
-        
-        
-        
+        tableView.addSubview(refreshView)
+        refreshControl.attributedTitle = NSAttributedString(string: "")
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshView.addSubview(refreshControl)
     }
 
-    
-    func followersCountListen(userId : String){
-        self.followerListner = FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(userId).collection(Collections.FOLLOW.rawValue).addSnapshotListener {snapshot, error in
-            if let snapshot = snapshot, !snapshot.isEmpty, snapshot.documents.count >= Constants.BLUE_TICK_REQUIREMENT {
-                if !Constants.hasBlueTick {
-                    Constants.hasBlueTick = true
-                    self.getFollowingPosts()
-                }
-               
-            }
-            else {
-                if Constants.hasBlueTick {
-                    Constants.hasBlueTick = false
-                    self.getAllPosts()
-                }
-               
-            }
-        }
-        
-    }
-    
-    
-    func followingChanged(uid : String?){
-        if let uid = uid {
-            postModels.removeAll { $0.uid == uid }
-            self.tableView.reloadData()
-        }
-        else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                self.refresh()
-            }
-        }
-    }
-  
-    func getFollowingPosts(shouldScrollToTop : Bool  = false) {
-            showProgressHUDIfNeeded()
-            let userId = Auth.auth().currentUser?.uid ?? ""
-            let feedRef = FirebaseStoreManager.db.collection(Collections.FEEDS.rawValue).document(userId)
-
-            var query: Query = feedRef.collection("postIds")
-                .order(by: "postCreateDate", descending: true)
-                .limit(to: pageSize)
-
-            if let lastDocument = postDocumentSnapshot {
-               
-                query = query.start(afterDocument: lastDocument)
-            }
-
-            query.getDocuments { [weak self] snapshot, error in
-                guard let self = self else { return }
-                self.refreshControl.endRefreshing()
-                if shouldScrollToTop {
-                    self.scrollToTop(animated: true)
-                }
-                if let error = error {
-                    self.handleError(error)
-                 
-                    return
-                }
-
-                guard let snapshot = snapshot, !snapshot.isEmpty else {
-                    self.ProgressHUDHide()
-                    
-                    self.stopSpinner()
-                    return
-                }
-
-                self.postDocumentSnapshot = snapshot.documents.last
-              
-                let postIds = snapshot.documents.map { $0.documentID }
-            
-
-                self.fetchPosts(postIds: postIds, documents: snapshot.documents)
-            }
-        }
-
-    func fetchPosts(postIds: [String], documents : [QueryDocumentSnapshot]) {
-            let db = Firestore.firestore()
-            let query = db.collection(Collections.POSTS.rawValue)
-                .whereField("postID", in: postIds)
-                .whereField("isActive", isEqualTo: true)
-                .whereField("isPromoted", isEqualTo: true)
-                .order(by: "postCreateDate", descending: true)
-
-     
-    
-            query.getDocuments { snapshot, error in
-                if let error = error {
-                    self.handleError(error)
-                    return
-                }
-                
-                guard let snapshot = snapshot,!snapshot.isEmpty else {
-                    self.stopSpinner()
-                    return
-                }
-            
-                self.processSnapshot(snapshot, documents: documents)
- 
-            }
-        }
-
-   
-    func startWeatherTimer() {
-           weatherTimer = Timer.scheduledTimer(timeInterval: 1800, target: self,
-                                               selector: #selector(fetchWeatherUpdate),
-                                               userInfo: nil, repeats: true)
-       }
-    
-    @objc func fetchWeatherUpdate() {
-          locationManager.requestLocation() // Request location update
-    }
-    private func updateFavoriteButton(for postID: String) {
-        guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
-            let indexPath = IndexPath(row: index, section: 0)
-        if let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell {
-            cell.updateFavoriteButton(isFromCell: false)
-            }
-        }
-    
-    private func updateSavedButton(for postID: String) {
-        guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
-            let indexPath = IndexPath(row: index, section: 0)
-        if let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell {
-            cell.updateSavedButton(isFromCell: false)
-            }
-        }
-    
-    
-    private func updateCommentCount(for postID: String) {
-        guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
-            let indexPath = IndexPath(row: index, section: 0)
-        if let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell {
-                cell.updateCommentCount(postID: postID)
-            }
-        }
-    
-    func scrollToTop(animated: Bool) {
-        tableView.setContentOffset(.zero, animated: animated)
+    private func setupProfilePic() {
+        mProfilePic.makeRounded()
     }
 
-    
-    override func shouldPerformSegue(withIdentifier _: String, sender _: Any?) -> Bool {
-        true
+    private func setupAddView() {
+        addView.layer.cornerRadius = 8
+        addView.isUserInteractionEnabled = true
+        addView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addPostClicked)))
     }
-    
-    func performDynamicLinkSegue() {
-        if let data = Constants.deeplink_data {
-            self.routeBasedOnParams(data)
-        }
-    }
-    
-    func routeBasedOnParams(_ params: [String: AnyObject]) {
-            Constants.deeplink_data = nil
-            if let linkType = params["~feature"] as? String {
-                switch linkType {
-                case BranchIOFeature.LIVESTREAM.rawValue :
-                    handleLivestreamLink(params)
-                    
-                case BranchIOFeature.POST.rawValue :
-                    handleUserLink(params)
-                   
-                default:
-                    print("Unknown link type")
-                }
-            }
-    }
-    
-    func handleLivestreamLink(_ params: [String: AnyObject]) {
-        if let uid = params["uid"] as? String {
-            if uid == FirebaseStoreManager.auth.currentUser!.uid {
-                self.startLiveStream(shouldShowProgress: false)
-            }
-            else {
-                self.getLivestreamingByUid(uid: uid) { liveModel in
-                    if let liveModel = liveModel, let isOnline = liveModel.isOnline, isOnline {
-                        self.performSegue(withIdentifier: "joinLiveStreamSeg", sender: liveModel)
-                    }
-                    else {
-                        self.showMessage(title: "Livestraming", message: "Host is not live.", shouldDismiss: false)
-                    }
-                }
-            }
-        }
-    }
-    
-    func handleUserLink(_ params : [String : AnyObject]) {
-        if let uid = params["uid"] as? String, !uid.isEmpty {
-          
-            getUserDataByID(uid: uid) { userModel, _ in
-                
-                if let userModel = userModel {
-                    DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "homeViewUserProfileSeg", sender: userModel)
-                    }
-                }
-            }
-        }
-    }
-    
-    @objc func tempViewClicked(){
-        
-        if hasMembership() {
-            if let weatherModel = self.weatherModel {
-                self.performSegue(withIdentifier: "weatherReportSeg", sender: weatherModel)
-            }
-        }
-        else {
-            performSegue(withIdentifier: "membershipSeg", sender: nil)
-        }
-        
-        
-    }
-    
-    
-    @objc func searchBtnClicked() {
-        
-        
-        if hasMembership() {
-            let sSearch = self.searchTF.text
-            if sSearch != "" {
-                self.searchStart(searchText: sSearch!)
-            }
-        }
-        else {
-            performSegue(withIdentifier: "membershipSeg", sender: nil)
-        }
-    }
-    
-    func searchStart(searchText: String) {
 
-        ProgressHUDShow(text: "Searching...")
-        algoliaSearch(searchText: searchText, indexName: .POSTS, filters: "") { models in
-            
-            DispatchQueue.main.async {
-                self.ProgressHUDHide()
-                
-                self.searchTF.text = ""
-                self.performSegue(withIdentifier: "viewPostsSeg", sender: models as? [PostModel] ?? [])
-                
-            }
-            
-            
-        }
-        
+    private func setupNotificationView() {
+        notificationView.layer.cornerRadius = 8
     }
-    
-    @objc func scannerViewClicked() {
-        if hasMembership() {
-            performSegue(withIdentifier: "qrcodeSeg", sender: nil)
-        }
-        else {
-            performSegue(withIdentifier: "membershipSeg", sender: nil)
-        }
-        
+
+    private func setupMessageView() {
+        messageView.layer.cornerRadius = 8
+        messageView.isUserInteractionEnabled = true
+        messageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(messageViewClicked)))
     }
-    
-    @objc func refresh() {
-        let indexPathsToDelete = (0 ..< self.postModels.count).map { IndexPath(row: $0, section: 0) }
-        self.postModels.removeAll()
-        self.tableView.deleteRows(at: indexPathsToDelete, with: .automatic)
-        
-        self.uniquePostIDs.removeAll()
-        self.postDocumentSnapshot = nil
-        
-        if Constants.hasBlueTick {
-            self.getFollowingPosts(shouldScrollToTop: true)
-        }
-        else {
-            self.getAllPosts(shouldScrollToTop: true)
-        }
-      
+
+    private func setupScannerView() {
+        scannerView.layer.cornerRadius = 8
+        scannerView.isUserInteractionEnabled = true
+        scannerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(scannerViewClicked)))
     }
-    
-    override func viewWillAppear(_: Bool) {
+
+    private func setupFilterButton() {
+        filterBtn.layer.cornerRadius = 8
+        filterBtn.isUserInteractionEnabled = true
+        filterBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchBtnClicked)))
+    }
+
+    private func setupSearchTextField() {
+        searchTF.layer.cornerRadius = 8
+        searchTF.layer.borderColor = UIColor.lightGray.cgColor
+        searchTF.layer.borderWidth = 0.4
+        searchTF.attributedPlaceholder = NSAttributedString(string: searchTF.placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 225 / 255, green: 225 / 255, blue: 225 / 255, alpha: 1)])
+        searchTF.setLeftPaddingPoints(16)
+        searchTF.setRightPaddingPoints(10)
+        searchTF.setLeftIcons(icon: UIImage(systemName: "magnifyingglass")!)
+        searchTF.delegate = self
+    }
+
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        tableView.contentInsetAdjustmentBehavior = .never
+    }
+
+    private func setupPlayerPool() {
+        playerPool = PlayerPool(playerCount: 6)
+    }
+
+    private func startWeatherTimer() {
+        weatherTimer = Timer.scheduledTimer(timeInterval: 1800, target: self, selector: #selector(fetchWeatherUpdate), userInfo: nil, repeats: true)
+    }
+
+    private func setupObservers() {
+        FavoritesManager.shared.favoriteChanged.sink { [weak self] postID in
+            self?.updateFavoriteButton(for: postID)
+        }.store(in: &cancellables)
+
+        SavedManager.shared.saveChanged.sink { [weak self] postID in
+            self?.updateSavedButton(for: postID)
+        }.store(in: &cancellables)
+
+        CommentManager.shared.commentChanged.sink { [weak self] postID in
+            self?.updateCommentCount(for: postID)
+        }.store(in: &cancellables)
+
+        FollowingManager.shared.followingChanged.sink { [weak self] uid in
+            self?.followingChanged(uid: uid)
+        }.store(in: &cancellables)
+    }
+
+    // MARK: - Helper Methods
+    private func updateProfilePicAndName() {
         if let userModel = UserModel.data {
             if let path = userModel.profilePic, !path.isEmpty {
-                self.mProfilePic.setImage(
-                    imageKey: path,
-                    placeholder: "profile-placeholder",
-                    width: 200,
-                    height: 200,
-                    shouldShowAnimationPlaceholder: true
-                )
+                mProfilePic.setImage(imageKey: path, placeholder: "profile-placeholder", width: 200, height: 200, shouldShowAnimationPlaceholder: true)
             }
-            self.mName.text = userModel.fullName ?? ""
+            mName.text = userModel.fullName ?? ""
         }
     }
-    
-    func listenForNewPosts() {
-        FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).order(by: "postCreateDate", descending: true).whereField("isActive", isEqualTo: true).whereField("isPromoted", isEqualTo: true).addSnapshotListener { (querySnapshot, error) in
-                if let error = error {
-                    print("Error listening for document changes: \(error)")
-                    return
-                }
-                
-                guard let snapshot = querySnapshot else { return }
-                
-            snapshot.documentChanges.forEach { diff in
-                    if diff.type == .added {
-                        let indexPathsToDelete = (0 ..< self.postModels.count).map { IndexPath(row: $0, section: 0) }
-                        self.postModels.removeAll()
-                        self.tableView.deleteRows(at: indexPathsToDelete, with: .automatic)
-                        
-                        self.uniquePostIDs.removeAll()
-                        self.postDocumentSnapshot = nil
-                        
-                        if Constants.hasBlueTick {
-                            self.getFollowingPosts()
-                        }
-                        else {
-                            self.getAllPosts()
-                        }
-                    }
-                }
-            
-          
-            }
+
+    private func updateFavoriteButton(for postID: String) {
+        guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
+        let indexPath = IndexPath(row: index, section: 0)
+        if let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell {
+            cell.updateFavoriteButton(isFromCell: false, postModel: postModels[index])
+        }
     }
-    
-    func getAllPosts(shouldScrollToTop : Bool  = false) {
-        self.showProgressHUDIfNeeded()
-        var query = FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).order(by: "postCreateDate", descending: true).whereField("isActive", isEqualTo: true).whereField("isPromoted", isEqualTo: true)
-        query = self.applyPaginationIfNeeded(to: query)
-        
-        query.limit(to: self.pageSize).getDocuments { [weak self] snapshot, error in
-            guard let self = self else { return }
-            self.refreshControl.endRefreshing()
-            if shouldScrollToTop {
-                self.scrollToTop(animated: true)
-            }
-          
-            
+
+    private func updateSavedButton(for postID: String) {
+        guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
+        let indexPath = IndexPath(row: index, section: 0)
+        if let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell {
+            cell.updateSavedButton(isFromCell: false, postModel: postModels[index])
+        }
+    }
+
+    private func updateCommentCount(for postID: String) {
+        guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
+        let indexPath = IndexPath(row: index, section: 0)
+        if let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell {
+            cell.updateCommentCount(postID: postID)
+        }
+    }
+
+    private func fetchPosts(postIds: [String], documents: [QueryDocumentSnapshot]) {
+        let db = Firestore.firestore()
+        let query = db.collection(Collections.posts.rawValue)
+            .whereField("postID", in: postIds)
+            .whereField("isActive", isEqualTo: true)
+            .whereField("isPromoted", isEqualTo: true)
+            .order(by: "postCreateDate", descending: true)
+
+        query.getDocuments { snapshot, error in
             if let error = error {
                 self.handleError(error)
                 return
             }
-            
             guard let snapshot = snapshot, !snapshot.isEmpty else {
                 self.stopSpinner()
-                self.ProgressHUDHide()
                 return
             }
-            
-            self.processSnapshot(snapshot, documents: snapshot.documents)
+            self.processSnapshot(snapshot, documents: documents)
         }
     }
-    
-    func cleanPostModels(){
-        self.postModels.removeAll()
-        self.tableView.reloadData()
-    }
-    
-    func showProgressHUDIfNeeded() {
-        if self.postDocumentSnapshot == nil {
-            ProgressHUDShow(text: "")
-        }
-    }
-    
-    func applyPaginationIfNeeded(to query: FirebaseFirestore.Query) -> FirebaseFirestore.Query {
-        if let documentSnapshot = postDocumentSnapshot {
-            return query.start(afterDocument: documentSnapshot)
-        }
-        return query
-    }
-    
-    func processSnapshot(_ snapshot: QuerySnapshot, documents : [QueryDocumentSnapshot]) {
+
+    private func processSnapshot(_ snapshot: QuerySnapshot, documents: [QueryDocumentSnapshot]) {
         self.postDocumentSnapshot = nil
         self.dataMayContinue = false
-        
+
         let group = DispatchGroup()
         var newPostModels = [PostModel]()
-        
+
         for document in snapshot.documents {
             group.enter()
             self.processDocument(document) { processedPostModel in
                 if let postModel = processedPostModel {
-                    
-                    self.checkCurrentUserLikedPost(postID: postModel.postID ?? "123") { isLike in
-                        FavoritesManager.shared.setFavorites(with: postModel.postID ?? "123", isLiked: isLike)
+                    self.checkCurrentUserLikedPost(postID: postModel.postID ?? "") { isLike in
+                     
+                        if isLike {
+                            FavoritesManager.shared.toggleFavorite(for: postModel.postID ?? "", isLiked: isLike)
+                        }
+                       
+                        FavoritesManager.shared.setFavorites(with: postModel.postID ?? "", isLiked: isLike)
+                        
                     }
-                    
-                    self.checkCurrentUserSavePost(postID: postModel.postID ?? "123") { isLike in
-                        SavedManager.shared.setSave(with: postModel.postID ?? "123", isSave: isLike)
+                    self.checkCurrentUserSavePost(postID: postModel.postID ?? "") { isSave in
+                        if isSave {
+                            SavedManager.shared.toggleSave(for: postModel.postID ?? "", isSave: isSave)
+                        }
+                     
+                        SavedManager.shared.setSave(with: postModel.postID ?? "", isSave: isSave)
                     }
                     newPostModels.append(postModel)
                 }
                 group.leave()
             }
         }
-        
+
         group.notify(queue: .main) {
-            
             self.handleNewPosts(newPostModels, documents: documents, in: snapshot)
-        }
-    }
-    
-    func processDocument(_ document: QueryDocumentSnapshot, completion: @escaping (PostModel?) -> Void) {
-        guard let postModel = try? document.data(as: PostModel.self) else {
-            completion(nil)
-            return
-        }
-        
-        self.handleMediaType(for: postModel) {
-            self.completePostModelProcessing(postModel, completion: completion)
-        }
-    }
-    
-    func handleMediaType(for postModel: PostModel, completion: @escaping () -> Void) {
-        if postModel.postType == "image", let images = postModel.postImages, !images.isEmpty {
-            self.downloadMedia(from: images, baseUrl: Constants.AWS_IMAGE_BASE_URL, completion: completion)
-        } else if postModel.postType == "video", let path = postModel.postVideo {
-            self.downloadMedia(from: [path], baseUrl: Constants.AWS_VIDEO_BASE_URL, completion: completion)
-        } else {
-            completion()
-        }
-    }
-    
-    func downloadMedia(from paths: [String], baseUrl: String, completion: @escaping () -> Void) {
-        for path in paths {
-            let fullUrl = "\(baseUrl)/\(path)"
-            guard let url = URL(string: fullUrl),
-                  SDImageCache.shared.diskImageData(forKey: url.absoluteString) == nil
-            else {
-                continue
-            }
-            self.downloadMP4File(from: url)
-        }
-        completion()
-    }
-    
-    func completePostModelProcessing(_ postModel: PostModel, completion: @escaping (PostModel?) -> Void) {
-        if !self.uniquePostIDs.contains(postModel.postID ?? "") {
-            self.uniquePostIDs.insert(postModel.postID ?? "")
-            
-            if let bid = postModel.bid , !bid.isEmpty {
-                getBusinesses(by: bid)  { businessModel, _ in
-                    postModel.businessModel = businessModel
-                    completion(businessModel != nil ? postModel : nil)
-                }
-            }
-            else {
-                self.getUserDataByID(uid: postModel.uid ?? "") { userModel, _ in
-                    postModel.userModel = userModel
-                    completion(userModel != nil ? postModel : nil)
-                }
-            }
-            
          
+        }
+    }
+
+    private func followingChanged(uid: String?) {
+        if let uid = uid {
+            postModels.removeAll { $0.uid == uid }
+            self.tableView.reloadData()
         } else {
-            completion(nil)
-        }
-    }
-    
-    func handleNewPosts(_ newPosts: [PostModel], documents : [QueryDocumentSnapshot],  in snapshot: QuerySnapshot) {
-        if  documents.count >= self.pageSize {
-            self.postDocumentSnapshot = documents.last
-            self.dataMayContinue = true
-        }
-        
-        
-        self.postModels.append(contentsOf: newPosts)
-        self.postModels.sort { $0.postCreateDate ?? Date.distantPast > $1.postCreateDate ?? Date.distantPast }
-        
-        self.ProgressHUDHide()
-        let startIndex = self.postModels.count - newPosts.count
-        let indexPaths = (startIndex ..< self.postModels.count).map { IndexPath(row: $0, section: 0) }
-        self.tableView.insertRows(at: indexPaths, with: .none)
-        
-        self.handleScroll()
-    }
-    
-    func handleError(_ error: Error) {
-        // Handle the error appropriately
-        self.showError(error.localizedDescription)
-        // Show error UI or message to the user
-    }
-    
-    func fetchMoreData() {
-        
-      
-        guard self.postDocumentSnapshot != nil, self.dataMayContinue else {
-            return
-        }
-        
-        self.dataMayContinue = false
-        
-        let spinner = UIActivityIndicatorView(style: .medium)
-        spinner.color = UIColor.darkGray
-        spinner.hidesWhenStopped = true
-        spinner.startAnimating()
-        self.tableView.tableFooterView = spinner
-        
-        if Constants.hasBlueTick {
-           
-            self.getFollowingPosts()
-        }
-        else {
-            self.getAllPosts()
-        }
-    }
-    
-    override func viewWillDisappear(_: Bool) {
-        self.pauseAllPlayers()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        handleScroll()
-    }
-    
-    @objc func messageViewClicked() {
-        if hasMembership() {
-            performSegue(withIdentifier: "chatSeg", sender: nil)
-        }
-        else {
-            performSegue(withIdentifier: "membershipSeg", sender: nil)
-        }
-    }
-    
-    @objc func addPostClicked() {
-        
-        if hasMembership() {
-            performSegue(withIdentifier: "popupCreatePostSeg", sender: nil)
-        }
-        else {
-            performSegue(withIdentifier: "membershipSeg", sender: nil)
-        }
-    }
-    
-    func updateTableViewHeight() {
-        //  tableViewHeight.constant = tableView.contentSize.height
-        self.tableView.layoutIfNeeded()
-    }
-    
-    func stopSpinner() {
-            if let spinner = self.tableView.tableFooterView as? UIActivityIndicatorView {
-                spinner.stopAnimating()
-                self.tableView.tableFooterView = nil
-            }
-        }
-    
-    
-    @objc func shareBtnClicked(value: MyGesture) {
-        let postModel = self.postModels[value.index]
-        
-        if let postType = postModel.postType {
-            if postType == "image" || postType == "video" {
-                if let shareURL = postModel.shareURL, !shareURL.isEmpty {
-                    self.shareImageAndVideo(postCell: value.postCell, link: shareURL, postId: postModel.postID!)
-                } else {
-                    self.showSnack(messages: "Share URL not found.")
-                }
-            } else {
-                if let image = preparePostScreenshot(view: value.postCell.mView) {
-                    var imagesToShare = [AnyObject]()
-                    imagesToShare.append(image)
-                    
-                    let activityViewController = UIActivityViewController(
-                        activityItems: imagesToShare,
-                        applicationActivities: nil
-                    )
-                    activityViewController.popoverPresentationController?.sourceView = view
-                    activityViewController.completionWithItemsHandler = { (_, completed: Bool, _: [Any]?, _: Error?) in
-                        if completed {
-                            value.postCell.shareCount.text = "\(Int(value.postCell.shareCount.text ?? "0")! + 1)"
-                            self.addShares(postID: postModel.postID!)
-                        }
-                    }
-                    
-                    present(activityViewController, animated: true, completion: nil)
-                }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.refresh()
             }
         }
     }
-    
-    @objc func likeBtnClicked(gest: MyGesture) {
-//        if postModel!.uid != FirebaseStoreManager.auth.currentUser!.uid {
-//            PushNotificationSender().sendPushNotification(
-//                title: "Enjoy",
-//                body: "\(UserModel.data!.fullName ?? "123") wants you to Enjoy!",
-//                topic: postModel!.notificationToken ?? "123"
-//            )
-//        }
-        onPressLikeButton(postId: self.postModels[gest.index].postID ?? "123", gest: gest)
-    }
-    
-    @objc func saveBtnClicked(gest: MyGesture) {
-        onPressSaveButton(postId: self.postModels[gest.index].postID ?? "123", gest: gest )
-    }
-    
-    
-    func alertWithTF(postID: String) {
+
+    private func alertWithTF(postID: String) {
         let alertController = UIAlertController(
             title: "Report",
             message: "\n\n\n\n\n",
             preferredStyle: .alert
         ) // Added extra newlines for textView space
-        
+
         let textView = UITextView(frame: CGRect.zero)
         textView.backgroundColor = UIColor.white
         textView.layer.cornerRadius = 8
         textView.textContainerInset = UIEdgeInsets(top: 8, left: 5, bottom: 8, right: 5)
-        
+
         alertController.view.addSubview(textView)
-        
+
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         alertController.addAction(cancelAction)
-        
+
         let saveAction = UIAlertAction(title: "Submit", style: .default) { _ in
-            let enteredText = textView.text
-            if enteredText != "" {
-                self.reportPost(reason: enteredText ?? "", postID: postID) { message in
+            let enteredText = textView.text ?? ""
+            if !enteredText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                self.reportPost(reason: enteredText, postID: postID) { message in
                     self.showSnack(messages: message)
                 }
+            } else {
+                // Handle empty text case
+                self.showSnack(messages: "Please enter a reason for reporting.")
             }
         }
         alertController.addAction(saveAction)
-        
+
         // Constraints for the textView (Positioning it within the UIAlertController)
         textView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -843,20 +341,466 @@ class HomeViewController: UIViewController {
             textView.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 50),
             textView.heightAnchor.constraint(equalToConstant: 80)
         ])
-        
+
         present(alertController, animated: true, completion: nil)
     }
-    
-    @objc func commentClicked(value: MyGesture) {
-        performSegue(withIdentifier: "commentSeg", sender: self.postModels[value.index])
+
+
+    private func handleNewPosts(_ newPosts: [PostModel], documents: [QueryDocumentSnapshot], in snapshot: QuerySnapshot) {
+        if documents.count >= pageSize {
+            self.postDocumentSnapshot = documents.last
+            self.dataMayContinue = true
+        }
+
+        self.postModels.append(contentsOf: newPosts)
+        self.postModels.sort { $0.postCreateDate ?? Date.distantPast > $1.postCreateDate ?? Date.distantPast }
+
+        self.ProgressHUDHide()
+        let startIndex = self.postModels.count - newPosts.count
+        let indexPaths = (startIndex ..< self.postModels.count).map { IndexPath(row: $0, section: 0) }
+        self.tableView.insertRows(at: indexPaths, with: .none)
+        
+        self.handleScroll()
     }
-    
+
+    private func handleError(_ error: Error) {
+        // Handle the error appropriately
+        self.showError(error.localizedDescription)
+    }
+
+    private func showProgressHUDIfNeeded() {
+        if self.postDocumentSnapshot == nil {
+            ProgressHUDShow(text: "")
+        }
+    }
+
+    private func stopSpinner() {
+        if let spinner = self.tableView.tableFooterView as? UIActivityIndicatorView {
+            spinner.stopAnimating()
+            self.tableView.tableFooterView = nil
+        }
+    }
+
+    private func updateTableViewHeight() {
+        self.tableView.layoutIfNeeded()
+    }
+
+    // MARK: - API Calls
+    private func getFollowingPosts(shouldScrollToTop: Bool = false) {
+        showProgressHUDIfNeeded()
+        guard let userId = Auth.auth().currentUser?.uid else {
+            // handle error
+            return
+        }
+        let feedRef = FirebaseStoreManager.db.collection(Collections.feeds.rawValue).document(userId)
+
+        var query: Query = feedRef.collection("postIds")
+            .order(by: "postCreateDate", descending: true)
+            .limit(to: pageSize)
+
+        if let lastDocument = postDocumentSnapshot {
+            query = query.start(afterDocument: lastDocument)
+        }
+
+        query.getDocuments { [weak self] snapshot, error in
+            guard let self = self else { return }
+            self.refreshControl.endRefreshing()
+            if shouldScrollToTop {
+                self.scrollToTop(animated: true)
+            }
+            if let error = error {
+                self.handleError(error)
+                return
+            }
+
+            guard let snapshot = snapshot, !snapshot.isEmpty else {
+                self.ProgressHUDHide()
+                self.stopSpinner()
+                return
+            }
+
+            self.postDocumentSnapshot = snapshot.documents.last
+            let postIds = snapshot.documents.map { $0.documentID }
+            self.fetchPosts(postIds: postIds, documents: snapshot.documents)
+        }
+    }
+
+    private func getAllPosts(shouldScrollToTop: Bool = false) {
+        showProgressHUDIfNeeded()
+        var query = FirebaseStoreManager.db.collection(Collections.posts.rawValue)
+            .order(by: "postCreateDate", descending: true)
+            .whereField("isActive", isEqualTo: true)
+            .whereField("isPromoted", isEqualTo: true)
+        query = applyPaginationIfNeeded(to: query)
+
+        query.limit(to: pageSize).getDocuments { [weak self] snapshot, error in
+            guard let self = self else { return }
+            self.refreshControl.endRefreshing()
+            if shouldScrollToTop {
+                self.scrollToTop(animated: true)
+            }
+
+            if let error = error {
+                self.handleError(error)
+                return
+            }
+
+            guard let snapshot = snapshot, !snapshot.isEmpty else {
+                self.stopSpinner()
+                self.ProgressHUDHide()
+                return
+            }
+
+            self.processSnapshot(snapshot, documents: snapshot.documents)
+        }
+    }
+
+    @objc private func fetchWeatherUpdate() {
+        locationManager.requestLocation()
+    }
+
+    private func searchStart(searchText: String) {
+        ProgressHUDShow(text: "Searching...")
+        algoliaSearch(searchText: searchText, indexName: .posts, filters: "") { models in
+            DispatchQueue.main.async {
+                self.ProgressHUDHide()
+                self.searchTF.text = ""
+                self.performSegue(withIdentifier: "viewPostsSeg", sender: models as? [PostModel] ?? [])
+            }
+        }
+    }
+
+    private func applyPaginationIfNeeded(to query: FirebaseFirestore.Query) -> FirebaseFirestore.Query {
+        if let documentSnapshot = postDocumentSnapshot {
+            return query.start(afterDocument: documentSnapshot)
+        }
+        return query
+    }
+
+    private func processDocument(_ document: QueryDocumentSnapshot, completion: @escaping (PostModel?) -> Void) {
+        guard let postModel = try? document.data(as: PostModel.self) else {
+            completion(nil)
+            return
+        }
+
+        handleMediaType(for: postModel) {
+            self.completePostModelProcessing(postModel, completion: completion)
+        }
+    }
+
+    private func handleMediaType(for postModel: PostModel, completion: @escaping () -> Void) {
+        if postModel.postType == "image", let images = postModel.postImages, !images.isEmpty {
+            downloadMedia(from: images, baseUrl: Constants.awsImageBaseURL, completion: completion)
+        } else if postModel.postType == "video", let path = postModel.postVideo {
+            downloadMedia(from: [path], baseUrl: Constants.awsVideoBaseURL, completion: completion)
+        } else {
+            completion()
+        }
+    }
+
+    private func downloadMedia(from paths: [String], baseUrl: String, completion: @escaping () -> Void) {
+        for path in paths {
+            let fullUrl = "\(baseUrl)/\(path)"
+            guard let url = URL(string: fullUrl),
+                  SDImageCache.shared.diskImageData(forKey: url.absoluteString) == nil else {
+                continue
+            }
+            downloadMP4File(from: url)
+        }
+        completion()
+    }
+
+    private func completePostModelProcessing(_ postModel: PostModel, completion: @escaping (PostModel?) -> Void) {
+        guard let postId = postModel.postID, !uniquePostIDs.contains(postId) else {
+            completion(nil)
+            return
+        }
+        uniquePostIDs.insert(postId)
+
+        if let bid = postModel.bid, !bid.isEmpty {
+            getBusinesses(by: bid) { businessModel, _ in
+                postModel.businessModel = businessModel
+                completion(businessModel != nil ? postModel : nil)
+            }
+        } else {
+            getUserDataByID(uid: postModel.uid ?? "") { userModel, _ in
+                postModel.userModel = userModel
+                completion(userModel != nil ? postModel : nil)
+            }
+        }
+    }
+
+    // MARK: - Action Methods
+    @objc func tempViewClicked() {
+        if hasMembership() {
+            if let weatherModel = weatherModel {
+                performSegue(withIdentifier: "weatherReportSeg", sender: weatherModel)
+            }
+        } else {
+            performSegue(withIdentifier: "membershipSeg", sender: nil)
+        }
+    }
+
+    @objc func searchBtnClicked() {
+        if hasMembership() {
+            let sSearch = searchTF.text
+            if let searchText = sSearch, !searchText.isEmpty {
+                searchStart(searchText: searchText)
+            }
+        } else {
+            performSegue(withIdentifier: "membershipSeg", sender: nil)
+        }
+    }
+
+    @objc func scannerViewClicked() {
+        if hasMembership() {
+            performSegue(withIdentifier: "qrcodeSeg", sender: nil)
+        } else {
+            performSegue(withIdentifier: "membershipSeg", sender: nil)
+        }
+    }
+
+    @objc func refresh() {
+        let indexPathsToDelete = (0 ..< postModels.count).map { IndexPath(row: $0, section: 0) }
+        postModels.removeAll()
+        tableView.deleteRows(at: indexPathsToDelete, with: .automatic)
+
+        uniquePostIDs.removeAll()
+        postDocumentSnapshot = nil
+
+        if haveBlueTick() {
+            getFollowingPosts(shouldScrollToTop: true)
+        } else {
+            getAllPosts(shouldScrollToTop: true)
+        }
+    }
+
+    @objc func messageViewClicked() {
+        if hasMembership() {
+            performSegue(withIdentifier: "chatSeg", sender: nil)
+        } else {
+            performSegue(withIdentifier: "membershipSeg", sender: nil)
+        }
+    }
+
+    @objc func addPostClicked() {
+        if hasMembership() {
+            performSegue(withIdentifier: "popupCreatePostSeg", sender: nil)
+        } else {
+            performSegue(withIdentifier: "membershipSeg", sender: nil)
+        }
+    }
+
+    @objc func shareBtnClicked(value: MyGesture) {
+        let postModel = postModels[value.index]
+
+        if let postType = postModel.postType {
+            if postType == "image" || postType == "video" {
+                if let shareURL = postModel.shareURL, !shareURL.isEmpty {
+                    shareImageAndVideo(postCell: value.postCell, link: shareURL, postId: postModel.postID ?? "")
+                } else {
+                    showSnack(messages: "Share URL not found.")
+                }
+            } else {
+                if let image = preparePostScreenshot(view: value.postCell.mView) {
+                    var imagesToShare = [AnyObject]()
+                    imagesToShare.append(image)
+
+                    let activityViewController = UIActivityViewController(activityItems: imagesToShare, applicationActivities: nil)
+                    activityViewController.popoverPresentationController?.sourceView = view
+                    activityViewController.completionWithItemsHandler = { (_, completed: Bool, _: [Any]?, _: Error?) in
+                        if completed {
+                            value.postCell.shareCount.text = "\(Int(value.postCell.shareCount.text ?? "0")! + 1)"
+                            self.addShares(postID: postModel.postID ?? "")
+                        }
+                    }
+
+                    present(activityViewController, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+
+    @objc func likeBtnClicked(gest: MyGesture) {
+        onPressLikeButton(postId: postModels[gest.index].postID ?? "", gest: gest)
+    }
+
+    @objc func saveBtnClicked(gest: MyGesture) {
+        onPressSaveButton(postId: postModels[gest.index].postID ?? "", gest: gest)
+    }
+
+    @objc func commentClicked(value: MyGesture) {
+        performSegue(withIdentifier: "commentSeg", sender: postModels[value.index])
+    }
+
+    @objc func postVideoClicked(value: MyGesture) {
+        if hasMembership() {
+            let postModel = postModels[value.index]
+            if let path = postModel.postVideo {
+                value.postCell.player?.pause()
+                let videoURL = "\(Constants.awsVideoBaseURL)\(path)"
+                let player = AVPlayer(url: URL(string: videoURL)!)
+                let vc = AVPlayerViewController()
+                vc.player = player
+                vc.modalPresentationStyle = .overFullScreen
+                present(vc, animated: true) {
+                    vc.player?.play()
+                }
+            }
+        } else {
+            performSegue(withIdentifier: "membershipSeg", sender: nil)
+        }
+    }
+
+    @objc func postImageClicked(value: MyGesture) {
+        if hasMembership() {
+            postSelectedIndex = value.index
+            cell = value.postCell
+            let mediaBrowser = MediaBrowserViewController(index: value.currentSelectedImageIndex, dataSource: self)
+            present(mediaBrowser, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "membershipSeg", sender: nil)
+        }
+    }
+
+    @objc func showUserProfile(value: MyGesture) {
+        if let userModel = postModels[value.index].userModel {
+            performSegue(withIdentifier: "homeViewUserProfileSeg", sender: userModel)
+        } else if let businessModel = postModels[value.index].businessModel {
+            performSegue(withIdentifier: "showBusinessSeg", sender: businessModel)
+        }
+    }
+
+    @objc func likeViewClicked(value: MyGesture) {
+        ProgressHUDShow(text: "")
+        getLikes(postId: value.id) { likeModels in
+            self.ProgressHUDHide()
+            var usersIds = [String]()
+            for likeModel in likeModels! {
+                if let userId = likeModel.userID {
+                    usersIds.append(userId)
+                }
+            }
+            self.performSegue(withIdentifier: "showUsersSeg", sender: usersIds)
+        }
+    }
+
+    @objc func muteUnmuteClicked(gest: MyGesture) {
+        isMute = !isMute
+        gest.postCell.player?.isMuted = isMute
+
+        for cell in tableView.visibleCells as! [PostTableViewCell] {
+            cell.muteUnmuteBtn.image = (isMute) ? UIImage(named: "mute") : UIImage(named: "unmute")
+        }
+    }
+
+    @objc func captionClicked(value: MyLongPressGest) {
+        let caption = value.value
+
+        if UIPasteboard.general.string == caption {
+            return
+        }
+        UIPasteboard.general.string = caption
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+        showSnack(messages: "Caption has copied.")
+    }
+
+    @objc func deletePostClicked(postModel: PostModel, completion: @escaping (String?) -> Void) {
+        deletePost(postId: postModel.postID ?? "") { error in
+            completion(error)
+        }
+    }
+
+    // MARK: - Helper Methods
+    func pauseAllPlayers() {
+        for player in activePlayers {
+            player.pause()
+        }
+    }
+
+    func scrollToTop(animated: Bool) {
+        tableView.setContentOffset(.zero, animated: animated)
+    }
+
+    func performDynamicLinkSegue() {
+        if let data = Constants.deeplinkData {
+            self.routeBasedOnParams(data)
+        }
+    }
+
+    func routeBasedOnParams(_ params: [String: AnyObject]) {
+        Constants.deeplinkData = nil
+        if let linkType = params["~feature"] as? String {
+            switch linkType {
+            case BranchIOFeature.liveStream.rawValue:
+                handleLivestreamLink(params)
+            case BranchIOFeature.post.rawValue:
+                handleUserLink(params)
+            default:
+                print("Unknown link type")
+            }
+        }
+    }
+
+    func handleLivestreamLink(_ params: [String: AnyObject]) {
+        if let uid = params["uid"] as? String {
+            if uid == FirebaseStoreManager.auth.currentUser!.uid {
+                self.startLiveStream(shouldShowProgress: false)
+            } else {
+                self.getLivestreamingByUid(uid: uid) { liveModel in
+                    if let liveModel = liveModel, let isOnline = liveModel.isOnline, isOnline {
+                        self.performSegue(withIdentifier: "joinLiveStreamSeg", sender: liveModel)
+                    } else {
+                        self.showMessage(title: "Livestraming", message: "Host is not live.", shouldDismiss: false)
+                    }
+                }
+            }
+        }
+    }
+
+    func handleUserLink(_ params: [String: AnyObject]) {
+        if let uid = params["uid"] as? String, !uid.isEmpty {
+            getUserDataByID(uid: uid) { userModel, _ in
+                if let userModel = userModel {
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "homeViewUserProfileSeg", sender: userModel)
+                    }
+                }
+            }
+        }
+    }
+
+    func fetchMoreData() {
+        guard postDocumentSnapshot != nil, dataMayContinue else {
+            return
+        }
+        dataMayContinue = false
+
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.color = UIColor.darkGray
+        spinner.hidesWhenStopped = true
+        spinner.startAnimating()
+        tableView.tableFooterView = spinner
+
+        if haveBlueTick() {
+            getFollowingPosts()
+        } else {
+            getAllPosts()
+        }
+    }
+
+    func cleanPostModels() {
+        postModels.removeAll()
+        tableView.reloadData()
+    }
+
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "commentSeg" {
             if let vc = segue.destination as? CommentViewController {
                 if let value = sender as? PostModel {
                     vc.postModel = value
-                  
                 }
             }
         } else if segue.identifier == "homePostEditSeg" {
@@ -872,44 +816,38 @@ class HomeViewController: UIViewController {
                     vc.user = user
                 }
             }
-        }
-        else if segue.identifier == "viewPostsSeg" {
+        } else if segue.identifier == "viewPostsSeg" {
             if let VC = segue.destination as? PostViewController {
                 if let postModels = sender as? [PostModel] {
                     VC.postModels = postModels
                     VC.position = 0
                     VC.topTitle = "Search"
-                } 
+                }
             }
-        }
-        else if segue.identifier == "weatherReportSeg" {
+        } else if segue.identifier == "weatherReportSeg" {
             if let VC = segue.destination as? WeatherReportViewController {
                 if let weatherModel = sender as? WeatherModel {
                     VC.weatherModel = weatherModel
                 }
             }
-        }
-        else if segue.identifier == "showUsersSeg" {
+        } else if segue.identifier == "showUsersSeg" {
             if let VC = segue.destination as? UsersListViewController {
-                if let usersIds = sender as? Array<String> {
+                if let usersIds = sender as? [String] {
                     VC.userModelsIDs = usersIds
-                    VC.headTitle  = "Enjoys"
+                    VC.headTitle = "Enjoys"
                 }
             }
-        }
-        else if segue.identifier == "joinLiveStreamSeg" {
+        } else if segue.identifier == "joinLiveStreamSeg" {
             if let VC = segue.destination as? JoinLiveStreamViewController {
                 if let liveModel = sender as? LiveStreamingModel {
                     VC.token = liveModel.token
-
                     VC.channelName = liveModel.uid
                     VC.sName = liveModel.fullName
                     VC.sProfilePic = liveModel.profilePic
                     VC.agoraUID = liveModel.agoraUID
                 }
             }
-        }
-        else if segue.identifier == "showBusinessSeg" {
+        } else if segue.identifier == "showBusinessSeg" {
             if let vc = segue.destination as? ShowBusinessProfileViewController {
                 if let businessModel = sender as? BusinessModel {
                     vc.businessModel = businessModel
@@ -917,123 +855,13 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    
-    @objc func postVideoClicked(value: MyGesture) {
-        if hasMembership() {
-            let postModel = self.postModels[value.index]
-            
-            if let path = postModel.postVideo {
-                value.postCell.player?.pause()
-                
-                let videoURL = "\(Constants.AWS_VIDEO_BASE_URL)\(path)"
-                
-                let player = AVPlayer(url: URL(string: videoURL)!)
-                let vc = AVPlayerViewController()
-                vc.player = player
-                vc.modalPresentationStyle = .overFullScreen
-                present(vc, animated: true) {
-                    vc.player?.play()
-                }
-            }
-        }
-        else {
-            performSegue(withIdentifier: "membershipSeg", sender: nil)
-        }
-        
-    }
-    
-    @objc func postImageClicked(value: MyGesture) {
-        
-        if hasMembership() {
-            self.postSelectedIndex = value.index
-            self.cell = value.postCell
-            let mediaBrowser = MediaBrowserViewController(index: value.currentSelectedImageIndex, dataSource: self)
-            
-            present(mediaBrowser, animated: true, completion: nil)
-        }
-        else {
-            performSegue(withIdentifier: "membershipSeg", sender: nil)
-        }
-        
-        
-    }
 
-    
-    @objc func showUserProfile(value: MyGesture) {
-        if let userModel = postModels[value.index].userModel {
-            performSegue(withIdentifier: "homeViewUserProfileSeg", sender: userModel)
-        }
-        else  if let businessModel = postModels[value.index].businessModel {
-            performSegue(withIdentifier: "showBusinessSeg", sender: businessModel)
-        }
-    }
-
-
-    func deletePostClicked(postModel: PostModel, completion: @escaping (String?) -> Void) {
-        
-        
-        self.deletePost(postId: postModel.postID ?? "123") { error in
-            completion(error)
-        }
-    }
-    
-    @objc func muteUnmuteClicked(gest: MyGesture) {
-        self.isMute = !self.isMute
-        gest.postCell.player?.isMuted = self.isMute
-        
-        // Update all visible cells
-        for cell in self.tableView.visibleCells as! [PostTableViewCell] {
-            cell.muteUnmuteBtn
-                .image = (self.isMute) ? UIImage(named: "mute") :
-            UIImage(named: "unmute")
-        }
-    }
-    
-    func pauseAllPlayers() {
-        for player in self.activePlayers {
-            player.pause()
-        }
-    }
-    
-    
-    @objc func likeViewClicked(value : MyGesture){
-        self.ProgressHUDShow(text: "")
-        self.getLikes(postId: value.id) { likeModels in
-            self.ProgressHUDHide()
-            var usersIds = Array<String>()
-            for likeModel in likeModels!  {
-                if let userId = likeModel.userID {
-                    usersIds.append(userId)
-                }
-                
-            }
-            self.performSegue(withIdentifier: "showUsersSeg", sender: usersIds)
-        }
-        
-    }
-    
-   
-    
-    
-    // Function to resume all active players if needed
-    @objc func captionClicked(value: MyLongPressGest) {
-        let caption = value.value
-        
-        if UIPasteboard.general.string == caption {
-            return
-        }
-        UIPasteboard.general.string = caption
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.impactOccurred()
-        showSnack(messages: "Caption has copied.")
-    }
-    
     deinit {
-        self.followerListner?.remove()
-        feedListener?.remove()
+        followerListner?.remove()
         NotificationCenter.default.removeObserver(self)
     }
 }
+
 
 // MARK: UITableViewDelegate, UITableViewDataSource
 
@@ -1254,17 +1082,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             likeViewGest.id = postModel.postID ?? ""
             cell.likeView.addGestureRecognizer(likeViewGest)
             
+           
             cell.configure(with: postModel, vc: self)
-            
-            checkCurrentUserSavePost(postID: postModel.postID ?? "123"){ isSaved in
-                if isSaved {
-                    cell.saveImage.image = UIImage(systemName: "bookmark.fill")
-                    cell.saveImage.tintColor = UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 1)
-                } else {
-                    cell.saveImage.image = UIImage(systemName: "bookmark")
-                    cell.saveImage.tintColor = UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 1)
-                }
-            }
             
             cell.saveView.isUserInteractionEnabled = true
             let saveViewGest = MyGesture(target: self, action: #selector(saveBtnClicked))
@@ -1422,7 +1241,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                         cell.playerLayer = nil
                         cell.player = player
                         cell.returnPlayerDelegate = self
-                        let videoURL = "\(Constants.AWS_VIDEO_BASE_URL)\(path)"
+                        let videoURL = "\(Constants.awsVideoBaseURL)\(path)"
                         if let url = URL(string: videoURL) {
                             if let videoData = SDImageCache.shared.diskImageData(forKey: url.absoluteString) {
                                 let documentsDirectoryURL = FileManager.default.urls(
@@ -1487,11 +1306,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.likeImage.addGestureRecognizer(favGest)
                 
                 cell.nameAndDateStack.isUserInteractionEnabled = true
-                
-              
-                  
-                 
-                    
+    
                     let userGest = MyGesture(target: self, action: #selector(self.showUserProfile))
                 userGest.index = indexPath.row
                     cell.nameAndDateStack.addGestureRecognizer(userGest)

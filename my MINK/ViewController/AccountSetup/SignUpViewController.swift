@@ -10,234 +10,163 @@ private var currentNonce: String?
 // MARK: - SignUpViewController
 
 class SignUpViewController: UIViewController {
-    // MARK: Internal
+    
+    // MARK: - Outlets
 
     @IBOutlet var gmailBtn: UIView!
     @IBOutlet var appleBtn: UIView!
     @IBOutlet var phoneBtn: UIView!
-
     @IBOutlet var signUpBtn: UIButton!
-
     @IBOutlet var signInBtn: UILabel!
-
     @IBOutlet var backView: UIView!
     @IBOutlet var lastName: UITextField!
     @IBOutlet var firstName: UITextField!
-
     @IBOutlet var passwordTF: UITextField!
     @IBOutlet var emailTF: UITextField!
+
+    // MARK: - Properties
+
     var email: String = ""
     var userModel: UserModel!
     var randomNumber: String = ""
 
+    // MARK: - View Lifecycle
+
     override func viewDidLoad() {
-        self.firstName.layer.cornerRadius = 12
-        self.firstName.setLeftPaddingPoints(16)
-        self.firstName.setRightPaddingPoints(10)
-        self.firstName.setLeftView(image: UIImage(named: "user")!)
-        self.firstName.delegate = self
-
-        self.lastName.layer.cornerRadius = 12
-        self.lastName.setLeftPaddingPoints(16)
-        self.lastName.setRightPaddingPoints(10)
-        self.lastName.setLeftView(image: UIImage(named: "user")!)
-        self.lastName.delegate = self
-
-        self.emailTF.layer.cornerRadius = 12
-        self.emailTF.setLeftPaddingPoints(16)
-        self.emailTF.setRightPaddingPoints(10)
-        self.emailTF.setLeftView(image: UIImage(named: "email")!)
-        self.emailTF.delegate = self
-
-        self.passwordTF.layer.cornerRadius = 12
-        self.passwordTF.setLeftPaddingPoints(16)
-        self.passwordTF.setRightPaddingPoints(10)
-        self.passwordTF.setLeftView(image: UIImage(named: "lock")!)
-        self.passwordTF.delegate = self
-
-        self.passwordTF.rightViewMode = .always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 13, width: 20, height: 20))
-        let image = UIImage(named: "hide")
-        imageView.image = image
-        let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 45))
-        iconContainerView.addSubview(imageView)
-        self.passwordTF.rightView = iconContainerView
-        self.passwordTF.rightView?.isUserInteractionEnabled = true
-        self.passwordTF.rightView?.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.passwordEyeClicked)
-        ))
-
-        self.backView.isUserInteractionEnabled = true
-        self.backView.dropShadow()
-        self.backView.layer.cornerRadius = 8
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.backViewClicked)
-        ))
-
-        self.signInBtn.isUserInteractionEnabled = true
-        self.signInBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.signInClicked)))
-
-        self.signUpBtn.layer.cornerRadius = 8
-        self.gmailBtn.layer.cornerRadius = 12
-        self.appleBtn.layer.cornerRadius = 12
-        self.phoneBtn.layer.cornerRadius = 12
-
-        // PhoneClicked
-        self.phoneBtn.isUserInteractionEnabled = true
-        self.phoneBtn.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.phoneNumberViewClicked)
-        ))
-
-        // GoogleClicked
-        self.gmailBtn.isUserInteractionEnabled = true
-        self.gmailBtn.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.loginWithGoogleBtnClicked)
-        ))
-
-        // AppleClicked
-        self.appleBtn.isUserInteractionEnabled = true
-        self.appleBtn.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.loginWithAppleBtnClicked)
-        ))
-
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hidekeyboard)))
+        super.viewDidLoad()
+        setupViews()
+        configureGestureRecognizers()
     }
 
-    @objc func phoneNumberViewClicked() {
+    // MARK: - Setup Methods
+
+    private func setupViews() {
+        configureTextField(firstName, imageName: "user")
+        configureTextField(lastName, imageName: "user")
+        configureTextField(emailTF, imageName: "email")
+        configureTextField(passwordTF, imageName: "lock")
+        configurePasswordField()
+
+        [gmailBtn, appleBtn, phoneBtn, signUpBtn].forEach {
+            $0?.layer.cornerRadius = 12
+        }
+
+        backView.isUserInteractionEnabled = true
+        backView.dropShadow()
+        backView.layer.cornerRadius = 8
+    }
+
+    private func configureTextField(_ textField: UITextField, imageName: String) {
+        textField.layer.cornerRadius = 12
+        textField.setLeftPaddingPoints(16)
+        textField.setRightPaddingPoints(10)
+        if let image = UIImage(named: imageName) {
+            textField.setLeftView(image: image)
+        }
+        textField.delegate = self
+    }
+
+    private func configurePasswordField() {
+        passwordTF.rightViewMode = .always
+        updatePasswordRightView(imageName: "hide")
+    }
+
+    private func updatePasswordRightView(imageName: String) {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 13, width: 20, height: 20))
+        imageView.image = UIImage(named: imageName)
+        let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 45))
+        iconContainerView.addSubview(imageView)
+        passwordTF.rightView = iconContainerView
+        passwordTF.rightView?.isUserInteractionEnabled = true
+        passwordTF.rightView?.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(passwordEyeClicked)
+        ))
+    }
+
+    private func configureGestureRecognizers() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hidekeyboard))
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(tapGesture)
+
+        backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backViewClicked)))
+        signInBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(signInClicked)))
+        phoneBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(phoneNumberViewClicked)))
+        gmailBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(loginWithGoogleBtnClicked)))
+        appleBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(loginWithAppleBtnClicked)))
+    }
+
+    // MARK: - Actions
+
+    @objc private func phoneNumberViewClicked() {
         performSegue(withIdentifier: "phoneNumberSignUpSeg", sender: nil)
     }
 
-    @objc func passwordEyeClicked() {
-        if self.passwordTF.isSecureTextEntry {
-            self.passwordTF.isSecureTextEntry = false
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 13, width: 20, height: 20))
-            let image = UIImage(named: "view")
-            imageView.image = image
-            let iconContainerView: UIView = .init(frame: CGRect(x: 0, y: 0, width: 35, height: 45))
-            iconContainerView.addSubview(imageView)
-            self.passwordTF.rightView = iconContainerView
-            self.passwordTF.rightView?.isUserInteractionEnabled = true
-            self.passwordTF.rightView?.addGestureRecognizer(UITapGestureRecognizer(
-                target: self,
-                action: #selector(self.passwordEyeClicked)
-            ))
-        } else {
-            self.passwordTF.isSecureTextEntry = true
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 13, width: 20, height: 20))
-            let image = UIImage(named: "hide")
-            imageView.image = image
-            let iconContainerView: UIView = .init(frame: CGRect(x: 0, y: 0, width: 35, height: 45))
-            iconContainerView.addSubview(imageView)
-            self.passwordTF.rightView = iconContainerView
-            self.passwordTF.rightView?.isUserInteractionEnabled = true
-            self.passwordTF.rightView?.addGestureRecognizer(UITapGestureRecognizer(
-                target: self,
-                action: #selector(self.passwordEyeClicked)
-            ))
-        }
+    @objc private func passwordEyeClicked() {
+        let isSecure = passwordTF.isSecureTextEntry
+        passwordTF.isSecureTextEntry = !isSecure
+        let imageName = isSecure ? "view" : "hide"
+        updatePasswordRightView(imageName: imageName)
     }
 
-    @objc func signInClicked() {
+    @objc private func signInClicked() {
         performSegue(withIdentifier: "signInSeg", sender: nil)
     }
 
-    @objc func hidekeyboard() {
+    @objc private func hidekeyboard() {
         view.endEditing(true)
     }
 
-    @objc func backViewClicked() {
+    @objc private func backViewClicked() {
         dismiss(animated: true)
     }
 
-    func gotoEmailVerificationPage(email: String, randonNumber: String, userModel: UserModel) {
-        self.email = email
-        self.userModel = userModel
-        self.randomNumber = randonNumber
-        performSegue(withIdentifier: "signUpEmailVerificationSeg", sender: nil)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "signUpEmailVerificationSeg" {
-            if let VC = segue.destination as? EmailVerificationController {
-                VC.email = self.email
-                VC.userModel = self.userModel
-                VC.verificationCode = self.randomNumber
-                VC.type = .EMAIL_VERIFICATION
-            }
-        } else if segue.identifier == "signUpPhoneVerificationSeg" {
-            if let VC = segue.destination as? PhoneNumberVerificationController {
-                if let value = sender as? String {
-                    VC.verificationID = FirebaseStoreManager.auth.currentUser!.uid
-                    VC.phoneNumber  = value
-                    
-                }
-            }
-        }
-    }
-
-    @IBAction func signUpClicked(_: Any) {
-        let sFirstName = self.firstName.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let sLastName = self.lastName.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let sEmail = self.emailTF.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let sPassword = self.passwordTF.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        if sFirstName == "" {
+    @IBAction private func signUpClicked(_ sender: Any) {
+        guard let sFirstName = firstName.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sFirstName.isEmpty else {
             showSnack(messages: "Enter First Name")
-        } else if sLastName == "" {
+            return
+        }
+        guard let sLastName = lastName.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sLastName.isEmpty else {
             showSnack(messages: "Enter Last Name")
-        } else if sEmail == "" {
+            return
+        }
+        guard let sEmail = emailTF.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sEmail.isEmpty else {
             showSnack(messages: "Enter Email")
-        } else if sPassword == "" {
+            return
+        }
+        guard let sPassword = passwordTF.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sPassword.isEmpty else {
             showSnack(messages: "Enter Password")
-        } else {
-            let userData = UserModel()
-            userData.isBlocked = false
-            userData.fullName = "\(sFirstName!) \(sLastName!)"
-            userData.encryptKey = try! generateEncryptionKey(withPassword: sPassword!)
-            userData.encryptPassword = try! encryptMessage(message: sPassword!, encryptionKey: userData.encryptKey!)
-            userData.email = sEmail
-            userData.registredAt = Date()
-            userData.regiType = "custom"
+            return
+        }
 
-            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("email", isEqualTo: sEmail ?? "123")
-                .getDocuments { snapshot, error in
-                    if let snapshot = snapshot {
-                        if snapshot.isEmpty {
-                            let n = Int.random(in: 10000 ... 99999)
-                            self.sendVerificationMail(
-                                randomNumber: String(n),
-                                email: sEmail ?? "123",
-                                userModel: userData
-                            )
-                        } else {
-                            self.showError("Account with email : \(sEmail ?? "") already exist.")
-                        }
-                    } else {
-                        self.showError(error!.localizedDescription)
-                    }
-                }
+        let userData = UserModel()
+        userData.isBlocked = false
+        userData.fullName = "\(sFirstName) \(sLastName)"
+        userData.encryptKey = try? generateEncryptionKey(withPassword: sPassword)
+        userData.encryptPassword = try? encryptMessage(message: sPassword, encryptionKey: userData.encryptKey ?? "")
+        userData.email = sEmail
+        userData.registredAt = Date()
+        userData.regiType = "custom"
+
+        FirebaseStoreManager.db.collection(Collections.users.rawValue).whereField("email", isEqualTo: sEmail).getDocuments { snapshot, error in
+            if let snapshot = snapshot, snapshot.isEmpty {
+                let n = Int.random(in: 10000 ... 99999)
+                self.sendVerificationMail(randomNumber: String(n), email: sEmail, userModel: userData)
+            } else if let error = error {
+                self.showError(error.localizedDescription)
+            } else {
+                self.showError("Account with email : \(sEmail) already exist.")
+            }
         }
     }
 
-    func sendVerificationMail(randomNumber: String, email: String, userModel: UserModel) {
+    private func sendVerificationMail(randomNumber: String, email: String, userModel: UserModel) {
         ProgressHUDShow(text: "")
         let passwordResetHTMLTemplate = getEmailVerificationTemplate(randomNumber: randomNumber)
-
-        sendMail(
-            to_name: "my MINK",
-            to_email: email,
-            subject: "Email Verification",
-            body: passwordResetHTMLTemplate
-        ) { error in
+        sendMail(to_name: "my MINK", to_email: email, subject: "Email Verification", body: passwordResetHTMLTemplate) { error in
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
-                if error == "" {
+                if error.isEmpty {
                     self.gotoEmailVerificationPage(email: email, randonNumber: randomNumber, userModel: userModel)
                 } else {
                     self.showError(error)
@@ -246,34 +175,32 @@ class SignUpViewController: UIViewController {
         }
     }
 
-    @objc func loginWithGoogleBtnClicked() {
+    @objc private func loginWithGoogleBtnClicked() {
         loginWithGoogle(from: "signUp")
     }
 
-    @objc func loginWithAppleBtnClicked() {
-        self.startSignInWithAppleFlow()
+    @objc private func loginWithAppleBtnClicked() {
+        startSignInWithAppleFlow()
     }
 
-    func startSignInWithAppleFlow() {
-        let nonce = self.randomNonceString()
+    private func startSignInWithAppleFlow() {
+        let nonce = randomNonceString()
         currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
-        request.nonce = self.sha256(nonce)
+        request.nonce = sha256(nonce)
 
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
-        // authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
 
-    // MARK: Private
+    // MARK: - Private Methods
 
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
-        let charset: [Character] =
-            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
         var result = ""
         var remainingLength = length
 
@@ -288,47 +215,59 @@ class SignUpViewController: UIViewController {
             }
 
             randoms.forEach { random in
-                if remainingLength == 0 {
-                    return
-                }
-
+                if remainingLength == 0 { return }
                 if random < charset.count {
                     result.append(charset[Int(random)])
                     remainingLength -= 1
                 }
             }
         }
-
         return result
     }
 
     private func sha256(_ input: String) -> String {
         let inputData = Data(input.utf8)
         let hashedData = SHA256.hash(data: inputData)
-        let hashString = hashedData.compactMap {
-            String(format: "%02x", $0)
-        }.joined()
+        return hashedData.compactMap { String(format: "%02x", $0) }.joined()
+    }
 
-        return hashString
+    private func gotoEmailVerificationPage(email: String, randonNumber: String, userModel: UserModel) {
+        self.email = email
+        self.userModel = userModel
+        self.randomNumber = randonNumber
+        performSegue(withIdentifier: "signUpEmailVerificationSeg", sender: nil)
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "signUpEmailVerificationSeg", let VC = segue.destination as? EmailVerificationController {
+            VC.email = email
+            VC.userModel = userModel
+            VC.verificationCode = randomNumber
+            VC.type = .EMAIL_VERIFICATION
+        } else if segue.identifier == "signUpPhoneVerificationSeg", let VC = segue.destination as? PhoneNumberVerificationController {
+            if let value = sender as? String {
+                VC.verificationID = FirebaseStoreManager.auth.currentUser!.uid
+                VC.phoneNumber  = value
+            }
+        }
     }
 }
 
-// MARK: UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 
 extension SignUpViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_: UITextField) -> Bool {
-        self.hidekeyboard()
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hidekeyboard()
         return true
     }
 }
 
-// MARK: ASAuthorizationControllerDelegate
+// MARK: - ASAuthorizationControllerDelegate
 
 extension SignUpViewController: ASAuthorizationControllerDelegate {
-    func authorizationController(
-        controller _: ASAuthorizationController,
-        didCompleteWithAuthorization authorization: ASAuthorization
-    ) {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
                 fatalError("Invalid state: A login callback was received, but no login request was sent.")
@@ -341,15 +280,8 @@ extension SignUpViewController: ASAuthorizationControllerDelegate {
                 print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
                 return
             }
-            // Initialize a Firebase credential.
-            let credential = OAuthProvider.credential(
-                withProviderID: "apple.com",
-                idToken: idTokenString,
-                rawNonce: nonce
-            )
-
+            let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
             var displayName = "my MINK"
-
             if let fullName = appleIDCredential.fullName {
                 if let firstName = fullName.givenName {
                     displayName = firstName
@@ -358,20 +290,11 @@ extension SignUpViewController: ASAuthorizationControllerDelegate {
                     displayName = "\(displayName) \(lastName)"
                 }
             }
-
-            authWithFirebase(
-                from: "signUp",
-                credential: credential,
-                phoneNumber: nil,
-                type: "apple",
-                displayName: displayName
-            )
+            authWithFirebase(from: "signUp", credential: credential, phoneNumber: nil, type: "apple", displayName: displayName)
         }
     }
 
-    func authorizationController(controller _: ASAuthorizationController, didCompleteWithError error: Error) {
-        // Handle error.
-
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("Sign in with Apple errored: \(error)")
     }
 }

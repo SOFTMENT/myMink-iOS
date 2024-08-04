@@ -124,6 +124,8 @@ extension PostReceiptDataOperation {
         let isRestore: Bool
         let productData: ProductRequestData?
         let presentedOfferingIdentifier: String?
+        let presentedPlacementIdentifier: String?
+        let appliedTargetingRule: AppliedTargetingRule?
         let paywall: Paywall?
         let observerMode: Bool
         let initiationSource: ProductRequestData.InitiationSource
@@ -144,6 +146,13 @@ extension PostReceiptDataOperation {
 
     }
 
+    struct AppliedTargetingRule {
+
+        var revision: Int
+        var ruleId: String
+
+    }
+
 }
 
 extension PostReceiptDataOperation.PostData {
@@ -160,7 +169,11 @@ extension PostReceiptDataOperation.PostData {
             receipt: receipt,
             isRestore: data.source.isRestore,
             productData: productData,
-            presentedOfferingIdentifier: data.presentedOfferingID,
+            presentedOfferingIdentifier: data.presentedOfferingContext?.offeringIdentifier,
+            presentedPlacementIdentifier: data.presentedOfferingContext?.placementIdentifier,
+            appliedTargetingRule: data.presentedOfferingContext?.targetingContext.flatMap {
+                .init(revision: $0.revision, ruleId: $0.ruleId)
+            },
             paywall: data.paywall,
             observerMode: observerMode,
             initiationSource: data.source.initiationSource,
@@ -177,11 +190,11 @@ private extension PurchasedTransactionData {
     var paywall: PostReceiptDataOperation.Paywall? {
         guard let paywall = self.presentedPaywall else { return nil }
 
-        return .init(sessionID: paywall.sessionIdentifier.uuidString,
-                     revision: paywall.paywallRevision,
-                     displayMode: paywall.displayMode,
-                     darkMode: paywall.darkMode,
-                     localeIdentifier: paywall.localeIdentifier)
+        return .init(sessionID: paywall.data.sessionIdentifier.uuidString,
+                     revision: paywall.data.paywallRevision,
+                     displayMode: paywall.data.displayMode,
+                     darkMode: paywall.data.darkMode,
+                     localeIdentifier: paywall.data.localeIdentifier)
     }
 
 }
@@ -195,6 +208,11 @@ private extension PostReceiptDataOperation {
         case .jws(let content):
             self.log(Strings.receipt.posting_jws(
                 content,
+                initiationSource: self.postData.initiationSource.rawValue
+            ))
+        case .sk2receipt(let receipt):
+            self.log(Strings.receipt.posting_sk2_receipt(
+                (try? receipt.prettyPrintedJSON) ?? "",
                 initiationSource: self.postData.initiationSource.rawValue
             ))
         case .receipt(let data):
@@ -235,6 +253,8 @@ extension PostReceiptDataOperation.PostData: Encodable {
         case attributes
         case aadAttributionToken
         case presentedOfferingIdentifier
+        case presentedPlacementIdentifier
+        case appliedTargetingRule
         case paywall
         case testReceiptIdentifier = "test_receipt_identifier"
 
@@ -254,6 +274,8 @@ extension PostReceiptDataOperation.PostData: Encodable {
         }
 
         try container.encodeIfPresent(self.presentedOfferingIdentifier, forKey: .presentedOfferingIdentifier)
+        try container.encodeIfPresent(self.presentedPlacementIdentifier, forKey: .presentedPlacementIdentifier)
+        try container.encodeIfPresent(self.appliedTargetingRule, forKey: .appliedTargetingRule)
         try container.encodeIfPresent(self.paywall, forKey: .paywall)
 
         try container.encodeIfPresent(
@@ -280,6 +302,17 @@ extension PostReceiptDataOperation.Paywall: Codable {
         case displayMode
         case darkMode
         case localeIdentifier = "locale"
+
+    }
+
+}
+
+extension PostReceiptDataOperation.AppliedTargetingRule: Codable {
+
+    private enum CodingKeys: String, CodingKey {
+
+        case revision
+        case ruleId
 
     }
 
@@ -332,6 +365,13 @@ private extension EncodedAppleReceipt {
             return content.asData.hashString
         case let .receipt(data):
             return data.hashString
+        case let .sk2receipt(receipt):
+            do {
+                return try receipt.prettyPrintedData.hashString
+            } catch {
+                Logger.warn(Strings.storeKit.sk2_error_encoding_receipt(error))
+                return ""
+            }
         }
     }
 

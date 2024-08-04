@@ -12,7 +12,9 @@
 
 #import "FIRAppCheckInterop.h"
 #import "FIRAppCheckProtocol.h"
+#import "FIRAppCheckTokenProtocol.h"
 #import "FIRAppCheckTokenResultInterop.h"
+#import "FirebaseAppCheckInterop.h"
 
 FOUNDATION_EXPORT double FirebaseAppCheckInteropVersionNumber;
 FOUNDATION_EXPORT const unsigned char FirebaseAppCheckInteropVersionString[];

@@ -5,8 +5,6 @@ import AVFoundation
 import CallKit
 import UIKit
 
-// MARK: - VideoCallViewController
-
 class VideoCallViewController: UIViewController {
     var isMute = false
     @IBOutlet var switchCamera: UIImageView!
@@ -16,7 +14,6 @@ class VideoCallViewController: UIViewController {
     @IBOutlet var localView: UIView!
     @IBOutlet var endCall: UIImageView!
     var joined: Bool = false
-    /// The main entry point for Video SDK
     var agoraEngine: AgoraRtcEngineKit!
     var userRole: AgoraClientRole = .broadcaster
     let appID = "107d8337cdc34ecca9be641fed1809da"
@@ -28,6 +25,8 @@ class VideoCallViewController: UIViewController {
     var startDate: Data!
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         guard let token = token, let channelName = channelName else {
             print("Token and Channel Name missing")
             DispatchQueue.main.async {
@@ -40,30 +39,12 @@ class VideoCallViewController: UIViewController {
             self.startDate = Data()
         }
 
-        self.switchCamera.isUserInteractionEnabled = true
-        self.switchCamera.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.switchCameraClicked)
-        ))
+        setupViews()
+        setupGestures()
 
-        self.muteUnmuteBtn.layer.cornerRadius = 8
-        self.muteUnmuteBtn.isUserInteractionEnabled = true
-        self.muteUnmuteBtn.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.muteClicked)
-        ))
+        initializeAgoraEngine()
+        setupLocalVideo()
 
-        self.backView.isUserInteractionEnabled = true
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.leaveChannel)))
-
-        self.localView.layer.cornerRadius = 12
-
-        self.endCall.isUserInteractionEnabled = true
-        self.endCall.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.leaveChannel)))
-        self.initializeAgoraEngine()
-        self.setupLocalVideo()
-
-        // CallDenied
         if self.admin {
             FirebaseStoreManager.db.collection("CallDenied").document(self.callUUID!)
                 .addSnapshotListener { snapshot, _ in
@@ -73,6 +54,7 @@ class VideoCallViewController: UIViewController {
                     }
                 }
         }
+
         if !self.joined {
             Task {
                 await self.joinChannel(token: token, channelName: channelName)
@@ -82,15 +64,34 @@ class VideoCallViewController: UIViewController {
         }
     }
 
-    @objc func muteClicked() {
-        if !self.isMute {
-            self.isMute = true
-            self.muteUnmuteBtn.backgroundColor = UIColor(red: 33 / 255, green: 199 / 255, blue: 135 / 255, alpha: 1)
-        } else {
-            self.isMute = false
-            self.muteUnmuteBtn.backgroundColor = .clear
-        }
+    private func setupViews() {
+        self.muteUnmuteBtn.layer.cornerRadius = 8
+        self.localView.layer.cornerRadius = 12
+    }
 
+    private func setupGestures() {
+        self.switchCamera.isUserInteractionEnabled = true
+        self.switchCamera.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.switchCameraClicked)
+        ))
+
+        self.muteUnmuteBtn.isUserInteractionEnabled = true
+        self.muteUnmuteBtn.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.muteClicked)
+        ))
+
+        self.backView.isUserInteractionEnabled = true
+        self.backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.leaveChannel)))
+
+        self.endCall.isUserInteractionEnabled = true
+        self.endCall.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.leaveChannel)))
+    }
+
+    @objc func muteClicked() {
+        self.isMute.toggle()
+        self.muteUnmuteBtn.backgroundColor = self.isMute ? UIColor(red: 33 / 255, green: 199 / 255, blue: 135 / 255, alpha: 1) : .clear
         self.agoraEngine.muteLocalAudioStream(self.isMute)
     }
 
@@ -100,17 +101,13 @@ class VideoCallViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-
         self.leaveChannel()
         DispatchQueue.global(qos: .userInitiated).async { AgoraRtcEngineKit.destroy() }
     }
 
     func checkForPermissions() async -> Bool {
         var hasPermissions = await avAuthorization(mediaType: .video)
-        // Break out, because camera permissions have been denied or restricted.
-        if !hasPermissions {
-            return false
-        }
+        if !hasPermissions { return false }
         hasPermissions = await self.avAuthorization(mediaType: .audio)
         return hasPermissions
     }
@@ -118,8 +115,7 @@ class VideoCallViewController: UIViewController {
     func avAuthorization(mediaType: AVMediaType) async -> Bool {
         let mediaAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: mediaType)
         switch mediaAuthorizationStatus {
-        case .denied,
-             .restricted: return false
+        case .denied, .restricted: return false
         case .authorized: return true
         case .notDetermined:
             return await withCheckedContinuation { continuation in
@@ -142,19 +138,13 @@ class VideoCallViewController: UIViewController {
 
     func initializeAgoraEngine() {
         let config = AgoraRtcEngineConfig()
-        // Pass in your App ID here.
         config.appId = self.appID
-
-        // Use AgoraRtcEngineDelegate for the following delegate parameter.
         self.agoraEngine = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
-
         self.agoraEngine.setClientRole(self.userRole)
     }
 
     func setupLocalVideo() {
-        // Enable the video module
         self.agoraEngine.enableVideo()
-        // Start the local video preview
         self.agoraEngine.startPreview()
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = 0
@@ -162,8 +152,6 @@ class VideoCallViewController: UIViewController {
         videoCanvas.view = self.localView
         videoCanvas.view?.layer.cornerRadius = 12
         videoCanvas.view?.clipsToBounds = true
-
-        // Set the local video view
         self.agoraEngine.setupLocalVideo(videoCanvas)
     }
 
@@ -174,26 +162,18 @@ class VideoCallViewController: UIViewController {
         }
 
         let option = AgoraRtcChannelMediaOptions()
-
-        // For a video call scenario, set the channel profile as communication.
         option.channelProfile = .communication
 
-        // Join the channel with a temp token. Pass in your token and channel name here
-        let result = self.agoraEngine.joinChannel(
-            byToken: token, channelId: channelName, uid: 0, mediaOptions: option,
-            joinSuccess: { _, _, _ in }
-        )
-        // Check if joining the channel was successful and set joined Bool accordingly
+        let result = self.agoraEngine.joinChannel(byToken: token, channelId: channelName, uid: 0, mediaOptions: option, joinSuccess: { _, _, _ in })
         if result == 0 {
             self.joined = true
-            // showMessage(title: "Success", text: "Successfully joined the channel as \(self.userRole)")
         }
     }
 
     @objc func leaveChannel() {
         if self.admin {
             sendVOIPNotification(
-                deviceToken: self.deviceToken ?? "123",
+                deviceToken: self.deviceToken ?? "",
                 name: "",
                 channelName: "",
                 token: "",
@@ -208,7 +188,6 @@ class VideoCallViewController: UIViewController {
 
         self.agoraEngine.stopPreview()
         let result = self.agoraEngine.leaveChannel(nil)
-        // Check if leaving the channel was successful and set joined Bool accordingly
         if result == 0 {
             self.joined = false
         }
@@ -216,19 +195,15 @@ class VideoCallViewController: UIViewController {
         if self.admin {
             dismiss(animated: true)
         } else {
-            beRootScreen(storyBoardName: StoryBoard.Tabbar, mIdentifier: Identifier.TABBARVIEWCONTROLLER)
+            beRootScreen(storyBoardName: StoryBoard.tabBar, mIdentifier: Identifier.tabBarViewController)
         }
     }
 }
 
-// MARK: AgoraRtcEngineDelegate
-
 extension VideoCallViewController: AgoraRtcEngineDelegate {
-    /// Callback called when a new host joins the channel
     func rtcEngine(_: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed _: Int) {
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = uid
-
         videoCanvas.renderMode = .hidden
         videoCanvas.view = self.serverView
         self.agoraEngine.setupRemoteVideo(videoCanvas)

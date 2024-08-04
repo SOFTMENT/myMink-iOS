@@ -75,7 +75,7 @@ class WelcomeViewController: UIViewController {
 
     private func goToSignInViewController() {
         DispatchQueue.main.async {
-            self.beRootScreen(storyBoardName: .AccountSetup, mIdentifier: .ENTRYVIEWCONTROLLER)
+            self.beRootScreen(storyBoardName: .accountSetup, mIdentifier: .entryViewController)
         }
     }
 }

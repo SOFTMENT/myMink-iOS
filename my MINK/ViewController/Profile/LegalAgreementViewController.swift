@@ -9,83 +9,59 @@ class LegalAgreementViewController: UIViewController {
     @IBOutlet var privacyPolicy: UIView!
     @IBOutlet var termsOfUse: UIView!
     @IBOutlet var topView: UIView!
-
     @IBOutlet var mView: UIView!
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+
+    private func setupUI() {
         self.mView.clipsToBounds = true
         self.mView.layer.cornerRadius = 20
         self.mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
 
-        self.disclaimer.isUserInteractionEnabled = true
-        self.disclaimer.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.disclaimerClicked)
-        ))
-
-        self.licenseAgreement.isUserInteractionEnabled = true
-        self.licenseAgreement.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.licenseAgreementClicked)
-        ))
-
-        self.privacyPolicy.isUserInteractionEnabled = true
-        self.privacyPolicy.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.privacyPolicyClicked)
-        ))
-
-        self.termsOfUse.isUserInteractionEnabled = true
-        self.termsOfUse.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.termsOfUseClicked)
-        ))
-
-        self.topView.isUserInteractionEnabled = true
-        self.topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backViewClicked)))
+        setupGesture(for: disclaimer, action: #selector(self.disclaimerClicked))
+        setupGesture(for: licenseAgreement, action: #selector(self.licenseAgreementClicked))
+        setupGesture(for: privacyPolicy, action: #selector(self.privacyPolicyClicked))
+        setupGesture(for: termsOfUse, action: #selector(self.termsOfUseClicked))
+        setupGesture(for: topView, action: #selector(self.backViewClicked))
+        setupGesture(for: backView, action: #selector(self.backViewClicked))
 
         self.backView.layer.cornerRadius = 8
         self.backView.dropShadow()
-        self.backView.isUserInteractionEnabled = true
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.backViewClicked)
-        ))
     }
 
-    @objc func disclaimerClicked() {
+    private func setupGesture(for view: UIView, action: Selector) {
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: action))
+    }
+
+    @objc private func disclaimerClicked() {
+        openURL("https://mymink.com.au/disclaimer/")
+    }
+
+    @objc private func licenseAgreementClicked() {
+        openURL("https://mymink.com.au/eula")
+    }
+
+    @objc private func privacyPolicyClicked() {
+        openURL("https://mymink.com.au/privacy-policy/")
+    }
+
+    @objc private func termsOfUseClicked() {
+        openURL("https://mymink.com.au/terms-of-use")
+    }
+
+    @objc private func backViewClicked() {
         dismiss(animated: true)
-        guard let url = URL(string: "https://mymink.com.au/disclaimer/") else {
+    }
+
+    private func openURL(_ urlString: String) {
+        dismiss(animated: true)
+        guard let url = URL(string: urlString) else {
             return
         }
         UIApplication.shared.open(url)
-    }
-
-    @objc func licenseAgreementClicked() {
-        dismiss(animated: true)
-        guard let url = URL(string: "https://mymink.com.au/eula") else {
-            return
-        }
-        UIApplication.shared.open(url)
-    }
-
-    @objc func privacyPolicyClicked() {
-        dismiss(animated: true)
-        guard let url = URL(string: "https://mymink.com.au/privacy-policy/") else {
-            return
-        }
-        UIApplication.shared.open(url)
-    }
-
-    @objc func termsOfUseClicked() {
-        dismiss(animated: true)
-        guard let url = URL(string: "https://mymink.com.au/terms-of-use") else {
-            return
-        }
-        UIApplication.shared.open(url)
-    }
-
-    @objc func backViewClicked() {
-        dismiss(animated: true)
     }
 }

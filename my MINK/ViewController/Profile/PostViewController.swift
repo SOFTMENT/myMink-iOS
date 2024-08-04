@@ -51,13 +51,13 @@ class PostViewController: UIViewController {
                 self.tableView.scrollIndicatorInsets = .zero
                 self.tableView.delegate = self
                 self.tableView.dataSource = self
-
+                self.saveFavsAndLikes()
                 DispatchQueue.main.async {
                     self.tableView.scrollToRow(at: IndexPath(row: self.position, section: 0), at: .top, animated: false)
                 }
            
             }
-        } 
+        }
         else if let businessModel = self.businessModel {
             self.topUsername.text = businessModel.name!.uppercased()
             if postModels.count > 0 {
@@ -66,7 +66,7 @@ class PostViewController: UIViewController {
                 self.tableView.scrollIndicatorInsets = .zero
                 self.tableView.delegate = self
                 self.tableView.dataSource = self
-
+                self.saveFavsAndLikes()
                 DispatchQueue.main.async {
                     self.tableView.scrollToRow(at: IndexPath(row: self.position, section: 0), at: .top, animated: false)
                 }
@@ -81,7 +81,7 @@ class PostViewController: UIViewController {
             }
         }
         
-        
+       
       
        
         self.tableView.showsVerticalScrollIndicator = false
@@ -113,9 +113,10 @@ class PostViewController: UIViewController {
         guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
             let indexPath = IndexPath(row: index, section: 0)
         if let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell {
-            cell.updateFavoriteButton(isFromCell: false)
+            cell.updateFavoriteButton(isFromCell: false, postModel: self.postModels[index])
             }
-        }
+    }
+    
     private func updateCommentCount(for postID: String) {
         guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
             let indexPath = IndexPath(row: index, section: 0)
@@ -127,17 +128,45 @@ class PostViewController: UIViewController {
         guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
             let indexPath = IndexPath(row: index, section: 0)
         if let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell {
-            cell.updateSavedButton(isFromCell: false)
+            cell.updateSavedButton(isFromCell: false, postModel: self.postModels[index])
             }
         }
+    
+    func saveFavsAndLikes(){
+        for postModel in self.postModels {
+            self.checkCurrentUserLikedPost(postID: postModel.postID ?? "") { isLike in
+             
+                if isLike {
+                    FavoritesManager.shared.toggleFavorite(for: postModel.postID ?? "", isLiked: isLike)
+                }
+               
+                FavoritesManager.shared.setFavorites(with: postModel.postID ?? "", isLiked: isLike)
+                
+            }
+            self.checkCurrentUserSavePost(postID: postModel.postID ?? "") { isSave in
+                if isSave {
+                    SavedManager.shared.toggleSave(for: postModel.postID ?? "", isSave: isSave)
+                }
+             
+                SavedManager.shared.setSave(with: postModel.postID ?? "", isSave: isSave)
+            }
+        }
+    }
     
     func loadUserData() {
         ProgressHUDShow(text: "")
         let group = DispatchGroup()
         for postModel in self.postModels {
             self.checkCurrentUserLikedPost(postID: postModel.postID ?? "123") { isLike in
+               
+                FavoritesManager.shared.toggleFavorite(for: postModel.postID ?? "", isLiked: isLike)
                 FavoritesManager.shared.setFavorites(with: postModel.postID ?? "123", isLiked: isLike)
             }
+            self.checkCurrentUserSavePost(postID: postModel.postID ?? "") { isLike in
+                SavedManager.shared.toggleSave(for: postModel.postID ?? "", isSave: isLike)
+                SavedManager.shared.setSave(with: postModel.postID ?? "", isSave: isLike)
+            }
+             
             group.enter()
             
             if let bid = postModel.bid , !bid.isEmpty {
@@ -340,13 +369,15 @@ class PostViewController: UIViewController {
         }
     }
 
+
+    
     @objc func postVideoClicked(value: MyGesture) {
         let postModel = self.postModels[value.index]
 
         if let path = postModel.postVideo {
             value.postCell.player?.pause()
 
-            let videoURL = "\(Constants.AWS_VIDEO_BASE_URL)\(path)"
+            let videoURL = "\(Constants.awsVideoBaseURL)\(path)"
 
             let player = AVPlayer(url: URL(string: videoURL)!)
             let vc = AVPlayerViewController()
@@ -556,7 +587,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
             cell.moreBtn.showsMenuAsPrimaryAction = true
             
             if businessModel != nil {
-                if postModel.isPromoted == nil || postModel.isPromoted! == false {
+                if canBusinessesUploadPost(lastPostDate: businessModel!.lastPostDate) && (postModel.isPromoted == nil || postModel.isPromoted! == false) {
                     let promote = UIAction(
                         title: "Promote",
                         image: UIImage(systemName: "square.and.arrow.up.fill")
@@ -564,11 +595,16 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
                         
                         self.ProgressHUDShow(text: "Promoting...")
                       
-                        FirebaseStoreManager.db.collection(Collections.POSTS.rawValue).document(postModel.postID!).setData(["isPromoted" : true], merge: true) { error in
+                        FirebaseStoreManager.db.collection(Collections.posts.rawValue).document(postModel.postID!).setData(["isPromoted" : true], merge: true) { error in
                             self.ProgressHUDHide()
+                            businessModel!.lastPostDate = Date()
+                            self.updateBusinessLastPostDate(id: self.businessModel!.businessId ?? "123")
+                            self.tableView.reloadData()
                             self.showSnack(messages: "Promoted")
                             postModel.isPromoted = true
                         }
+                        
+                        
                         
                     }
                     
@@ -627,7 +663,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 uiMenuElements.append(transalte)
-            }                    
+            }
             
             
            
@@ -665,16 +701,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
            
             cell.configure(with: postModel, vc: self)
             
-            checkCurrentUserSavePost(postID: postModel.postID ?? "123"){ isSaved in
-                if isSaved {
-                    cell.saveImage.image = UIImage(systemName: "bookmark.fill")
-                    cell.saveImage.tintColor = UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 1)
-                } else {
-                    cell.saveImage.image = UIImage(systemName: "bookmark")
-                    cell.saveImage.tintColor = UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 1)
-                }
-            }
-            
+           
             cell.saveView.isUserInteractionEnabled = true
             let saveViewGest = MyGesture(target: self, action: #selector(saveBtnClicked))
             saveViewGest.index = indexPath.row
@@ -832,7 +859,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.playerLayer = nil
                     cell.player = player
                     cell.returnPlayerDelegate = self
-                    let videoURL = "\(Constants.AWS_VIDEO_BASE_URL)\(path)"
+                    let videoURL = "\(Constants.awsVideoBaseURL)\(path)"
                     let playerItem = CustomPlayerItem(
                         url: URL(string: videoURL)!,
                         videoPostID: postModel.postID ?? "123"

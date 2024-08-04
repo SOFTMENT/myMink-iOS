@@ -7,87 +7,77 @@
 
 import UIKit
 
-class ScheduleLiveViewController : UIViewController {
-    
+class ScheduleLiveViewController: UIViewController {
     @IBOutlet var backView: UIView!
-    
     @IBOutlet var topView: UIView!
-    
     @IBOutlet var mView: UIView!
-    
-    @IBOutlet weak var liveUrl: UILabel!
-    
-   
-    @IBOutlet weak var copyBtn: UIImageView!
-    
+    @IBOutlet var liveUrl: UILabel!
+    @IBOutlet var copyBtn: UIImageView!
+
     override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+        loadUserModel()
+    }
+
+    private func setupUI() {
+        mView.clipsToBounds = true
+        mView.layer.cornerRadius = 20
+        mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+
+        topView.isUserInteractionEnabled = true
+        topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backViewClicked)))
+
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
+        backView.isUserInteractionEnabled = true
+        backView.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(backViewClicked)
+        ))
+
+        copyBtn.isUserInteractionEnabled = true
+        copyBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(copyBtnClicked)))
+    }
+
+    private func loadUserModel() {
         guard let userModel = UserModel.data else {
-            DispatchQueue.main.async {
-                self.dismiss(animated: true)
-            }
-            return 
+            dismissViewController()
+            return
         }
-        
-        self.mView.clipsToBounds = true
-        self.mView.layer.cornerRadius = 20
-        self.mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
-        
-        
-        
-        self.liveUrl.text = "\(Constants.MY_MINK_APP_DOMAIN)livestram/\(userModel.username ?? "")"
-        
+
+        liveUrl.text = "\(Constants.myMinkAppDomain)livestram/\(userModel.username ?? "")"
         if let livestreamingURL = userModel.livestreamingURL, !livestreamingURL.isEmpty {
-            self.liveUrl.text = livestreamingURL
-            
-        }
-        else {
+            liveUrl.text = livestreamingURL
+        } else {
             createDeepLinkForLivestream(userModel: userModel) { url, error in
                 if let url = url, !url.isEmpty {
                     UserModel.data?.livestreamingURL = url
                     self.liveUrl.text = url
-                    FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid).setData(["livestreamingURL" : url], merge: true)
+                    FirebaseStoreManager.db.collection(Collections.users.rawValue)
+                        .document(FirebaseStoreManager.auth.currentUser!.uid)
+                        .setData(["livestreamingURL": url], merge: true)
                 }
             }
         }
-        
-        self.topView.isUserInteractionEnabled = true
-        self.topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backViewClicked)))
-        
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
-        self.backView.isUserInteractionEnabled = true
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.backViewClicked)
-        ))
-        
-       
-        
-        
-        
-        copyBtn.isUserInteractionEnabled = true
-        copyBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(copyBtnClicked)))
-        
-        
     }
-   
+
     @objc func backViewClicked() {
         dismiss(animated: true)
     }
-  
-    @objc func copyBtnClicked(){
-        let url = liveUrl.text ?? ""
 
-        if UIPasteboard.general.string == url {
-            return
+    @objc func copyBtnClicked() {
+        let url = liveUrl.text ?? ""
+        if UIPasteboard.general.string != url {
+            UIPasteboard.general.string = url
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            showSnack(messages: "Copied.")
         }
-        UIPasteboard.general.string =  url
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.impactOccurred()
-        showSnack(messages: "Copied.")
     }
-    
-    
-    
+
+    private func dismissViewController() {
+        DispatchQueue.main.async {
+            self.dismiss(animated: true)
+        }
+    }
 }

@@ -56,7 +56,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="uplaodBtnClicked:" destination="B5U-FS-2uH" eventType="touchUpInside" id="4ED-cR-5KJ"/>
+                                    <action selector="uploadBtnClicked:" destination="B5U-FS-2uH" eventType="touchUpInside" id="ccL-EI-uih"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload business picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvb-EN-Lig">
@@ -442,7 +442,7 @@
                     <connections>
                         <outlet property="backView" destination="589-Y5-ls7" id="1Vd-pT-slc"/>
                         <outlet property="myBusinessBtn" destination="IYS-bO-QGW" id="P7S-po-1ud"/>
-                        <outlet property="no_business_available" destination="fBw-mz-dgf" id="T4L-cw-bCX"/>
+                        <outlet property="noBusinessAvailableLabel" destination="fBw-mz-dgf" id="Vi5-sf-ag2"/>
                         <outlet property="searchBtn" destination="fW5-b8-apu" id="PgJ-On-YeM"/>
                         <outlet property="searchTF" destination="yGa-0g-8EX" id="OkL-x7-fp0"/>
                         <outlet property="tableView" destination="Ch8-p1-tzi" id="fPO-kM-xcr"/>
@@ -929,7 +929,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="uplaodBtnClicked:" destination="axs-n1-d0H" eventType="touchUpInside" id="gUp-IY-BYo"/>
+                                    <action selector="uploadBtnClicked:" destination="axs-n1-d0H" eventType="touchUpInside" id="HAW-qT-pm3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload business picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85p-hR-8IS">
@@ -1131,7 +1131,7 @@
         <image name="share-7" width="128" height="128"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="scrollViewTexturedBackgroundColor">
             <color red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1140,10 +1140,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="underPageBackgroundColor">
             <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

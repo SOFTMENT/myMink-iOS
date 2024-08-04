@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let gcmMessageIDKey = "gcm.message_id"
     var body = "message"
     var title = "Title"
-
+  
     func sign(_: GIDSignIn!, didSignInFor _: GIDGoogleUser!, withError error: Error?) {
         if error != nil {
             return
@@ -50,27 +50,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application,
             didFinishLaunchingWithOptions: launchOptions
         )
+        
         Branch.setUseTestBranchKey(false)
         Branch.getInstance().initSession(launchOptions: launchOptions) { params, _ in
 
 
             if let data = params as? [String: AnyObject] {
                 
-                Constants.deeplink_data = data
                 
-                if FirebaseStoreManager.auth.currentUser != nil && UserModel.data != nil {
-                    let main = UIStoryboard(name: StoryBoard.Tabbar.rawValue, bundle: nil)
-                    if let rootController = main
-                        .instantiateViewController(
-                            withIdentifier: Identifier.TABBARVIEWCONTROLLER
-                                .rawValue
-                        ) as? TabbarViewController
-                    {
-                        Constants.selectedTabbarPosition = 0
-                        UIApplication.shared.windows.first?.rootViewController = rootController
-                        UIApplication.shared.windows.first?.makeKeyAndVisible()
-                    }
+                let isFirstSession = data["+is_first_session"] as? Bool ?? false
+                let clickedBranchLink = data["+clicked_branch_link"] as? Bool ?? false
+                
+                if (isFirstSession || clickedBranchLink) && Constants.deeplinkData == nil {
                     
+                    Constants.deeplinkData = data
+                    
+                    if FirebaseStoreManager.auth.currentUser != nil && UserModel.data != nil {
+                        let main = UIStoryboard(name: StoryBoard.tabBar.rawValue, bundle: nil)
+                        if let rootController = main
+                            .instantiateViewController(
+                                withIdentifier: Identifier.tabBarViewController
+                                    .rawValue
+                            ) as? TabbarViewController
+                        {
+                            
+                            
+                            Constants.selectedTabBarPosition = 0
+                            UIApplication.shared.windows.first?.rootViewController = rootController
+                            UIApplication.shared.windows.first?.makeKeyAndVisible()
+                        }
+                        
+                    }
                 }
             }
         }
@@ -122,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-            if let error = error {
+            if error != nil {
                 // The user's account has been deleted.
                 self.showLoginScreen()
                 return
@@ -145,21 +155,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
     func showLoginScreen(){
         
-        Constants.selectedTabbarPosition = 0
+        Constants.selectedTabBarPosition = 0
         UserModel.clearUserData()
         
    
         
         try? Auth.auth().signOut()
         
-        let main = UIStoryboard(name: StoryBoard.AccountSetup.rawValue, bundle: nil)
+        let main = UIStoryboard(name: StoryBoard.accountSetup.rawValue, bundle: nil)
         if let rootController = main
             .instantiateViewController(
-                withIdentifier: Identifier.ENTRYVIEWCONTROLLER
+                withIdentifier: Identifier.entryViewController
                     .rawValue
             ) as? EntryViewController
         {
-            Constants.selectedTabbarPosition = 0
+         
             UIApplication.shared.windows.first?.rootViewController = rootController
             UIApplication.shared.windows.first?.makeKeyAndVisible()
         }
@@ -169,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
        
             let db = Firestore.firestore()
-            db.collection(Collections.USERS.rawValue).document(userId).addSnapshotListener { documentSnapshot, error in
+            db.collection(Collections.users.rawValue).document(userId).addSnapshotListener { documentSnapshot, error in
                 guard let document = documentSnapshot else {
                  
                     return

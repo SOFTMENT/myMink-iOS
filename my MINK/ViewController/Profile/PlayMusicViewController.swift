@@ -6,23 +6,16 @@ import UIKit
 import AVFoundation
 
 class PlayMusicViewController: UIViewController {
-   
+
     @IBOutlet var backView: UIView!
-
     @IBOutlet var musicImage: UIImageView!
-
     @IBOutlet var musicName: UILabel!
-
     @IBOutlet var endTime: UILabel!
     @IBOutlet var startTime: UILabel!
-
     @IBOutlet var progressbar: UISlider!
-
     @IBOutlet var artist: UILabel!
-
     @IBOutlet var previous: UIImageView!
     @IBOutlet var playPause: UIImageView!
-
     @IBOutlet var nextBtn: UIImageView!
 
     var items: [Result]?
@@ -33,174 +26,174 @@ class PlayMusicViewController: UIViewController {
     var player: AVPlayer?
     var currentPlayingItem: AVPlayerItem?
     var currentPlayingURL: String?
+
     override func viewDidLoad() {
-        guard self.items != nil else {
+        super.viewDidLoad()
+        
+        guard let _ = items else {
             DispatchQueue.main.async {
                 self.dismiss(animated: true)
             }
             return
         }
         
-        self.musicImage.layer.cornerRadius = 8
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
-        self.backView.isUserInteractionEnabled = true
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backBtnClicked)))
-
-        self.playPause.isUserInteractionEnabled = true
-        self.playPause.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.playPauseBtnClicked)
-        ))
-
-        self.loadUI(position: self.position)
-
-        self.nextBtn.isUserInteractionEnabled = true
-        self.nextBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.nextBtnClicked)))
-
-        self.previous.isUserInteractionEnabled = true
-        self.previous.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.previousBtnClicked)
-        ))
+        setupUI()
+        setupActions()
+        
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch let error {
             print("Audio session error: \(error.localizedDescription)")
         }
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.isPlaying = true
-        self.playPause.image = UIImage(systemName: "pause.circle.fill")
-        playTrack(result: self.items![position])
+        super.viewWillAppear(animated)
+        isPlaying = true
+        playPause.image = UIImage(systemName: "pause.circle.fill")
+        playTrack(result: items?[position])
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.isPlaying = false
-        self.playPause.image = UIImage(systemName: "play.circle.fill")
-        pauseTrack()
-        
-    }
-    
-    @objc func playPauseBtnClicked() {
-        if self.isPlaying {
-            self.isPlaying = false
-            self.playPause.image = UIImage(systemName: "play.circle.fill")
 
-            self.pauseTrack()
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        isPlaying = false
+        playPause.image = UIImage(systemName: "play.circle.fill")
+        pauseTrack()
+    }
+
+    private func setupUI() {
+        musicImage.layer.cornerRadius = 8
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
+        loadUI(position: position)
+    }
+
+    private func setupActions() {
+        backView.isUserInteractionEnabled = true
+        backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backBtnClicked)))
+
+        playPause.isUserInteractionEnabled = true
+        playPause.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(playPauseBtnClicked)
+        ))
+
+        nextBtn.isUserInteractionEnabled = true
+        nextBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nextBtnClicked)))
+
+        previous.isUserInteractionEnabled = true
+        previous.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(previousBtnClicked)
+        ))
+    }
+
+    @objc func playPauseBtnClicked() {
+        if isPlaying {
+            isPlaying = false
+            playPause.image = UIImage(systemName: "play.circle.fill")
+            pauseTrack()
         } else {
-            self.isPlaying = true
-            self.playPause.image = UIImage(systemName: "pause.circle.fill")
-            self.playTrack(result: items![self.position])
+            isPlaying = true
+            playPause.image = UIImage(systemName: "pause.circle.fill")
+            playTrack(result: items?[position])
         }
     }
 
-    func playTrack(result: Result) {
-        guard let urlString = result.downloadURL?[3].link else {
+    func playTrack(result: Result?) {
+        guard let urlString = result?.downloadURL?[3].link, currentPlayingURL != urlString else {
             print("Invalid URL or downloadURL array")
             return
         }
 
-        // Check if the new song is the same as the currently playing song
-        if currentPlayingURL != urlString {
-            // It's a new song, update the currentPlayingURL and player
-            currentPlayingURL = urlString
-            if let url = URL(string: urlString) {
-                let playerItem = AVPlayerItem(url: url)
-                player = AVPlayer(playerItem: playerItem)
-            }
+        currentPlayingURL = urlString
+        if let url = URL(string: urlString) {
+            let playerItem = AVPlayerItem(url: url)
+            player = AVPlayer(playerItem: playerItem)
         }
 
-        // Play or resume the track
         player?.play()
     }
 
-    
-    @IBAction func progresBarValueChange(_ sender: UISlider) {
-        
-        self.x  = Int(sender.value * Float(Int(self.items![position].duration!)!))
-        let targetTime = CMTime(seconds: Double(self.x), preferredTimescale: 1)
+    @IBAction func progressBarValueChanged(_ sender: UISlider) {
+        guard let duration = items?[position].duration, let durationInt = Int(duration) else {
+            return
+        }
 
-            player?.seek(to: targetTime, completionHandler: { finished in
-                if finished {
-                    // The seek operation has completed
-                    print("Player is now at 30 seconds")
-                }
-            })
+        x = Int(sender.value * Float(durationInt))
+        let targetTime = CMTime(seconds: Double(x), preferredTimescale: 1)
+
+        player?.seek(to: targetTime, completionHandler: { finished in
+            if finished {
+                print("Player is now at \(self.x) seconds")
+            }
+        })
     }
-    
-    
 
     func pauseTrack() {
-        player?.pause() // To pause the song
+        player?.pause()
     }
 
     @objc func backBtnClicked() {
-        self.dismiss(animated: true)
+        dismiss(animated: true)
     }
 
     @objc func nextBtnClicked() {
-        if self.position >= 49 {
-            position = -1
-        }
-        self.position = self.position + 1
-        self.loadUI(position: self.position)
-        self.playTrack(result: self.items![position])
+        position = (position >= 49) ? -1 : position + 1
+        loadUI(position: position)
+        playTrack(result: items?[position])
     }
 
     @objc func previousBtnClicked() {
-        if self.position > 0 {
-            self.position = self.position - 1
-            self.loadUI(position: self.position)
-            self.playTrack(result: self.items![position])
+        if position > 0 {
+            position -= 1
+            loadUI(position: position)
+            playTrack(result: items?[position])
         }
     }
 
     func loadUI(position: Int) {
-        self.isPlaying = true
+        isPlaying = true
+        x = 0
+        guard let item = items?[position] else { return }
 
-        self.x = 0
-
-        let item = self.items![position]
-        
-        self.playbackTimer?.invalidate()
-        self.playbackTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            self.updatePlaybackPosition(totalTrackDuration: Int(item.duration ?? "0")!)
+        playbackTimer?.invalidate()
+        playbackTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            self.updatePlaybackPosition(totalTrackDuration: Int(item.duration ?? "0") ?? 0)
         }
-        self.playPause.image = UIImage(systemName: "pause.circle.fill")
-        if let images = item.image {
-            self.musicImage.sd_setImage(with: URL(string: images[2].link!), placeholderImage: UIImage(named: "placeholder"))
+        playPause.image = UIImage(systemName: "pause.circle.fill")
+        if let images = item.image, images.count > 2 {
+            musicImage.sd_setImage(with: URL(string: images[2].link ?? ""), placeholderImage: UIImage(named: "placeholder"))
         }
-
-        self.musicName.text = item.name!
-        self.artist.text = item.primaryArtists!
-
-        self.startTime.text = "0:0"
-        self.progressbar.value = 0
-        self.progressbar.maximumValue = 1
-        self.endTime.text = convertSecondstoMinAndSec(totalSeconds:  Int(item.duration ?? "0")!)
+        musicName.text = item.name
+        artist.text = item.primaryArtists
+        startTime.text = "0:0"
+        progressbar.value = 0
+        progressbar.maximumValue = 1
+        endTime.text = convertSecondsToMinAndSec(totalSeconds: Int(item.duration ?? "0") ?? 0)
     }
 
     func updatePlaybackPosition(totalTrackDuration: Int) {
-        if self.isPlaying {
+        if isPlaying {
             DispatchQueue.main.async {
-                self.x = self.x + 1
+                self.x += 1
                 if self.x >= totalTrackDuration {
                     self.playbackTimer?.invalidate()
-                    if self.position >= 49 {
-                        self.position = -1
-                    }
-                    self.loadUI(position: self.position + 1)
-                    self.playTrack(result: self.items![self.position])
+                    self.position = (self.position >= 49) ? -1 : self.position + 1
+                    self.loadUI(position: self.position)
+                    self.playTrack(result: self.items?[self.position])
                 } else {
-                    self.startTime.text = self.convertSecondstoMinAndSec(totalSeconds: self.x)
+                    self.startTime.text = self.convertSecondsToMinAndSec(totalSeconds: self.x)
                     self.progressbar.value = Float(self.x) / Float(totalTrackDuration)
                 }
             }
         }
-      
+    }
+
+    func convertSecondsToMinAndSec(totalSeconds: Int) -> String {
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format: "%d:%02d", minutes, seconds)
     }
 }

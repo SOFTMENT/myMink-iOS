@@ -164,12 +164,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ft7-eq-MmG">
-                                <rect key="frame" x="150" y="418.66666666666669" width="93.333333333333314" height="14.666666666666686"/>
-                                <fontDescription key="fontDescription" name="TimesNRCyrMT" family="Times New Roman Cyr" pointSize="13"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
@@ -185,17 +179,14 @@
                             <constraint firstItem="TZk-qr-yEP" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="To7-NM-PSi"/>
                             <constraint firstItem="TZk-qr-yEP" firstAttribute="top" secondItem="PsZ-25-wQ1" secondAttribute="bottom" id="aG1-9Q-slA"/>
                             <constraint firstAttribute="trailing" secondItem="TZk-qr-yEP" secondAttribute="trailing" id="dmh-iD-azg"/>
-                            <constraint firstItem="ft7-eq-MmG" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="e4w-Mz-tWC"/>
                             <constraint firstAttribute="trailing" secondItem="TdU-zx-UYe" secondAttribute="trailing" constant="25" id="he7-0Y-cD9"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="TdU-zx-UYe" secondAttribute="bottom" id="pmT-1o-HeB"/>
                             <constraint firstItem="TdU-zx-UYe" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="25" id="zaI-sC-UpT"/>
-                            <constraint firstItem="ft7-eq-MmG" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="zm1-Sh-lLk"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backView" destination="IJR-Tk-AFd" id="Udn-LY-fkK"/>
                         <outlet property="collectionView" destination="TdU-zx-UYe" id="gmv-Xs-QO9"/>
-                        <outlet property="no_results_found" destination="ft7-eq-MmG" id="4bS-yZ-55S"/>
                         <outlet property="searchBtn" destination="Tqb-aL-tkA" id="SwA-TC-elA"/>
                         <outlet property="searchTF" destination="r85-BU-iR2" id="DMR-J3-wZP"/>
                     </connections>

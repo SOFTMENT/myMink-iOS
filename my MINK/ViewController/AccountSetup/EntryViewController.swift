@@ -8,17 +8,20 @@ class EntryViewController: UIViewController {
     @IBOutlet var createAnAccountBtn: UIButton!
 
     override func viewDidLoad() {
-        self.loginBtn.layer.cornerRadius = 8
-        self.createAnAccountBtn.layer.cornerRadius = 8
-
-       
+        super.viewDidLoad()
+        setupUI()
     }
 
-    @IBAction func loginBtnClicked(_: Any) {
+    private func setupUI() {
+        loginBtn.layer.cornerRadius = 8
+        createAnAccountBtn.layer.cornerRadius = 8
+    }
+
+    @IBAction func loginBtnClicked(_ sender: UIButton) {
         performSegue(withIdentifier: "signInSeg", sender: nil)
     }
 
-    @IBAction func createAnAccountBtnClicked(_: Any) {
+    @IBAction func createAnAccountBtnClicked(_ sender: UIButton) {
         performSegue(withIdentifier: "signUpSeg", sender: nil)
     }
 }

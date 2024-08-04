@@ -190,7 +190,22 @@ extension PaywallData {
         public var defaultPackage: String?
 
         /// The images for this template.
-        public var images: Images
+        public var images: Images {
+            get {
+                return Self.merge(source: self._imagesHeic, fallback: self._legacyImages)
+            }
+
+            set {
+                self._imagesHeic = newValue
+                self._legacyImages = nil
+            }
+        }
+
+        /// Low resolution images for this template.
+        public var imagesLowRes: Images {
+            get { self._imagesHeicLowRes ?? Images() }
+            set { self._imagesHeicLowRes = newValue }
+        }
 
         /// Whether the background image will be blurred (in templates with one).
         public var blurredBackgroundImage: Bool {
@@ -224,6 +239,7 @@ extension PaywallData {
             packages: [String],
             defaultPackage: String? = nil,
             images: Images,
+            imagesLowRes: Images = Images(),
             colors: ColorInformation,
             blurredBackgroundImage: Bool = false,
             displayRestorePurchases: Bool = true,
@@ -232,13 +248,18 @@ extension PaywallData {
         ) {
             self.packages = packages
             self.defaultPackage = defaultPackage
-            self.images = images
+            self._imagesHeic = images
+            self._imagesHeicLowRes = imagesLowRes
             self.colors = colors
             self._blurredBackgroundImage = blurredBackgroundImage
             self._displayRestorePurchases = displayRestorePurchases
             self._termsOfServiceURL = termsOfServiceURL
             self._privacyURL = privacyURL
         }
+
+        var _legacyImages: Images?
+        var _imagesHeic: Images?
+        var _imagesHeicLowRes: Images?
 
         @DefaultDecodable.False
         var _blurredBackgroundImage: Bool
@@ -295,6 +316,14 @@ extension PaywallData.Configuration {
 
     }
 
+    fileprivate static func merge(source: Images?, fallback: Images?) -> Images {
+        return .init(
+            header: source?.header ?? fallback?.header,
+            background: source?.background ?? fallback?.background,
+            icon: source?.icon ?? fallback?.icon
+        )
+    }
+
 }
 
 extension PaywallData.Configuration {
@@ -339,6 +368,10 @@ extension PaywallData.Configuration {
         public var accent1: PaywallColor?
         /// Secondary accent color
         public var accent2: PaywallColor?
+        /// Tertiary accent color
+        public var accent3: PaywallColor?
+        /// Color for the close button of the paywall.
+        public var closeButton: PaywallColor?
 
         // swiftlint:disable:next missing_docs
         public init(
@@ -350,7 +383,9 @@ extension PaywallData.Configuration {
             callToActionForeground: PaywallColor,
             callToActionSecondaryBackground: PaywallColor? = nil,
             accent1: PaywallColor? = nil,
-            accent2: PaywallColor? = nil
+            accent2: PaywallColor? = nil,
+            accent3: PaywallColor? = nil,
+            closeButton: PaywallColor? = nil
         ) {
             self.background = background
             self.text1 = text1
@@ -361,6 +396,8 @@ extension PaywallData.Configuration {
             self.callToActionSecondaryBackground = callToActionSecondaryBackground
             self.accent1 = accent1
             self.accent2 = accent2
+            self.accent3 = accent3
+            self.closeButton = closeButton
         }
     }
 
@@ -390,14 +427,13 @@ extension PaywallData {
         config: Configuration,
         localization: LocalizedConfiguration,
         assetBaseURL: URL,
-        revision: Int = 0
+        revision: Int = 0,
+        locale: Locale = .current
     ) {
-        let locale = Locale.current.identifier
-
         self.init(
             templateName: templateName,
             config: config,
-            localization: [locale: localization],
+            localization: [locale.identifier: localization],
             assetBaseURL: assetBaseURL,
             revision: revision
         )
@@ -450,7 +486,9 @@ extension PaywallData.Configuration: Codable {
     private enum CodingKeys: String, CodingKey {
         case packages
         case defaultPackage
-        case images
+        case _legacyImages = "images"
+        case _imagesHeic = "imagesHeic"
+        case _imagesHeicLowRes = "imagesHeicLowRes"
         case _blurredBackgroundImage = "blurredBackgroundImage"
         case _displayRestorePurchases = "displayRestorePurchases"
         case _termsOfServiceURL = "tosUrl"
@@ -500,7 +538,7 @@ private extension Locale {
 
     func sharesLanguageCode(with other: Locale) -> Bool {
         if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
-            return self.language.languageCode == other.language.languageCode
+            return self.language.isEquivalent(to: other.language)
         } else {
             return self.languageCode == other.languageCode
         }

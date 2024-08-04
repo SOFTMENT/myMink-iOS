@@ -27,6 +27,7 @@ final class DebugViewModel: ObservableObject {
         var observerMode: Bool
         var sandbox: Bool
         var storeKit2Enabled: Bool
+        var locale: Locale
         var offlineCustomerInfoSupport: Bool
         var verificationMode: String
         var receiptURL: URL?
@@ -58,6 +59,7 @@ final class DebugViewModel: ObservableObject {
         set { self._navigationPath = newValue }
     }
 
+    @MainActor
     func load() async {
         self.configuration = .loaded(.create())
 
@@ -152,6 +154,7 @@ private extension DebugViewModel.Configuration {
             observerMode: purchases.observerMode,
             sandbox: purchases.isSandbox,
             storeKit2Enabled: purchases.storeKit2Setting.isEnabledAndAvailable,
+            locale: .autoupdatingCurrent,
             offlineCustomerInfoSupport: purchases.offlineCustomerInfoEnabled,
             verificationMode: purchases.responseVerificationMode.display,
             receiptURL: purchases.receiptURL

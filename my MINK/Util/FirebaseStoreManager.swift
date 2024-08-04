@@ -9,4 +9,5 @@ struct FirebaseStoreManager {
     static let db = Firestore.firestore()
     static let auth = Auth.auth()
     static let messaging = Messaging.messaging()
+    
 }

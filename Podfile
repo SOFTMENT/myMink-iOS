@@ -37,6 +37,7 @@ target 'my MINK' do
   pod 'ActiveLabel'
  pod 'SWXMLHash'
   pod 'SSZipArchive'
+  pod 'Firebase/Crashlytics'
 
 end
 
@@ -52,7 +53,7 @@ post_install do |installer|
       File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
       
       # Add Info.plist to specific frameworks
-      if ['BraintreeDropIn', 'DropDown', 'FirebaseFunctions', 'ATGMediaBrowser', 'BSImagePicker', 'RevenueCat', 'RNCryptor', 'ALProgressView'].include? target.name
+      if ['BraintreeDropIn', 'DropDown','DSPhotoEditorSDK', 'FirebaseFunctions', 'ATGMediaBrowser', 'BSImagePicker', 'RevenueCat', 'RNCryptor', 'ALProgressView'].include? target.name
         info_plist_path = File.join(installer.sandbox.root, target.name, 'Info.plist')
 
         plist_content = <<-EOS

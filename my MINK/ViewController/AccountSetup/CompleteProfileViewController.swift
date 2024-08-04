@@ -1,6 +1,5 @@
 // Copyright © 2023 SOFTMENT. All rights reserved.
 
-
 import CropViewController
 import Firebase
 import UIKit
@@ -9,87 +8,84 @@ import UIKit
 
 class CompleteProfileViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
-
     @IBOutlet var address: UITextField!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var tableViewHeight: NSLayoutConstraint!
-
-    let selectGenderPicker = UIPickerView()
     @IBOutlet var backView: UIView!
     @IBOutlet var mProfile: UIImageView!
     @IBOutlet var uploadProfileBtn: UIButton!
     @IBOutlet var website: UITextField!
-
     @IBOutlet var bioGraphyTV: UITextView!
-
     @IBOutlet var usernameTF: UITextField!
     @IBOutlet var continueBtn: UIButton!
-    var isImageSelected = false
-    var isLocationSelected: Bool = false
 
+    var isImageSelected = false
+    var isLocationSelected = false
     var places: [Place] = []
 
     override func viewDidLoad() {
-        if UserModel.data == nil {
+        super.viewDidLoad()
+        guard UserModel.data != nil else {
             DispatchQueue.main.async {
                 self.logoutPlease()
             }
+            return
         }
 
-        self.scrollView.contentInsetAdjustmentBehavior = .never
-
-        self.usernameTF.layer.cornerRadius = 12
-        self.usernameTF.setLeftPaddingPoints(16)
-        self.usernameTF.setRightPaddingPoints(10)
-        self.usernameTF.setLeftView(image: UIImage(named: "at")!)
-        self.usernameTF.delegate = self
-
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.isScrollEnabled = false
-        self.tableView.contentInsetAdjustmentBehavior = .never
-
-        self.tableView.rowHeight = UITableView.automaticDimension
-        self.tableView.estimatedRowHeight = 44
-
-        self.address.delegate = self
-       
-        self.address.addTarget(
-            self,
-            action: #selector(self.textFieldDidChange(textField:)),
-            for: UIControl.Event.editingChanged
-        )
-
-        self.mProfile.layer.cornerRadius = 8
-        self.uploadProfileBtn.layer.cornerRadius = 6
-
-        self.website.delegate = self
-
-        self.bioGraphyTV.layer.cornerRadius = 8
-        self.bioGraphyTV.layer.borderWidth = 1
-        self.bioGraphyTV.layer.borderColor = UIColor(red: 221 / 255, green: 221 / 255, blue: 221 / 255, alpha: 1)
-            .cgColor
-        self.bioGraphyTV.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-
-        self.continueBtn.layer.cornerRadius = 8
-
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
-        self.backView.isUserInteractionEnabled = true
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.backViewClicked)
-        ))
-
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hidekeyboard)))
+        setupViews()
+        setupTableView()
     }
 
-    @objc func textFieldDidChange(textField: UITextField) {
-        guard let query = textField.text, !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-            self.places.removeAll()
+    private func setupViews() {
+        scrollView.contentInsetAdjustmentBehavior = .never
 
-            self.tableView.reloadData()
+        setupTextField(usernameTF, placeholderImage: UIImage(named: "at"))
+        setupTextField(address, placeholderImage: nil)
+        address.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        setupTextField(website, placeholderImage: nil)
+
+        mProfile.layer.cornerRadius = 8
+        uploadProfileBtn.layer.cornerRadius = 6
+
+        bioGraphyTV.layer.cornerRadius = 8
+        bioGraphyTV.layer.borderWidth = 1
+        bioGraphyTV.layer.borderColor = UIColor(red: 221 / 255, green: 221 / 255, blue: 221 / 255, alpha: 1).cgColor
+        bioGraphyTV.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+
+        continueBtn.layer.cornerRadius = 8
+
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
+        backView.isUserInteractionEnabled = true
+        backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backViewClicked)))
+
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
+    }
+
+    private func setupTextField(_ textField: UITextField, placeholderImage: UIImage?) {
+        textField.layer.cornerRadius = 12
+        textField.setLeftPaddingPoints(16)
+        textField.setRightPaddingPoints(10)
+        if let image = placeholderImage {
+            textField.setLeftView(image: image)
+        }
+        textField.delegate = self
+    }
+
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.isScrollEnabled = false
+        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44
+    }
+
+    @objc private func textFieldDidChange(textField: UITextField) {
+        guard let query = textField.text, !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            places.removeAll()
+            tableView.reloadData()
             return
         }
 
@@ -97,7 +93,6 @@ class CompleteProfileViewController: UIViewController {
             switch result {
             case .success(let places):
                 self.places = places
-
                 self.tableView.reloadData()
             case .failure(let error):
                 print(error)
@@ -105,160 +100,137 @@ class CompleteProfileViewController: UIViewController {
         }
     }
 
-    @objc func hidekeyboard() {
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
 
-    @objc func backViewClicked() {
+    @objc private func backViewClicked() {
         logoutPlease()
     }
 
-    @IBAction func continueBtnClicked(_: Any) {
-        let sWeb = self.website.text
-        let sBio = self.bioGraphyTV.text
-        let sUsername = self.usernameTF.text
-        if !self.isImageSelected {
+    @IBAction private func continueBtnClicked(_: Any) {
+        guard isImageSelected else {
             showSnack(messages: "Upload Profile Picture")
-        } else if sUsername == "" {
+            return
+        }
+        guard let sUsername = usernameTF.text, !sUsername.isEmpty else {
             showSnack(messages: "Enter Username")
-        } else if !self.isLocationSelected {
+            return
+        }
+        guard isLocationSelected else {
             showSnack(messages: "Enter Location")
-        } else if sBio == "" {
+            return
+        }
+        guard let sBio = bioGraphyTV.text, !sBio.isEmpty else {
             showSnack(messages: "Enter Biography")
-        } else {
-            UserModel.data!.biography = sBio
-            UserModel.data!.website = sWeb
-            UserModel.data!.location = self.address.text
+            return
+        }
 
-            ProgressHUDShow(text: "")
+        UserModel.data!.biography = sBio
+        UserModel.data!.website = website.text
+        UserModel.data!.location = address.text
 
-            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("username", isEqualTo: sUsername ?? "")
-                .getDocuments { snapshot, error in
-                    self.ProgressHUDHide()
-                    if error != nil {
-                        self.showSnack(messages: "Username is already in use.")
-                    } else {
-                        if let snapshot = snapshot, snapshot.isEmpty {
-                            UserModel.data!.username = sUsername
-                            self.uploadFilesOnAWS(
-                                photo: self.mProfile.image!,
-                                previousKey: UserModel.data!.profilePic,
-                                folderName: "ProfilePictures",
-                                postType: .IMAGE
-                            ) { downloadURL in
-                                UserModel.data!.profilePic = downloadURL
+        ProgressHUDShow(text: "")
 
-                                self.createDeepLinkForUserProfile(
-                                    userModel: UserModel.data!,
-                                    completion: { url, error in
-                                        if let url = url {
-                                            UserModel.data!.profileURL = url
-                                        }
+        FirebaseStoreManager.db.collection(Collections.users.rawValue).whereField("username", isEqualTo: sUsername)
+            .getDocuments { snapshot, error in
+                self.ProgressHUDHide()
+                if let error = error {
+                    self.showSnack(messages: error.localizedDescription)
+                } else if let snapshot = snapshot, snapshot.isEmpty {
+                    self.updateUserProfile(username: sUsername)
+                } else {
+                    self.showSnack(messages: "Username is not available")
+                }
+            }
+    }
 
-                                        self.ProgressHUDShow(text: "")
-                                        try? FirebaseStoreManager.db.collection(Collections.USERS.rawValue)
-                                            .document(FirebaseStoreManager.auth.currentUser!.uid)
-                                            .setData(from: UserModel.data!, merge: true, completion: { error in
+    private func updateUserProfile(username: String) {
+        UserModel.data!.username = username
+        guard let profileImage = mProfile.image else { return }
 
-                                                if let error = error {
-                                                    self.ProgressHUDHide()
-                                                    self.showError(error.localizedDescription)
-                                                } else {
-                                                    self.beRootScreen(
-                                                        storyBoardName: .Tabbar,
-                                                        mIdentifier: .TABBARVIEWCONTROLLER
-                                                    )
-                                                }
-                                            })
-                                    }
-                                )
-                            }
+        uploadFilesOnAWS(photo: profileImage, previousKey: UserModel.data!.profilePic, folderName: "ProfilePictures", postType: .image) { downloadURL in
+            UserModel.data!.profilePic = downloadURL
+
+            self.createDeepLinkForUserProfile(userModel: UserModel.data!) { url, error in
+                if let url = url {
+                    UserModel.data!.profileURL = url
+                }
+
+                self.ProgressHUDShow(text: "")
+                try? FirebaseStoreManager.db.collection(Collections.users.rawValue)
+                    .document(FirebaseStoreManager.auth.currentUser!.uid)
+                    .setData(from: UserModel.data!, merge: true) { error in
+                        self.ProgressHUDHide()
+                        if let error = error {
+                            self.showError(error.localizedDescription)
                         } else {
-                            self.ProgressHUDHide()
-                            self.showSnack(messages: "Username is not available")
+                            self.beRootScreen(storyBoardName: .tabBar, mIdentifier: .tabBarViewController)
                         }
                     }
-                }
+            }
         }
     }
 
-    @objc func locationCellClicked(myGesture: MyGesture) {
-        self.tableView.isHidden = true
+    @objc private func locationCellClicked(myGesture: MyGesture) {
+        tableView.isHidden = true
         view.endEditing(true)
 
-        let place = self.places[myGesture.index]
-        self.address.text = place.name ?? ""
-
-        self.isLocationSelected = true
+        let place = places[myGesture.index]
+        address.text = place.name
+        isLocationSelected = true
 
         GooglePlacesManager.shared.resolveLocation(for: place) { result in
-            switch result {
-            case .success:
-
-                break
-            case .failure(let error):
+            if case .failure(let error) = result {
                 print(error)
             }
         }
     }
 
-    func updateTableViewHeight() {
-        self.tableViewHeight.constant = self.tableView.contentSize.height
-        self.tableView.layoutIfNeeded()
+    private func updateTableViewHeight() {
+        tableViewHeight.constant = tableView.contentSize.height
+        tableView.layoutIfNeeded()
     }
 
-    @IBAction func uploadProfileClick(_: Any) {
+    @IBAction private func uploadProfileClick(_: Any) {
         let alert = UIAlertController(title: "Upload Profile Picture", message: "", preferredStyle: .alert)
         let action1 = UIAlertAction(title: "Using Camera", style: .default) { _ in
-
-            let image = UIImagePickerController()
-            image.title = "Profile Picture"
-            image.delegate = self
-            image.sourceType = .camera
-            self.present(image, animated: true)
+            self.presentImagePicker(sourceType: .camera)
         }
-
         let action2 = UIAlertAction(title: "From Photo Library", style: .default) { _ in
-
-            let image = UIImagePickerController()
-            image.delegate = self
-            image.title = "Profile Picture"
-            image.sourceType = .photoLibrary
-
-            self.present(image, animated: true)
+            self.presentImagePicker(sourceType: .photoLibrary)
         }
-
-        let action3 = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-
-            alert.dismiss(animated: true, completion: nil)
-        }
+        let action3 = UIAlertAction(title: "Cancel", style: .cancel)
 
         alert.addAction(action1)
         alert.addAction(action2)
         alert.addAction(action3)
 
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true)
+    }
+
+    private func presentImagePicker(sourceType: UIImagePickerController.SourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.title = "Profile Picture"
+        imagePicker.delegate = self
+        imagePicker.sourceType = sourceType
+        present(imagePicker, animated: true)
     }
 }
 
-// MARK: UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 
 extension CompleteProfileViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_: UITextField) -> Bool {
-        self.hidekeyboard()
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hideKeyboard()
         return true
     }
 }
 
-// MARK: UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate
 
-extension CompleteProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate,
-    CropViewControllerDelegate
-{
-    func imagePickerController(
-        _ picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
-    ) {
+extension CompleteProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let editedImage = info[.originalImage] as? UIImage {
             dismiss(animated: true) {
                 let cropViewController = CropViewController(image: editedImage)
@@ -267,51 +239,45 @@ extension CompleteProfileViewController: UIImagePickerControllerDelegate, UINavi
                 cropViewController.customAspectRatio = CGSize(width: 1, height: 1)
                 cropViewController.aspectRatioLockEnabled = true
                 cropViewController.aspectRatioPickerButtonHidden = true
-                self.present(cropViewController, animated: true, completion: nil)
+                self.present(cropViewController, animated: true)
             }
+        } else {
+            dismiss(animated: true)
         }
-
-        dismiss(animated: true, completion: nil)
     }
 
     func cropViewController(_: CropViewController, didCropToImage image: UIImage, withRect _: CGRect, angle _: Int) {
-        self.isImageSelected = true
-        self.mProfile.image = image
-
-        dismiss(animated: true, completion: nil)
+        isImageSelected = true
+        mProfile.image = image
+        dismiss(animated: true)
     }
 }
 
-// MARK: UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension CompleteProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection _: Int) -> Int {
-        if !self.places.isEmpty {
-            tableView.isHidden = false
-        } else {
-            tableView.isHidden = true
-        }
-        return self.places.count
+        tableView.isHidden = places.isEmpty
+        return places.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "placescell", for: indexPath) as? GooglePlacesCell {
-            cell.name.text = self.places[indexPath.row].name ?? ""
-            cell.mView.isUserInteractionEnabled = true
-
-            let myGesture = MyGesture(target: self, action: #selector(self.locationCellClicked(myGesture:)))
-            myGesture.index = indexPath.row
-            cell.mView.addGestureRecognizer(myGesture)
-
-            let totalRow = tableView.numberOfRows(inSection: indexPath.section)
-            if indexPath.row == totalRow - 1 {
-                DispatchQueue.main.async {
-                    self.updateTableViewHeight()
-                }
-            }
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "placescell", for: indexPath) as? GooglePlacesCell else {
+            return GooglePlacesCell()
         }
 
-        return GooglePlacesCell()
+        cell.name.text = places[indexPath.row].name
+        cell.mView.isUserInteractionEnabled = true
+
+        let myGesture = MyGesture(target: self, action: #selector(locationCellClicked))
+        myGesture.index = indexPath.row
+        cell.mView.addGestureRecognizer(myGesture)
+
+        if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
+            DispatchQueue.main.async {
+                self.updateTableViewHeight()
+            }
+        }
+        return cell
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherReportViewController : UIViewController {
+class WeatherReportViewController: UIViewController {
     
     @IBOutlet weak var locationLbl: UILabel!
     @IBOutlet weak var backView: UIView!
@@ -25,70 +25,76 @@ class WeatherReportViewController : UIViewController {
     @IBOutlet weak var pressureView: UIView!
     @IBOutlet weak var pressureLbl: UILabel!
     @IBOutlet var topView: UIView!
-    var weatherModel : WeatherModel?
     @IBOutlet var mView: UIView!
+    
+    var weatherModel: WeatherModel?
+
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         guard let weatherModel = weatherModel else {
-            
             DispatchQueue.main.async {
                 self.dismiss(animated: true)
             }
-            
             return
-            
         }
         
-        self.mView.clipsToBounds = true
-        self.mView.layer.cornerRadius = 20
-        self.mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-
-        self.topView.isUserInteractionEnabled = true
-        self.topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backViewClicked)))
-        
-        
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
-        self.backView.isUserInteractionEnabled = true
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.backViewClicked)
-        ))
-
-
-        locationLbl.text = weatherModel.current!.city ?? ""
-        feelsLikeTemp.text = "\(weatherModel.current!.feelsLike!)°C"
-        
-        tempView.layer.cornerRadius = 8
-        tempView.dropShadow()
-        tempLbl.text = "\(String(format: "%.1f", weatherModel.current!.temp!))°C"
-        
-        windView.layer.cornerRadius = 8
-        windView.dropShadow()
-        windLbl.text = "\(weatherModel.current!.windSpeed!)/km"
-        
-        humidityView.layer.cornerRadius = 8
-        humidityView.dropShadow()
-        humdityLbl.text = "\(weatherModel.current!.humidity!)%"
-        
-        uvIndexView.layer.cornerRadius = 8
-        uvIndexView.dropShadow()
-        
-        
-        unIndexLbl.text = "\(String(format: "%.2f", weatherModel.current!.uvi! * 11)) of 11"
-        
-        visibilityView.layer.cornerRadius = 8
-        visibilityView.dropShadow()
-        visibilityLbl.text = "\(Double(weatherModel.current!.visibility!) / 1000.0) km"
-        
-        pressureView.layer.cornerRadius = 8
-        pressureView.dropShadow()
-        pressureLbl.text = "\(weatherModel.current!.pressure!) hPa"
+        setupUI()
+        populateWeatherData(weatherModel: weatherModel)
     }
     
-    @objc func backViewClicked() {
+    private func setupUI() {
+        mView.clipsToBounds = true
+        mView.layer.cornerRadius = 20
+        mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+
+        setupBackView()
+        setupTopView()
+        
+        setupWeatherView(tempView)
+        setupWeatherView(windView)
+        setupWeatherView(humidityView)
+        setupWeatherView(uvIndexView)
+        setupWeatherView(visibilityView)
+        setupWeatherView(pressureView)
+    }
+    
+    private func setupBackView() {
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
+        backView.isUserInteractionEnabled = true
+        backView.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(backViewClicked)
+        ))
+    }
+    
+    private func setupTopView() {
+        topView.isUserInteractionEnabled = true
+        topView.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(backViewClicked)
+        ))
+    }
+    
+    private func setupWeatherView(_ view: UIView) {
+        view.layer.cornerRadius = 8
+        view.dropShadow()
+    }
+    
+    private func populateWeatherData(weatherModel: WeatherModel) {
+        locationLbl.text = weatherModel.current?.city ?? ""
+        feelsLikeTemp.text = "\(weatherModel.current?.feelsLike ?? 0)°C"
+        
+        tempLbl.text = "\(String(format: "%.1f", weatherModel.current?.temp ?? 0))°C"
+        windLbl.text = "\(weatherModel.current?.windSpeed ?? 0)/km"
+        humdityLbl.text = "\(weatherModel.current?.humidity ?? 0)%"
+        unIndexLbl.text = "\(String(format: "%.2f", (weatherModel.current?.uvi ?? 0) * 11)) of 11"
+        visibilityLbl.text = "\(Double(weatherModel.current?.visibility ?? 0) / 1000.0) km"
+        pressureLbl.text = "\(weatherModel.current?.pressure ?? 0) hPa"
+    }
+    
+    @objc private func backViewClicked() {
         dismiss(animated: true)
     }
-
-   
 }

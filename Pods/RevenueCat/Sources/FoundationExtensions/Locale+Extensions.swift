@@ -19,7 +19,7 @@ extension Locale {
     var rc_currencyCode: String? {
         #if swift(>=5.9)
         // `Locale.currencyCode` is deprecated
-        if #available(macOS 13, iOS 16, tvOS 16, watchOS 9, xrOS 1.0, *) {
+        if #available(macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1.0, *) {
             return self.currency?.identifier
         } else {
             return self.currencyCode
@@ -27,6 +27,25 @@ extension Locale {
         #else
         return self.currencyCode
         #endif
+    }
+
+    // swiftlint:disable:next identifier_name
+    var rc_languageCode: String? {
+        #if swift(>=5.9)
+        // `Locale.languageCode` is deprecated
+        if #available(macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1.0, *) {
+            return self.language.languageCode?.identifier
+        } else {
+            return self.languageCode
+        }
+        #else
+        return self.languageCode
+        #endif
+    }
+
+    /// - Returns: the same locale as `self` but removing its region.
+    var removingRegion: Self? {
+        return self.rc_languageCode.map(Locale.init(identifier:))
     }
 
 }

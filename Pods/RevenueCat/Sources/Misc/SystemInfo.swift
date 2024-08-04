@@ -26,7 +26,11 @@ import AppKit
 class SystemInfo {
 
     static let appleSubscriptionsURL = URL(string: "https://apps.apple.com/account/subscriptions")!
-    static var forceUniversalAppStore: Bool = false
+
+    static var forceUniversalAppStore: Bool {
+        get { self._forceUniversalAppStore.value }
+        set { self._forceUniversalAppStore.value = newValue }
+    }
 
     let storeKit2Setting: StoreKit2Setting
     let operationDispatcher: OperationDispatcher
@@ -46,15 +50,27 @@ class SystemInfo {
     var observerMode: Bool { return !self.finishTransactions }
 
     private let sandboxEnvironmentDetector: SandboxEnvironmentDetector
+    private let storefrontProvider: StorefrontProviderType
     private let _finishTransactions: Atomic<Bool>
     private let _bundle: Atomic<Bundle>
 
-    var isSandbox: Bool {
+    private static let _forceUniversalAppStore: Atomic<Bool> = false
+    private static let _proxyURL: Atomic<URL?> = nil
+
+    private lazy var _isSandbox: Bool = {
         return self.sandboxEnvironmentDetector.isSandbox
+    }()
+
+    var isSandbox: Bool {
+        return self._isSandbox
+    }
+
+    var storefront: StorefrontType? {
+        return self.storefrontProvider.currentStorefront
     }
 
     static var frameworkVersion: String {
-        return "4.28.1"
+        return "4.43.0"
     }
 
     static var systemVersion: String {
@@ -83,6 +99,8 @@ class SystemInfo {
         // https://developer.apple.com/documentation/watchkit/wkinterfacedevice?language=swift
 
         #if os(iOS) || os(tvOS) || VISION_OS
+            // Fix-me: `UIDevice.current` is `@MainActor` so this method
+            // will need to be marked as such too.
             return UIDevice.current.identifierForVendor?.uuidString
         #elseif os(watchOS)
             return WKInterfaceDevice.current().identifierForVendor?.uuidString
@@ -94,8 +112,11 @@ class SystemInfo {
     }
 
     static var proxyURL: URL? {
-        didSet {
-            if let privateProxyURLString = proxyURL?.absoluteString {
+        get { return self._proxyURL.value }
+        set {
+            self._proxyURL.value = newValue
+
+            if let privateProxyURLString = newValue?.absoluteString {
                 Logger.info(Strings.configure.configuring_purchases_proxy_url_set(url: privateProxyURLString))
             }
         }
@@ -106,6 +127,7 @@ class SystemInfo {
          operationDispatcher: OperationDispatcher = .default,
          bundle: Bundle = .main,
          sandboxEnvironmentDetector: SandboxEnvironmentDetector = BundleSandboxEnvironmentDetector.default,
+         storefrontProvider: StorefrontProviderType = DefaultStorefrontProvider(),
          storeKit2Setting: StoreKit2Setting = .default,
          responseVerificationMode: Signing.ResponseVerificationMode = .default,
          dangerousSettings: DangerousSettings? = nil,
@@ -118,6 +140,7 @@ class SystemInfo {
         self.operationDispatcher = operationDispatcher
         self.storeKit2Setting = storeKit2Setting
         self.sandboxEnvironmentDetector = sandboxEnvironmentDetector
+        self.storefrontProvider = storefrontProvider
         self.responseVerificationMode = responseVerificationMode
         self.dangerousSettings = dangerousSettings ?? DangerousSettings()
         self.clock = clock
@@ -125,7 +148,7 @@ class SystemInfo {
 
     /// Asynchronous API if caller can't ensure that it's invoked in the `@MainActor`
     /// - Seealso: `isApplicationBackgrounded`
-    func isApplicationBackgrounded(completion: @escaping (Bool) -> Void) {
+    func isApplicationBackgrounded(completion: @escaping @Sendable (Bool) -> Void) {
         self.operationDispatcher.dispatchOnMainActor {
             completion(self.isApplicationBackgrounded)
         }

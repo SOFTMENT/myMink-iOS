@@ -184,7 +184,7 @@
                                 <state key="normal" image="square" catalog="system"/>
                                 <state key="selected" image="checkmark.square.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="remeberMeClicked:" destination="FUU-5h-WNl" eventType="touchUpInside" id="lu8-DT-cc9"/>
+                                    <action selector="rememberMeClicked:" destination="FUU-5h-WNl" eventType="touchUpInside" id="Mft-Cq-uZg"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remeber Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4Q-XT-7ym">
@@ -393,7 +393,7 @@
                         <outlet property="password" destination="0b8-WI-ohd" id="98t-3O-HBJ"/>
                         <outlet property="phoneBtn" destination="LGT-Be-IKE" id="8Ot-Hy-6qp"/>
                         <outlet property="registerNowBtn" destination="h5q-27-WKO" id="yeS-NE-VUS"/>
-                        <outlet property="remeberMeCheck" destination="As9-L7-lRe" id="1Zv-8t-yuB"/>
+                        <outlet property="rememberMeCheck" destination="As9-L7-lRe" id="RzG-Rf-BHs"/>
                         <segue destination="IKb-nF-hhs" kind="presentation" identifier="resetPasswordSeg" modalPresentationStyle="fullScreen" id="6eG-xk-vys"/>
                         <segue destination="RdT-8s-WB0" kind="presentation" identifier="signUpSeg" modalPresentationStyle="fullScreen" id="aBl-WZ-edE"/>
                         <segue destination="4Dt-QH-jZl" kind="presentation" identifier="phoneNumberSignInSeg" modalPresentationStyle="fullScreen" id="mxG-lI-SmU"/>
@@ -2297,7 +2297,7 @@
         <designable name="4Af-fT-ZTn"/>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="Zf7-al-EMY"/>
+        <segue reference="gcE-J7-k0W"/>
         <segue reference="huc-a1-spI"/>
         <segue reference="4mE-8R-HWK"/>
         <segue reference="aBl-WZ-edE"/>

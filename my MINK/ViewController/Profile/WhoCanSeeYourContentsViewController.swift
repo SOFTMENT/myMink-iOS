@@ -4,37 +4,47 @@ import UIKit
 
 class WhoCanSeeYourContentsViewController: UIViewController {
     @IBOutlet var backView: UIView!
-
     @IBOutlet var topView: UIView!
-
     @IBOutlet var mView: UIView!
-
     @IBOutlet var mSwitch: UISwitch!
 
     override func viewDidLoad() {
-        self.mView.clipsToBounds = true
-        self.mView.layer.cornerRadius = 20
-        self.mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        super.viewDidLoad()
+        
+        configureViews()
+        setupGestureRecognizers()
+        updateSwitchState()
+    }
 
-        self.topView.isUserInteractionEnabled = true
-        self.topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backViewClicked)))
+    private func configureViews() {
+        mView.clipsToBounds = true
+        mView.layer.cornerRadius = 20
+        mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
 
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
-        self.backView.isUserInteractionEnabled = true
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.backViewClicked)
-        ))
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
+    }
 
-        if let isAccountPrivate = UserModel.data!.isAccountPrivate, isAccountPrivate {
-            self.mSwitch.isOn = true
+    private func setupGestureRecognizers() {
+        let backViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(backViewClicked))
+        topView.addGestureRecognizer(backViewTapGesture)
+        backView.addGestureRecognizer(backViewTapGesture)
+        topView.isUserInteractionEnabled = true
+        backView.isUserInteractionEnabled = true
+    }
+
+    private func updateSwitchState() {
+        guard let isAccountPrivate = UserModel.data?.isAccountPrivate else {
+            mSwitch.isOn = false
+            return
         }
+        mSwitch.isOn = isAccountPrivate
     }
 
     @IBAction func statusChanged(_ sender: UISwitch) {
-        UserModel.data!.isAccountPrivate = sender.isOn
-        FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
+        guard let userId = FirebaseStoreManager.auth.currentUser?.uid else { return }
+        UserModel.data?.isAccountPrivate = sender.isOn
+        FirebaseStoreManager.db.collection(Collections.users.rawValue).document(userId)
             .setData(["isAccountPrivate": sender.isOn], merge: true)
     }
 

@@ -61,23 +61,12 @@ class CreateEventBasicViewController: UIViewController {
         backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backViewClicked)))
         
         eventTitle.layer.cornerRadius = 8
-        
         eventTags.layer.cornerRadius = 8
-        
         eventTitle.delegate = self
-
         eventTags.delegate = self
         
-        
-        
-        
-        
-      
         countriesPicker.delegate = self
         countriesPicker.dataSource = self
-        
-    
-     
         
         // ToolBar
         let countriestoolBar = UIToolbar()
@@ -95,18 +84,12 @@ class CreateEventBasicViewController: UIViewController {
         country.inputAccessoryView = countriestoolBar
         country.inputView = countriesPicker
 
-        
-    
-        
-       
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hidekeyboard)))
-        
-        
+            
         searchForVenue.layer.cornerRadius = 8
         searchForVenue.delegate = self
         searchForVenue.addTarget(self, action: #selector(CreateEventBasicViewController.textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
-        
-        
+
         eventStart.layer.cornerRadius = 8
         startTime.layer.cornerRadius = 8
         eventEnd.layer.cornerRadius = 8
@@ -116,8 +99,6 @@ class CreateEventBasicViewController: UIViewController {
         startTime.delegate = self
         eventEnd.delegate = self
         endTime.delegate = self
-        
-      
         
         continueBtn.layer.cornerRadius = 8
         
@@ -131,9 +112,6 @@ class CreateEventBasicViewController: UIViewController {
         state.layer.cornerRadius = 8
         pincode.layer.cornerRadius = 8
         country.layer.cornerRadius = 8
-        
-       
-    
         
         address.delegate = self
         city.delegate = self
@@ -433,7 +411,7 @@ class CreateEventBasicViewController: UIViewController {
             
     
         
-        let docucmentRef =  FirebaseStoreManager.db.collection(Collections.EVENTS.rawValue).document()
+        let docucmentRef =  FirebaseStoreManager.db.collection(Collections.events.rawValue).document()
         
         event.eventId = docucmentRef.documentID
     

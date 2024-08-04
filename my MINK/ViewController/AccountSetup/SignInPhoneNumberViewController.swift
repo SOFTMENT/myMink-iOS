@@ -16,32 +16,40 @@ class SignInPhoneNumberViewController: UIViewController {
     var phoneNumber: String?
     var for2FA: Bool = false
     var sCode = ""
+    
     override func viewDidLoad() {
-        self.backView.isUserInteractionEnabled = true
-        self.backView.dropShadow()
-        self.backView.layer.cornerRadius = 8
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(
+        setupViews()
+        setupCountryPicker()
+    }
+
+    private func setupViews() {
+        backView.isUserInteractionEnabled = true
+        backView.dropShadow()
+        backView.layer.cornerRadius = 8
+        backView.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
             action: #selector(self.backViewClicked)
         ))
 
         codeTF.delegate = self
         codeTF.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(countryCodeClicked)))
-        self.signUpBtn.layer.cornerRadius = 8
+        signUpBtn.layer.cornerRadius = 8
         
         if for2FA {
             signUpBtn.setTitle("Enable 2FA", for: .normal)
         }
        
-        let country = Country(isoCode: getCountryCode().uppercased())
-        sCode = country.phoneCode
-        codeTF.text = country.isoCode.getFlag() + " " + country.phoneCode
-        
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hidekeyboard)))
     }
-    
-    @objc func countryCodeClicked(){
+
+    private func setupCountryPicker() {
+        let country = Country(isoCode: getCountryCode().uppercased())
+        sCode = country.phoneCode
+        codeTF.text = country.isoCode.getFlag() + " " + country.phoneCode
+    }
+
+    @objc func countryCodeClicked() {
         showCountryPicker()
     }
 
@@ -54,58 +62,47 @@ class SignInPhoneNumberViewController: UIViewController {
     }
 
     @IBAction func signUpClicked(_: Any) {
-      
-        let sPhone = self.phoneTF.text
-
-        if self.sCode == "" {
+        guard !sCode.isEmpty else {
             showSnack(messages: "Select Phone Code")
-        } else if sPhone == "" {
-            showSnack(messages: "Enter Phone Number")
-        } else {
-            let phoneNumber = "+\(self.sCode)\(sPhone!)"
-
-            self.phoneNumber = phoneNumber
-
-            if self.for2FA {
-                ProgressHUDShow(text: "Retrieving activation code for 2FA...")
-            } else {
-                ProgressHUDShow(text: "Signing in...")
-            }
-
-            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("phoneNumber", isEqualTo: phoneNumber)
-                .getDocuments { snapshot, error in
-                    if let snapshot = snapshot, !snapshot.documents.isEmpty {
-                        if let userModel = try? snapshot.documents.first?.data(as: UserModel.self), let uid = userModel.uid{
-                            
-                            self.verifyPhoneNumber(phoneNumber: phoneNumber, uid : uid, session: nil)
-                        }
-                        else {
-                            self.ProgressHUDHide()
-                            self.showMessage(
-                                title: "Account Not Found.",
-                                message: "There is no account link with this phone number. Please sign up new account first."
-                            )
-                        }
-                      
-                    } else {
-                        self.ProgressHUDHide()
-                        self.showMessage(
-                            title: "Account Not Found.",
-                            message: "There is no account link with this phone number. Please sign up new account first."
-                        )
-                    }
-                }
+            return
         }
+
+        guard let sPhone = phoneTF.text, !sPhone.isEmpty else {
+            showSnack(messages: "Enter Phone Number")
+            return
+        }
+
+        phoneNumber = "+\(sCode)\(sPhone)"
+
+        if for2FA {
+            ProgressHUDShow(text: "Retrieving activation code for 2FA...")
+        } else {
+            ProgressHUDShow(text: "Signing in...")
+        }
+
+        FirebaseStoreManager.db.collection(Collections.users.rawValue).whereField("phoneNumber", isEqualTo: phoneNumber!)
+            .getDocuments { snapshot, error in
+                if let snapshot = snapshot, !snapshot.documents.isEmpty,
+                   let userModel = try? snapshot.documents.first?.data(as: UserModel.self),
+                   let uid = userModel.uid {
+                    self.verifyPhoneNumber(phoneNumber: self.phoneNumber!, uid: uid, session: nil)
+                } else {
+                    self.ProgressHUDHide()
+                    self.showMessage(
+                        title: "Account Not Found.",
+                        message: "There is no account linked with this phone number. Please sign up for a new account first."
+                    )
+                }
+            }
     }
 
-    func verifyPhoneNumber(phoneNumber: String,uid : String, session: MultiFactorSession?) {
+    func verifyPhoneNumber(phoneNumber: String, uid: String, session: MultiFactorSession?) {
         self.sendTwilioVerification(to: phoneNumber) { error in
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
                 if let error = error {
                     self.showError(error)
                 } else {
-                    
                     self.performSegue(
                         withIdentifier: "signInPhoneVerificationSeg",
                         sender: uid
@@ -116,14 +113,12 @@ class SignInPhoneNumberViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "signInPhoneVerificationSeg" {
-            if let VC = segue.destination as? PhoneNumberVerificationController {
-                if let code = sender as? String {
-                    VC.verificationID = code
-                    VC.phoneNumber = self.phoneNumber
-                    VC.for2FA = self.for2FA
-                }
-            }
+        if segue.identifier == "signInPhoneVerificationSeg",
+           let VC = segue.destination as? PhoneNumberVerificationController,
+           let code = sender as? String {
+            VC.verificationID = code
+            VC.phoneNumber = self.phoneNumber
+            VC.for2FA = self.for2FA
         }
     }
 
@@ -146,7 +141,7 @@ extension SignInPhoneNumberViewController: UITextFieldDelegate {
 
 // MARK: CountryPickerDelegate
 
-extension SignInPhoneNumberViewController : CountryPickerDelegate {
+extension SignInPhoneNumberViewController: CountryPickerDelegate {
     func countryPicker(didSelect country: Country) {
         sCode = country.phoneCode
         codeTF.text = country.isoCode.getFlag() + " " + country.phoneCode

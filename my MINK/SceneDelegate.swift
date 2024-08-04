@@ -7,7 +7,7 @@ import MBProgressHUD
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    var spotifyDelegate: NotifyWhenSpotifyUpdateDelegate?
+   
 
     func scene(
         _ scene: UIScene,

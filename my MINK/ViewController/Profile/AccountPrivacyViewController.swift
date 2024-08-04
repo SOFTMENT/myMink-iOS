@@ -9,55 +9,48 @@ import UIKit
 
 class AccountPrivacyViewController: UIViewController {
     @IBOutlet var backView: UIView!
-
     @IBOutlet var topView: UIView!
-
     @IBOutlet var mView: UIView!
     @IBOutlet var deactivateAccount: UIView!
     @IBOutlet var deleteAccount: UIView!
     @IBOutlet var whoCanSeeView: UIView!
     @IBOutlet var Manage2FAView: UIView!
-
     @IBOutlet var manage2FALbl: UILabel!
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        self.configureView()
+        self.setupGestures()
+        self.setup2FA()
+    }
+
+    private func configureView() {
         self.mView.clipsToBounds = true
         self.mView.layer.cornerRadius = 20
         self.mView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
 
+        self.backView.layer.cornerRadius = 8
+        self.backView.dropShadow()
+    }
+
+    private func setupGestures() {
         self.topView.isUserInteractionEnabled = true
         self.topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backViewClicked)))
 
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
         self.backView.isUserInteractionEnabled = true
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.backViewClicked)
-        ))
+        self.backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backViewClicked)))
 
-        // DELETE ACCOUNT
         self.deleteAccount.isUserInteractionEnabled = true
-        self.deleteAccount.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.deleteAccountClicked)
-        ))
-        
-        // DEACTIVATE ACCOUNT
+        self.deleteAccount.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.deleteAccountClicked)))
+
         self.deactivateAccount.isUserInteractionEnabled = true
-        self.deactivateAccount.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.deactivateAccountClicked)
-        ))
+        self.deactivateAccount.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.deactivateAccountClicked)))
 
-        // WHOCANSEE
         self.whoCanSeeView.isUserInteractionEnabled = true
-        self.whoCanSeeView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.whoCanSeeClicked)
-        ))
+        self.whoCanSeeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.whoCanSeeClicked)))
+    }
 
-        // 2FA
+    private func setup2FA() {
         if checkAuthProvider() == "phone" || checkAuthProvider() == "other" {
             self.Manage2FAView.isHidden = true
         } else {
@@ -68,48 +61,51 @@ class AccountPrivacyViewController: UIViewController {
             }
 
             self.Manage2FAView.isUserInteractionEnabled = true
-            self.Manage2FAView.addGestureRecognizer(UITapGestureRecognizer(
-                target: self,
-                action: #selector(self.manage2FAClicked)
-            ))
+            self.Manage2FAView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.manage2FAClicked)))
         }
     }
 
     @objc func manage2FAClicked() {
         if self.checkIfUserHas2FAEnabled() {
-            let alert = UIAlertController(
-                title: "Disable 2FA",
-                message: "Are you sure you want to disable 2FA?",
-                preferredStyle: .alert
-            )
-
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-                self.ProgressHUDShow(text: "")
-                FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
-                    .setData(["is2FAActive": false, "phoneNumber2FA": ""], merge: true) { error in
-                        self.ProgressHUDHide()
-                        if let error = error {
-                            self.showError(error.localizedDescription)
-                        } else {
-                            UserModel.data?.is2FAActive = false
-                            self.showSnack(messages: "2FA has been removed")
-                        }
-                    }
-
-            }))
-
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            present(alert, animated: true)
+            self.showDisable2FAAlert()
         } else {
             self.performSegue(withIdentifier: "phoneLoginSeg", sender: true)
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "phoneLoginSeg" {
-            if let VC = segue.destination as? SignInPhoneNumberViewController {
-                VC.for2FA = true
+    private func showDisable2FAAlert() {
+        let alert = UIAlertController(
+            title: "Disable 2FA",
+            message: "Are you sure you want to disable 2FA?",
+            preferredStyle: .alert
+        )
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+            self.disable2FA()
+        }))
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(alert, animated: true)
+    }
+
+    private func disable2FA() {
+        self.ProgressHUDShow(text: "")
+        guard let userId = FirebaseStoreManager.auth.currentUser?.uid else { return }
+        FirebaseStoreManager.db.collection(Collections.users.rawValue).document(userId)
+            .setData(["is2FAActive": false, "phoneNumber2FA": ""], merge: true) { error in
+                self.ProgressHUDHide()
+                if let error = error {
+                    self.showError(error.localizedDescription)
+                } else {
+                    UserModel.data?.is2FAActive = false
+                    self.showSnack(messages: "2FA has been removed")
+                }
             }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "phoneLoginSeg", let VC = segue.destination as? SignInPhoneNumberViewController {
+            VC.for2FA = true
         }
     }
 
@@ -118,7 +114,6 @@ class AccountPrivacyViewController: UIViewController {
             print("No user is currently signed in")
             return false
         }
-
         return data.is2FAActive ?? false
     }
 
@@ -131,8 +126,10 @@ class AccountPrivacyViewController: UIViewController {
     }
 
     @objc func deactivateAccountClicked() {
-        dismiss(animated: true)
+        self.showDeactivateAccountAlert()
+    }
 
+    private func showDeactivateAccountAlert() {
         let alert = UIAlertController(
             title: "DEACTIVATE ACCOUNT",
             message: "Are you sure you want to deactivate your account?",
@@ -140,31 +137,32 @@ class AccountPrivacyViewController: UIViewController {
         )
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alert.addAction(UIAlertAction(title: "Deactivate", style: .destructive, handler: { _ in
-
-            if let user = FirebaseStoreManager.auth.currentUser {
-                self.ProgressHUDShow(text: "Account Deactivating...")
-               
-                self.deactivateUserAccount(userId: user.uid) { error in
-                    self.ProgressHUDHide()
-                    if let error = error {
-                        self.showError(error)
-                    }
-                    else {
-                        self.showSnack(messages: "Account Deactivated")
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                            self.logoutPlease()
-                        }
-                    }
-                }
-         
-            }
+            self.deactivateAccountContinue()
         }))
         present(alert, animated: true)
     }
-    
-    @objc func deleteAccountClicked() {
-        dismiss(animated: true)
 
+    private func deactivateAccountContinue() {
+        guard let user = FirebaseStoreManager.auth.currentUser else { return }
+        self.ProgressHUDShow(text: "Account Deactivating...")
+        self.deactivateUserAccount(userId: user.uid) { error in
+            self.ProgressHUDHide()
+            if let error = error {
+                self.showError(error)
+            } else {
+                self.showSnack(messages: "Account Deactivated")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                    self.logoutPlease()
+                }
+            }
+        }
+    }
+
+    @objc func deleteAccountClicked() {
+        self.showDeleteAccountAlert()
+    }
+
+    private func showDeleteAccountAlert() {
         let alert = UIAlertController(
             title: "DELETE ACCOUNT",
             message: "Are you sure you want to delete your account?",
@@ -172,134 +170,21 @@ class AccountPrivacyViewController: UIViewController {
         )
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-
-            if let user = FirebaseStoreManager.auth.currentUser {
-                self.ProgressHUDShow(text: "Account Deleting...")
-               
-                self.deleteUserAccount(userId: user.uid, username: UserModel.data!.username ?? "") { error in
-                    self.ProgressHUDHide()
-                    if let error = error {
-                        self.showError(error)
-                    }
-                    else {
-                        self.showSnack(messages: "Account Deleted")
-                    }
-                }
-         
-            }
+            self.deleteAccountContinue()
         }))
         present(alert, animated: true)
     }
 
-//    func reauthenticateWithPassword() {
-//        let user = Auth.auth().currentUser
-//        var credential: AuthCredential?
-//
-//        // Prompt the user to re-enter their email and password
-//        let email = UserModel.data!.email ?? "123"
-//
-//        ProgressHUDShow(text: "")
-//        FirebaseStoreManager.db.collection("Users").whereField("email", isEqualTo: email)
-//            .whereField("regiType", isEqualTo: "custom").getDocuments { snapshot, _ in
-//
-//                if let snapshot = snapshot, !snapshot.isEmpty {
-//                    if let resetPasswordModel = try? snapshot.documents[0].data(as: ResetPasswordModel.self) {
-//                        let password = try! self.decryptMessage(
-//                            encryptedMessage: resetPasswordModel.encryptPassword ?? "123",
-//                            encryptionKey: resetPasswordModel.encryptKey ?? "123"
-//                        )
-//                        credential = EmailAuthProvider.credential(withEmail: email, password: password)
-//
-//                        user?.reauthenticate(with: credential!) { result, error in
-//                            self.ProgressHUDHide()
-//                            if let error = error {
-//                                self.showError(error.localizedDescription)
-//                            } else {
-//                                self.performSegue(withIdentifier: "phoneLoginSeg", sender: true)
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    self.ProgressHUDHide()
-//                    self.showError("Account not registered with this mail address.")
-//                }
-//            }
-//    }
-//
-//    func reauthenticateWithApple() {
-//        let provider = ASAuthorizationAppleIDProvider()
-//        let request = provider.createRequest()
-//        // Set requested scopes
-//        request.requestedScopes = [.fullName, .email]
-//
-//        let controller = ASAuthorizationController(authorizationRequests: [request])
-//        controller.delegate = self // Ensure that your class conforms to `ASAuthorizationControllerDelegate`
-//        controller.performRequests()
-//    }
-//
-//    func reauthenticateWithGoogle() {
-//        guard let clientID = FirebaseApp.app()?.options.clientID else {
-//            return
-//        }
-//
-//        // Create Google Sign In configuration object.
-//        let config = GIDConfiguration(clientID: clientID)
-//        GIDSignIn.sharedInstance.configuration = config
-//        // Start the sign in flow!
-//        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-//
-//            if let error = error {
-//                self.showError(error.localizedDescription)
-//                return
-//            }
-//
-//            guard let user = result?.user,
-//                  let idToken = user.idToken?.tokenString
-//            else {
-//                return
-//            }
-//
-//            let credential = GoogleAuthProvider.credential(
-//                withIDToken: idToken,
-//                accessToken: user.accessToken.tokenString
-//            )
-//
-//            Auth.auth().currentUser?.reauthenticate(with: credential) { _, error in
-//                if let error = error {
-//                    self.showError(error.localizedDescription)
-//                } else {
-//                    self.performSegue(withIdentifier: "phoneLoginSeg", sender: true)
-//                }
-//            }
-//        }
-//    }
+    private func deleteAccountContinue() {
+        guard let user = FirebaseStoreManager.auth.currentUser, let username = UserModel.data?.username else { return }
+        self.ProgressHUDShow(text: "Account Deleting...")
+        self.deleteUserAccount(userId: user.uid, username: username) { error in
+            self.ProgressHUDHide()
+            if let error = error {
+                self.showError(error)
+            } else {
+                self.showSnack(messages: "Account Deleted")
+            }
+        }
+    }
 }
-
-// extension AccountPrivacyViewController: ASAuthorizationControllerDelegate {
-//    // ASAuthorizationControllerDelegate method
-//    func authorizationController(
-//        controller: ASAuthorizationController,
-//        didCompleteWithAuthorization authorization: ASAuthorization
-//    ) {
-//        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
-//           let identityToken = appleIDCredential.identityToken,
-//           let tokenString = String(data: identityToken, encoding: .utf8)
-//        {
-//            let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: tokenString, rawNonce:
-//            nil)
-//
-//            Auth.auth().currentUser?.reauthenticate(with: credential) { authResult, error in
-//                if let error = error {
-//                    self.showError(error.localizedDescription)
-//                } else {
-//                    self.performSegue(withIdentifier: "phoneLoginSeg", sender: nil)
-//                }
-//            }
-//        }
-//    }
-//
-//    // ASAuthorizationControllerDelegate method
-//    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-//        self.showError(error.localizedDescription)
-//    }
-// }

@@ -132,6 +132,7 @@ internal struct DebugSummaryView: View {
                     LabeledContent("Observer mode", value: config.observerMode.description)
                     LabeledContent("Sandbox", value: config.sandbox.description)
                     LabeledContent("StoreKit 2", value: config.storeKit2Enabled ? "on" : "off")
+                    LabeledContent("Locale", value: config.locale.display)
                     LabeledContent("Offline Customer Info",
                                    value: config.offlineCustomerInfoSupport ? "enabled" : "disabled")
                     LabeledContent("Entitlement Verification Mode", value: config.verificationMode)
@@ -373,7 +374,7 @@ private struct DebugPackageView: View {
 
             Section("Purchasing") {
                 Button {
-                    _ = Task<Void, Never> {
+                    _ = Task<Void, Never> { @MainActor in
                         do {
                             self.purchasing = true
                             try await self.purchase()
@@ -406,6 +407,7 @@ private struct DebugPackageView: View {
             }
     }
 
+    @MainActor
     private func purchase() async throws {
         _ = try await Purchases.shared.purchase(package: self.package)
     }
@@ -450,6 +452,16 @@ private struct DebugJSONView<Value: Encodable & Transferable>: View {
 
     private var json: String {
         return (try? self.value.prettyPrintedJSON) ?? "{}"
+    }
+
+}
+
+// MARK: - Locale
+
+private extension Locale {
+
+    var display: String {
+        return "\(self.identifier) (\(self.rc_currencyCode ?? "unknown"))"
     }
 
 }

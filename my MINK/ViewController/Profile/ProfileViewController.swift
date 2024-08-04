@@ -8,7 +8,7 @@ import Lottie
 
 // MARK: - ProfileViewController
 
-class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
+class ProfileViewController: UIViewController {
     func refreshBySpotify() {
         DispatchQueue.main.async {
             if self.isViewLoaded && self.view.window != nil {
@@ -206,7 +206,7 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
 
         self.joiningDate.text = "Joined on \(convertDateFormaterWithoutDash(user.registredAt ?? Date()))"
 
-        getPostsBy(uid: FirebaseStoreManager.auth.currentUser!.uid, accountType: .USER) { pModels, error in
+        getPostsBy(uid: FirebaseStoreManager.auth.currentUser!.uid, accountType: .user) { pModels, error in
 
             if let error = error {
                 self.showError(error)
@@ -285,11 +285,7 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
         self.bioGraphy.isUserInteractionEnabled = true
         self.bioGraphy.addGestureRecognizer(gest5)
 
-        if let sceneDelegate = UIApplication.shared.connectedScenes
-            .first?.delegate as? SceneDelegate
-        {
-            sceneDelegate.spotifyDelegate = self
-        }
+        
         
     }
     
@@ -356,8 +352,8 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
         refresFromWillAppear()
        
         DispatchQueue.main.async {
-            if Constants.FROM_EVENT_CREATE {
-                Constants.FROM_EVENT_CREATE = false
+            if Constants.fromEventCreate {
+                Constants.fromEventCreate = false
                 self.performSegue(withIdentifier: "eventSeg", sender: nil)
             }
         }
@@ -366,7 +362,7 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
     
     func refresFromWillAppear() {
         
-        getCount(for: FirebaseStoreManager.auth.currentUser!.uid, countType: Collections.FOLLOW.rawValue) { mcount, error in
+        getCount(for: FirebaseStoreManager.auth.currentUser!.uid, countType: Collections.follow.rawValue) { mcount, error in
             var count  = 0
             if let mcount = mcount {
                count = mcount
@@ -378,21 +374,20 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
             self.topFollowersLbl.text = count > 1 ? "Followers" : "Follower"
             self.followersCount.text = "\(count)"
             
-            if count > 2  && count < 10{
-                self.verificationBadge.isHidden = false
-                self.verificationBadge.image = UIImage(named: "verification")
-            }
-            else if count >= Constants.BLUE_TICK_REQUIREMENT {
+          
+            if self.haveBlueTick(){
                 self.verificationBadge.isHidden = false
                 self.verificationBadge.image = UIImage(named: "verified")
+            }
+            else if self.haveBlackTick() {
+                self.verificationBadge.isHidden = false
+                self.verificationBadge.image = UIImage(named: "verification")
             }
             else {
                 self.verificationBadge.isHidden = true
             }
         }
         
-     
-       
         getCount(for: FirebaseStoreManager.auth.currentUser!.uid, countType: "Following") { count, error in
             self.followingLoading.isHidden = true
             self.followingCount.isHidden = false
@@ -430,7 +425,7 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
     
     func searchBtnClicked(searchText : String){
         ProgressHUDShow(text: "Searching...")
-        algoliaSearch(searchText: searchText, indexName: .POSTS, filters: "uid:\(FirebaseStoreManager.auth.currentUser!.uid)") { models in
+        algoliaSearch(searchText: searchText, indexName: .posts, filters: "uid:\(FirebaseStoreManager.auth.currentUser!.uid)") { models in
             
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
@@ -590,7 +585,7 @@ class ProfileViewController: UIViewController, NotifyWhenSpotifyUpdateDelegate {
         alert.addAction(UIAlertAction(title: "Remove Autograph", style: .destructive, handler: { _ in
             self.addAutographBtn.isHidden = false
             self.signatureImage.isHidden = true
-            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
+            FirebaseStoreManager.db.collection(Collections.users.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
                 .setData(["autoGraphImage": ""], merge: true)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -739,8 +734,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
     func cropViewController(_: CropViewController, didFinishCancelled _: Bool) {
         dismiss(animated: true) {
-            Constants.selectedTabbarPosition = 6
-            self.beRootScreen(storyBoardName: StoryBoard.Tabbar, mIdentifier: Identifier.TABBARVIEWCONTROLLER)
+            Constants.selectedTabBarPosition = 6
+            self.beRootScreen(storyBoardName: StoryBoard.tabBar, mIdentifier: Identifier.tabBarViewController)
         }
     }
 
@@ -761,7 +756,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                         photo: UIImage(data: transparentImageData!),
                         previousKey: UserModel.data!.autoGraphImage,
                         folderName: "Autograph",
-                        postType: .IMAGE,
+                        postType: .image,
                         shouldHideProgress: true,
                         type: "png"
                     ) { downloadURL in
@@ -770,14 +765,14 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                             
                         
                             
-                            FirebaseStoreManager.db.collection(Collections.USERS.rawValue)
+                            FirebaseStoreManager.db.collection(Collections.users.rawValue)
                                 .document(FirebaseStoreManager.auth.currentUser!.uid)
                                 .setData(["autoGraphImage": downloadURL], merge: true) { _ in
                                     UserModel.data!.autoGraphImage = downloadURL
-                                    Constants.selectedTabbarPosition = 6
+                                    Constants.selectedTabBarPosition = 6
                                     self.beRootScreen(
-                                        storyBoardName: StoryBoard.Tabbar,
-                                        mIdentifier: Identifier.TABBARVIEWCONTROLLER
+                                        storyBoardName: StoryBoard.tabBar,
+                                        mIdentifier: Identifier.tabBarViewController
                                     )
                                 }
                         } else {

@@ -16,87 +16,88 @@ class CameraViewController: UIViewController {
     var videoURL: URL?
 
     override func viewDidLoad() {
-        self.imageView.layer.cornerRadius = 8
-        self.imageView.isUserInteractionEnabled = true
-        self.imageView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.imageViewClicked)
-        ))
-
-        self.reelView.layer.cornerRadius = 8
-        self.reelView.isUserInteractionEnabled = true
-        self.reelView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.reelViewClicked)
-        ))
-
-        // Get the back-facing camera for capturing videos
-        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
-            print("Failed to get the camera device")
-            return
-        }
-
-        do {
-            // Get an instance of the AVCaptureDeviceInput class using the previous device object.
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-
-            // Set the input device on the capture session.
-            self.captureSession.addInput(input)
-
-//            captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
-
-        } catch {
-            // If any error occurs, simply print it out and don't continue any more.
-            print(error)
-            return
-        }
-
-        // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
-        self.videoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-        self.videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        self.videoPreviewLayer?.frame = self.cameraView.layer.bounds
-        self.videoPreviewLayer?.cornerRadius = 16
-        self.cameraView.layer.addSublayer(self.videoPreviewLayer!)
+        super.viewDidLoad()
+        setupUI()
+        setupCamera()
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         DispatchQueue.global(qos: .background).async {
             self.captureSession.startRunning()
         }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         DispatchQueue.global(qos: .background).async {
             self.captureSession.stopRunning()
         }
     }
 
+    private func setupUI() {
+        imageView.layer.cornerRadius = 8
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(imageViewClicked)
+        ))
+
+        reelView.layer.cornerRadius = 8
+        reelView.isUserInteractionEnabled = true
+        reelView.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(reelViewClicked)
+        ))
+    }
+
+    private func setupCamera() {
+        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
+            print("Failed to get the camera device")
+            return
+        }
+
+        do {
+            let input = try AVCaptureDeviceInput(device: captureDevice)
+            captureSession.addInput(input)
+
+            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            videoPreviewLayer?.frame = cameraView.layer.bounds
+            videoPreviewLayer?.cornerRadius = 16
+            cameraView.layer.addSublayer(videoPreviewLayer!)
+        } catch {
+            print(error)
+            return
+        }
+    }
+
     @objc func imageViewClicked() {
-        let image = UIImagePickerController()
-        image.title = "Profile Picture"
-        image.delegate = self
-        image.modalPresentationStyle = .overFullScreen
-        image.sourceType = .camera
-        present(image, animated: true)
+        let imagePicker = UIImagePickerController()
+        imagePicker.title = "Profile Picture"
+        imagePicker.delegate = self
+        imagePicker.modalPresentationStyle = .overFullScreen
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true)
     }
 
     @objc func reelViewClicked() {
-        let image = UIImagePickerController()
-        image.delegate = self
-        image.mediaTypes = ["public.movie"]
-        image.sourceType = .camera
-        image.modalPresentationStyle = .overFullScreen
-        present(image, animated: true)
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.mediaTypes = ["public.movie"]
+        imagePicker.sourceType = .camera
+        imagePicker.modalPresentationStyle = .overFullScreen
+        present(imagePicker, animated: true)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "cameracreatePostSeg" {
             if let VC = segue.destination as? CreatePostViewController {
                 if let postType = sender as? PostType {
-                    if postType == .IMAGE {
-                        VC.images = [self.selectedImage!]
+                    if postType == .image {
+                        VC.images = [selectedImage!]
                     } else {
-                        VC.videoPath = self.videoURL
+                        VC.videoPath = videoURL
                     }
                     VC.postType = postType
                 }
@@ -105,15 +106,10 @@ class CameraViewController: UIViewController {
     }
 }
 
-// MARK: UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate
 
-extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate,
-    CropViewControllerDelegate
-{
-    func imagePickerController(
-        _ picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
-    ) {
+extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let editedImage = info[.originalImage] as? UIImage {
             dismiss(animated: true) {
                 let cropViewController = CropViewController(image: editedImage)
@@ -125,29 +121,24 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
                 self.present(cropViewController, animated: true, completion: nil)
             }
         } else {
-            self
-                .videoURL =
-                info[
-                    UIImagePickerController
-                        .InfoKey(rawValue: UIImagePickerController.InfoKey.mediaURL.rawValue)
-                ] as? URL
+            videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL
             dismiss(animated: true) {
-                self.performSegue(withIdentifier: "cameracreatePostSeg", sender: PostType.VIDEO)
+                self.performSegue(withIdentifier: "cameracreatePostSeg", sender: PostType.video)
             }
         }
     }
 
-    func cropViewController(_: CropViewController, didCropToImage image: UIImage, withRect _: CGRect, angle _: Int) {
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect rect: CGRect, angle: Int) {
         dismiss(animated: true) {
             self.selectedImage = image
-            self.performSegue(withIdentifier: "cameracreatePostSeg", sender: PostType.IMAGE)
+            self.performSegue(withIdentifier: "cameracreatePostSeg", sender: PostType.image)
         }
     }
 
-    func cropViewController(_: CropViewController, didFinishCancelled _: Bool) {
+    func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
         dismiss(animated: true) {
-            Constants.selectedTabbarPosition = 3
-            self.beRootScreen(storyBoardName: StoryBoard.Tabbar, mIdentifier: Identifier.TABBARVIEWCONTROLLER)
+            Constants.selectedTabBarPosition = 3
+            self.beRootScreen(storyBoardName: StoryBoard.tabBar, mIdentifier: Identifier.tabBarViewController)
         }
     }
 }

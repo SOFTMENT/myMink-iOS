@@ -22,21 +22,23 @@ protocol HTTPResponseType {
     typealias Result = Swift.Result<Self, NetworkError>
     typealias Headers = [AnyHashable: Any]
 
-    var statusCode: HTTPStatusCode { get }
+    var httpStatusCode: HTTPStatusCode { get }
     /// Because this property is a standard Swift dictionary, its keys are case-sensitive.
     /// To perform a case-insensitive header lookup, use the `value(forHeaderField:)` method instead.
     var responseHeaders: HTTPClient.ResponseHeaders { get }
     var body: Body { get }
     var requestDate: Date? { get }
+    var origin: HTTPResponseOrigin { get }
 
 }
 
 struct HTTPResponse<Body: HTTPResponseBody>: HTTPResponseType {
 
-    var statusCode: HTTPStatusCode
+    var httpStatusCode: HTTPStatusCode
     var responseHeaders: HTTPClient.ResponseHeaders
     var body: Body
     var requestDate: Date?
+    var origin: HTTPResponseOrigin = .backend
 
 }
 
@@ -53,7 +55,7 @@ extension HTTPResponse: CustomStringConvertible {
     var description: String {
         return """
         HTTPResponse(
-            statusCode: \(self.statusCode.rawValue),
+            statusCode: \(self.httpStatusCode.rawValue),
             body: \(self.bodyDescription),
             requestDate: \(self.requestDate?.description ?? "<>")
         )
@@ -75,7 +77,7 @@ struct VerifiedHTTPResponse<Body: HTTPResponseBody>: HTTPResponseType {
     }
 
     init(
-        statusCode: HTTPStatusCode,
+        httpStatusCode: HTTPStatusCode,
         responseHeaders: HTTPClient.ResponseHeaders,
         body: Body,
         requestDate: Date? = nil,
@@ -83,7 +85,7 @@ struct VerifiedHTTPResponse<Body: HTTPResponseBody>: HTTPResponseType {
     ) {
         self.init(
             response: .init(
-                statusCode: statusCode,
+                httpStatusCode: httpStatusCode,
                 responseHeaders: responseHeaders,
                 body: body,
                 requestDate: requestDate
@@ -99,13 +101,32 @@ extension VerifiedHTTPResponse: CustomStringConvertible {
     var description: String {
         return """
         VerifiedHTTPResponse(
-            statusCode: \(self.statusCode.rawValue),
+            statusCode: \(self.httpStatusCode.rawValue),
             body: \(self.response.bodyDescription),
             requestDate: \(self.requestDate?.description ?? "<>")
             verification: \(self.verificationResult)
         )
         """
     }
+
+}
+
+// MARK: - URLResponse
+
+/// `HTTPURLResponse` conformance to `HTTPResponseType`
+extension HTTPURLResponse: HTTPResponseType {
+
+    typealias Body = Data?
+
+    var httpStatusCode: HTTPStatusCode { .init(rawValue: self.statusCode) }
+
+    var responseHeaders: HTTPClient.ResponseHeaders { return self.allHeaderFields }
+
+    var body: Data? { return nil }
+
+    var requestDate: Date? { HTTPResponse<Data>.parseRequestDate(headers: self.responseHeaders) }
+
+    var origin: HTTPResponseOrigin { .backend }
 
 }
 
@@ -153,7 +174,7 @@ extension VerifiedHTTPResponse where Body: OptionalType, Body.Wrapped: HTTPRespo
 extension HTTPResponse {
 
     func mapBody<NewBody>(_ mapping: (Body) throws -> NewBody) rethrows -> HTTPResponse<NewBody> {
-        return .init(statusCode: self.statusCode,
+        return .init(httpStatusCode: self.httpStatusCode,
                      responseHeaders: self.responseHeaders,
                      body: try mapping(self.body),
                      requestDate: self.requestDate)
@@ -172,17 +193,17 @@ extension HTTPResponse {
 
     /// Creates an `HTTPResponse` extracting the `requestDate` from its headers
     init(
-        statusCode: HTTPStatusCode,
+        httpStatusCode: HTTPStatusCode,
         responseHeaders: HTTPClient.ResponseHeaders,
         body: Body
     ) {
-        self.statusCode = statusCode
+        self.httpStatusCode = httpStatusCode
         self.responseHeaders = responseHeaders
         self.body = body
         self.requestDate = Self.parseRequestDate(headers: responseHeaders)
     }
 
-    private static func parseRequestDate(headers: Self.Headers) -> Date? {
+    fileprivate static func parseRequestDate(headers: HTTPResponseType.Headers) -> Date? {
         guard let stringValue = Self.value(
             forCaseInsensitiveHeaderField: HTTPClient.ResponseHeader.requestDate.rawValue,
             in: headers
@@ -196,10 +217,11 @@ extension HTTPResponse {
 
 extension VerifiedHTTPResponse {
 
-    var statusCode: HTTPStatusCode { self.response.statusCode }
+    var httpStatusCode: HTTPStatusCode { self.response.httpStatusCode }
     var responseHeaders: HTTPClient.ResponseHeaders { self.response.responseHeaders }
     var body: Body { self.response.body }
     var requestDate: Date? { self.response.requestDate }
+    var origin: HTTPResponseOrigin { self.response.origin }
 
     func mapBody<NewBody>(_ mapping: (Body) throws -> NewBody) rethrows -> VerifiedHTTPResponse<NewBody> {
         return .init(
@@ -207,5 +229,12 @@ extension VerifiedHTTPResponse {
             verificationResult: self.verificationResult
         )
     }
+
+}
+
+enum HTTPResponseOrigin {
+
+    case backend
+    case cache
 
 }

@@ -40,6 +40,7 @@ class Event: NSObject, Codable {
     var ticketName : String?
     var ticketQuantity : Int?
     var ticketPrice : Int?
+    var eventURL : String?
 
     private static var eventDatas : [Event] = []
    

@@ -10,88 +10,150 @@ import ATGMediaBrowser
 import AVKit
 import Combine
 import CropViewController
-
 import MobileCoreServices
 import UIKit
 import BSImagePicker
 import Photos
 
-// MARK: - CreatePostViewController
-
-class AddProductViewController : UIViewController {
-    @IBOutlet weak var image1: UIImageView!
-  
-    @IBOutlet weak var imageView1: UIView!
+class AddProductViewController: UIViewController {
+    @IBOutlet weak var imgStack1: UIStackView!
+    @IBOutlet weak var imgStack2: UIStackView!
+    @IBOutlet weak var imgStack3: UIStackView!
+    @IBOutlet weak var imgStack4: UIStackView!
+    @IBOutlet weak var imgView1: UIView!
+    @IBOutlet weak var imgView2: UIView!
+    @IBOutlet weak var imgView3: UIView!
+    @IBOutlet weak var imgView4: UIView!
+    @IBOutlet weak var img1: UIImageView!
+    @IBOutlet weak var img2: UIImageView!
+    @IBOutlet weak var img3: UIImageView!
+    @IBOutlet weak var img4: UIImageView!
+    @IBOutlet weak var addImageBtn: UIButton!
     
-    @IBOutlet weak var image2: UIImageView!
-   
-    @IBOutlet weak var imageView2: UIView!
+    var downloadURL1 : String?
+    var downloadURL2 : String?
+    var downloadURL3 : String?
+    var downloadURL4 : String?
+    
+    
     @IBOutlet weak var backView: UIView!
-    
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    @IBOutlet weak var imageView3: UIView!
-    @IBOutlet weak var image3: UIImageView!
-  
-    
-    @IBOutlet weak var image4: UIImageView!
- 
-    @IBOutlet weak var imageView4: UIView!
-    
     @IBOutlet weak var selectCategoryTV: UITextField!
     @IBOutlet weak var titleTV: UITextField!
     @IBOutlet weak var priceTV: UITextField!
-    var photoArray = [UIImage]()
-    let categoryPicker = UIPickerView()
     @IBOutlet weak var productDescriptionTV: UITextView!
-    
-    var photoURL = [String]()
-    var images: [UIImage]?
-    var delegate : ProductDelegate?
     @IBOutlet weak var postBtn: UIButton!
     
-
+    var photoArray = [UIImage]()
+    let categoryPicker = UIPickerView()
+    var photoURL = [String]()
+    var images: [UIImage]?
+    var delegate: ProductDelegate?
+    
     override func viewDidLoad() {
-       
-      
-            if let images = images {
-                for i in 0 ..< (images.count) {
-                   
-
-                    if i == 0 {
-                        self.imageView1.isHidden = false
-
-                        self.image1.image = images[i]
-                    } else if i == 1 {
-                        self.imageView2.isHidden = false
-                        self.image2.image = images[i]
-                    } else if i == 2 {
-                        self.imageView3.isHidden = false
-                        self.image3.image = images[i]
-                    } else if i == 3 {
-                        self.imageView4.isHidden = false
-                        self.image4.image = images[i]
-                    }
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true)
-                }
-            }
+        super.viewDidLoad()
+        setupViews()
+        setupCategoryPicker()
+        setupGestures()
+        registerKeyboardNotifications()
+    }
+    private func setupGestures() {
+     
+        imgView1.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageView1Clicked)))
+        imgView2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageView2Clicked)))
+        imgView3.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageView3Clicked)))
+        imgView4.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageView4Clicked)))
+        img1.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageView1Clicked)))
+        img2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageView2Clicked)))
+        img3.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageView3Clicked)))
+        img4.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageView4Clicked)))
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
+    }
+    
+    @objc func imageView1Clicked() {
+        chooseImageFromPhotoLibrary(title: "Image 1")
+    }
+    
+    @objc func imageView2Clicked() {
+        chooseImageFromPhotoLibrary(title: "Image 2")
+    }
+    
+    @objc func imageView3Clicked() {
+        chooseImageFromPhotoLibrary(title: "Image 3")
+    }
+    
+    @objc func imageView4Clicked() {
+        chooseImageFromPhotoLibrary(title: "Image 4")
+    }
+    
+    private func chooseImageFromPhotoLibrary(title: String) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.title = title
+        imagePicker.sourceType = .photoLibrary
+        self.present(imagePicker, animated: true)
+    }
+    
+    @IBAction func addMoreImageBtnClicked(_ sender: Any) {
+        if imgStack2.isHidden {
+            imgStack2.isHidden = false
+        } else if imgStack3.isHidden {
+            imgStack3.isHidden = false
+        } else if imgStack4.isHidden {
+            imgStack4.isHidden = false
+            addImageBtn.isHidden = true
+        }
+    }
+    private func setupViews() {
         
+        productDescriptionTV.layer.cornerRadius = 8
+        productDescriptionTV.layer.borderWidth = 1
+        productDescriptionTV.layer.borderColor = UIColor(red: 221 / 255, green: 221 / 255, blue: 221 / 255, alpha: 1).cgColor
+        productDescriptionTV.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        productDescriptionTV.text = "Write a product description"
+        productDescriptionTV.textColor = .lightGray
+        productDescriptionTV.delegate = self
+        
+        postBtn.layer.cornerRadius = 8
+        
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
+        backView.isUserInteractionEnabled = true
+        backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backBtnClicked)))
+        
+        
+        imgStack1.dropShadow()
+        imgStack2.dropShadow()
+        imgStack3.dropShadow()
+        imgStack4.dropShadow()
+        imgView1.layer.cornerRadius = 8
+        imgView2.layer.cornerRadius = 8
+        imgView3.layer.cornerRadius = 8
+        imgView4.layer.cornerRadius = 8
+        img1.layer.cornerRadius = 8
+        img2.layer.cornerRadius = 8
+        img3.layer.cornerRadius = 8
+        img4.layer.cornerRadius = 8
+        addImageBtn.layer.cornerRadius = 8
+        addImageBtn.layer.borderWidth = 1
+        addImageBtn.layer.borderColor = UIColor(red: 67/255, green: 67/255, blue: 67/255, alpha: 1).cgColor
+      
+        
+       
+    }
+    
+    private func setupCategoryPicker() {
         selectCategoryTV.delegate = self
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
         
-        
-        // ToolBar
         let selectCategoryBar = UIToolbar()
         selectCategoryBar.barStyle = .default
         selectCategoryBar.isTranslucent = true
         selectCategoryBar.tintColor = .link
         selectCategoryBar.sizeToFit()
         
-        // Adding Button ToolBar
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(categoryPickerDoneClicked))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(categoryPickerCancelClicked))
@@ -99,161 +161,84 @@ class AddProductViewController : UIViewController {
         selectCategoryBar.isUserInteractionEnabled = true
         selectCategoryTV.inputAccessoryView = selectCategoryBar
         selectCategoryTV.inputView = categoryPicker
-        
-        self.productDescriptionTV.layer.cornerRadius = 8
-        self.productDescriptionTV.layer.borderWidth = 1
-        self.productDescriptionTV.layer.borderColor = UIColor(red: 221 / 255, green: 221 / 255, blue: 221 / 255, alpha: 1).cgColor
-        self.productDescriptionTV.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        self.productDescriptionTV.text = "Write a product description"
-        self.productDescriptionTV.textColor = UIColor.lightGray
-        self.productDescriptionTV.delegate = self
-
-        self.image1.layer.cornerRadius = 8
-        self.image2.layer.cornerRadius = 8
-        self.image3.layer.cornerRadius = 8
-        self.image4.layer.cornerRadius = 8
-
-        let myGest1 = MyGesture(target: self, action: #selector(self.postImageClicked))
-        self.image1.isUserInteractionEnabled = true
-        myGest1.index = 0
-        self.image1.addGestureRecognizer(myGest1)
-
-        let myGest2 = MyGesture(target: self, action: #selector(self.postImageClicked))
-        self.image2.isUserInteractionEnabled = true
-        myGest2.index = 1
-        self.image2.addGestureRecognizer(myGest2)
-
-        let myGest3 = MyGesture(target: self, action: #selector(self.postImageClicked))
-        self.image3.isUserInteractionEnabled = true
-        myGest3.index = 2
-        self.image3.addGestureRecognizer(myGest3)
-
-        let myGest4 = MyGesture(target: self, action: #selector(self.postImageClicked))
-        self.image4.isUserInteractionEnabled = true
-        myGest4.index = 3
-        self.image4.addGestureRecognizer(myGest4)
-
+    }
     
 
-        self.postBtn.layer.cornerRadius = 8
-
-       
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
-        self.backView.isUserInteractionEnabled = true
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backBtnClicked)))
-
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard)))
-    }
-
-    @objc func categoryPickerDoneClicked(){
+    
+   
+    
+    @objc func categoryPickerDoneClicked() {
         selectCategoryTV.resignFirstResponder()
         let row = categoryPicker.selectedRow(inComponent: 0)
-        selectCategoryTV.text = Constants.product_categories[row]
-    
+        selectCategoryTV.text = Constants.productCategories[row]
     }
     
-    @objc func categoryPickerCancelClicked(){
-        self.view.endEditing(true)
+    @objc func categoryPickerCancelClicked() {
+        view.endEditing(true)
     }
-
- 
-
+    
     @IBAction func addProductClicked(_ sender: Any) {
+             let title = titleTV.text
+              let category = selectCategoryTV.text
+              let price = priceTV.text
+              let description = productDescriptionTV.text
+           
         
-        let sTitle = self.titleTV.text
-        let sCategory = self.selectCategoryTV.text
-        let sPrice = self.priceTV.text
-        let sProductDescription = self.productDescriptionTV.text
         
-        if sCategory == "" {
-            self.showSnack(messages: "Select Category")
+        guard let  downloadURL = self.downloadURL1,  !downloadURL.isEmpty else {
+            self.showSnack(messages: "Upload Product Image")
+            return
         }
-        else if sTitle == "" {
+        
+        if title == "" {
             self.showSnack(messages: "Enter Title")
+            return
         }
-        else if sPrice == "" {
+        else if category == "" {
+            self.showSnack(messages: "Select Category")
+            return
+        }
+        else if price == "" {
             self.showSnack(messages: "Enter Price")
+            return
         }
-        else if sProductDescription == "" {
-            self.showSnack(messages: "Enter Product Description")
+        else if description == "" {
+            self.showSnack(messages: "Enter Description")
+            return
         }
-        else {
-            let marketModel = MarketplaceModel()
-            let id = FirebaseStoreManager.db.collection(Collections.MARKETPLACE.rawValue).document().documentID
-            marketModel.id = id
-            marketModel.title = sTitle
-            marketModel.cost = sPrice
-            marketModel.about = sProductDescription
-            marketModel.categoryName = sCategory
-            marketModel.uid = FirebaseStoreManager.auth.currentUser!.uid
-            marketModel.dateCreated = Date()
-            marketModel.isActive = true
-            
-            marketModel.countryCode = getCountryCode()
-            
-            if let countryModel = Constants.countryModels.first(where: { countryModel in
-                if countryModel.code == getCountryCode() {
-                    return true
-                }
-                return false
-            }) {
-                marketModel.currency = countryModel.currency
-            }
-            
-                self.photoURL.removeAll()
-                let fetchGroup = DispatchGroup()
-
-                var i = 1
-                let loading = DownloadProgressHUDShow(text: "Image 1 Uploading...")
-                for photo in self.images! {
-                    fetchGroup.enter()
-                    uploadFilesOnAWS(
-                        photo: photo,
-                      
-                        folderName: "ProductImages",
-                        postType: .IMAGE,
-                        shouldHideProgress: true
-                    ) { downloadURL in
-                        if let downloadURL = downloadURL {
-                            self.photoURL.append(downloadURL)
-                            i = i + 1
-                            self.DownloadProgressHUDUpdate(loading: loading, text: "Image \(i) Uploading...")
-                            loading.label.layoutIfNeeded()
-                        }
-
-                        fetchGroup.leave()
-                    }
-                }
-
-                fetchGroup.notify(queue: DispatchQueue.main) {
-                    self.DownloadProgressHUDUpdate(loading: loading, text: "")
-                    loading.label.layoutIfNeeded()
-                    self.photoURL.sort { url1, url2 in
-                        if url1.split(separator: "/").last! < url2.split(separator: "/").last! {
-                            return true
-                        }
-                        return false
-                    }
-                    Constants.imageIndex = 0
-                    marketModel.productImages = self.photoURL
-
-                 
-                    self.createDeepLinkForProduct(productModel: marketModel) { url, error in
-                        if let url = url {
-                            marketModel.productUrl = url
-                            self.productAdd(productModel: marketModel)
-                        }
-                    }
-                }
+        
+        
+        let marketModel = MarketplaceModel()
+        let id = FirebaseStoreManager.db.collection(Collections.marketplace.rawValue).document().documentID
+        marketModel.id = id
+        marketModel.title = title
+        marketModel.cost = price
+        marketModel.about = description
+        marketModel.categoryName = category
+        marketModel.uid = FirebaseStoreManager.auth.currentUser!.uid
+        marketModel.dateCreated = Date()
+        marketModel.isActive = true
+        marketModel.countryCode = getCountryCode()
+        marketModel.productImages?.append(downloadURL)
+        
+        if let downloadURL2 = downloadURL2, !downloadURL2.isEmpty {
+            marketModel.productImages?.append(downloadURL2)
         }
-
+        if let downloadURL3 = downloadURL2, !downloadURL3.isEmpty {
+            marketModel.productImages?.append(downloadURL3)
+        }
+        if let downloadURL4 = downloadURL2, !downloadURL4.isEmpty {
+            marketModel.productImages?.append(downloadURL4)
+        }
+        
+        productAdd(productModel: marketModel)
+        
     }
+    
 
-    func productAdd(productModel : MarketplaceModel) {
-      
-        self.addProduct(marketModel: productModel) { error in
+    
+    private func productAdd(productModel: MarketplaceModel) {
+        addProduct(marketModel: productModel) { error in
             self.ProgressHUDHide()
             if let error = error {
                 self.showError(error)
@@ -263,131 +248,150 @@ class AddProductViewController : UIViewController {
                     self.delegate?.addProduct(productModel: productModel)
                     self.dismiss(animated: true)
                 }
-                
             }
         }
     }
-
-
-   
-
+    
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
-
+    
     @objc func backBtnClicked() {
         dismiss(animated: true)
     }
-
-    @objc func postImageClicked(value: MyGesture) {
-        let mediaBrowser = MediaBrowserViewController(index: value.index, dataSource: self)
-        present(mediaBrowser, animated: true, completion: nil)
-    }
+    
+   
 }
 
 // MARK: UITextViewDelegate
-
-extension AddProductViewController : UITextViewDelegate {
+extension AddProductViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if textView.textColor == .lightGray {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = .black
         }
     }
-
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Write a product description"
-            textView.textColor = UIColor.lightGray
+            textView.textColor = .lightGray
         }
     }
 }
 
-// MARK: MediaBrowserViewControllerDataSource
 
-extension AddProductViewController : MediaBrowserViewControllerDataSource {
-    func mediaBrowser(
-        _: ATGMediaBrowser.MediaBrowserViewController,
-        imageAt index: Int,
-        completion: @escaping CompletionBlock
-    ) {
-        if index == 0 {
-            completion(index, self.image1.image!, ZoomScale.default, nil)
-        } else if index == 1 {
-            completion(index, self.image2.image!, ZoomScale.default, nil)
-        } else if index == 2 {
-            completion(index, self.image3.image!, ZoomScale.default, nil)
-        } else {
-            completion(index, self.image4.image!, ZoomScale.default, nil)
+extension AddProductViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let editedImage = info[.originalImage] as? UIImage {
+            self.dismiss(animated: true) {
+                let cropViewController = CropViewController(image: editedImage)
+                cropViewController.title = picker.title
+                cropViewController.delegate = self
+                cropViewController.customAspectRatio = CGSize(width: 9, height: 5)
+                cropViewController.aspectRatioLockEnabled = true
+                cropViewController.aspectRatioPickerButtonHidden = true
+                self.present(cropViewController, animated: true, completion: nil)
+            }
         }
     }
-
-    func numberOfItems(in _: ATGMediaBrowser.MediaBrowserViewController) -> Int {
-        self.images?.count ?? 0
+    
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        self.ProgressHUDShow(text: "Uploading...")
+        let title = cropViewController.title!
+        
+        if title == "Image 1" {
+            setImage(image: image, imageView: img1, imgView: imgView1, imageNo: 1)
+        } else if title == "Image 2" {
+            setImage(image: image, imageView: img2, imgView: imgView2, imageNo: 2)
+        } else if title == "Image 3" {
+            setImage(image: image, imageView: img3, imgView: imgView3, imageNo: 3)
+        } else if title == "Image 4" {
+            setImage(image: image, imageView: img4, imgView: imgView4, imageNo: 4)
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
-}
-
-
-
-extension AddProductViewController {
-    private func registerKeyboardNotifications() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.keyboardWillShow(_:)),
-            name: UIControl.keyboardWillShowNotification,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.keyboardWillHide(_:)),
-            name: UIControl.keyboardWillHideNotification,
-            object: nil
-        )
+    
+    private func setImage(image: UIImage, imageView: UIImageView, imgView: UIView, imageNo: Int) {
+        imageView.image = image
+        imageView.isHidden = false
+        imgView.isHidden = true
+        
+        uploadImageOnFirebase(imageNo: imageNo) { downloadURL in
+            self.ProgressHUDHide()
+       
+            if imageNo == 1 {
+               
+                self.downloadURL1 = downloadURL
+            } else if imageNo == 2 {
+                self.downloadURL2 = downloadURL
+            } else if imageNo == 3 {
+                self.downloadURL3 = downloadURL
+            } else if imageNo == 4 {
+                self.downloadURL4 = downloadURL
+            }
+        }
     }
-
-    @objc func keyboardWillShow(_ notification: Notification) {
-        guard let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue
-        else {
+    
+    private func uploadImageOnFirebase(imageNo: Int, completion: @escaping (String) -> Void) {
+        let image: UIImage
+        switch imageNo {
+        case 1:
+            image = self.img1.image!
+        case 2:
+            image = self.img2.image!
+        case 3:
+            image = self.img3.image!
+        case 4:
+            image = self.img4.image!
+        default:
             return
         }
-        let keyboardFrame = view.convert(keyboardFrameValue.cgRectValue, from: nil)
-        self.scrollView.contentOffset = CGPoint(x: 0, y: keyboardFrame.size.height)
+        
+        uploadFilesOnAWS(photo: image, folderName: "ProductImages", postType: .image) { downloadURL in
+            completion(downloadURL ?? "")
+        }
     }
+}
 
+// MARK: Keyboard Notifications
+extension AddProductViewController {
+    private func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else { return }
+        let keyboardFrame = view.convert(keyboardFrameValue.cgRectValue, from: nil)
+        scrollView.contentOffset = CGPoint(x: 0, y: keyboardFrame.size.height)
+    }
+    
     @objc func keyboardWillHide(_: Notification) {
-        self.scrollView.contentOffset = .zero
+        scrollView.contentOffset = .zero
     }
 }
 
 // MARK: UITextFieldDelegate
-
-extension AddProductViewController : UITextFieldDelegate {
+extension AddProductViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_: UITextField) -> Bool {
         view.endEditing(true)
         return true
     }
 }
 
-
-
-
-extension AddProductViewController : UIPickerViewDelegate, UIPickerViewDataSource {
-
+// MARK: UIPickerViewDelegate & UIPickerViewDataSource
+extension AddProductViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Constants.product_categories.count
-
+        return Constants.productCategories.count
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-
-        
-        return Constants.product_categories[row]
-        
-
+        return Constants.productCategories[row]
     }
-
 }

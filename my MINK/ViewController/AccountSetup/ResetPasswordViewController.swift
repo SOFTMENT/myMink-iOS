@@ -11,49 +11,55 @@ class ResetPasswordViewController: UIViewController {
     var email: String?
 
     override func viewDidLoad() {
-        self.emailAddressTF.delegate = self
-
-        self.getLinkBtn.layer.cornerRadius = 8
-
-        self.backView.isUserInteractionEnabled = true
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backBtnClicked)))
-
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard)))
+        super.viewDidLoad()
+        setupViews()
+        setupGestures()
     }
 
-    @objc func backBtnClicked() {
+    private func setupViews() {
+        emailAddressTF.delegate = self
+        getLinkBtn.layer.cornerRadius = 8
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
+    }
+
+    private func setupGestures() {
+        backView.isUserInteractionEnabled = true
+        backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backBtnClicked)))
+
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
+    }
+
+    @objc private func backBtnClicked() {
         dismiss(animated: true)
     }
 
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
 
     @IBAction func getLinkClicked(_: Any) {
-        let sEmail = self.emailAddressTF.text
-        if sEmail == "" {
+        guard let sEmail = emailAddressTF.text, !sEmail.isEmpty else {
             showSnack(messages: "Enter email address")
-        } else {
-            ProgressHUDShow(text: "Retrieving Password...")
-
-            FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("email", isEqualTo: sEmail!)
-                .whereField("regiType", isEqualTo: "custom").getDocuments { snapshot, _ in
-
-                    if let snapshot = snapshot, !snapshot.isEmpty {
-                        let n = Int.random(in: 10000 ... 99999)
-                        self.sendResetMail(randomNumber: String(n), email: sEmail!)
-                    } else {
-                        self.ProgressHUDHide()
-                        self.showError("Account not registered with this mail address.")
-                    }
-                }
+            return
         }
+        ProgressHUDShow(text: "Retrieving Password...")
+
+        FirebaseStoreManager.db.collection(Collections.users.rawValue).whereField("email", isEqualTo: sEmail)
+            .whereField("regiType", isEqualTo: "custom").getDocuments { snapshot, _ in
+
+                if let snapshot = snapshot, !snapshot.isEmpty {
+                    let n = Int.random(in: 10000...99999)
+                    self.sendResetMail(randomNumber: String(n), email: sEmail)
+                } else {
+                    self.ProgressHUDHide()
+                    self.showError("Account not registered with this mail address.")
+                }
+            }
     }
 
-    func sendResetMail(randomNumber: String, email: String) {
+    private func sendResetMail(randomNumber: String, email: String) {
         self.email = email
         let passwordResetHTMLTemplate = getPasswordResetTemplate(randomNumber: randomNumber)
         sendMail(
@@ -74,14 +80,12 @@ class ResetPasswordViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "emailVerificationSeg" {
-            if let VC = segue.destination as? EmailVerificationController {
-                if let random = sender as? String {
-                    VC.verificationCode = random
-                    VC.email = self.email
-                    VC.type = .RESET_PASSWORD
-                }
-            }
+        if segue.identifier == "emailVerificationSeg",
+           let VC = segue.destination as? EmailVerificationController,
+           let random = sender as? String {
+            VC.verificationCode = random
+            VC.email = self.email
+            VC.type = .RESET_PASSWORD
         }
     }
 }
@@ -89,7 +93,7 @@ class ResetPasswordViewController: UIViewController {
 // MARK: UITextFieldDelegate
 
 extension ResetPasswordViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
     }

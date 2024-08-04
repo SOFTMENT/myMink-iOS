@@ -11,10 +11,9 @@ import Firebase
 import FirebaseFirestoreSwift
 import CropViewController
 
-class OrganisorDashboardViewController : UIViewController {
-    
+class OrganisorDashboardViewController: UIViewController {
+
     @IBOutlet weak var switchUser: UIButton!
-    
     @IBOutlet weak var pastContainer: UIView!
     @IBOutlet weak var upcomingContainer: UIView!
     @IBOutlet weak var createEvent: UIButton!
@@ -22,95 +21,84 @@ class OrganisorDashboardViewController : UIViewController {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var dateAndTime: UILabel!
 
-
     var isProfilePicChanged = false
-    var downloadURL : String = ""
-    var upcomingOrganizer : OrganisorUpcomingDashboard?
-    var pastOrganizer : OrganisorPastDashboard?
-    
-    var mUser : User!
+    var downloadURL: String = ""
+    var upcomingOrganizer: OrganisorUpcomingDashboard?
+    var pastOrganizer: OrganisorPastDashboard?
+    var mUser: User!
+
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
+        setupUI()
+        validateUser()
+        getMyEvents()
+    }
+
+    private func setupUI() {
+        createEvent.layer.cornerRadius = 8
+        bottomNavigation.installBlurEffect(isTop: false)
+        pastContainer.isHidden = true
+        switchUser.layer.cornerRadius = 6
+        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+    }
+
+    private func validateUser() {
         guard let organizer = UserModel.data else {
-            self.dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: nil)
             return
         }
         guard let user = Auth.auth().currentUser else {
-            self.logoutPlease()
+            logoutPlease()
             return
         }
         mUser = user
-        
-      
-        let hi = "Hi"
-        name.text = "\(hi), \(organizer.fullName ?? "User")"
-        dateAndTime.text = self.convertDateForHomePage(Date())
-        
-       
-      
-        createEvent.layer.cornerRadius = 8
-        bottomNavigation.installBlurEffect(isTop: false)
-        pastContainer.isHidden  = true
-        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
-       
-   
-        switchUser.layer.cornerRadius = 6
-        
-        //GET MY EVENTS
-        getMyEvents()
+        name.text = "Hi, \(organizer.fullName ?? "User")"
+        dateAndTime.text = convertDateForHomePage(Date())
     }
-     
+
     @IBAction func switchUserClicked(_ sender: Any) {
-        if self.presentingViewController != nil {
-                   self.dismiss(animated: true) {
-                       // Check if the view controller is actually dismissed
-                       if self.presentingViewController != nil {
-                           self.onDismissFailed()
-                       }
-                   }
-               } else {
-                   self.onDismissFailed()
-               }
+        dismissOrShowFailure()
     }
-    
-    func onDismissFailed() {
-        Constants.FROM_EVENT_CREATE = true
-        Constants.selectedTabbarPosition = 6
-        self.beRootScreen(storyBoardName: .Tabbar, mIdentifier: .TABBARVIEWCONTROLLER)
-    }
-    
-    public func getMyEvents(){
-        ProgressHUDShow(text: "")
-        
-        
-        Firestore.firestore().collection(Collections.EVENTS.rawValue).order(by: "eventStartDate",descending: true).whereField("eventOrganizerUid", isEqualTo: mUser.uid).addSnapshotListener { snapshot, error in
-            self.ProgressHUDHide()
-            if error == nil {
-                Event.datas.removeAll()
-                if let snap = snapshot, !snap.isEmpty {
-                    for qds in snap.documents {
-                       
-                            if let event = try? qds.data(as: Event.self) {
-                                Event.datas.append(event)
-                             
-                            }
-                        
-                    }
-                    
-                    self.upcomingOrganizer?.notifyAdapter()
-                    self.pastOrganizer?.notifyAdapter()
-                    
+
+    private func dismissOrShowFailure() {
+        if presentingViewController != nil {
+            dismiss(animated: true) {
+                if self.presentingViewController != nil {
+                    self.onDismissFailed()
                 }
-               
             }
-            else {
-                self.showError(error!.localizedDescription)
+        } else {
+            onDismissFailed()
+        }
+    }
+
+    private func onDismissFailed() {
+        Constants.fromEventCreate = true
+        Constants.selectedTabBarPosition = 6
+        beRootScreen(storyBoardName: .tabBar, mIdentifier: .tabBarViewController)
+    }
+
+    private func getMyEvents() {
+        ProgressHUDShow(text: "")
+        Firestore.firestore().collection(Collections.events.rawValue).order(by: "eventStartDate", descending: true).whereField("eventOrganizerUid", isEqualTo: mUser.uid).addSnapshotListener { snapshot, error in
+            self.ProgressHUDHide()
+            if let error = error {
+                self.showError(error.localizedDescription)
+                return
+            }
+            Event.datas.removeAll()
+            if let snap = snapshot, !snap.isEmpty {
+                for qds in snap.documents {
+                    if let event = try? qds.data(as: Event.self) {
+                        Event.datas.append(event)
+                    }
+                }
+                self.upcomingOrganizer?.notifyAdapter()
+                self.pastOrganizer?.notifyAdapter()
             }
         }
     }
 
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let upcomingVC = segue.destination as? OrganisorUpcomingDashboard {
             self.upcomingOrganizer = upcomingVC
@@ -119,32 +107,13 @@ class OrganisorDashboardViewController : UIViewController {
             self.pastOrganizer = pastVC
         }
     }
-    
+
     @IBAction func createEventBtnClicked(_ sender: Any) {
         performSegue(withIdentifier: "createeventseg", sender: nil)
     }
-    
+
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-        pastContainer.isHidden = true
-        upcomingContainer.isHidden = true
-        
-        if sender.selectedSegmentIndex == 0 {
-            upcomingContainer.isHidden = false
-            
-        }
-        else {
-            pastContainer.isHidden = false
-            
-        }
+        pastContainer.isHidden = sender.selectedSegmentIndex != 1
+        upcomingContainer.isHidden = sender.selectedSegmentIndex != 0
     }
-    
-    
 }
-
-
-
-
-
-
-
-

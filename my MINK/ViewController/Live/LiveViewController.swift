@@ -14,34 +14,42 @@ class LiveViewController: UIViewController {
     @IBOutlet var noLiveStreamingsAvailable: UIStackView!
 
     override func viewDidLoad() {
-        self.startBtn.layer.cornerRadius = 8
-        self.searchBtn.layer.cornerRadius = 8
+        super.viewDidLoad()
+        setupUI()
+        setupCollectionView()
+        fetchLiveStreamings()
+    }
 
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
+    private func setupUI() {
+        startBtn.layer.cornerRadius = 8
+        searchBtn.layer.cornerRadius = 8
+    }
+
+    private func setupCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
         let flowLayout = UICollectionViewFlowLayout()
-        let width = self.collectionView.bounds.width
-
+        let width = collectionView.bounds.width
         flowLayout.itemSize = CGSize(width: (width / 2) - 5, height: (width / 2) - 5)
-        flowLayout.scrollDirection = UICollectionView.ScrollDirection.vertical
+        flowLayout.scrollDirection = .vertical
         flowLayout.minimumInteritemSpacing = 0
-        self.collectionView.collectionViewLayout = flowLayout
+        collectionView.collectionViewLayout = flowLayout
+    }
 
-        FirebaseStoreManager.db.collection(Collections.LIVESTREAMINGS.rawValue).order(by: "date", descending: true)
+    private func fetchLiveStreamings() {
+        FirebaseStoreManager.db.collection(Collections.liveStreamings.rawValue)
+            .order(by: "date", descending: true)
             .whereField("isOnline", isEqualTo: true)
             .addSnapshotListener { snapshot, error in
-
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
                     self.liveStreamingModels.removeAll()
-
                     if let snapshot = snapshot, !snapshot.isEmpty {
-                        for qdr in snapshot.documents {
-                            if let liveModel = try? qdr.data(as: LiveStreamingModel.self) {
-                                if liveModel.uid != FirebaseStoreManager.auth.currentUser!.uid {
-                                    self.liveStreamingModels.append(liveModel)
-                                }
+                        for document in snapshot.documents {
+                            if let liveModel = try? document.data(as: LiveStreamingModel.self),
+                               liveModel.uid != FirebaseStoreManager.auth.currentUser!.uid {
+                                self.liveStreamingModels.append(liveModel)
                             }
                         }
                     }
@@ -49,76 +57,71 @@ class LiveViewController: UIViewController {
                 }
             }
     }
- 
+
     @IBAction func startBtnClicked(_: Any) {
         startLiveStream(shouldShowProgress: true)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "joinLiveStreamSeg" {
-            if let VC = segue.destination as? JoinLiveStreamViewController {
-                if let liveModel = sender as? LiveStreamingModel {
-                    VC.token = liveModel.token
-
-                    VC.channelName = liveModel.uid
-                    VC.sName = liveModel.fullName
-                    VC.sProfilePic = liveModel.profilePic
-                    VC.agoraUID = liveModel.agoraUID
-                }
-            }
+        if segue.identifier == "joinLiveStreamSeg",
+           let VC = segue.destination as? JoinLiveStreamViewController,
+           let liveModel = sender as? LiveStreamingModel {
+            VC.token = liveModel.token
+            VC.channelName = liveModel.uid
+            VC.sName = liveModel.fullName
+            VC.sProfilePic = liveModel.profilePic
+            VC.agoraUID = liveModel.agoraUID
         }
     }
 
     @objc func postClicked(value: MyGesture) {
-        performSegue(withIdentifier: "joinLiveStreamSeg", sender: self.liveStreamingModels[value.index])
+        performSegue(withIdentifier: "joinLiveStreamSeg", sender: liveStreamingModels[value.index])
     }
 }
 
-extension LiveViewController: UICollectionViewDelegate, UICollectionViewDataSource,
-    UICollectionViewDelegateFlowLayout
-{
+extension LiveViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
-        let width = self.collectionView.bounds.width
+        let width = collectionView.bounds.width
         return CGSize(width: (width / 2) - 5, height: (width / 2) - 5)
     }
 
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        self.noLiveStreamingsAvailable.isHidden = self.liveStreamingModels.count > 0 ? true : false
-        return self.liveStreamingModels.count
+        noLiveStreamingsAvailable.isHidden = !liveStreamingModels.isEmpty
+        return liveStreamingModels.count
     }
 
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(
+        guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "liveStreamingCell",
             for: indexPath
-        ) as? LiveStreamingCollectionViewCell {
-            let liveModel = self.liveStreamingModels[indexPath.row]
-
-            cell.mProfile.layer.cornerRadius = 8
-            let myGest = MyGesture(target: self, action: #selector(self.postClicked))
-            myGest.index = indexPath.row
-            cell.mView.isUserInteractionEnabled = true
-            cell.mView.addGestureRecognizer(myGest)
-            cell.fullName.text = liveModel.fullName ?? ""
-            cell.fullNameView.layer.cornerRadius = 4
-            cell.countView.layer.cornerRadius = 4
-
-            // cell.count.text = "\(liveModel.count ?? 0)"
-
-            if let postImage = liveModel.profilePic, !postImage.isEmpty {
-                cell.mProfile.setImage(
-                    imageKey: postImage,
-                    placeholder: "profile-placeholder",
-                    shouldShowAnimationPlaceholder: true
-                )
-            }
-
-            return cell
+        ) as? LiveStreamingCollectionViewCell else {
+            return LiveStreamingCollectionViewCell()
         }
 
-        return ProfilePosCollectionViewCell()
+        let liveModel = liveStreamingModels[indexPath.row]
+        configureCell(cell, with: liveModel, at: indexPath)
+        return cell
+    }
+
+    private func configureCell(_ cell: LiveStreamingCollectionViewCell, with liveModel: LiveStreamingModel, at indexPath: IndexPath) {
+        cell.mProfile.layer.cornerRadius = 8
+        let myGest = MyGesture(target: self, action: #selector(postClicked))
+        myGest.index = indexPath.row
+        cell.mView.isUserInteractionEnabled = true
+        cell.mView.addGestureRecognizer(myGest)
+        cell.fullName.text = liveModel.fullName ?? ""
+        cell.fullNameView.layer.cornerRadius = 4
+        cell.countView.layer.cornerRadius = 4
+
+        if let postImage = liveModel.profilePic, !postImage.isEmpty {
+            cell.mProfile.setImage(
+                imageKey: postImage,
+                placeholder: "profile-placeholder",
+                shouldShowAnimationPlaceholder: true
+            )
+        }
     }
 }

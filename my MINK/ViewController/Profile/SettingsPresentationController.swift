@@ -116,62 +116,62 @@ class SettingsPresentationController: UIPresentationController {
     }
 
     override func presentationTransitionWillBegin() {
-   
+        guard let profileVC = profileVC else { return }
 
         // LegalAgreements
-        self.profileVC?.settingsVC.legalAgreements.isUserInteractionEnabled = true
-        self.profileVC?.settingsVC.legalAgreements.addGestureRecognizer(UITapGestureRecognizer(
+        profileVC.settingsVC.legalAgreements.isUserInteractionEnabled = true
+        profileVC.settingsVC.legalAgreements.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
             action: #selector(self.redirectToLegalAgreements)
         ))
 
         // shareapp
-        self.profileVC?.settingsVC.shareApp.isUserInteractionEnabled = true
-        self.profileVC?.settingsVC.shareApp.addGestureRecognizer(UITapGestureRecognizer(
+        profileVC.settingsVC.shareApp.isUserInteractionEnabled = true
+        profileVC.settingsVC.shareApp.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
             action: #selector(self.shareApp)
         ))
 
         // RateUs
-        self.profileVC?.settingsVC.rateApp.isUserInteractionEnabled = true
-        self.profileVC?.settingsVC.rateApp.addGestureRecognizer(UITapGestureRecognizer(
+        profileVC.settingsVC.rateApp.isUserInteractionEnabled = true
+        profileVC.settingsVC.rateApp.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
             action: #selector(self.rateUs)
         ))
 
         // AccountPrivacy
-        self.profileVC?.settingsVC.accountPrivacy.isUserInteractionEnabled = true
-        self.profileVC?.settingsVC.accountPrivacy.addGestureRecognizer(UITapGestureRecognizer(
+        profileVC.settingsVC.accountPrivacy.isUserInteractionEnabled = true
+        profileVC.settingsVC.accountPrivacy.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
             action: #selector(self.accountPrivacyClicked)
         ))
 
         // Contact US
-        self.profileVC?.settingsVC.contactUs.isUserInteractionEnabled = true
-        self.profileVC?.settingsVC.contactUs.addGestureRecognizer(UITapGestureRecognizer(
+        profileVC.settingsVC.contactUs.isUserInteractionEnabled = true
+        profileVC.settingsVC.contactUs.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
             action: #selector(self.contactUsClicked)
         ))
 
         // EditProfile
-        self.profileVC?.settingsVC.editProfile.isUserInteractionEnabled = true
-        self.profileVC?.settingsVC.editProfile.addGestureRecognizer(UITapGestureRecognizer(
+        profileVC.settingsVC.editProfile.isUserInteractionEnabled = true
+        profileVC.settingsVC.editProfile.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
             action: #selector(self.editProfileClicked)
         ))
         
         //Saved
-        self.profileVC?.settingsVC.savedView.isUserInteractionEnabled = true
-        self.profileVC?.settingsVC.savedView.addGestureRecognizer(UITapGestureRecognizer(
+        profileVC.settingsVC.savedView.isUserInteractionEnabled = true
+        profileVC.settingsVC.savedView.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
             action: #selector(self.savedViewClicked)
         ))
 
         // MembershipView
-        self.profileVC?.settingsVC.membershipView.layer.cornerRadius = 8
+        profileVC.settingsVC.membershipView.layer.cornerRadius = 8
 
-        if let profilePath = UserModel.data!.profilePic, !profilePath.isEmpty {
-            self.profileVC?.settingsVC.profilePic.setImage(
+        if let profilePath = UserModel.data?.profilePic, !profilePath.isEmpty {
+            profileVC.settingsVC.profilePic.setImage(
                 imageKey: profilePath,
                 placeholder: "profile-placeholder",
                 width: 100,
@@ -180,40 +180,34 @@ class SettingsPresentationController: UIPresentationController {
             )
         }
 
-        self.profileVC?.settingsVC.name.text = UserModel.data!.fullName ?? ""
-        self.profileVC?.settingsVC.email.text = UserModel.data!.email ?? UserModel.data!.phoneNumber ?? ""
+        profileVC.settingsVC.name.text = UserModel.data?.fullName ?? ""
+        profileVC.settingsVC.email.text = UserModel.data?.email ?? UserModel.data?.phoneNumber ?? ""
 
-        self.profileVC?.settingsVC.logoutBtn.isUserInteractionEnabled = true
-        self.profileVC?.settingsVC.logoutBtn.addGestureRecognizer(UITapGestureRecognizer(
+        profileVC.settingsVC.logoutBtn.isUserInteractionEnabled = true
+        profileVC.settingsVC.logoutBtn.addGestureRecognizer(UITapGestureRecognizer(
             target: self,
             action: #selector(self.logoutME)
         ))
 
-        if let daysLeft = UserModel.data!.daysLeft, daysLeft > 0 {
-            if UserModel.data!.planID == PriceID.LIFETIME.rawValue {
-                self.profileVC?.settingsVC.membershipView.isHidden = true
+        if let daysLeft = UserModel.data?.daysLeft, daysLeft > 0 {
+            if UserModel.data?.planID == PriceID.lifetime.rawValue {
+                profileVC.settingsVC.membershipView.isHidden = true
             } else {
-                if let isFree = UserModel.data!.isDuringTrial, isFree {
-                    
-
-                    self.profileVC?.settingsVC.timeLeft.text = "\(daysLeft) free \(daysLeft > 1 ? "days" : "day")"
-
+                if let isFree = UserModel.data?.isDuringTrial, isFree {
+                    profileVC.settingsVC.timeLeft.text = "\(daysLeft) free \(daysLeft > 1 ? "days" : "day")"
                 } else {
-                   
-                    self.profileVC?.settingsVC.timeLeft.text = "\(daysLeft) \((daysLeft) > 1 ? "days" : "day")"
+                    profileVC.settingsVC.timeLeft.text = "\(daysLeft) \((daysLeft) > 1 ? "days" : "day")"
                 }
 
-                self.profileVC?.settingsVC.membershipView.isUserInteractionEnabled = true
-                self.profileVC?.settingsVC.membershipView.addGestureRecognizer(UITapGestureRecognizer(
+                profileVC.settingsVC.membershipView.isUserInteractionEnabled = true
+                profileVC.settingsVC.membershipView.addGestureRecognizer(UITapGestureRecognizer(
                     target: self,
                     action: #selector(self.membershipViewClicked)
                 ))
             }
+        } else {
+            profileVC.settingsVC.membershipView.isHidden = true
         }
-        else {
-            self.profileVC?.settingsVC.membershipView.isHidden = true
-        }
-       
 
         containerView?.addSubview(self.blurEffectView)
         presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in

@@ -22,5 +22,6 @@ class BusinessModel : NSObject, Codable {
     var shareLink : String?
     var notificationToken : String?
     var deviceToken : String?
+    var lastPostDate: Date?
     
 }

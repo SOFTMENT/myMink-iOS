@@ -4,16 +4,16 @@ import AuthenticationServices
 import CryptoKit
 import Firebase
 import UIKit
+import FirebaseCrashlytics
 
 private var currentNonce: String?
 
 // MARK: - SignInViewController
 
 class SignInViewController: UIViewController {
-    // MARK: Internal
+    // MARK: - Outlets
 
     @IBOutlet var phoneBtn: UIView!
-
     @IBOutlet var backView: UIView!
     @IBOutlet var emailAddress: UITextField!
     @IBOutlet var password: UITextField!
@@ -22,211 +22,154 @@ class SignInViewController: UIViewController {
     @IBOutlet var gmailBtn: UIView!
     @IBOutlet var appleBtn: UIView!
     @IBOutlet var registerNowBtn: UILabel!
-    @IBOutlet var remeberMeCheck: UIButton!
+    @IBOutlet var rememberMeCheck: UIButton!
+
+    // MARK: - Properties
+
     var email: String = ""
     var randomNumber: String = ""
 
+    // MARK: - View Lifecycle
+
     override func viewDidLoad() {
-        self.emailAddress.layer.cornerRadius = 12
-        self.emailAddress.setLeftPaddingPoints(16)
-        self.emailAddress.setRightPaddingPoints(10)
-        self.emailAddress.setLeftView(image: UIImage(named: "email")!)
-        self.emailAddress.delegate = self
+        super.viewDidLoad()
+        setupUI()
+        configureGestureRecognizers()
+        configureRememberMe()
+        
+      
+    }
 
-        self.password.layer.cornerRadius = 12
-        self.password.setLeftPaddingPoints(16)
-        self.password.setRightPaddingPoints(10)
-        self.password.setLeftView(image: UIImage(named: "lock")!)
-        self.password.delegate = self
+    // MARK: - UI Setup
 
-        self.password.rightViewMode = .always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 13, width: 20, height: 20))
-        let image = UIImage(named: "hide")
-        imageView.image = image
-        let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 45))
-        iconContainerView.addSubview(imageView)
-        self.password.rightView = iconContainerView
-        self.password.rightView?.isUserInteractionEnabled = true
-        self.password.rightView?.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.passwordEyeClicked)
-        ))
+    private func setupUI() {
+        if let emailIcon = UIImage(named: "email") {
+            emailAddress.configureTextField(placeholderImage: emailIcon)
+        }
+        if let lockIcon = UIImage(named: "lock") {
+            password.configureTextField(placeholderImage: lockIcon)
+        }
 
-        self.loginBtn.layer.cornerRadius = 12
-        self.gmailBtn.layer.cornerRadius = 12
-        self.appleBtn.layer.cornerRadius = 12
-        self.phoneBtn.layer.cornerRadius = 12
+        password.configureRightView(image: UIImage(named: "hide"), target: self, action: #selector(passwordEyeClicked))
 
-        // RESET PASSWORD
-        self.forgotPassword.isUserInteractionEnabled = true
-        self.forgotPassword.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.forgotPasswordClicked)
-        ))
+        [loginBtn, gmailBtn, appleBtn, phoneBtn].forEach {
+            $0?.layer.cornerRadius = 12
+        }
 
-        // RegisterNow
-        self.registerNowBtn.isUserInteractionEnabled = true
-        self.registerNowBtn.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.registerBtnClicked)
-        ))
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
+    }
 
-        // GoogleClicked
-        self.gmailBtn.isUserInteractionEnabled = true
-        self.gmailBtn.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.loginWithGoogleBtnClicked)
-        ))
+    // MARK: - Gesture Recognizers
 
-        // AppleClicked
-        self.appleBtn.isUserInteractionEnabled = true
-        self.appleBtn.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.loginWithAppleBtnClicked)
-        ))
+    private func configureGestureRecognizers() {
+        forgotPassword.isUserInteractionEnabled = true
+        forgotPassword.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(forgotPasswordClicked)))
+        registerNowBtn.isUserInteractionEnabled = true
+        registerNowBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(registerBtnClicked)))
+        gmailBtn.isUserInteractionEnabled = true
+        gmailBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(loginWithGoogleBtnClicked)))
+        appleBtn.isUserInteractionEnabled = true
+        appleBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(loginWithAppleBtnClicked)))
+        phoneBtn.isUserInteractionEnabled = true
+        phoneBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(phoneVerificationClicked)))
+        backView.isUserInteractionEnabled = true
+        backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backViewClicked)))
 
-        // PhoneClicked
-        self.phoneBtn.isUserInteractionEnabled = true
-        self.phoneBtn.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.phoneVerificationClicked)
-        ))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
+    }
 
-        self.backView.isUserInteractionEnabled = true
-        self.backView.dropShadow()
-        self.backView.layer.cornerRadius = 8
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.backViewClicked)
-        ))
+    // MARK: - Remember Me
 
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hidekeyboard)))
-
+    private func configureRememberMe() {
         let rememberMeFlag = UserDefaults.standard.bool(forKey: "REMEMBER_USER")
-        self.remeberMeCheck.isSelected = rememberMeFlag
+        rememberMeCheck.isSelected = rememberMeFlag
         if rememberMeFlag {
-            self.emailAddress.text = UserDefaults.standard.string(forKey: "USER_EMAIL")
-            self.password.text = UserDefaults.standard.string(forKey: "PASSWORD")
+            emailAddress.text = UserDefaults.standard.string(forKey: "USER_EMAIL")
+            password.text = UserDefaults.standard.string(forKey: "PASSWORD")
         }
     }
 
-    @objc func phoneVerificationClicked() {
+    // MARK: - Actions
+
+    @objc private func phoneVerificationClicked() {
         performSegue(withIdentifier: "phoneNumberSignInSeg", sender: nil)
     }
 
     @objc func passwordEyeClicked() {
-        if self.password.isSecureTextEntry {
-            self.password.isSecureTextEntry = false
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 13, width: 20, height: 20))
-            let image = UIImage(named: "view")
-            imageView.image = image
-            let iconContainerView: UIView = .init(frame: CGRect(x: 0, y: 0, width: 35, height: 45))
-            iconContainerView.addSubview(imageView)
-            self.password.rightView = iconContainerView
-            self.password.rightView?.isUserInteractionEnabled = true
-            self.password.rightView?.addGestureRecognizer(UITapGestureRecognizer(
-                target: self,
-                action: #selector(self.passwordEyeClicked)
-            ))
-        } else {
-            self.password.isSecureTextEntry = true
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 13, width: 20, height: 20))
-            let image = UIImage(named: "hide")
-            imageView.image = image
-            let iconContainerView: UIView = .init(frame: CGRect(x: 0, y: 0, width: 35, height: 45))
-            iconContainerView.addSubview(imageView)
-            self.password.rightView = iconContainerView
-            self.password.rightView?.isUserInteractionEnabled = true
-            self.password.rightView?.addGestureRecognizer(UITapGestureRecognizer(
-                target: self,
-                action: #selector(self.passwordEyeClicked)
-            ))
-        }
+        password.togglePasswordVisibility()
     }
 
-    @objc func backViewClicked() {
+    @objc private func backViewClicked() {
         dismiss(animated: true)
     }
 
-    @IBAction func remeberMeClicked(_ sender: UIButton) {
-        if sender.isSelected {
-            sender.isSelected = false
-        } else {
-            sender.isSelected = true
-        }
+    @IBAction private func rememberMeClicked(_ sender: UIButton) {
+        sender.isSelected.toggle()
     }
 
-    @objc func registerBtnClicked() {
+    @objc private func registerBtnClicked() {
         performSegue(withIdentifier: "signUpSeg", sender: nil)
     }
 
-    @objc func forgotPasswordClicked() {
+    @objc private func forgotPasswordClicked() {
         performSegue(withIdentifier: "resetPasswordSeg", sender: nil)
     }
 
-    @IBAction func loginBtnClicked(_: Any) {
-        let sEmail = self.emailAddress.text?.trimmingCharacters(in: .nonBaseCharacters)
-        let sPassword = self.password.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        if sEmail == "" {
-            showSnack(messages: "Enter Email Address")
-        } else if sPassword == "" {
-            showSnack(messages: "Enter Password")
-        } else {
-            if self.remeberMeCheck.isSelected {
-                UserDefaults.standard.set(true, forKey: "REMEMBER_USER")
-                UserDefaults.standard.set(sEmail, forKey: "USER_EMAIL")
-                UserDefaults.standard.set(sPassword, forKey: "PASSWORD")
-            } else {
-                UserDefaults.standard.set(false, forKey: "REMEMBER_USER")
-                UserDefaults.standard.removeObject(forKey: "USER_EMAIL")
-                UserDefaults.standard.removeObject(forKey: "PASSWORD")
-            }
-
-            let credentials = EmailAuthProvider.credential(withEmail: sEmail!, password: sPassword!)
-            authWithFirebase(
-                from: "signIn",
-                credential: credentials,
-                phoneNumber: "",
-                type: "password",
-                displayName: ""
-            )
+    @IBAction private func loginBtnClicked(_: Any) {
+        guard let sEmail = emailAddress.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+              let sPassword = password.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !sEmail.isEmpty, !sPassword.isEmpty else {
+            showSnack(messages: "Enter Email Address and Password")
+            return
         }
+
+        if rememberMeCheck.isSelected {
+            UserDefaults.standard.set(true, forKey: "REMEMBER_USER")
+            UserDefaults.standard.set(sEmail, forKey: "USER_EMAIL")
+            UserDefaults.standard.set(sPassword, forKey: "PASSWORD")
+        } else {
+            UserDefaults.standard.set(false, forKey: "REMEMBER_USER")
+            UserDefaults.standard.removeObject(forKey: "USER_EMAIL")
+            UserDefaults.standard.removeObject(forKey: "PASSWORD")
+        }
+
+        let credentials = EmailAuthProvider.credential(withEmail: sEmail, password: sPassword)
+        authWithFirebase(from: "signIn", credential: credentials, phoneNumber: "", type: "password", displayName: "")
     }
 
-    @objc func hidekeyboard() {
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
 
-    @objc func loginWithGoogleBtnClicked() {
+    @objc private func loginWithGoogleBtnClicked() {
         loginWithGoogle(from: "signIn")
     }
 
-    @objc func loginWithAppleBtnClicked() {
-        self.startSignInWithAppleFlow()
+    @objc private func loginWithAppleBtnClicked() {
+        startSignInWithAppleFlow()
     }
 
-    func startSignInWithAppleFlow() {
-        let nonce = self.randomNonceString()
+    // MARK: - Apple Sign-In
+
+    private func startSignInWithAppleFlow() {
+        let nonce = randomNonceString()
         currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
-        request.nonce = self.sha256(nonce)
+        request.nonce = sha256(nonce)
 
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
-        // authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
 
-    // MARK: Private
+    // MARK: - Helpers
 
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
-        let charset: [Character] =
-            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
         var result = ""
         var remainingLength = length
 
@@ -241,9 +184,7 @@ class SignInViewController: UIViewController {
             }
 
             randoms.forEach { random in
-                if remainingLength == 0 {
-                    return
-                }
+                if remainingLength == 0 { return }
 
                 if random < charset.count {
                     result.append(charset[Int(random)])
@@ -258,85 +199,75 @@ class SignInViewController: UIViewController {
     private func sha256(_ input: String) -> String {
         let inputData = Data(input.utf8)
         let hashedData = SHA256.hash(data: inputData)
-        let hashString = hashedData.compactMap {
-            String(format: "%02x", $0)
-        }.joined()
+        let hashString = hashedData.compactMap { String(format: "%02x", $0) }.joined()
 
         return hashString
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "signInPhoneVerificationSeg", let VC = segue.destination as? PhoneNumberVerificationController, let value = sender as? String {
+            VC.verificationID = FirebaseStoreManager.auth.currentUser!.uid
+            VC.phoneNumber = value
+        }
+    }
 }
 
-// MARK: UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 
 extension SignInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_: UITextField) -> Bool {
-        self.hidekeyboard()
+        hideKeyboard()
         return true
     }
 }
 
-// MARK: ASAuthorizationControllerDelegate
+// MARK: - ASAuthorizationControllerDelegate
 
 extension SignInViewController: ASAuthorizationControllerDelegate {
-    func authorizationController(
-        controller _: ASAuthorizationController,
-        didCompleteWithAuthorization authorization: ASAuthorization
-    ) {
-        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            guard let nonce = currentNonce else {
-                fatalError("Invalid state: A login callback was received, but no login request was sent.")
-            }
-            guard let appleIDToken = appleIDCredential.identityToken else {
-                print("Unable to fetch identity token")
-                return
-            }
-            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
-                return
-            }
-            // Initialize a Firebase credential.
-            let credential = OAuthProvider.credential(
-                withProviderID: "apple.com",
-                idToken: idTokenString,
-                rawNonce: nonce
-            )
-
-            var displayName = "my MINK"
-
-            if let fullName = appleIDCredential.fullName {
-                if let firstName = fullName.givenName {
-                    displayName = firstName
-                }
-                if let lastName = fullName.familyName {
-                    displayName = "\(displayName) \(lastName)"
-                }
-            }
-
-            authWithFirebase(
-                from: "signIn",
-                credential: credential,
-                phoneNumber: nil,
-                type: "apple",
-                displayName: displayName
-            )
+    func authorizationController(controller _: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
+              let nonce = currentNonce,
+              let appleIDToken = appleIDCredential.identityToken,
+              let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+            fatalError("Invalid state: A login callback was received, but no login request was sent or token is invalid.")
         }
-    }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "signInPhoneVerificationSeg" {
-            if let VC = segue.destination as? PhoneNumberVerificationController {
-                if let value = sender as? String {
-                    VC.verificationID = FirebaseStoreManager.auth.currentUser!.uid
-                    VC.phoneNumber  = value
-                  
-                }
-            }
-        }
+        let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+        let displayName = [appleIDCredential.fullName?.givenName, appleIDCredential.fullName?.familyName].compactMap { $0 }.joined(separator: " ")
+
+        authWithFirebase(from: "signIn", credential: credential, phoneNumber: nil, type: "apple", displayName: displayName)
     }
 
     func authorizationController(controller _: ASAuthorizationController, didCompleteWithError error: Error) {
-        // Handle error.
-
         print("Sign in with Apple errored: \(error)")
+    }
+}
+
+// MARK: - UITextField Extension
+
+private extension UITextField {
+    func configureTextField(placeholderImage: UIImage) {
+        layer.cornerRadius = 12
+        setLeftPaddingPoints(16)
+        setRightPaddingPoints(10)
+        setLeftView(image: placeholderImage)
+        delegate = self as? UITextFieldDelegate
+    }
+
+    func configureRightView(image: UIImage?, target: Any?, action: Selector) {
+        guard let image = image else { return }
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 13, width: 20, height: 20))
+        imageView.image = image
+        let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 45))
+        iconContainerView.addSubview(imageView)
+        rightView = iconContainerView
+        rightViewMode = .always
+        rightView?.isUserInteractionEnabled = true
+        rightView?.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
+    }
+
+    func togglePasswordVisibility() {
+        isSecureTextEntry.toggle()
+        configureRightView(image: isSecureTextEntry ? UIImage(named: "hide") : UIImage(named: "view"), target: self, action: #selector(SignInViewController.passwordEyeClicked))
     }
 }

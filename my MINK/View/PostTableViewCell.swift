@@ -95,27 +95,26 @@ class PostTableViewCell: UITableViewCell {
         }
     }
     
-    private var postModel : PostModel?
     private var vc : UIViewController?
  
     func configure(with post: PostModel, vc : UIViewController) {
-        self.postModel = post
+       
         self.vc = vc
         
-        updateFavoriteButton(isFromCell: true)
-        updateSavedButton(isFromCell: true)
-        updateCommentCount(postID: postModel!.postID ?? "123")
+        updateFavoriteButton(isFromCell: true, postModel: post)
+        updateSavedButton(isFromCell: true, postModel: post)
+        updateCommentCount(postID: post.postID ?? "123")
     }
     
-    func updateSavedButton(isFromCell : Bool) {
-        guard let postID = postModel!.postID else { return }
+    func updateSavedButton(isFromCell : Bool, postModel : PostModel) {
+        guard let postID = postModel.postID else { return }
         let isSave = SavedManager.shared.isSave(postID)
        
         
         if isSave {
             
             saveImage.image = UIImage(systemName: "bookmark.fill")
-            
+            saveImage.tintColor = UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 1)
             if !isFromCell {
                
                 self.saveCount.text = String(((Int(self.saveCount.text!) ?? 0) + 1))
@@ -123,13 +122,14 @@ class PostTableViewCell: UITableViewCell {
             }
             else {
                
-                self.updateSaveCount(postID: self.postModel!.postID ?? "123")
+                self.updateSaveCount(postID: postModel.postID ?? "123")
             }
             
         }
         else {
           
             saveImage.image = UIImage(systemName: "bookmark")
+            saveImage.tintColor = UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 1)
             
             if !isFromCell {
                 self.saveCount.text = String(((Int(self.saveCount.text!) ?? 0) - 1))
@@ -137,15 +137,14 @@ class PostTableViewCell: UITableViewCell {
             }
             else {
               
-                self.updateSaveCount(postID: self.postModel!.postID ?? "123")
+                self.updateSaveCount(postID: postModel.postID ?? "123")
             }
         }
     }
     
-    func updateFavoriteButton(isFromCell : Bool) {
-        guard let postID = postModel!.postID else { return }
+    func updateFavoriteButton(isFromCell : Bool,postModel : PostModel) {
+        guard let postID = postModel.postID else { return }
         let isFavorite = FavoritesManager.shared.isFavorite(postID)
-       
         
         if isFavorite {
             
@@ -158,7 +157,7 @@ class PostTableViewCell: UITableViewCell {
             }
             else {
                
-                self.updateLikeCount(postID: self.postModel!.postID ?? "123")
+                self.updateLikeCount(postID: postModel.postID ?? "123")
             }
             
         }
@@ -172,7 +171,7 @@ class PostTableViewCell: UITableViewCell {
             }
             else {
               
-                self.updateLikeCount(postID: self.postModel!.postID ?? "123")
+                self.updateLikeCount(postID: postModel.postID ?? "123")
             }
         }
     }

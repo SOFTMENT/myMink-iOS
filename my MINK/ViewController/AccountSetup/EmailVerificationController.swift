@@ -8,74 +8,68 @@ class EmailVerificationController: UIViewController {
     @IBOutlet var backView: UIView!
     @IBOutlet var codeTF: UITextField!
     @IBOutlet var verifyBtn: UIButton!
+    @IBOutlet var resendCode: UILabel!
 
     var verificationCode: String?
     var type: EmailVerificationType?
     var email: String?
     var userModel: UserModel?
-    @IBOutlet var resendCode: UILabel!
     var countdownTimer: Timer?
     var totalTime = 59
+
     override func viewDidLoad() {
-        self.verifyBtn.layer.cornerRadius = 8
-        self.codeTF.delegate = self
+        super.viewDidLoad()
+        setupViews()
+        startTimer()
+    }
+
+    private func setupViews() {
+        verifyBtn.layer.cornerRadius = 8
+        codeTF.delegate = self
 
         view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard)))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
 
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
-        self.backView.isUserInteractionEnabled = true
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backBtnClicked)))
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
+        backView.isUserInteractionEnabled = true
+        backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backBtnClicked)))
 
-        self.codeTF.becomeFirstResponder()
+        codeTF.becomeFirstResponder()
 
-        self.startTimer()
-        self.resendCode.isUserInteractionEnabled = true
-        self.resendCode.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(self.resendCodeBtnClicked)
-        ))
+        resendCode.isUserInteractionEnabled = true
+        resendCode.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(resendCodeBtnClicked)))
     }
 
-    func startTimer() {
-        self.totalTime = 59
-        self.countdownTimer = Timer.scheduledTimer(
-            timeInterval: 1,
-            target: self,
-            selector: #selector(self.updateTime),
-            userInfo: nil,
-            repeats: true
-        )
+    private func startTimer() {
+        totalTime = 59
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     }
 
-    @objc func updateTime() {
-        self.resendCode.text = "\(self.totalTime) seconds remaining"
+    @objc private func updateTime() {
+        resendCode.text = "\(totalTime) seconds remaining"
 
-        if self.totalTime != 0 {
-            self.totalTime -= 1
+        if totalTime != 0 {
+            totalTime -= 1
         } else {
-            self.endTimer()
+            endTimer()
         }
     }
 
-    @objc func resendCodeBtnClicked() {
-        if self.resendCode.text == "Resend Code" {
-            
-        
-            self.ProgressHUDShow(text: "")
+    @objc private func resendCodeBtnClicked() {
+        guard resendCode.text == "Resend Code" else { return }
+        ProgressHUDShow(text: "")
 
-            if self.type! == .EMAIL_VERIFICATION {
-                self.sendVerificationMail(randomNumber: self.verificationCode!, email: self.email!)
-            } else {
-                self.sendResetMail(randomNumber: self.verificationCode!, email: self.email!)
-            }
+        guard let verificationCode = verificationCode, let email = email else { return }
+
+        if type == .EMAIL_VERIFICATION {
+            sendVerificationMail(randomNumber: verificationCode, email: email)
+        } else {
+            sendResetMail(randomNumber: verificationCode, email: email)
         }
     }
 
-    func sendResetMail(randomNumber: String, email: String) {
-        self.email = email
-
+    private func sendResetMail(randomNumber: String, email: String) {
         sendMail(
             to_name: "my MINK",
             to_email: email,
@@ -84,7 +78,7 @@ class EmailVerificationController: UIViewController {
         ) { error in
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
-                if error == "" {
+                if error.isEmpty {
                     self.showSnack(messages: "Code has been sent")
                 } else {
                     self.showError(error)
@@ -93,9 +87,7 @@ class EmailVerificationController: UIViewController {
         }
     }
 
-    func sendVerificationMail(randomNumber: String, email: String) {
-        ProgressHUDShow(text: "")
-
+    private func sendVerificationMail(randomNumber: String, email: String) {
         sendMail(
             to_name: "my MINK",
             to_email: email,
@@ -104,7 +96,7 @@ class EmailVerificationController: UIViewController {
         ) { error in
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
-                if error == "" {
+                if error.isEmpty {
                     self.showSnack(messages: "Code has been sent")
                 } else {
                     self.showError(error)
@@ -113,82 +105,82 @@ class EmailVerificationController: UIViewController {
         }
     }
 
-    func endTimer() {
-        self.countdownTimer?.invalidate()
-        self.countdownTimer = nil
-        self.resendCode.text = "Resend Code"
+    private func endTimer() {
+        countdownTimer?.invalidate()
+        countdownTimer = nil
+        resendCode.text = "Resend Code"
     }
 
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
 
-    @objc func backBtnClicked() {
+    @objc private func backBtnClicked() {
         dismiss(animated: true)
     }
 
-    @IBAction func verifyBtnClicked(_: Any) {
-        let sCode = self.codeTF.text
-        if sCode == "" {
+    @IBAction private func verifyBtnClicked(_: Any) {
+        guard let sCode = codeTF.text, !sCode.isEmpty else {
             showSnack(messages: "Enter Code")
-        } else if sCode! != self.verificationCode! {
+            return
+        }
+
+        guard let verificationCode = verificationCode, sCode == verificationCode else {
             showSnack(messages: "Incorrect Code")
+            return
+        }
+
+        if type == .RESET_PASSWORD {
+            handlePasswordReset()
         } else {
-            if self.type == .RESET_PASSWORD {
-                ProgressHUDShow(text: "")
-                FirebaseStoreManager.db.collection(Collections.USERS.rawValue).whereField("email", isEqualTo: self.email!)
-                    .whereField("regiType", isEqualTo: "custom").getDocuments { snapshot, _ in
-                        self.ProgressHUDHide()
-                        if let snapshot = snapshot, !snapshot.isEmpty {
-                            if let resetPasswordModel = try? snapshot.documents[0].data(as: ResetPasswordModel.self) {
-                                let password = try! self.decryptMessage(
-                                    encryptedMessage: resetPasswordModel.encryptPassword ?? "123",
-                                    encryptionKey: resetPasswordModel.encryptKey ?? "123"
-                                )
-                                self.performSegue(withIdentifier: "copyPasswordSeg", sender: password)
-                            }
-                        } else {
-                            self.showError("Account not registered with this mail address.")
-                        }
-                    }
-            } else {
-                let password = try? decryptMessage(
-                    encryptedMessage: self.userModel!.encryptPassword ?? "123",
-                    encryptionKey: self.userModel!.encryptKey ?? "key"
-                )
-                ProgressHUDShow(text: "Creating Account...")
-                FirebaseStoreManager.auth.createUser(
-                    withEmail: self.userModel!.email ?? "123",
-                    password: password ?? "password"
-                ) { _, error in
-                    self.ProgressHUDHide()
-                    if error == nil {
-                        self.userModel?.uid = FirebaseStoreManager.auth.currentUser!.uid
-                        self.addUserData(userData: self.userModel!)
-                    } else {
-                        self.showError(error!.localizedDescription)
-                    }
+            handleEmailVerification()
+        }
+    }
+
+    private func handlePasswordReset() {
+        guard let email = email else { return }
+        ProgressHUDShow(text: "")
+        FirebaseStoreManager.db.collection(Collections.users.rawValue)
+            .whereField("email", isEqualTo: email)
+            .whereField("regiType", isEqualTo: "custom")
+            .getDocuments { snapshot, error in
+                self.ProgressHUDHide()
+                if let snapshot = snapshot, !snapshot.isEmpty, let resetPasswordModel = try? snapshot.documents[0].data(as: ResetPasswordModel.self) {
+                    let password = try! self.decryptMessage(encryptedMessage: resetPasswordModel.encryptPassword ?? "", encryptionKey: resetPasswordModel.encryptKey ?? "")
+                    self.performSegue(withIdentifier: "copyPasswordSeg", sender: password)
+                } else {
+                    self.showError("Account not registered with this email address.")
                 }
+            }
+    }
+
+    private func handleEmailVerification() {
+        guard let userModel = userModel else { return }
+        let password = try? decryptMessage(encryptedMessage: userModel.encryptPassword ?? "", encryptionKey: userModel.encryptKey ?? "")
+        ProgressHUDShow(text: "Creating Account...")
+        FirebaseStoreManager.auth.createUser(withEmail: userModel.email ?? "", password: password ?? "") { _, error in
+            self.ProgressHUDHide()
+            if error == nil {
+                userModel.uid = FirebaseStoreManager.auth.currentUser?.uid
+                self.addUserData(userData: userModel)
+            } else {
+                self.showError(error!.localizedDescription)
             }
         }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "copyPasswordSeg" {
-            if let VC = segue.destination as? CopyPasswordViewController {
-                if let password = sender as? String {
-                    VC.password = password
-                    VC.email = self.email
-                }
-            }
+        if segue.identifier == "copyPasswordSeg", let VC = segue.destination as? CopyPasswordViewController, let password = sender as? String {
+            VC.password = password
+            VC.email = email
         }
     }
 }
 
-// MARK: UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 
 extension EmailVerificationController: UITextFieldDelegate {
-    func textFieldShouldReturn(_: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
     }

@@ -1,82 +1,91 @@
 // Copyright © 2023 SOFTMENT. All rights reserved.
 
-//
-//  VIPCodeViewController.swift
-//  my MINK
-//
-//  Created by Vijay Rathore on 05/06/23.
-//
 import UIKit
 
 // MARK: - VIPCodeViewController
 
 class VIPCodeViewController: UIViewController {
     @IBOutlet var codeTF: UITextField!
-
     @IBOutlet var backView: UIView!
-
     @IBOutlet var getLinkBtn: UIButton!
 
     override func viewDidLoad() {
-        self.getLinkBtn.layer.cornerRadius = 8
-
-        self.backView.isUserInteractionEnabled = true
-        self.backView.layer.cornerRadius = 8
-        self.backView.dropShadow()
-        self.backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backBtnClicked)))
-
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard)))
+        super.viewDidLoad()
+        setupViews()
     }
 
-    @objc func backBtnClicked() {
+    private func setupViews() {
+        getLinkBtn.layer.cornerRadius = 8
+        backView.layer.cornerRadius = 8
+        backView.dropShadow()
+
+        backView.isUserInteractionEnabled = true
+        backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backBtnClicked)))
+
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
+    }
+
+    @objc private func backBtnClicked() {
         dismiss(animated: true)
     }
 
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
 
-    @IBAction func getLinkClicked(_: Any) {
-        let sCode = self.codeTF.text
-        if sCode == "" {
+    @IBAction private func getLinkClicked(_: Any) {
+        guard let sCode = codeTF.text, !sCode.isEmpty else {
             showSnack(messages: "Enter VIP Code")
-        } else {
-            ProgressHUDShow(text: "Verifying")
-            getCouponModelBy(couponId: sCode ?? "") { couponModel in
+            return
+        }
+        
+        ProgressHUDShow(text: "Verifying")
+        verifyCouponCode(sCode)
+    }
+
+    private func verifyCouponCode(_ sCode: String) {
+        getCouponModelBy(couponId: sCode) { [weak self] couponModel in
+            guard let self = self else { return }
+            self.ProgressHUDHide()
             
-                if let couponCode = couponModel {
-                    UserModel.data!.planID = PriceID.LIFETIME.rawValue
-                    UserModel.data?.daysLeft = 3
-                    UserModel.data?.status = "active"
-                    UserModel.data?.isAccountActive = true
-                    FirebaseStoreManager.db.collection(Collections.USERS.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid).setData(["planID" : PriceID.LIFETIME.rawValue,"status" : "active","isAccountActive" : true],merge: true) { error in
-                        self.ProgressHUDHide()
-                        if let error = error {
-                            self.showError(error.localizedDescription)
-                        }
-                        else {
-                        
-                            self.deleteCoupon(sCode: sCode ?? "123")
-                         
-                            self.performSegue(withIdentifier: "successSeg", sender: nil)
-                         
-                        }
-                    }
-                }
-                else {
-                    self.showError("Invalid Coupon Code.")
-                    self.ProgressHUDHide()
-                }
+            if let _ = couponModel {
+                self.updateUserModel(for: sCode)
+            } else {
+                self.showError("Invalid Coupon Code.")
             }
         }
+    }
+
+    private func updateUserModel(for sCode: String) {
+        UserModel.data?.planID = PriceID.lifetime.rawValue
+        UserModel.data?.daysLeft = 3
+        UserModel.data?.status = "active"
+        UserModel.data?.isAccountActive = true
+
+        let userUpdates: [String: Any] = [
+            "planID": PriceID.lifetime.rawValue,
+            "status": "active",
+            "isAccountActive": true
+        ]
+
+        FirebaseStoreManager.db.collection(Collections.users.rawValue)
+            .document(FirebaseStoreManager.auth.currentUser!.uid)
+            .setData(userUpdates, merge: true) { [weak self] error in
+                if let error = error {
+                    self?.showError(error.localizedDescription)
+                } else {
+                    self?.deleteCoupon(sCode: sCode)
+                    self?.performSegue(withIdentifier: "successSeg", sender: nil)
+                }
+            }
     }
 }
 
 // MARK: UITextFieldDelegate
 
 extension VIPCodeViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
     }

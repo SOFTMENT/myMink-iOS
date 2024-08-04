@@ -28,6 +28,16 @@ import Foundation
  */
 @objc(RCOfferings) public final class Offerings: NSObject {
 
+    internal struct Placements {
+        let fallbackOfferingId: String?
+        let offeringIdsByPlacement: [String: String?]
+    }
+
+    internal struct Targeting {
+        let revision: Int
+        let ruleId: String
+    }
+
     /**
      Dictionary of all Offerings (``Offering``) objects keyed by their identifier. This dictionary can also be accessed
      by using an index subscript on ``Offerings``, e.g. `offerings["offering_id"]`. To access the current offering use
@@ -42,25 +52,33 @@ import Foundation
         guard let currentOfferingID = currentOfferingID else {
             return nil
         }
-        return all[currentOfferingID]
+        return all[currentOfferingID]?.copyWith(targeting: self.targeting)
     }
 
     internal let response: OfferingsResponse
 
     private let currentOfferingID: String?
+    private let placements: Placements?
+    private let targeting: Targeting?
 
     init(
         offerings: [String: Offering],
         currentOfferingID: String?,
+        placements: Placements?,
+        targeting: Targeting?,
         response: OfferingsResponse
     ) {
         self.all = offerings
         self.currentOfferingID = currentOfferingID
+        self.placements = placements
+        self.targeting = targeting
         self.response = response
     }
 
 }
 
+extension Offerings.Placements: Sendable {}
+extension Offerings.Targeting: Sendable {}
 extension Offerings: Sendable {}
 
 public extension Offerings {
@@ -93,4 +111,62 @@ public extension Offerings {
         return description
     }
 
+    /**
+     Retrieves a current offering for a placement identifier, use this to access offerings defined by targeting
+     placements configured in the RevenueCat dashboard, 
+     e.g. `offerings.currentOffering(forPlacement: "placement_id")`.
+     */
+    @objc(currentOfferingForPlacement:)
+    func currentOffering(forPlacement placementIdentifier: String) -> Offering? {
+        guard let placements = self.placements else {
+            return nil
+        }
+
+        let returnOffering: Offering?
+        if let explicitOfferingId: String? = placements.offeringIdsByPlacement[placementIdentifier] {
+            // Don't use fallback since placement id was explicity set in the dictionary
+            returnOffering = explicitOfferingId.flatMap { self.all[$0] }
+        } else {
+            // Use fallback since the placement didn't exist
+            returnOffering =  placements.fallbackOfferingId.flatMap { self.all[$0]}
+        }
+
+        return returnOffering?.copyWith(placementIdentifier: placementIdentifier,
+                                        targeting: self.targeting)
+    }
+}
+
+private extension Offering {
+    func copyWith(
+        placementIdentifier: String? = nil,
+        targeting: Offerings.Targeting? = nil
+    ) -> Offering {
+        if placementIdentifier == nil && targeting == nil {
+            return self
+        }
+
+        let updatedPackages = self.availablePackages.map { pkg in
+            let oldContext = pkg.presentedOfferingContext
+
+            let newContext = PresentedOfferingContext(
+                offeringIdentifier: pkg.presentedOfferingContext.offeringIdentifier,
+                placementIdentifier: placementIdentifier ?? oldContext.placementIdentifier,
+                targetingContext: targeting.flatMap { .init(revision: $0.revision,
+                                                            ruleId: $0.ruleId) } ?? oldContext.targetingContext
+            )
+
+            return Package(identifier: pkg.identifier,
+                           packageType: pkg.packageType,
+                           storeProduct: pkg.storeProduct,
+                           presentedOfferingContext: newContext
+            )
+        }
+
+        return Offering(identifier: self.identifier,
+                        serverDescription: self.serverDescription,
+                        metadata: self.metadata,
+                        paywall: self.paywall,
+                        availablePackages: updatedPackages
+        )
+    }
 }

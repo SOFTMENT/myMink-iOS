@@ -15,6 +15,75 @@
 import Foundation
 
 ///
+/// Stores information about how a ``Package`` was presented.
+///
+@objc(RCPresentedOfferingContext) public final class PresentedOfferingContext: NSObject {
+
+    ///
+    /// Stores information a targeting rule
+    ///
+    @objc(RCTargetingContext) public final class TargetingContext: NSObject {
+        /// The revision of the targeting used to obtain this object.
+        @objc public let revision: Int
+
+        /// The rule id from the targeting used to obtain this object.
+        @objc public let ruleId: String
+
+        /// Initializes a ``TargetingContext``
+        @objc
+        public init(revision: Int, ruleId: String) {
+            self.revision = revision
+            self.ruleId = ruleId
+        }
+    }
+
+    /// The identifier of the ``Offering`` containing this ``Package``.
+    @objc public let offeringIdentifier: String
+
+    /// The placement identifier this ``Package`` was obtained from.
+    @objc public let placementIdentifier: String?
+
+    /// The targeting rule this ``Package`` was obtained from.
+    @objc public let targetingContext: TargetingContext?
+
+    /// Initialize a ``PresentedOfferingContext``.
+    @objc
+    public init(
+        offeringIdentifier: String,
+        placementIdentifier: String?,
+        targetingContext: TargetingContext?
+    ) {
+        self.offeringIdentifier = offeringIdentifier
+        self.placementIdentifier = placementIdentifier
+        self.targetingContext = targetingContext
+        super.init()
+    }
+
+    /// Initialize a ``PresentedOfferingContext``.
+    @objc
+    public convenience init(
+        offeringIdentifier: String
+    ) {
+        self.init(offeringIdentifier: offeringIdentifier, placementIdentifier: nil, targetingContext: nil)
+    }
+
+    public override func isEqual(_ object: Any?) -> Bool {
+        guard let other = object as? PresentedOfferingContext else { return false }
+
+        return (
+            self.offeringIdentifier == other.offeringIdentifier
+        )
+    }
+
+    public override var hash: Int {
+        var hasher = Hasher()
+        hasher.combine(self.offeringIdentifier)
+
+        return hasher.finalize()
+    }
+}
+
+///
 /// Packages help abstract platform-specific products by grouping equivalent products across iOS, Android, and web.
 /// A package is made up of three parts: ``identifier``, ``packageType``, and underlying ``StoreProduct``.
 ///
@@ -31,8 +100,9 @@ import Foundation
     @objc public let packageType: PackageType
     /// The underlying ``storeProduct``
     @objc public let storeProduct: StoreProduct
-    /// The identifier of the ``Offering`` containing this Package.
-    @objc public let offeringIdentifier: String
+
+    ////  The information about the ``Offering`` containing this Package
+    @objc public let presentedOfferingContext: PresentedOfferingContext
 
     /// The price of this product using ``StoreProduct/priceFormatter``.
     @objc public var localizedPriceString: String {
@@ -47,16 +117,32 @@ import Foundation
 
     /// Initialize a ``Package``.
     @objc
-    public init(
+    public convenience init(
         identifier: String,
         packageType: PackageType,
         storeProduct: StoreProduct,
         offeringIdentifier: String
     ) {
+        self.init(
+            identifier: identifier,
+            packageType: packageType,
+            storeProduct: storeProduct,
+            presentedOfferingContext: .init(offeringIdentifier: offeringIdentifier)
+        )
+    }
+
+    /// Initialize a ``Package``.
+    @objc
+    public init(
+        identifier: String,
+        packageType: PackageType,
+        storeProduct: StoreProduct,
+        presentedOfferingContext: PresentedOfferingContext
+    ) {
         self.identifier = identifier
         self.packageType = packageType
         self.storeProduct = storeProduct
-        self.offeringIdentifier = offeringIdentifier
+        self.presentedOfferingContext = presentedOfferingContext
 
         super.init()
     }
@@ -68,7 +154,7 @@ import Foundation
             self.identifier == other.identifier &&
             self.packageType == other.packageType &&
             self.storeProduct == other.storeProduct &&
-            self.offeringIdentifier == other.offeringIdentifier
+            self.presentedOfferingContext == other.presentedOfferingContext
         )
     }
 
@@ -77,7 +163,7 @@ import Foundation
         hasher.combine(self.identifier)
         hasher.combine(self.packageType)
         hasher.combine(self.storeProduct)
-        hasher.combine(self.offeringIdentifier)
+        hasher.combine(self.presentedOfferingContext)
 
         return hasher.finalize()
     }
@@ -106,6 +192,10 @@ import Foundation
         return string.hasPrefix("$rc_") ? .unknown : .custom
     }
 
+    /// - Returns: the identifier of the ``Offering`` containing this Package.
+    var offeringIdentifier: String {
+        return self.presentedOfferingContext.offeringIdentifier
+    }
 }
 
 extension Package: Identifiable {
@@ -116,3 +206,5 @@ extension Package: Identifiable {
 }
 
 extension Package: Sendable {}
+extension PresentedOfferingContext: Sendable {}
+extension PresentedOfferingContext.TargetingContext: Sendable {}

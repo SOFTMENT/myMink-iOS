@@ -16,7 +16,7 @@ import Foundation
 // swiftlint:disable identifier_name
 enum ReceiptStrings {
 
-    case data_object_identifer_not_found_receipt
+    case data_object_identifier_not_found_receipt
     case force_refreshing_receipt
     case throttling_force_refreshing_receipt
     case loaded_receipt(url: URL)
@@ -30,6 +30,7 @@ enum ReceiptStrings {
     case unable_to_load_receipt(Error)
     case posting_receipt(AppleReceipt, initiationSource: String)
     case posting_jws(String, initiationSource: String)
+    case posting_sk2_receipt(String, initiationSource: String)
     case receipt_subscription_purchase_equals_expiration(
         productIdentifier: String,
         purchase: Date,
@@ -38,6 +39,7 @@ enum ReceiptStrings {
     case receipt_retrying_mechanism_not_available
     case local_receipt_missing_purchase(AppleReceipt, forProductIdentifier: String)
     case retrying_receipt_fetch_after(sleepDuration: TimeInterval)
+    case error_validating_bundle_signature
 
 }
 
@@ -46,7 +48,7 @@ extension ReceiptStrings: LogMessage {
     var description: String {
         switch self {
 
-        case .data_object_identifer_not_found_receipt:
+        case .data_object_identifier_not_found_receipt:
             return "The data object identifier couldn't be found on the receipt."
 
         case .force_refreshing_receipt:
@@ -60,7 +62,7 @@ extension ReceiptStrings: LogMessage {
 
         case .no_sandbox_receipt_intro_eligibility:
             return "App running on sandbox without a receipt file. " +
-            "Unable to determine into eligibility unless you've purchased " +
+            "Unable to determine intro eligibility unless you've purchased " +
             "before and there is a receipt available."
 
         case .no_sandbox_receipt_restore:
@@ -95,6 +97,9 @@ extension ReceiptStrings: LogMessage {
         case let .posting_jws(token, initiationSource):
             return "Posting JWS token (source: '\(initiationSource)'):\n\(token)"
 
+        case let .posting_sk2_receipt(receipt, initiationSource):
+            return "Posting StoreKit 2 receipt (source: '\(initiationSource)'):\n\(receipt)"
+
         case let .receipt_subscription_purchase_equals_expiration(
             productIdentifier,
             purchase,
@@ -113,6 +118,8 @@ extension ReceiptStrings: LogMessage {
         case let .retrying_receipt_fetch_after(sleepDuration):
             return String(format: "Retrying receipt fetch after %2.f seconds", sleepDuration)
 
+        case .error_validating_bundle_signature:
+            return "Error validating app bundle signature."
         }
     }
 

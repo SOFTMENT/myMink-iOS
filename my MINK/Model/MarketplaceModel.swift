@@ -20,7 +20,6 @@ class MarketplaceModel : NSObject, Codable {
     var dateCreated : Date?
     var isActive : Bool?
     var countryCode : String?
-    var currency : String?
     var productImages: [String]?
     
 }
