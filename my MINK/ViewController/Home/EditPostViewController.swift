@@ -40,7 +40,7 @@ class EditPostViewController: UIViewController {
         captionTV.layer.borderWidth = 1
         captionTV.layer.borderColor = UIColor(red: 221 / 255, green: 221 / 255, blue: 221 / 255, alpha: 1).cgColor
         captionTV.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        captionTV.text = "Write a caption here"
+        captionTV.text = "Write a caption here".localized()
         captionTV.textColor = UIColor.lightGray
 
         backView.layer.cornerRadius = 8

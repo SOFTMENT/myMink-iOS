@@ -1,0 +1,104 @@
+/* Class = "UILabel"; text = "Software Development,"; ObjectID = "4wT-g3-saX"; */
+"4wT-g3-saX.text" = "Pembangunan Perisian,";
+
+/* Class = "UILabel"; text = "0 Subscriber"; ObjectID = "7di-Lx-Ace"; */
+"7di-Lx-Ace.text" = "0 Pelanggan";
+
+/* Class = "UITextField"; placeholder = "Business Type"; ObjectID = "7ne-g8-Vxm"; */
+"7ne-g8-Vxm.placeholder" = "Jenis Perniagaan";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "7yn-fs-EtC"; */
+"7yn-fs-EtC.text" = "Tentang";
+
+/* Class = "UILabel"; text = "Upload business picture"; ObjectID = "85p-hR-8IS"; */
+"85p-hR-8IS.text" = "Muat naik gambar perniagaan";
+
+/* Class = "UILabel"; text = "0 Post"; ObjectID = "C0F-gE-Dxr"; */
+"C0F-gE-Dxr.text" = "0 Pos";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "Crt-7Z-blV"; */
+"Crt-7Z-blV.text" = "Makanan & Minuman";
+
+/* Class = "UIButton"; normalTitle = "My Business"; ObjectID = "IYS-bO-QGW"; */
+"IYS-bO-QGW.normalTitle" = "Perniagaan Saya";
+
+/* Class = "UILabel"; text = "Upload business picture"; ObjectID = "Jvb-EN-Lig"; */
+"Jvb-EN-Lig.text" = "Muat naik gambar perniagaan";
+
+/* Class = "UITextField"; placeholder = "Website URL"; ObjectID = "Mgg-Qc-72L"; */
+"Mgg-Qc-72L.placeholder" = "URL Laman Web";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "ND4-9f-p9P"; */
+"ND4-9f-p9P.text" = "Penerangan";
+
+/* Class = "UIButton"; normalTitle = "Subscribe"; ObjectID = "NXT-hB-jyb"; */
+"NXT-hB-jyb.normalTitle" = "Langgan";
+
+/* Class = "UILabel"; text = "Add more details about your business"; ObjectID = "QJo-g2-CKD"; */
+"QJo-g2-CKD.text" = "Tambah lebih banyak butiran tentang perniagaan anda";
+
+/* Class = "UITextField"; placeholder = "Website URL"; ObjectID = "QSE-ic-Ix5"; */
+"QSE-ic-Ix5.placeholder" = "URL Laman Web";
+
+/* Class = "UILabel"; text = "Businesses"; ObjectID = "RA4-om-R53"; */
+"RA4-om-R53.text" = "Perniagaan";
+
+/* Class = "UILabel"; text = "We are a leading software development company that offers top-rated Software Development Services due to our vast experience, team of skilled professionals, key business insights, and a dedicated working process."; ObjectID = "SCQ-AA-tKO"; */
+"SCQ-AA-tKO.text" = "Kami adalah syarikat pembangunan perisian terkemuka yang menawarkan Perkhidmatan Pembangunan Perisian terbaik kerana pengalaman luas kami, pasukan profesional mahir, wawasan perniagaan penting, dan proses kerja yang berdedikasi.";
+
+/* Class = "UILabel"; text = "\"Roaming the world, one adventure at a time.\""; ObjectID = "Va5-Vz-3k9"; */
+"Va5-Vz-3k9.text" = "\"Mengembara ke seluruh dunia, satu pengembaraan pada satu masa.\"";
+
+/* Class = "UILabel"; text = "www.softment.com"; ObjectID = "Wff-a4-yBa"; */
+"Wff-a4-yBa.text" = "www.softment.com";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "XBb-aa-VNI"; */
+"XBb-aa-VNI.text" = "Pos";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "ZZH-hT-lqG"; */
+"ZZH-hT-lqG.normalTitle" = "Tambah";
+
+/* Class = "UILabel"; text = "Add more details about your business"; ObjectID = "a9t-Mp-BO8"; */
+"a9t-Mp-BO8.text" = "Tambah lebih banyak butiran tentang perniagaan anda";
+
+/* Class = "UILabel"; text = "No posts available"; ObjectID = "avP-ew-FB5"; */
+"avP-ew-FB5.text" = "Tiada pos tersedia";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "b9F-fB-vlF"; */
+"b9F-fB-vlF.normalTitle" = "Muat Naik";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "bBp-2Q-wwi"; */
+"bBp-2Q-wwi.normalTitle" = "Kemaskini";
+
+/* Class = "UITextField"; placeholder = "Business Name"; ObjectID = "dDD-Tw-i5E"; */
+"dDD-Tw-i5E.placeholder" = "Nama Perniagaan";
+
+/* Class = "UIButton"; normalTitle = "Message"; ObjectID = "e9E-Fc-fww"; */
+"e9E-Fc-fww.normalTitle" = "Mesej";
+
+/* Class = "UILabel"; text = "No businesses available"; ObjectID = "fBw-mz-dgf"; */
+"fBw-mz-dgf.text" = "Tiada perniagaan tersedia";
+
+/* Class = "UITextField"; placeholder = "Business Type"; ObjectID = "r5b-HP-gPH"; */
+"r5b-HP-gPH.placeholder" = "Jenis Perniagaan";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "tQW-dc-jcp"; */
+"tQW-dc-jcp.normalTitle" = "Muat Naik";
+
+/* Class = "UILabel"; text = "www.softment.com"; ObjectID = "tkL-zg-SbP"; */
+"tkL-zg-SbP.text" = "www.softment.com";
+
+/* Class = "UILabel"; text = "SOFTMENT SOLUTIONS PVT LTD"; ObjectID = "umM-0f-QI1"; */
+"umM-0f-QI1.text" = "SOFTMENT SOLUTIONS PVT LTD";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "xLL-yW-agT"; */
+"xLL-yW-agT.text" = "Penerangan";
+
+/* Class = "UITextField"; placeholder = "Search..."; ObjectID = "yGa-0g-8EX"; */
+"yGa-0g-8EX.placeholder" = "Cari...";
+
+/* Class = "UILabel"; text = "SOFTMENT SOLUTIONS"; ObjectID = "zff-m5-FEJ"; */
+"zff-m5-FEJ.text" = "SOFTMENT SOLUTIONS";
+
+/* Class = "UITextField"; placeholder = "Business Name"; ObjectID = "zqF-ol-sP0"; */
+"zqF-ol-sP0.placeholder" = "Nama Perniagaan";

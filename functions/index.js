@@ -1,13 +1,12 @@
-var functions = require("firebase-functions");
-var apn = require("apn");
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+const apn = require("apn");
 const express = require("express");
 const bodyParser = require("body-parser");
-const admin = require("firebase-admin");
-var axios = require("axios");
+const axios = require("axios");
 const base64 = require("base-64");
 const { event } = require("firebase-functions/v1/analytics");
 const { log } = require("firebase-functions/logger");
-const braintree = require("braintree");
 const { format } = require("date-fns");
 const fetch = require("node-fetch");
 const AWS = require("aws-sdk");
@@ -19,6 +18,7 @@ const videoIntelligence = require("@google-cloud/video-intelligence").v1;
 const { Storage } = require("@google-cloud/storage");
 const { PassThrough } = require("stream");
 const { v4: uuidv4 } = require("uuid");
+
 admin.initializeApp({
   credential: admin.credential.cert({
     type: "service_account",
@@ -36,6 +36,8 @@ admin.initializeApp({
     universe_domain: "googleapis.com",
   }),
 });
+
+admin.firestore().settings({ ignoreUndefinedProperties: true });
 const db = admin.firestore();
 const storage = new Storage();
 // Initialize Algolia, replace with your own credentials
@@ -297,7 +299,7 @@ exports.updateFeedOnFollowChange = functions.firestore
 exports.updateFeedsOnNewPost = functions
   .runWith({
     timeoutSeconds: 540, // Set timeout to 9 minutes (maximum is 9 minutes)
-    memory: "1GB", // Options: '128MB', '256MB', '512MB', '1GB', '2GB', '4GB'
+    memory: "512MB", // Options: '128MB', '256MB', '512MB', '1GB', '2GB', '4GB'
   })
   .firestore.document("Posts/{postId}")
   .onCreate(async (snapshot, context) => {
@@ -532,9 +534,8 @@ const detectExplicitContentInVideo = async (videoURL) => {
     );
     console.log(`Pornography likelihood: ${result.pornographyLikelihood}`);
 
-    // Determine if any frame has a high likelihood of explicit content
-    if (result.pornographyLikelihood >= 4) {
-      // 4 is LIKELY and 5 is VERY_LIKELY
+    // Adjusted threshold to ONLY VERY_LIKELY to reduce false positives
+    if (result.pornographyLikelihood === 5) {
       isExplicit = true;
     }
   });
@@ -728,6 +729,38 @@ exports.deleteLike = functions.https.onCall(async (data, context) => {
   }
 });
 
+// Define the Cloud Function to delete a Notification
+exports.deleteUsersNotification = functions.https.onCall(
+  async (data, context) => {
+    const notificationId = data.notificationId;
+    const userID = context.auth.uid;
+
+    // Check if the request is authenticated
+    if (!context.auth) {
+      console.log("Authentication required to remove notifications.");
+      return { error: "Authentication required to remove notifications." };
+    }
+
+    try {
+      // Deleting the Notification document from the Notifications subcollection
+      const result = await admin
+        .firestore()
+        .collection("Users")
+        .doc(userID)
+        .collection("Notifications")
+        .doc(notificationId)
+        .delete();
+
+      console.log("Notification deleted successfully:", result); // result is usually undefined for successful deletions
+
+      return { success: true, message: "Notification Deleted" };
+    } catch (error) {
+      console.error("Error removing notification:", error);
+      return { error: error.message };
+    }
+  }
+);
+
 // Define the Cloud Function to delete a Subscribe
 exports.deleteSubscribe = functions.https.onCall(async (data, context) => {
   const bID = data.bid;
@@ -896,6 +929,8 @@ exports.deleteDeepLinkByEndPath = functions.https.onCall(
 );
 
 async function deleteDeepLink(endPath) {
+  console.log("Start deleteDeepLink", endPath);
+
   if (!endPath) {
     console.error("Invalid URL end path");
     return { error: "Invalid URL end path" };
@@ -1104,36 +1139,50 @@ exports.deleteNotification = functions.https.onCall(async (data, context) => {
 });
 
 //send notification
+
 exports.sendNotificationToTopic = functions.https.onCall(
   async (data, context) => {
-    // Extract topic title and message from the request body
     const { title, message, topic } = data;
 
-    if (!context.auth) {
-      return { error: "Authentication required" }; // Ensure the user is authenticated
+    // Ensure required fields are provided
+    if (!title || !message || !topic) {
+      console.error("Missing required fields: title, message, or topic.");
+      return { error: "Missing required fields: title, message, or topic." };
     }
-    // Message payload
-    const payload = {
+
+    // Ensure the user is authenticated
+    if (!context.auth) {
+      console.error("Authentication required.");
+      return { error: "Authentication required." };
+    }
+    const message1 = {
       notification: {
         title: title,
         body: message,
       },
+      topic: "all",
     };
+    // Minimal payload with topic correctly placed
 
-    // Send notification to the specified topic
     try {
-      await admin.messaging().sendToTopic(topic, payload);
+      // Send notification using the v1 API
+      const response = await admin.messaging().send(message1);
 
+      // Log the notification in Firestore
       const docRef = db.collection("PushNotifications").doc();
       await docRef.set({
         id: docRef.id,
-        title,
-        message,
+        title: title,
+        message: message,
+        topic: topic,
         createDate: admin.firestore.FieldValue.serverTimestamp(),
+        sentBy: context.auth.uid, // Log who sent the notification
       });
-      return { result: "⁠ Notification sent successfully." };
+      console.error("Notification sent successfully.");
+      return { result: "Notification sent successfully.", response };
     } catch (error) {
-      return { error: "error sending notification." };
+      console.error("Error sending notification:", error);
+      return { error: `Error sending notification: ${error.message}` };
     }
   }
 );
@@ -1420,38 +1469,51 @@ async function deleteBusinessContinue(businessId) {
   // Delete the business document
   await businessRef.delete();
 
+  console.log("Business Deleted Successfully.");
   proceedOtherBusinessDataDeletion(businessId);
 }
 
-exports.deleteUserAccount = functions.https.onCall(async (data, context) => {
-  if (!context.auth) {
-    return { error: "Authentication required" };
-  }
+exports.deleteUserAccount = functions
+  .runWith({
+    timeoutSeconds: 540,
+    memory: "256MB",
+  })
+  .https.onCall(async (data, context) => {
+    if (!context.auth) {
+      return { error: "Authentication required" };
+    }
 
-  const userId = data.userId;
-  const userName = data.username;
+    const userId = data.userId;
+    const userName = data.username;
 
+    try {
+      // Step 1: Delete Firebase Auth user
+      admin.auth().deleteUser(userId);
+
+      // Step 2: Delete User
+      await deleteUser(userId);
+
+      proceedOtherUserDeletionFunction(userId, userName);
+
+      return {
+        success: true,
+        message: "User account and all associated data deleted successfully.",
+      };
+    } catch (error) {
+      console.error("Error deleting user account:", error);
+      return { error: error.message };
+    }
+  });
+async function deleteUser(userId) {
   try {
-    // Step 1: Delete Firebase Auth user
-    await admin.auth().deleteUser(userId);
-
-    // Step 2: Delete user document
     const userDocRef = admin.firestore().collection("Users").doc(userId);
     await userDocRef.delete();
-
-    proceedOtherUserDeletionFunction(userId, userName, userDocRef);
-
-    return {
-      success: true,
-      message: "User account and all associated data deleted successfully.",
-    };
-  } catch (error) {
-    console.error("Error deleting user account:", error);
-    return { error: error.message };
+  } catch (err) {
+    console.log("Delete user ", e);
   }
-});
-
+}
 async function deleteUserPosts(userId) {
+  console.log("Start delete user posts");
   const postsRef = admin.firestore().collection("Posts");
   const userPostsSnapshot = await postsRef.where("uid", "==", userId).get();
   userPostsSnapshot.forEach((doc) => {
@@ -1464,8 +1526,13 @@ async function deleteUserPosts(userId) {
   });
 }
 
-async function handleFollowersAndFollowing(userId, userDocRef) {
-  const followersRef = userDocRef.collection("Follow");
+async function handleFollowersAndFollowing(userId) {
+  console.log("Start handleFollowersAndFollowingtart");
+  const followersRef = admin
+    .firestore()
+    .collection("Users")
+    .doc(userId)
+    .collection("Follow");
   const followersSnapshot = await followersRef.get();
   followersSnapshot.forEach(async (doc) => {
     const followerId = doc.id;
@@ -1487,15 +1554,28 @@ async function handleFollowersAndFollowing(userId, userDocRef) {
 }
 
 async function deleteUserTasks(userId) {
+  console.log("Start deleteUserTasks");
   const taskRef = admin.firestore().collection("Tasks");
   const userTasksSnapshot = await taskRef.where("uid", "==", userId).get();
   userTasksSnapshot.forEach((doc) => {
     doc.ref.delete();
   });
 }
+async function deleteUserMarketplace(userId) {
+  const marketRef = admin.firestore().collection("Marketplace");
+  const userMarketSnapshot = await marketRef.where("uid", "==", userId).get();
+  userMarketSnapshot.forEach((doc) => {
+    doc.ref.delete();
+  });
+}
 
-async function removeFromFollowingsFollowers(userId, userDocRef) {
-  const followingRef = userDocRef.collection("Following");
+async function removeFromFollowingsFollowers(userId) {
+  console.log("Start removeFromFollowingsFollowers");
+  const followingRef = admin
+    .firestore()
+    .collection("Users")
+    .doc(userId)
+    .collection("Following");
   const followingSnapshot = await followingRef.get();
   followingSnapshot.forEach(async (doc) => {
     const followingId = doc.id;
@@ -1517,6 +1597,7 @@ async function removeFromFollowingsFollowers(userId, userDocRef) {
 }
 
 async function deleteLiveRecording(userId) {
+  console.log("Start deleteLiveRecording");
   const liveRecordingDocRef = admin
     .firestore()
     .collection("LiveRecordings")
@@ -1524,22 +1605,21 @@ async function deleteLiveRecording(userId) {
   await liveRecordingDocRef.delete();
 }
 
-async function deleteDeepLink(link) {
-  // Your logic for deleting deep links
-}
-
 async function deleteBusiness(userId) {
+  console.log("Start deleteBusiness");
   try {
     const businessRef = admin
       .firestore()
       .collection("Businesses")
-      .where("userId", "==", userId);
+      .where("uid", "==", userId);
     const snapshot = await businessRef.get();
     if (!snapshot.empty) {
       const businessDoc = snapshot.docs[0];
       const businessData = businessDoc.data();
       const businessId = businessData.businessId;
       await deleteBusinessContinue(businessId);
+    } else {
+      console.error("Business not found for userid");
     }
   } catch (error) {
     console.error("Error deleting business:", error);
@@ -1547,69 +1627,40 @@ async function deleteBusiness(userId) {
 }
 
 async function deleteProfileViews(userId) {
+  console.log("Start deleteProfileViews");
   await deleteSubcollection(`Users/${userId}/ProfileViews`);
 }
 
-async function deleteUserMarketplace(userId) {
-  const marketRef = admin.firestore().collection("Marketplace");
-  const userMarketSnapshot = await marketRef.where("uid", "==", userId).get();
-  userMarketSnapshot.forEach((doc) => {
-    doc.ref.delete();
-  });
-}
-
-async function proceedOtherUserDeletionFunction(userId, userName, userDocRef) {
+function proceedOtherUserDeletionFunction(userId, userName) {
   // Step 3: Delete all posts by the user
-  const deletePostsPromise = deleteUserPosts(userId);
+  deleteUserPosts(userId);
 
   // Step 4: Handle followers and following
-  const handleFollowersPromise = handleFollowersAndFollowing(
-    userId,
-    userDocRef
-  );
+  handleFollowersAndFollowing(userId);
 
   // Step 5: Delete all Tasks by the user
-  const deleteTasksPromise = deleteUserTasks(userId);
+  deleteUserTasks(userId);
 
   // Step 6: Delete all Marketplace by the user
-  const deleteMarketplacePromise = deleteUserMarketplace(userId);
+  deleteUserMarketplace(userId);
 
   // Step 7: Remove user from followings' followers list
-  const removeFollowingsPromise = removeFromFollowingsFollowers(
-    userId,
-    userDocRef
-  );
+  removeFromFollowingsFollowers(userId);
 
   // Step 8: Delete LiveRecording
-  const deleteLiveRecordingPromise = deleteLiveRecording(userId);
+  deleteLiveRecording(userId);
 
   // Step 9: Delete User Deeplink
-  const deleteUserDeeplinkPromise = deleteDeepLink(userName);
+  deleteDeepLink(`username/${userName}`);
 
   // Step 10: Delete Livestream Deeplink
-  const deleteLivestreamDeeplinkPromise = deleteDeepLink(
-    `livestream/${userName}`
-  );
+  deleteDeepLink(`livestream/${userName}`);
 
-  // Step 11: Delete Business
-  const deleteBusinessPromise = deleteBusiness(userId);
+  // Step 11: Remove Profile Views
+  deleteProfileViews(userId);
 
-  // Step 12: Remove Profile Views
-  const deleteProfileViewsPromise = deleteProfileViews(userId);
-
-  // Run all steps concurrently
-  await Promise.all([
-    deletePostsPromise,
-    handleFollowersPromise,
-    deleteTasksPromise,
-    deleteMarketplacePromise,
-    removeFollowingsPromise,
-    deleteLiveRecordingPromise,
-    deleteUserDeeplinkPromise,
-    deleteLivestreamDeeplinkPromise,
-    deleteBusinessPromise,
-    deleteProfileViewsPromise,
-  ]);
+  // Step 12: Delete Business
+  deleteBusiness(userId);
 }
 
 // Helper function to fetch horoscope
@@ -1662,7 +1713,7 @@ function delay(ms) {
 exports.dailyHoroscopeUpdate = functions
   .runWith({
     timeoutSeconds: 540, // Set the function timeout to 9 minutes
-    memory: "256MB", // Adjust memory as needed, options include '128MB', '256MB', '512MB', '1GB', '2GB'
+    memory: "256MB", // Adjust memory as needed
   })
   .pubsub.schedule("every 24 hours")
   .timeZone("Australia/Sydney")
@@ -1675,7 +1726,7 @@ exports.dailyHoroscopeUpdate = functions
 
     const now = new Date();
     const formattedDate = format(now, "yyyy-MM-dd'T'HH:mm:ssxxx");
-    let encodedString = formattedDate.replace(/\+/g, "%2B");
+    const encodedString = encodeURIComponent(formattedDate);
 
     try {
       const token = await getHoroscopeToken();
@@ -1691,8 +1742,8 @@ exports.dailyHoroscopeUpdate = functions
             console.error(`Error fetching horoscope for ${sign}:`, error);
           }
         }
-        // Wait for 1 minute before proceeding to the next batch to respect the API rate limit
-        await delay(80000); // 70,000 milliseconds = 1 minute and 10 seconds
+        // Wait for 70 seconds before proceeding to the next batch to respect the API rate limit
+        await delay(70000); // 70,000 milliseconds = 1 minute and 10 seconds
       }
 
       await admin
@@ -1706,57 +1757,64 @@ exports.dailyHoroscopeUpdate = functions
     }
   });
 
-const gateway = new braintree.BraintreeGateway({
-  environment: braintree.Environment.Sandbox, // or braintree.Environment.Production
-  merchantId: "7pybpymmq68k6hwq",
-  publicKey: "x8qj5gjqvsxb2r52",
-  privateKey: "5b7eadea216f99dd50bfe5c6a231c31b",
-});
+// Retrieve API key from Firebase Functions config (recommended for security)
+const REVENUECAT_SECRET_KEY = "sk_TlwmRkfvnUpsFYXlxuegBgzLHFXrv"; // Your RevenueCat secret key
+const REVENUECAT_PROJECT_ID = "5f6b8f04"; // Your RevenueCat Project ID
 
-function calculateSubscriptionStatus(subscription) {
-  if (subscription.status === "Active") {
-    return "active";
-  } else if (subscription.status === "Canceled") {
-    return "cancelled";
-  } else if (subscription.status === "Expired") {
-    return "expired";
-  } else {
-    return "test"; // Assuming other cases are for testing
+// Helper function to call RevenueCat v2 API and fetch subscriptions for a customer
+async function getSubscriptionInfo(userId) {
+  try {
+    const url = `https://api.revenuecat.com/v2/projects/${REVENUECAT_PROJECT_ID}/customers/${userId}/subscriptions`;
+
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${REVENUECAT_SECRET_KEY}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    // Return the subscription info from the RevenueCat v2 API response
+    return response.data.items; // 'items' array contains subscription information
+  } catch (error) {
+    console.error(
+      `Failed to fetch subscription data for user ${userId}:`,
+      error
+    );
+    throw error;
   }
 }
 
+// Scheduled function to run every 24 hours
 exports.scheduledSubscriptionUpdate = functions.pubsub
   .schedule("every 24 hours")
-  .timeZone("Australia/Sydney") // Specify your timezone, e.g., 'America/New_York'
+  .timeZone("Australia/Sydney")
   .onRun(async (context) => {
     try {
-      const usersCollection = admin.firestore().collection("Users");
-      const usersSnapshot = await usersCollection
-        .where("isAccountActive", "==", true)
+      // Query users with entitlementStatus as 'active' or 'trialing' and activeEntitlement as 'in.softment.monthly' or 'in.softment.yearly'
+      const usersSnapshot = await admin
+        .firestore()
+        .collection("Users")
+        .where("entitlementStatus", "in", ["active", "trialing"]) // Fetch users with 'active' or 'trialing' entitlementStatus
+        .where("activeEntitlement", "in", [
+          "in.softment.monthly",
+          "in.softment.yearly",
+        ]) // Add filter for 'monthly' and 'yearly' entitlements
         .get();
 
       const updatePromises = [];
-      usersSnapshot.forEach((userDoc) => {
-        const userId = userDoc.data().uid;
-        const isAccountDeactivate = userDoc.data().isAccountDeactivate || false;
-        const planId = userDoc.data().planID;
-        const subscriptionId = userDoc.data().subscriptionId;
 
-        if (subscriptionId) {
-          updatePromises.push(
-            updateSubscriptionDetails(
-              userId,
-              isAccountDeactivate,
-              subscriptionId,
-              planId
-            )
-          );
-        }
+      usersSnapshot.forEach((userDoc) => {
+        const userId = userDoc.id;
+        const isAccountDeactivate = userDoc.data().isAccountDeactivate || false;
+        updatePromises.push(updateSubscription(userId, isAccountDeactivate));
       });
 
+      // Wait for all subscription updates to complete
       await Promise.all(updatePromises);
 
-      console.log("Subscription details updated successfully for all users");
+      console.log(
+        "Subscription details updated successfully for users with 'active' or 'trialing' status and 'monthly' or 'yearly' entitlements."
+      );
       return null;
     } catch (error) {
       console.error("Error updating subscription details:", error);
@@ -1764,60 +1822,121 @@ exports.scheduledSubscriptionUpdate = functions.pubsub
     }
   });
 
-// Utility function to update subscription details for a user
-async function updateSubscriptionDetails(
-  userId,
-  isAccountDeactivate,
-  subscriptionId,
-  planId
-) {
-  const userRef = admin.firestore().collection("Users").doc(userId);
+// Callable function to update subscription for a user from the client (iOS app)
+exports.updateSubscriptionFromClient = functions.https.onCall(
+  async (data, context) => {
+    const { userId } = data; // Get userId from the client
 
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "You must be authenticated to call this function."
+      );
+    }
+
+    try {
+      await updateSubscription(userId, false);
+      return {
+        message: `Subscription updated successfully for user ${userId}`,
+      };
+    } catch (error) {
+      console.error(`Error updating subscription for user ${userId}:`, error);
+      throw new functions.https.HttpsError(
+        "internal",
+        "Failed to update subscription"
+      );
+    }
+  }
+);
+
+// Helper function to update subscription for a single user
+// Helper function to update subscription for a single user
+async function updateSubscription(userId, isAccountDeactivate) {
   try {
-    const subscriptionResult = await gateway.subscription.find(subscriptionId);
+    const subscriptions = await getSubscriptionInfo(userId); // Fetch subscriptions array
 
-    // Adjusted to handle trial period
-    const { daysLeft, isDuringTrial } = calculateDaysLeft(
-      subscriptionResult,
-      new Date()
+    if (!subscriptions || subscriptions.length === 0) {
+      throw new Error(`No active subscriptions found for user ${userId}`);
+    }
+
+    // Extract relevant subscription information (find an active subscription)
+    const activeSubscription = subscriptions.find(
+      (sub) => sub.status === "active"
     );
 
+    if (!activeSubscription) {
+      console.log(`No active subscription for user ${userId}`);
+      await admin.firestore().collection("Users").doc(userId).set(
+        { entitlementStatus: "inactive" }, // Set inactive
+        { merge: true }
+      );
+      return;
+    }
+
+    const { product_id, current_period_ends_at, status, entitlements } =
+      activeSubscription;
+
+    // Check for entitlements with "gives_access: true"
+    let activeEntitlement = null;
+
+    // Set activeEntitlement based on the product_id
+    if (product_id === "prod4af8e00dac") {
+      activeEntitlement = "in.softment.monthly";
+    } else if (product_id === "prod9d36d726c8") {
+      activeEntitlement = "in.softment.yearly";
+    }
+
+    // Calculate expiration date and days left (ensure milliseconds are handled correctly)
+    const expirationDate = current_period_ends_at
+      ? new Date(current_period_ends_at)
+      : null;
+
+    let daysLeft = 0;
+    if (expirationDate) {
+      const currentDate = new Date();
+      const diffTime = expirationDate - currentDate; // Diff in milliseconds
+      daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convert to days
+    }
+
+    // Check for free trial based on subscription status
+
+    // Ensure no undefined values, use default values if undefined
     const subscriptionData = {
-      daysLeft,
-      isFreeTrial: subscriptionResult.trialPeriod,
-      status: calculateSubscriptionStatus(subscriptionResult),
-      isAccountActive: daysLeft > 0 || planId == "ID_LIFETIME",
-      isDuringTrial, // New field indicating if the subscription is currently in a trial period
+      activeEntitlement: activeEntitlement || null, // Default to null if no entitlement
+      entitlementStatus:
+        status === "active"
+          ? "active"
+          : status === "trialing"
+          ? "trialing"
+          : "inactive", // Active, trialing, or inactive
+      daysLeft: daysLeft >= 0 ? daysLeft : 0, // Ensure non-negative days left
+      isAccountActive: status === "active" || isFreeTrial ? true : false, // Only active if subscription is active or trialing
     };
 
+    // Firestore reference for the user
+    const userRef = admin.firestore().collection("Users").doc(userId);
+
+    // Update Firestore with the subscription information
+    await userRef.set(subscriptionData, { merge: true });
+
+    // Handle account deactivation or update `isAccountActive`
     if (isAccountDeactivate) {
-      setIsActive({ userId, isActive: false });
       await userRef.set({ isAccountActive: false }, { merge: true });
     } else {
-      setIsActive({
-        userId,
-        isActive: daysLeft > 0 || planId == "ID_LIFETIME",
-      });
-      await userRef.set(subscriptionData, { merge: true });
+      const isLifetime = activeEntitlement === "in.softment.lifetime";
+      const isCurrentlyActive = daysLeft > 0 || isLifetime;
+      await userRef.set(
+        {
+          isAccountActive:
+            isCurrentlyActive !== undefined ? isCurrentlyActive : false,
+        },
+        { merge: true }
+      );
     }
+
+    console.log(`Subscription updated for user ${userId}`);
   } catch (error) {
-    const subscriptionData = {
-      isAccountActive: planId == "ID_LIFETIME",
-    };
-
-    if (isAccountDeactivate) {
-      setIsActive({ userId, isActive: false });
-      await userRef.set({ isAccountActive: false }, { merge: true });
-    } else {
-      setIsActive({ userId, isActive: planId == "ID_LIFETIME" });
-      await userRef.set(subscriptionData, { merge: true });
-    }
-
-    console.error(
-      "Error updating subscription details for user",
-      userId,
-      error
-    );
+    console.error(`Error updating subscription for user ${userId}:`, error);
   }
 }
 
@@ -1916,43 +2035,6 @@ function calculateDaysLeft(subscription, currentDate) {
   const daysLeft = Math.ceil((endDate - currentDate) / (1000 * 60 * 60 * 24));
   return { daysLeft, isDuringTrial };
 }
-
-exports.cancelSubscription = functions.https.onCall(async (data, context) => {
-  try {
-    // Ensure the user is authenticated
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "Authentication required"
-      );
-    }
-
-    // Get necessary parameters from the data
-    const { subscriptionId } = data;
-
-    // Cancel the subscription
-    const result = await gateway.subscription.cancel(subscriptionId);
-
-    if (!result.success) {
-      throw new Error("Error canceling subscription");
-    }
-
-    // Update user model to reflect canceled subscription
-    const userRef = admin.firestore().collection("Users").doc(context.auth.uid);
-
-    await userRef.set(
-      {
-        status: "cancelled",
-      },
-      { merge: true }
-    );
-
-    return { message: "Subscription canceled successfully" };
-  } catch (error) {
-    console.error(error);
-    throw new functions.https.HttpsError("internal", "Internal Server Error");
-  }
-});
 
 exports.getCouponModelBy = functions.https.onCall(async (data, context) => {
   const couponId = data.couponId;
@@ -2056,86 +2138,41 @@ exports.reportPost = functions.https.onCall(async (data, context) => {
   }
 });
 
-exports.createSubscription = functions.https.onCall(async (data, context) => {
-  try {
-    // Ensure the user is authenticated
-    if (!context.auth) {
-      throw new functions.https.HttpsError(
-        "unauthenticated",
-        "Authentication required"
-      );
-    }
-
-    const { paymentMethodNonce, planId } = data;
-
-    // Create a customer in Braintree
-    const customerResult = await gateway.customer.create({
-      paymentMethodNonce,
-    });
-
-    if (!customerResult.success) {
-      throw new Error("Error creating customer");
-    }
-
-    // Create a subscription with a trial period if applicable
-    const subscriptionResult = await gateway.subscription.create({
-      paymentMethodToken: customerResult.customer.paymentMethods[0].token,
-      planId,
-      // Optionally, specify trial period details here if not part of the planId configuration
-    });
-
-    if (!subscriptionResult.success) {
-      throw new Error("Error creating subscription");
-    }
-
-    const subscription = subscriptionResult.subscription;
-    // Calculate days left taking into account the trial period
-
-    const { daysLeft, isDuringTrial } = calculateDaysLeft(
-      subscription,
-      new Date()
-    );
-
-    // Update Firestore user document with subscription details
-    const userRef = admin.firestore().collection("Users").doc(context.auth.uid);
-    const subscriptionData = {
-      subscriptionId: subscription.id,
-      daysLeft,
-      planID: planId,
-      status: "active", // Consider using subscription.status from Braintree if more accuracy is needed
-      isAccountActive: true,
-      isFreeTrial: subscription.trialPeriod,
-      isDuringTrial, // New field indicating if currently in trial period
-    };
-
-    setIsActive({ userId: context.auth.uid, isActive: true });
-    await userRef.set(subscriptionData, { merge: true });
-
-    return { message: "Subscription created successfully" };
-  } catch (error) {
-    console.error(error);
-    throw new functions.https.HttpsError("internal", "Internal Server Error");
-  }
-});
-
 exports.sendVOIPNotification = functions
   .runWith({
     timeoutSeconds: 540,
-    memory: "2GB",
+    memory: "1GB",
   })
   .https.onCall(async (data, context) => {
-    var config = {
-      cert: "./certificates.pem",
-      key: "./key.pem",
-      production: true,
+    console.log("Received data: ", data);
+
+    // Validate input
+    if (
+      !data.deviceToken ||
+      !data.name ||
+      !data.channelName ||
+      !data.token ||
+      !data.callUUID
+    ) {
+      console.error("Missing required parameters");
+      return { response: "failed", value: "Missing required parameters" };
+    }
+
+    // Configuration for APN (ensure certificates are in correct path)
+    const config = {
+      cert: "./certificates.pem", // Path to your cert.pem
+      key: "./key.pem", // Path to your key.pem
+      production: true, // Set to false if using APNs sandbox
     };
-    var apnProvider = new apn.Provider(config);
 
-    var notification = new apn.Notification();
-    var recepients = [];
-    recepients[0] = apn.token(data.deviceToken);
+    console.log("APN configuration: ", config);
 
-    notification.topic = "in.softment.myMink.voip"; // you have to add the .voip here!!
+    // Create APN provider
+    const apnProvider = new apn.Provider(config);
+
+    // Create a new APN notification
+    const notification = new apn.Notification();
+    notification.topic = "in.softment.myMink.voip"; // Make sure this is the correct topic
     notification.payload = {
       messageFrom: data.name,
       channelName: data.channelName,
@@ -2144,16 +2181,34 @@ exports.sendVOIPNotification = functions
       callUUID: data.callUUID,
     };
 
-    return apnProvider.send(notification, recepients).then((reponse) => {
-      console.log(reponse);
-      return { response: "finished!" };
-    });
+    console.log("APN notification payload: ", notification.payload);
+
+    const recepients = [apn.token(data.deviceToken)];
+    console.log("Sending notification to deviceToken: ", recepients);
+
+    try {
+      const result = await apnProvider.send(notification, recepients);
+      console.log("APN result: ", result);
+
+      if (result.failed.length > 0) {
+        console.error("Failed to send notification: ", result.failed);
+        return { response: "failed", value: "Failed to send notification" };
+      } else {
+        console.log("Notification sent successfully");
+        return { response: "success", value: "Notification sent successfully" };
+      }
+    } catch (error) {
+      console.error("Error while sending notification: ", error);
+      return { response: "failed", value: "Error while sending notification" };
+    } finally {
+      apnProvider.shutdown(); // Ensure APN provider is shut down properly
+    }
   });
 
 exports.startAgoraWebHook = functions
   .runWith({
     timeoutSeconds: 540,
-    memory: "2GB",
+    memory: "1GB",
   })
   .https.onCall(async (data, context) => {
     const channelName = data.channelName;
@@ -2350,18 +2405,21 @@ exports.sendTaskReminders = functions.pubsub
 
       for (const taskDoc of tasksSnapshot.docs) {
         const task = taskDoc.data();
+        console.log(task);
+
         if (!task.date) continue; // Skip if the task has no due date
 
         const taskDate = task.date.toDate(); // Convert Firestore Timestamp to JavaScript Date object
         const timeDiff = taskDate - now; // Difference in milliseconds
 
         // Convert differences to more manageable units
-        const diffMIN = timeDiff / (1000 * 60);
+        const diffMIN = timeDiff / (1000 * 60); // Difference in minutes
         console.log(diffMIN);
 
         let shouldNotify = false;
         let notificationBody = "";
 
+        // Determine when to notify based on time difference
         if (diffMIN > 2879 && diffMIN < 2881) {
           notificationBody = `Your task "${task.title}" is due in 2 days.`;
           shouldNotify = true;
@@ -2373,35 +2431,45 @@ exports.sendTaskReminders = functions.pubsub
           shouldNotify = true;
         }
 
+        // Only proceed if a notification should be sent
         if (shouldNotify && task.uid) {
           const userRef = admin.firestore().collection("Users").doc(task.uid);
           const userDoc = await userRef.get();
+
           if (!userDoc.exists) {
             console.log(`User not found for UID: ${task.uid}`);
             continue;
           }
+
           const user = userDoc.data();
 
+          // Check if user has a notification token
+          if (!user.notificationToken) {
+            console.log(`No notification token for user UID: ${task.uid}`);
+            continue;
+          }
+
+          // Create the message payload
           const message = {
             notification: {
               title: "Task Reminder",
               body: notificationBody,
             },
-            token: user.notificationToken, // Assuming FCM token is stored directly in the user document
+            token: user.notificationToken,
           };
 
           try {
-            await admin.messaging().send(message);
-            console.log(`Successfully sent message: ${notificationBody}`);
+            // Send the notification
+            const response = await admin.messaging().send(message);
+            console.log("Successfully sent message:", response);
           } catch (error) {
-            console.error(`Error sending message: ${error}`);
+            console.error("Error sending message:", error);
           }
         }
       }
     } catch (error) {
       console.error("Failed to send task reminders:", error);
       // Handle or log the error appropriately
-      // Optionally, rethrow the error or handle it in a way that's appropriate for your application
     }
   });
 
@@ -2561,32 +2629,58 @@ app.listen(PORT, () => {
 exports.myWebhook = functions.https.onRequest(app);
 
 const firestore = require("@google-cloud/firestore");
+const { de } = require("date-fns/locale");
+const e = require("express");
 const firebaseclient = new firestore.v1.FirestoreAdminClient();
 // Replace BUCKET_NAME
 const bucket = "gs://mymink-backup";
 
 exports.scheduledFirestoreExport = functions.pubsub
   .schedule("every 24 hours")
-  .onRun((context) => {
+  .onRun(async (context) => {
     const projectId = process.env.GCP_PROJECT || "my-mink";
     const databaseName = firebaseclient.databasePath(projectId, "(default)");
 
-    return firebaseclient
-      .exportDocuments({
+    try {
+      const responses = await firebaseclient.exportDocuments({
         name: databaseName,
         outputUriPrefix: bucket,
         // Leave collectionIds empty to export all collections
         // or set to a list of collection IDs to export,
         // collectionIds: ['users', 'posts']
         collectionIds: [],
-      })
-      .then((responses) => {
-        const response = responses[0];
-        console.log(`Operation Name: ${response["name"]}`);
-        return;
-      })
-      .catch((err) => {
-        console.error(err);
-        throw new Error("Export operation failed");
       });
+      const response = responses[0];
+      console.log(`Operation Name: ${response["name"]}`);
+      return;
+    } catch (err) {
+      console.error(err);
+      throw new Error("Export operation failed");
+    }
   });
+
+exports.sendNotification = functions.https.onCall(async (data, context) => {
+  // Extract the device token from the data object passed from the client
+  const deviceToken = data.deviceToken;
+  const title = data.title || "Default Title";
+  const body = data.body || "Default Body Message";
+
+  // Create the message payload
+  const message = {
+    notification: {
+      title: title,
+      body: body,
+    },
+    token: deviceToken,
+  };
+
+  try {
+    // Send the notification
+    const response = await admin.messaging().send(message);
+    console.log("Successfully sent message:", response);
+    return { success: true, message: "Notification sent successfully" };
+  } catch (error) {
+    console.error("Error sending message:", error);
+    return { success: false, message: "Error sending notification", error };
+  }
+});

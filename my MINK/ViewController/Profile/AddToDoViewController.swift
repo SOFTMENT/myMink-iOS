@@ -29,12 +29,12 @@ class AddToDoViewController: UIViewController {
     
     @IBAction func addTaskClicked(_ sender: Any) {
         guard let sTitle = titleTF.text, !sTitle.isEmpty else {
-            self.showSnack(messages: "Enter Title")
+            self.showSnack(messages: "Enter Title".localized())
             return
         }
         
         guard let currentUser = FirebaseStoreManager.auth.currentUser else {
-            self.showSnack(messages: "User not logged in")
+            self.showSnack(messages: "User not logged in".localized())
             return
         }
         
@@ -45,13 +45,13 @@ class AddToDoViewController: UIViewController {
         todoModel.isFinished = false
         todoModel.uid = currentUser.uid
         
-        ProgressHUDShow(text: "Adding Task...")
+        ProgressHUDShow(text: "Adding Task...".localized())
         try? FirebaseStoreManager.db.collection(Collections.tasks.rawValue).document(todoModel.id!).setData(from: todoModel, completion: { error in
             self.ProgressHUDHide()
             if let error = error {
                 self.showError(error.localizedDescription)
             } else {
-                self.showSnack(messages: "Task Added")
+                self.showSnack(messages: "Task Added".localized())
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.dismiss(animated: true)
                 }

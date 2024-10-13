@@ -17,12 +17,15 @@ class SignInPhoneNumberViewController: UIViewController {
     var for2FA: Bool = false
     var sCode = ""
     
+    @IBOutlet weak var loginTitle: UILabel!
+    
     override func viewDidLoad() {
         setupViews()
         setupCountryPicker()
     }
 
     private func setupViews() {
+        
         backView.isUserInteractionEnabled = true
         backView.dropShadow()
         backView.layer.cornerRadius = 8
@@ -36,7 +39,8 @@ class SignInPhoneNumberViewController: UIViewController {
         signUpBtn.layer.cornerRadius = 8
         
         if for2FA {
-            signUpBtn.setTitle("Enable 2FA", for: .normal)
+            loginTitle.text = "2FA".localized()
+            signUpBtn.setTitle("Enable 2FA".localized(), for: .normal)
         }
        
         view.isUserInteractionEnabled = true
@@ -63,37 +67,38 @@ class SignInPhoneNumberViewController: UIViewController {
 
     @IBAction func signUpClicked(_: Any) {
         guard !sCode.isEmpty else {
-            showSnack(messages: "Select Phone Code")
+            showSnack(messages: "Select Phone Code".localized())
             return
         }
 
         guard let sPhone = phoneTF.text, !sPhone.isEmpty else {
-            showSnack(messages: "Enter Phone Number")
+            showSnack(messages: "Enter Phone Number".localized())
             return
         }
 
         phoneNumber = "+\(sCode)\(sPhone)"
 
-        if for2FA {
-            ProgressHUDShow(text: "Retrieving activation code for 2FA...")
+        if for2FA, let user = FirebaseStoreManager.auth.currentUser {
+            ProgressHUDShow(text: "Retrieving activation code for 2FA...".localized())
+            self.verifyPhoneNumber(phoneNumber: self.phoneNumber!, uid: user.uid, session: nil)
         } else {
-            ProgressHUDShow(text: "Signing in...")
-        }
-
-        FirebaseStoreManager.db.collection(Collections.users.rawValue).whereField("phoneNumber", isEqualTo: phoneNumber!)
-            .getDocuments { snapshot, error in
-                if let snapshot = snapshot, !snapshot.documents.isEmpty,
-                   let userModel = try? snapshot.documents.first?.data(as: UserModel.self),
-                   let uid = userModel.uid {
-                    self.verifyPhoneNumber(phoneNumber: self.phoneNumber!, uid: uid, session: nil)
-                } else {
-                    self.ProgressHUDHide()
-                    self.showMessage(
-                        title: "Account Not Found.",
-                        message: "There is no account linked with this phone number. Please sign up for a new account first."
-                    )
+            ProgressHUDShow(text: "Signing in...".localized())
+            FirebaseStoreManager.db.collection(Collections.users.rawValue).whereField("phoneNumber", isEqualTo: phoneNumber!)
+                .getDocuments { snapshot, error in
+                    if let snapshot = snapshot, !snapshot.documents.isEmpty,
+                       let userModel = try? snapshot.documents.first?.data(as: UserModel.self),
+                       let uid = userModel.uid {
+                        self.verifyPhoneNumber(phoneNumber: self.phoneNumber!, uid: uid, session: nil)
+                    } else {
+                        self.ProgressHUDHide()
+                        self.showMessage(
+                            title: "Account Not Found.".localized(),
+                            message: "There is no account linked with this phone number. Please sign up for a new account first.".localized()
+                        )
+                    }
                 }
-            }
+        }
+      
     }
 
     func verifyPhoneNumber(phoneNumber: String, uid: String, session: MultiFactorSession?) {
@@ -124,6 +129,7 @@ class SignInPhoneNumberViewController: UIViewController {
 
     func showCountryPicker() {
         let countryPicker = CountryPickerViewController()
+    
         countryPicker.selectedCountry = getCountryCode().uppercased()
         countryPicker.delegate = self
         self.present(countryPicker, animated: true)

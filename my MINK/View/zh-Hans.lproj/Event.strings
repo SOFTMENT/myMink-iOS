@@ -1,0 +1,410 @@
+/* Class = "UILabel"; text = "星期六, 7月24日 • 上午11:00"; ObjectID = "1HM-uV-iwd"; */
+"1HM-uV-iwd.text" = "星期六, 7月24日 • 上午11:00";
+
+/* Class = "UILabel"; text = "街道地址"; ObjectID = "1Mp-VI-7n5"; */
+"1Mp-VI-7n5.text" = "街道地址";
+
+/* Class = "UILabel"; text = "为您的活动添加更多详细信息，例如您的时间表、赞助商或特色嘉宾。"; ObjectID = "1bn-tU-XrC"; */
+"1bn-tU-XrC.text" = "为您的活动添加更多详细信息，例如您的时间表、赞助商或特色嘉宾。";
+
+/* Class = "UIButton"; normalTitle = "添加更多图片"; ObjectID = "1vc-ya-A0A"; */
+"1vc-ya-A0A.normalTitle" = "添加更多图片";
+
+/* Class = "UILabel"; text = "Movin 推出：星期六夜晚 DJ 派对 星期六夜晚 DJ 派对"; ObjectID = "2LN-BF-dfV"; */
+"2LN-BF-dfV.text" = "Movin 推出：星期六夜晚 DJ 派对 星期六夜晚 DJ 派对";
+
+/* Class = "UILabel"; text = "如何准备和进行 TED 演讲"; ObjectID = "2PD-RG-CAK"; */
+"2PD-RG-CAK.text" = "如何准备和进行 TED 演讲";
+
+/* Class = "UILabel"; text = "关于"; ObjectID = "2aj-xI-WyZ"; */
+"2aj-xI-WyZ.text" = "关于";
+
+/* Class = "UILabel"; text = "没有可用的活动"; ObjectID = "2s8-n5-bmk"; */
+"2s8-n5-bmk.text" = "没有可用的活动";
+
+/* Class = "UIButton"; normalTitle = "免费"; ObjectID = "31M-qM-5zS"; */
+"31M-qM-5zS.normalTitle" = "免费";
+
+/* Class = "UILabel"; text = "标签"; ObjectID = "38z-ZY-y79"; */
+"38z-ZY-y79.text" = "标签";
+
+/* Class = "UILabel"; text = "星期六, 7月26日"; ObjectID = "4gZ-6s-QSp"; */
+"4gZ-6s-QSp.text" = "星期六, 7月26日";
+
+/* Class = "UILabel"; text = "活动图片"; ObjectID = "5Ia-BP-fG5"; */
+"5Ia-BP-fG5.text" = "活动图片";
+
+/* Class = "UILabel"; text = "JPEG 或 PNG，大小不超过 10MB。"; ObjectID = "6AO-Uz-Oln"; */
+"6AO-Uz-Oln.text" = "JPEG 或 PNG，大小不超过 10MB。";
+
+/* Class = "UILabel"; text = "TEDxMileHigh"; ObjectID = "6J0-gb-zgg"; */
+"6J0-gb-zgg.text" = "TEDxMileHigh";
+
+/* Class = "UILabel"; text = "0 / 75"; ObjectID = "6K3-Lg-buL"; */
+"6K3-Lg-buL.text" = "0 / 75";
+
+/* Class = "UITextField"; placeholder = "地址*"; ObjectID = "6LV-zO-aP2"; */
+"6LV-zO-aP2.placeholder" = "地址*";
+
+/* Class = "UILabel"; text = "20 美元"; ObjectID = "6Q0-qS-k2L"; */
+"6Q0-qS-k2L.text" = "20 美元";
+
+/* Class = "UILabel"; text = "DB 商场 博帕尔"; ObjectID = "6Qk-Fc-qRt"; */
+"6Qk-Fc-qRt.text" = "DB 商场 博帕尔";
+
+/* Class = "UITextField"; placeholder = "活动标题*"; ObjectID = "6YF-Po-4X6"; */
+"6YF-Po-4X6.placeholder" = "活动标题*";
+
+/* Class = "UILabel"; text = "日期和时间"; ObjectID = "7GF-Sc-CbY"; */
+"7GF-Sc-CbY.text" = "日期和时间";
+
+/* Class = "UILabel"; text = "JPEG 或 PNG，大小不超过 10MB。"; ObjectID = "8dg-8p-d0u"; */
+"8dg-8p-d0u.text" = "JPEG 或 PNG，大小不超过 10MB。";
+
+/* Class = "UILabel"; text = "时间显示为您的本地时区"; ObjectID = "9U7-VT-b2c"; */
+"9U7-VT-b2c.text" = "时间显示为您的本地时区";
+
+/* Class = "UITextField"; placeholder = "邮政编码*"; ObjectID = "A0L-MS-2j0"; */
+"A0L-MS-2j0.placeholder" = "邮政编码*";
+
+/* Class = "UITextField"; placeholder = "价格*"; ObjectID = "Bsl-7g-08L"; */
+"Bsl-7g-08L.placeholder" = "价格*";
+
+/* Class = "UILabel"; text = "通过添加与主题相关的标签来提高您的活动的可发现性。"; ObjectID = "D4g-eO-Sdk"; */
+"D4g-eO-Sdk.text" = "通过添加与主题相关的标签来提高您的活动的可发现性。";
+
+/* Class = "UITextField"; placeholder = "标签*"; ObjectID = "Dcv-1b-L2S"; */
+"Dcv-1b-L2S.placeholder" = "标签*";
+
+/* Class = "UILabel"; text = "点击添加活动图片"; ObjectID = "Dqb-HQ-XlJ"; */
+"Dqb-HQ-XlJ.text" = "点击添加活动图片";
+
+/* Class = "UILabel"; text = "12:30 PM - 1:30 PM"; ObjectID = "EjG-yl-SVH"; */
+"EjG-yl-SVH.text" = "12:30 PM - 1:30 PM";
+
+/* Class = "UITextField"; placeholder = "活动标题*"; ObjectID = "EkG-lD-oi3"; */
+"EkG-lD-oi3.placeholder" = "活动标题*";
+
+/* Class = "UITextField"; placeholder = "搜索场地或地址。"; ObjectID = "EpK-Jp-jZl"; */
+"EpK-Jp-jZl.placeholder" = "搜索场地或地址。";
+
+/* Class = "UILabel"; text = "0 / 75"; ObjectID = "FQO-AP-6HG"; */
+"FQO-AP-6HG.text" = "0 / 75";
+
+/* Class = "UITextField"; placeholder = "可用数量*"; ObjectID = "FWD-6X-MKc"; */
+"FWD-6X-MKc.placeholder" = "可用数量*";
+
+/* Class = "UILabel"; text = "靠近萨克特纳加尔，霍尚加巴德路，博帕尔，462024，印度"; ObjectID = "Fg3-5r-4sD"; */
+"Fg3-5r-4sD.text" = "靠近萨克特纳加尔，霍尚加巴德路，博帕尔，462024，印度";
+
+/* Class = "UILabel"; text = "告诉参与者您的活动何时开始和结束，以便他们做好计划出席。"; ObjectID = "G18-PB-9rW"; */
+"G18-PB-9rW.text" = "告诉参与者您的活动何时开始和结束，以便他们做好计划出席。";
+
+/* Class = "UIButton"; normalTitle = "添加更多图片"; ObjectID = "G5e-es-fiz"; */
+"G5e-es-fiz.normalTitle" = "添加更多图片";
+
+/* Class = "UIButton"; normalTitle = "发布活动"; ObjectID = "GL7-VC-6QG"; */
+"GL7-VC-6QG.normalTitle" = "发布活动";
+
+/* Class = "UISegmentedControl"; HKC-2S-a8e.segmentTitles[0] = "即将举行"; ObjectID = "HKC-2S-a8e"; */
+"HKC-2S-a8e.segmentTitles[0]" = "即将举行";
+
+/* Class = "UISegmentedControl"; HKC-2S-a8e.segmentTitles[1] = "过去"; ObjectID = "HKC-2S-a8e"; */
+"HKC-2S-a8e.segmentTitles[1]" = "过去";
+
+/* Class = "UITextField"; placeholder = "地址*"; ObjectID = "IDE-19-330"; */
+"IDE-19-330.placeholder" = "地址*";
+
+/* Class = "UILabel"; text = "更新活动"; ObjectID = "Iac-Lw-RL4"; */
+"Iac-Lw-RL4.text" = "更新活动";
+
+/* Class = "UILabel"; text = "添加到日历"; ObjectID = "IbL-ST-Aqi"; */
+"IbL-ST-Aqi.text" = "添加到日历";
+
+/* Class = "UILabel"; text = "标签"; ObjectID = "IeY-pv-N2J"; */
+"IeY-pv-N2J.text" = "标签";
+
+/* Class = "UILabel"; text = "DB 商场 博帕尔"; ObjectID = "Iv3-no-eMP"; */
+"Iv3-no-eMP.text" = "DB 商场 博帕尔";
+
+/* Class = "UILabel"; text = "标签"; ObjectID = "JJj-dd-Zci"; */
+"JJj-dd-Zci.text" = "标签";
+
+/* Class = "UILabel"; text = "阿斯托里亚, 俄勒冈州, 美国"; ObjectID = "LCx-8k-bJ9"; */
+"LCx-8k-bJ9.text" = "阿斯托里亚, 俄勒冈州, 美国";
+
+/* Class = "UITextField"; placeholder = "搜索..."; ObjectID = "Lba-jO-fUR"; */
+"Lba-jO-fUR.placeholder" = "搜索...";
+
+/* Class = "UILabel"; text = "JPEG 或 PNG，大小不超过 10MB。"; ObjectID = "LjF-5b-4ad"; */
+"LjF-5b-4ad.text" = "JPEG 或 PNG，大小不超过 10MB。";
+
+/* Class = "UITextField"; placeholder = "结束时间*"; ObjectID = "MRz-kJ-7gt"; */
+"MRz-kJ-7gt.placeholder" = "结束时间*";
+
+/* Class = "UILabel"; text = "点击添加活动图片"; ObjectID = "MVJ-i2-UfR"; */
+"MVJ-i2-UfR.text" = "点击添加活动图片";
+
+/* Class = "UILabel"; text = "通过添加与主题相关的标签来提高您的活动的可发现性。"; ObjectID = "Mu5-XL-U8c"; */
+"Mu5-XL-U8c.text" = "通过添加与主题相关的标签来提高您的活动的可发现性。";
+
+/* Class = "UILabel"; text = "地点"; ObjectID = "P7C-be-mJJ"; */
+"P7C-be-mJJ.text" = "地点";
+
+/* Class = "UITextField"; placeholder = "开始日期*"; ObjectID = "PLz-Le-E9e"; */
+"PLz-Le-E9e.placeholder" = "开始日期*";
+
+/* Class = "UITextField"; placeholder = "开始时间*"; ObjectID = "QFe-fk-Y60"; */
+"QFe-fk-Y60.placeholder" = "开始时间*";
+
+/* Class = "UILabel"; text = "没有即将举行的活动"; ObjectID = "QHm-zc-OdN"; */
+"QHm-zc-OdN.text" = "没有即将举行的活动";
+
+/* Class = "UIButton"; normalTitle = "继续"; ObjectID = "R2V-KS-Fuo"; */
+"R2V-KS-Fuo.normalTitle" = "继续";
+
+/* Class = "UILabel"; text = "Movin 推出：星期六夜晚 DJ 派对 星期六夜晚 DJ 派对"; ObjectID = "RWi-nT-P7t"; */
+"RWi-nT-P7t.text" = "Movin 推出：星期六夜晚 DJ 派对 星期六夜晚 DJ 派对";
+
+/* Class = "UILabel"; text = "描述"; ObjectID = "Rd9-jf-7QO"; */
+"Rd9-jf-7QO.text" = "描述";
+
+/* Class = "UIButton"; normalTitle = "付费"; ObjectID = "ReQ-fA-Vuf"; */
+"ReQ-fA-Vuf.normalTitle" = "付费";
+
+/* Class = "UITextField"; placeholder = "开始日期*"; ObjectID = "Rkr-wJ-Iwi"; */
+"Rkr-wJ-Iwi.placeholder" = "开始日期*";
+
+/* Class = "UILabel"; text = "基本信息"; ObjectID = "Rxe-Cd-5GO"; */
+"Rxe-Cd-5GO.text" = "基本信息";
+
+/* Class = "UILabel"; text = "更新活动"; ObjectID = "Sh2-Dp-RUZ"; */
+"Sh2-Dp-RUZ.text" = "更新活动";
+
+/* Class = "UILabel"; text = "地点"; ObjectID = "Srk-1I-ADu"; */
+"Srk-1I-ADu.text" = "地点";
+
+/* Class = "UILabel"; text = "输入以逗号分隔的标签。 \n示例 - 乐趣，假期，聚会"; ObjectID = "Sy5-Af-Kre"; */
+"Sy5-Af-Kre.text" = "输入以逗号分隔的标签。 \n示例 - 乐趣，假期，聚会";
+
+/* Class = "UILabel"; text = "星期六, 7月24日 • 上午11:00"; ObjectID = "TA8-jj-BPI"; */
+"TA8-jj-BPI.text" = "星期六, 7月24日 • 上午11:00";
+
+/* Class = "UILabel"; text = "为您的活动添加更多详细信息，例如您的时间表、赞助商或特色嘉宾。"; ObjectID = "UkI-k4-5di"; */
+"UkI-k4-5di.text" = "为您的活动添加更多详细信息，例如您的时间表、赞助商或特色嘉宾。";
+
+/* Class = "UILabel"; text = "星期五, 7月23日 2021"; ObjectID = "VRT-fH-lFP"; */
+"VRT-fH-lFP.text" = "星期五, 7月23日 2021";
+
+/* Class = "UIButton"; normalTitle = "更新活动"; ObjectID = "WG1-iq-J9q"; */
+"WG1-iq-J9q.normalTitle" = "更新活动";
+
+/* Class = "UITextField"; placeholder = "标签*"; ObjectID = "Wkw-Ga-Os3"; */
+"Wkw-Ga-Os3.placeholder" = "标签*";
+
+/* Class = "UILabel"; text = "帮助当地人发现您的活动，并让参与者知道在哪里出现。"; ObjectID = "Wzs-Kh-Xr2"; */
+"Wzs-Kh-Xr2.text" = "帮助当地人发现您的活动，并让参与者知道在哪里出现。";
+
+/* Class = "UILabel"; text = "基本信息"; ObjectID = "XUm-cl-a9h"; */
+"XUm-cl-a9h.text" = "基本信息";
+
+/* Class = "UITextField"; placeholder = "城市*"; ObjectID = "XZo-lm-0XX"; */
+"XZo-lm-0XX.placeholder" = "城市*";
+
+/* Class = "UIButton"; normalTitle = "创建活动"; ObjectID = "Yik-5H-x6v"; */
+"Yik-5H-x6v.normalTitle" = "创建活动";
+
+/* Class = "UILabel"; text = "你好，Vijay Rathore"; ObjectID = "Ymg-pl-yL8"; */
+"Ymg-pl-yL8.text" = "你好，Vijay Rathore";
+
+/* Class = "UITextField"; placeholder = "国家*"; ObjectID = "YzN-I3-TSV"; */
+"YzN-I3-TSV.placeholder" = "国家*";
+
+/* Class = "UITextField"; placeholder = "国家*"; ObjectID = "ZPF-C7-FWc"; */
+"ZPF-C7-FWc.placeholder" = "国家*";
+
+/* Class = "UITextField"; placeholder = "门票名称*"; ObjectID = "a0E-8h-yz2"; */
+"a0E-8h-yz2.placeholder" = "门票名称*";
+
+/* Class = "UITextField"; placeholder = "州/省*"; ObjectID = "bOP-vK-YKi"; */
+"bOP-vK-YKi.placeholder" = "州/省*";
+
+/* Class = "UIButton"; normalTitle = "免费"; ObjectID = "bTb-V3-ddb"; */
+"bTb-V3-ddb.normalTitle" = "免费";
+
+/* Class = "UILabel"; text = "创建活动"; ObjectID = "c6F-97-1bc"; */
+"c6F-97-1bc.text" = "创建活动";
+
+/* Class = "UILabel"; text = "@狮子座"; ObjectID = "cL4-Lp-uMO"; */
+"cL4-Lp-uMO.text" = "@狮子座";
+
+/* Class = "UILabel"; text = "JPEG 或 PNG，大小不超过 10MB。"; ObjectID = "cTa-cK-TSC"; */
+"cTa-cK-TSC.text" = "JPEG 或 PNG，大小不超过 10MB。";
+
+/* Class = "UITextField"; placeholder = "搜索场地或地址。"; ObjectID = "cz2-eo-WQa"; */
+"cz2-eo-WQa.placeholder" = "搜索场地或地址。";
+
+/* Class = "UITextField"; placeholder = "门票名称*"; ObjectID = "dwT-dj-sdz"; */
+"dwT-dj-sdz.placeholder" = "门票名称*";
+
+/* Class = "UILabel"; text = "在线"; ObjectID = "dzc-Rn-3iB"; */
+"dzc-Rn-3iB.text" = "在线";
+
+/* Class = "UILabel"; text = "AIIMS 医院"; ObjectID = "eVP-yl-T7J"; */
+"eVP-yl-T7J.text" = "AIIMS 医院";
+
+/* Class = "UIButton"; normalTitle = "发送邀请"; ObjectID = "ehw-LT-APp"; */
+"ehw-LT-APp.normalTitle" = "发送邀请";
+
+/* Class = "UILabel"; text = "日期和时间"; ObjectID = "f6d-sa-epZ"; */
+"f6d-sa-epZ.text" = "日期和时间";
+
+/* Class = "UILabel"; text = "点击添加活动图片"; ObjectID = "fEa-Uf-iDH"; */
+"fEa-Uf-iDH.text" = "点击添加活动图片";
+
+/* Class = "UILabel"; text = "地点"; ObjectID = "fpt-iB-Ur1"; */
+"fpt-iB-Ur1.text" = "地点";
+
+/* Class = "UILabel"; text = "告诉参与者您的活动何时开始和结束，以便他们做好计划出席。"; ObjectID = "gQr-s5-0zg"; */
+"gQr-s5-0zg.text" = "告诉参与者您的活动何时开始和结束，以便他们做好计划出席。";
+
+/* Class = "UITextField"; placeholder = "城市*"; ObjectID = "gkJ-ge-zuu"; */
+"gkJ-ge-zuu.placeholder" = "城市*";
+
+/* Class = "UILabel"; text = "没有过去的活动"; ObjectID = "gqC-8g-rZQ"; */
+"gqC-8g-rZQ.text" = "没有过去的活动";
+
+/* Class = "UIButton"; normalTitle = "继续"; ObjectID = "hVx-3k-NyX"; */
+"hVx-3k-NyX.normalTitle" = "继续";
+
+/* Class = "UILabel"; text = "JPEG 或 PNG，大小不超过 10MB。"; ObjectID = "hXY-cY-Z5n"; */
+"hXY-cY-Z5n.text" = "JPEG 或 PNG，大小不超过 10MB。";
+
+/* Class = "UILabel"; text = "丢弃"; ObjectID = "hpt-bu-CcQ"; */
+"hpt-bu-CcQ.text" = "丢弃";
+
+/* Class = "UILabel"; text = "点击添加活动图片"; ObjectID = "hxE-fu-tpX"; */
+"hxE-fu-tpX.text" = "点击添加活动图片";
+
+/* Class = "UITextField"; placeholder = "可用数量*"; ObjectID = "hzc-t7-EJA"; */
+"hzc-t7-EJA.placeholder" = "可用数量*";
+
+/* Class = "UILabel"; text = "0 / 50"; ObjectID = "iPb-pK-Zbf"; */
+"iPb-pK-Zbf.text" = "0 / 50";
+
+/* Class = "UILabel"; text = "点击添加活动图片"; ObjectID = "idc-6O-Rr3"; */
+"idc-6O-Rr3.text" = "点击添加活动图片";
+
+/* Class = "UILabel"; text = "如何准备和进行 TED 演讲"; ObjectID = "jBv-gK-1PH"; */
+"jBv-gK-1PH.text" = "如何准备和进行 TED 演讲";
+
+/* Class = "UIButton"; normalTitle = "切换到用户"; ObjectID = "jVn-p1-FZk"; */
+"jVn-p1-FZk.normalTitle" = "切换到用户";
+
+/* Class = "UILabel"; text = "使用高质量图片: (9:5 比例)。"; ObjectID = "l2f-qT-t98"; */
+"l2f-qT-t98.text" = "使用高质量图片: (9:5 比例)。";
+
+/* Class = "UILabel"; text = "JPEG 或 PNG，大小不超过 10MB。"; ObjectID = "lAa-Ic-8hl"; */
+"lAa-Ic-8hl.text" = "JPEG 或 PNG，大小不超过 10MB。";
+
+/* Class = "UILabel"; text = "活动图片"; ObjectID = "mGa-VQ-cKB"; */
+"mGa-VQ-cKB.text" = "活动图片";
+
+/* Class = "UILabel"; text = "街道地址"; ObjectID = "n7h-zT-hjP"; */
+"n7h-zT-hjP.text" = "街道地址";
+
+/* Class = "UILabel"; text = "活动"; ObjectID = "nOG-BR-nZe"; */
+"nOG-BR-nZe.text" = "活动";
+
+/* Class = "UILabel"; text = "为您的活动命名并告诉参与者为什么他们应该来。添加突出其独特性的细节"; ObjectID = "nWx-ke-EMG"; */
+"nWx-ke-EMG.text" = "为您的活动命名并告诉参与者为什么他们应该来。添加突出其独特性的细节";
+
+/* Class = "UILabel"; text = "点击添加活动图片"; ObjectID = "o74-5k-gKV"; */
+"o74-5k-gKV.text" = "点击添加活动图片";
+
+/* Class = "UILabel"; text = "点击添加活动图片"; ObjectID = "oTd-ag-4Jl"; */
+"oTd-ag-4Jl.text" = "点击添加活动图片";
+
+/* Class = "UILabel"; text = "查看个人资料"; ObjectID = "oWM-GD-nn0"; */
+"oWM-GD-nn0.text" = "查看个人资料";
+
+/* Class = "UILabel"; text = "星期六, 7月24日 • 上午11:00"; ObjectID = "olx-Ho-Gtb"; */
+"olx-Ho-Gtb.text" = "星期六, 7月24日 • 上午11:00";
+
+/* Class = "UILabel"; text = "Flipkart，“印度的时尚之都”，是您的一站式时尚目的地，为了让你看起来更好，提供一切。"; ObjectID = "q7d-dE-eS8"; */
+"q7d-dE-eS8.text" = "Flipkart，“印度的时尚之都”，是您的一站式时尚目的地，为了让你看起来更好，提供一切。";
+
+/* Class = "UILabel"; text = "场地位置"; ObjectID = "qJy-7q-2xe"; */
+"qJy-7q-2xe.text" = "场地位置";
+
+/* Class = "UIButton"; normalTitle = "聚会"; ObjectID = "qcq-Ol-T60"; */
+"qcq-Ol-T60.normalTitle" = "聚会";
+
+/* Class = "UILabel"; text = "JPEG 或 PNG，大小不超过 10MB。"; ObjectID = "qx4-1C-aQM"; */
+"qx4-1C-aQM.text" = "JPEG 或 PNG，大小不超过 10MB。";
+
+/* Class = "UILabel"; text = "JPEG 或 PNG，大小不超过 10MB。"; ObjectID = "r4O-Nr-DTh"; */
+"r4O-Nr-DTh.text" = "JPEG 或 PNG，大小不超过 10MB。";
+
+/* Class = "UILabel"; text = "Movin 推出：星期六夜晚 DJ 派对 星期六夜晚 DJ 派对"; ObjectID = "r4p-vq-ld5"; */
+"r4p-vq-ld5.text" = "Movin 推出：星期六夜晚 DJ 派对 星期六夜晚 DJ 派对";
+
+/* Class = "UILabel"; text = "为您的活动命名并告诉参与者为什么他们应该来。添加突出其独特性的细节"; ObjectID = "rQk-9f-ieA"; */
+"rQk-9f-ieA.text" = "为您的活动命名并告诉参与者为什么他们应该来。添加突出其独特性的细节";
+
+/* Class = "UIButton"; normalTitle = "付费"; ObjectID = "sVb-r9-arn"; */
+"sVb-r9-arn.normalTitle" = "付费";
+
+/* Class = "UILabel"; text = "创建活动"; ObjectID = "snT-KV-pwu"; */
+"snT-KV-pwu.text" = "创建活动";
+
+/* Class = "UITextField"; placeholder = "开始时间*"; ObjectID = "sy6-u7-Bsf"; */
+"sy6-u7-Bsf.placeholder" = "开始时间*";
+
+/* Class = "UILabel"; text = "阿斯托里亚, 俄勒冈州, 美国"; ObjectID = "tVF-yA-PPj"; */
+"tVF-yA-PPj.text" = "阿斯托里亚, 俄勒冈州, 美国";
+
+/* Class = "UILabel"; text = "在 myMINK"; ObjectID = "uUh-Ke-COA"; */
+"uUh-Ke-COA.text" = "在 myMINK";
+
+/* Class = "UILabel"; text = "描述"; ObjectID = "utD-y5-9dQ"; */
+"utD-y5-9dQ.text" = "描述";
+
+/* Class = "UILabel"; text = "场地位置"; ObjectID = "vgJ-Az-vp5"; */
+"vgJ-Az-vp5.text" = "场地位置";
+
+/* Class = "UITextField"; placeholder = "州/省*"; ObjectID = "vz2-o8-QlO"; */
+"vz2-o8-QlO.placeholder" = "州/省*";
+
+/* Class = "UILabel"; text = "输入以逗号分隔的标签。 \n示例 - 乐趣，假期，聚会"; ObjectID = "vzG-2Z-ZPb"; */
+"vzG-2Z-ZPb.text" = "输入以逗号分隔的标签。 \n示例 - 乐趣，假期，聚会";
+
+/* Class = "UILabel"; text = "帮助当地人发现您的活动，并让参与者知道在哪里出现。"; ObjectID = "wWl-jZ-1ZB"; */
+"wWl-jZ-1ZB.text" = "帮助当地人发现您的活动，并让参与者知道在哪里出现。";
+
+/* Class = "UITextField"; placeholder = "邮政编码*"; ObjectID = "wl1-s1-5qm"; */
+"wl1-s1-5qm.placeholder" = "邮政编码*";
+
+/* Class = "UILabel"; text = "点击添加活动图片"; ObjectID = "wn8-J8-MM6"; */
+"wn8-J8-MM6.text" = "点击添加活动图片";
+
+/* Class = "UITextField"; placeholder = "结束时间*"; ObjectID = "y7e-Ss-2O8"; */
+"y7e-Ss-2O8.placeholder" = "结束时间*";
+
+/* Class = "UITextField"; placeholder = "结束日期*"; ObjectID = "ybD-te-wBh"; */
+"ybD-te-wBh.placeholder" = "结束日期*";
+
+/* Class = "UITextField"; placeholder = "价格*"; ObjectID = "ynF-zz-ARW"; */
+"ynF-zz-ARW.placeholder" = "价格*";
+
+/* Class = "UIButton"; normalTitle = "切换到组织者"; ObjectID = "z03-Z3-NET"; */
+"z03-Z3-NET.normalTitle" = "切换到组织者";
+
+/* Class = "UILabel"; text = "0 / 50"; ObjectID = "zBV-YY-UtP"; */
+"zBV-YY-UtP.text" = "0 / 50";
+
+/* Class = "UITextField"; placeholder = "结束日期*"; ObjectID = "zbn-Bk-n0b"; */
+"zbn-Bk-n0b.placeholder" = "结束日期*";
+
+/* Class = "UILabel"; text = "使用高质量图片: (9:5 比例)。"; ObjectID = "zuq-SB-bSC"; */
+"zuq-SB-bSC.text" = "使用高质量图片: (9:5 比例)。";

@@ -1,0 +1,71 @@
+/* Class = "UIButton"; normalTitle = "LIVE"; ObjectID = "0PV-I1-ofc"; */
+"0PV-I1-ofc.normalTitle" = "NA ŻYWO";
+
+/* Class = "UILabel"; text = "Share Live Stream"; ObjectID = "7Vs-oO-k2A"; */
+"7Vs-oO-k2A.text" = "Udostępnij transmisję na żywo";
+
+/* Class = "UILabel"; text = "LIVE"; ObjectID = "8op-va-FGE"; */
+"8op-va-FGE.text" = "NA ŻYWO";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Dd8-Xs-254"; */
+"Dd8-Xs-254.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Share"; ObjectID = "HDz-gs-crQ"; */
+"HDz-gs-crQ.normalTitle" = "Udostępnij";
+
+/* Class = "UILabel"; text = "app.mymink.com.au/livestream"; ObjectID = "ID1-a9-KhA"; */
+"ID1-a9-KhA.text" = "app.mymink.com.au/livestream";
+
+/* Class = "UILabel"; text = "Help people discover your live video by adding the details to a post."; ObjectID = "Iet-qt-ANA"; */
+"Iet-qt-ANA.text" = "Pomóż ludziom odkryć Twoje wideo na żywo, dodając szczegóły do posta.";
+
+/* Class = "UILabel"; text = "Schedule"; ObjectID = "MA5-0e-Cdy"; */
+"MA5-0e-Cdy.text" = "Harmonogram";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "MND-3E-l5K"; */
+"MND-3E-l5K.text" = "0";
+
+/* Class = "UITextField"; placeholder = "Message..."; ObjectID = "MNL-oM-qrI"; */
+"MNL-oM-qrI.placeholder" = "Wiadomość...";
+
+/* Class = "UIButton"; normalTitle = "No"; ObjectID = "NY0-rR-CZx"; */
+"NY0-rR-CZx.normalTitle" = "Nie";
+
+/* Class = "UILabel"; text = "Schedule Livestream"; ObjectID = "P26-u3-gjb"; */
+"P26-u3-gjb.text" = "Zaplanuj transmisję na żywo";
+
+/* Class = "UILabel"; text = "Full Name"; ObjectID = "UZb-O4-aLP"; */
+"UZb-O4-aLP.text" = "Pełne imię i nazwisko";
+
+/* Class = "UILabel"; text = "Do you want to share this live stream?"; ObjectID = "Uku-cg-Smx"; */
+"Uku-cg-Smx.text" = "Czy chcesz udostępnić tę transmisję na żywo?";
+
+/* Class = "UITextField"; placeholder = "Search"; ObjectID = "Vmz-v5-qGv"; */
+"Vmz-v5-qGv.placeholder" = "Szukaj";
+
+/* Class = "UILabel"; text = "Ready to go live"; ObjectID = "ZvC-tZ-Czf"; */
+"ZvC-tZ-Czf.text" = "Gotowy do transmisji na żywo";
+
+/* Class = "UILabel"; text = "No live streamings available"; ObjectID = "lQQ-f7-bjL"; */
+"lQQ-f7-bjL.text" = "Brak dostępnych transmisji na żywo";
+
+/* Class = "UILabel"; text = "Cancel"; ObjectID = "naq-eE-EVb"; */
+"naq-eE-EVb.text" = "Anuluj";
+
+/* Class = "UILabel"; text = "Livestream has ended"; ObjectID = "nhz-bY-WBk"; */
+"nhz-bY-WBk.text" = "Transmisja na żywo zakończona";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "q89-LZ-jwg"; */
+"q89-LZ-jwg.text" = "Etykieta";
+
+/* Class = "UILabel"; text = "Full Name"; ObjectID = "r7K-QL-q1f"; */
+"r7K-QL-q1f.text" = "Pełne imię i nazwisko";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "u0p-4q-TK0"; */
+"u0p-4q-TK0.text" = "Etykieta";
+
+/* Class = "UILabel"; text = "Live Streaming"; ObjectID = "y89-F1-Bxa"; */
+"y89-F1-Bxa.text" = "Transmisja na żywo";
+
+/* Class = "UILabel"; text = "Your live video is Scheduled"; ObjectID = "yne-8G-gWp"; */
+"yne-8G-gWp.text" = "Twoje wideo na żywo jest zaplanowane";

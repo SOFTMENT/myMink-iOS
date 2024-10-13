@@ -94,19 +94,19 @@ class EditBusinessProfileViewController: UIViewController {
     }
     
     @objc private func deleteBtnClicked() {
-        let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this business?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
-            self.ProgressHUDShow(text: "Deleting...")
+        let alert = UIAlertController(title: "Delete".localized(), message: "Are you sure you want to delete this business?".localized(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in
+            self.ProgressHUDShow(text: "Deleting...".localized())
             self.deleteBusiness(bId: self.businessModel!.businessId ?? "123") { error in
                 self.ProgressHUDHide()
-                self.showSnack(messages: "Business Deleted")
+                self.showSnack(messages: "Business Deleted".localized())
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                     self.delegate?.reloadTableView()
                     self.dismiss(animated: true)
                 }
             }
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         present(alert, animated: true)
     }
     
@@ -170,14 +170,14 @@ class EditBusinessProfileViewController: UIViewController {
     }
     
     private func showImageUploadOptions(title: String, pickerTitle: String) {
-        let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Using Camera", style: .default) { _ in
+        let alert = UIAlertController(title: title.localized(), message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Using Camera".localized(), style: .default) { _ in
             self.presentImagePicker(sourceType: .camera, title: pickerTitle)
         })
-        alert.addAction(UIAlertAction(title: "From Photo Library", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: "From Photo Library".localized(), style: .default) { _ in
             self.presentImagePicker(sourceType: .photoLibrary, title: pickerTitle)
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         present(alert, animated: true)
     }
     
@@ -266,9 +266,9 @@ extension UIToolbar {
         self.tintColor = .link
         self.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: target, action: doneAction)
+        let doneButton = UIBarButtonItem(title: "Done".localized(), style: .plain, target: target, action: doneAction)
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: target, action: cancelAction)
+        let cancelButton = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: target, action: cancelAction)
         self.setItems([cancelButton, spaceButton, doneButton], animated: false)
         self.isUserInteractionEnabled = true
     }

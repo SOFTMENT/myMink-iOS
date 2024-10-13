@@ -89,6 +89,15 @@ class ProfileViewController: UIViewController {
             return
         }
 
+        FirebaseStoreManager.db.collection("ByPassMembership").document("lifetime").getDocument { (document, error) in
+            if let document = document, document.exists {
+                if let flag = document.get("flag") as? Bool, flag {
+                    self.musicView.isHidden = true
+                    self.libraryView.isHidden = true
+                }
+             
+            }
+        }
         
         searchTF.delegate = self
         
@@ -204,7 +213,8 @@ class ProfileViewController: UIViewController {
         flowLayout.minimumInteritemSpacing = 0
         self.collectionView.collectionViewLayout = flowLayout
 
-        self.joiningDate.text = "Joined on \(convertDateFormaterWithoutDash(user.registredAt ?? Date()))"
+        self.joiningDate.text = String(format: "Joined on %@".localized(), convertDateFormaterWithoutDash(user.registredAt ?? Date()))
+
 
         getPostsBy(uid: FirebaseStoreManager.auth.currentUser!.uid, accountType: .user) { pModels, error in
 
@@ -222,7 +232,7 @@ class ProfileViewController: UIViewController {
                 self.topPostCount.isHidden = false
                 
                
-                self.topPostLbl.text = count > 1 ? "Posts" : "Post"
+                self.topPostLbl.text = count > 1 ? "Posts".localized() : "Post".localized()
                 self.topPostCount.text = "\(count)"
                 self.collectionView.reloadData()
             }
@@ -314,7 +324,7 @@ class ProfileViewController: UIViewController {
      
 
         let image = UIAction(
-            title: "Image",
+            title: "Image".localized(),
             image: UIImage(systemName: "photo.circle.fill")
         ) { _ in
 
@@ -322,7 +332,7 @@ class ProfileViewController: UIViewController {
         }
 
         let video = UIAction(
-            title: "Video",
+            title: "Video".localized(),
             image: UIImage(systemName: "video.circle.fill")
         ) { _ in
 
@@ -330,7 +340,7 @@ class ProfileViewController: UIViewController {
         }
         
         let text = UIAction(
-            title: "Text",
+            title: "Text".localized(),
             image: UIImage(systemName: "text.quote")
         ) { _ in
 
@@ -371,15 +381,16 @@ class ProfileViewController: UIViewController {
             self.followersLoading.isHidden = true
             self.followersCount.isHidden = false
             
-            self.topFollowersLbl.text = count > 1 ? "Followers" : "Follower"
+            self.topFollowersLbl.text = count > 1 ? "Followers".localized() : "Follower".localized()
             self.followersCount.text = "\(count)"
             
           
-            if self.haveBlueTick(){
+            if self.haveBlueTick(userModel: UserModel.data){
+                
                 self.verificationBadge.isHidden = false
                 self.verificationBadge.image = UIImage(named: "verified")
             }
-            else if self.haveBlackTick() {
+            else if self.haveBlackTick(userModel: UserModel.data) {
                 self.verificationBadge.isHidden = false
                 self.verificationBadge.image = UIImage(named: "verification")
             }
@@ -398,7 +409,7 @@ class ProfileViewController: UIViewController {
         getCount(for: FirebaseStoreManager.auth.currentUser!.uid, countType: "ProfileViews") { count, error in
             self.viewLoading.isHidden = true
             self.viewCount.isHidden = false
-            self.topViewLbl.text = (count ?? 0) > 1 ? "Views" : "View"
+            self.topViewLbl.text = (count ?? 0) > 1 ? "Views".localized() : "View".localized()
             self.viewCount.text = "\(count ?? 0)"
         }
     }
@@ -424,7 +435,7 @@ class ProfileViewController: UIViewController {
     }
     
     func searchBtnClicked(searchText : String){
-        ProgressHUDShow(text: "Searching...")
+        ProgressHUDShow(text: "Searching...".localized())
         algoliaSearch(searchText: searchText, indexName: .posts, filters: "uid:\(FirebaseStoreManager.auth.currentUser!.uid)") { models in
             
             DispatchQueue.main.async {
@@ -457,7 +468,7 @@ class ProfileViewController: UIViewController {
         UIPasteboard.general.string = text
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
-        showSnack(messages: "Caption has copied.")
+        showSnack(messages: "Caption has copied.".localized())
     }
 
     @objc func followersViewClicked() {
@@ -579,16 +590,16 @@ class ProfileViewController: UIViewController {
     @objc func autoGraphClicked() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        alert.addAction(UIAlertAction(title: "Replace Autograph", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Replace Autograph".localized(), style: .default, handler: { _ in
             self.showUploadPopupAutograph()
         }))
-        alert.addAction(UIAlertAction(title: "Remove Autograph", style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Remove Autograph".localized(), style: .destructive, handler: { _ in
             self.addAutographBtn.isHidden = false
             self.signatureImage.isHidden = true
             FirebaseStoreManager.db.collection(Collections.users.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid)
                 .setData(["autoGraphImage": ""], merge: true)
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         present(alert, animated: true)
     }
 
@@ -597,8 +608,8 @@ class ProfileViewController: UIViewController {
     }
 
     func showUploadPopupAutograph() {
-        let alert = UIAlertController(title: "Upload Autograph", message: "", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Using Camera", style: .default) { _ in
+        let alert = UIAlertController(title: "Upload Autograph".localized(), message: "", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Using Camera".localized(), style: .default) { _ in
 
             let image = UIImagePickerController()
             image.title = "Autograph"
@@ -608,7 +619,7 @@ class ProfileViewController: UIViewController {
             self.present(image, animated: true)
         }
 
-        let action2 = UIAlertAction(title: "From Photo Library", style: .default) { _ in
+        let action2 = UIAlertAction(title: "From Photo Library".localized(), style: .default) { _ in
 
             let image = UIImagePickerController()
             image.delegate = self
@@ -642,7 +653,10 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        self.postCount.text = self.usePostModels.count > 1 ? "\(self.usePostModels.count) Posts" : "\(self.usePostModels.count) Post"
+        self.postCount.text = self.usePostModels.count > 1
+            ? String(format: "%d Posts".localized(), self.usePostModels.count)
+            : String(format: "%d Post".localized(), self.usePostModels.count)
+
         self.noPostsAvailable.isHidden = self.usePostModels.count > 0 ? true : false
         return self.usePostModels.count
     }
@@ -776,7 +790,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                                     )
                                 }
                         } else {
-                            self.showError("Upload ERROR")
+                            self.showError("Upload ERROR".localized())
                         }
                     }
                 }
@@ -815,7 +829,7 @@ extension ProfileViewController: EditProfileDelegate {
             }
 
             self.fullName.text = user.fullName ?? "my MINK"
-            self.username.text = "@\(user.username ?? "username")"
+            self.username.text = "@\(user.username ?? "username".localized())"
 
             if let swebsite = user.website, !swebsite.isEmpty {
                 self.websiteView.isHidden = false

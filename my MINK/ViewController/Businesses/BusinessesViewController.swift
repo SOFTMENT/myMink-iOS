@@ -76,12 +76,12 @@ class BusinessesViewController: UIViewController {
     
     @objc private func searchBtnClicked() {
         guard let searchText = searchTF.text, !searchText.isEmpty else { return }
-        searchEvents(searchText: searchText)
+        searchBusiness(searchText: searchText)
     }
     
-    private func searchEvents(searchText: String) {
-        ProgressHUDShow(text: "Searching...")
-        algoliaSearch(searchText: searchText, indexName: .posts, filters: "isActive:true") { models in
+    private func searchBusiness(searchText: String) {
+        ProgressHUDShow(text: "Searching...".localized())
+        algoliaSearch(searchText: searchText, indexName: .businesses, filters: "isActive:true") { models in
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
                 self.useBusinessModels = models as? [BusinessModel] ?? []
@@ -176,7 +176,7 @@ extension BusinessesViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == searchTF {
             if let searchText = textField.text, !searchText.isEmpty {
-                searchEvents(searchText: searchText)
+                searchBusiness(searchText: searchText)
             } else {
                 useBusinessModels = businessModels
                 tableView.reloadData()

@@ -1,0 +1,143 @@
+/* Class = "UILabel"; text = "TEDxMileHigh"; ObjectID = "01v-VG-P8e"; */
+"01v-VG-P8e.text" = "TEDxMileHigh";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "2NF-Lp-WEU"; */
+"2NF-Lp-WEU.text" = "製品画像を追加するにはクリック";
+
+/* Class = "UIButton"; normalTitle = "My Store"; ObjectID = "3CM-4O-gIh"; */
+"3CM-4O-gIh.normalTitle" = "マイストア";
+
+/* Class = "UILabel"; text = "on myMINK"; ObjectID = "4P6-9a-cre"; */
+"4P6-9a-cre.text" = "myMINKで";
+
+/* Class = "UITextView"; text = " "; ObjectID = "8Us-dB-JrW"; */
+"8Us-dB-JrW.text" = " ";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "9fG-6e-ao3"; */
+"9fG-6e-ao3.text" = "製品画像を追加するにはクリック";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "BfQ-cY-jgi"; */
+"BfQ-cY-jgi.text" = "JPEGまたはPNG、10MB以下。";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "Eyu-M5-BLx"; */
+"Eyu-M5-BLx.text" = "JPEGまたはPNG、10MB以下。";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "H0A-AH-yfk"; */
+"H0A-AH-yfk.text" = "JPEGまたはPNG、10MB以下。";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "JX8-5C-6R2"; */
+"JX8-5C-6R2.normalTitle" = "更新";
+
+/* Class = "UITextField"; placeholder = "Select Category"; ObjectID = "LVs-gh-DgT"; */
+"LVs-gh-DgT.placeholder" = "カテゴリを選択";
+
+/* Class = "UILabel"; text = "50 AUD"; ObjectID = "MXZ-c3-idu"; */
+"MXZ-c3-idu.text" = "50オーストラリアドル";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "Prk-9c-Kbz"; */
+"Prk-9c-Kbz.text" = "概要";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "T0Z-Xw-6PE"; */
+"T0Z-Xw-6PE.normalTitle" = "追加";
+
+/* Class = "UILabel"; text = " How to prepare and deliver a TED Talk "; ObjectID = "TOS-KZ-j2z"; */
+"TOS-KZ-j2z.text" = "TEDトークを準備して行う方法";
+
+/* Class = "UIButton"; normalTitle = "All"; ObjectID = "UOX-5Z-N5k"; */
+"UOX-5Z-N5k.normalTitle" = "すべて";
+
+/* Class = "UITextField"; placeholder = "Price"; ObjectID = "UWb-sd-ebV"; */
+"UWb-sd-ebV.placeholder" = "価格";
+
+/* Class = "UITextView"; text = " "; ObjectID = "Vsv-eO-bjX"; */
+"Vsv-eO-bjX.text" = " ";
+
+/* Class = "UILabel"; text = "Product Description"; ObjectID = "WaA-QN-zpQ"; */
+"WaA-QN-zpQ.text" = "製品説明";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "Y2b-md-1CL"; */
+"Y2b-md-1CL.text" = "食品 & 飲料";
+
+/* Class = "UILabel"; text = "Edit Product"; ObjectID = "Zn8-m3-YbE"; */
+"Zn8-m3-YbE.text" = "製品を編集";
+
+/* Class = "UILabel"; text = "Product Image"; ObjectID = "aR0-xX-Enq"; */
+"aR0-xX-Enq.text" = "製品画像";
+
+/* Class = "UITextField"; placeholder = "Title"; ObjectID = "cAN-Eh-A4O"; */
+"cAN-Eh-A4O.placeholder" = "タイトル";
+
+/* Class = "UILabel"; text = "Flipkart, 'India ka Fashion Capital', is your one-stop fashion destination for anything and everything you need to look good."; ObjectID = "d7p-7E-yEt"; */
+"d7p-7E-yEt.text" = "Flipkart、「インドのファッションキャピタル」は、あなたが見た目を良くするために必要なすべてのファッションの目的地です。";
+
+/* Class = "UILabel"; text = "Add Product"; ObjectID = "dKx-3y-Wkk"; */
+"dKx-3y-Wkk.text" = "製品を追加";
+
+/* Class = "UILabel"; text = "How to prepare and deliver a TED Talk"; ObjectID = "dq2-ma-OrN"; */
+"dq2-ma-OrN.text" = "TEDトークを準備して行う方法";
+
+/* Class = "UILabel"; text = "50 AUD"; ObjectID = "ehE-Mz-TY9"; */
+"ehE-Mz-TY9.text" = "50オーストラリアドル";
+
+/* Class = "UILabel"; text = "No products available"; ObjectID = "fP0-qy-qF8"; */
+"fP0-qy-qF8.text" = "利用可能な製品はありません";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "hBe-bT-uCE"; */
+"hBe-bT-uCE.text" = "食品 & 飲料";
+
+/* Class = "UITextField"; placeholder = "Select Category"; ObjectID = "ht4-Je-3C9"; */
+"ht4-Je-3C9.placeholder" = "カテゴリを選択";
+
+/* Class = "UITextField"; placeholder = "Search"; ObjectID = "i2E-us-W4o"; */
+"i2E-us-W4o.placeholder" = "検索";
+
+/* Class = "UILabel"; text = "Product Description"; ObjectID = "iJB-Cn-gVs"; */
+"iJB-Cn-gVs.text" = "製品説明";
+
+/* Class = "UIButton"; normalTitle = "Contact"; ObjectID = "iN0-Kz-QRU"; */
+"iN0-Kz-QRU.normalTitle" = "連絡先";
+
+/* Class = "UILabel"; text = "Gooney"; ObjectID = "l7S-w7-5I3"; */
+"l7S-w7-5I3.text" = "Gooney";
+
+/* Class = "UILabel"; text = "My Store"; ObjectID = "lYE-Pi-DZi"; */
+"lYE-Pi-DZi.text" = "マイストア";
+
+/* Class = "UILabel"; text = "@Leo"; ObjectID = "lvs-ig-kXq"; */
+"lvs-ig-kXq.text" = "@Leo";
+
+/* Class = "UILabel"; text = "No products available"; ObjectID = "oaz-XL-7up"; */
+"oaz-XL-7up.text" = "利用可能な製品はありません";
+
+/* Class = "UILabel"; text = "Gooney"; ObjectID = "pqA-PC-IYm"; */
+"pqA-PC-IYm.text" = "Gooney";
+
+/* Class = "UIButton"; normalTitle = "Add More Images"; ObjectID = "qQq-3i-I6O"; */
+"qQq-3i-I6O.normalTitle" = "さらに画像を追加";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "s95-Df-Pei"; */
+"s95-Df-Pei.text" = "食品 & 飲料";
+
+/* Class = "UITextField"; placeholder = "Title"; ObjectID = "sUo-nt-IbJ"; */
+"sUo-nt-IbJ.placeholder" = "タイトル";
+
+/* Class = "UITextField"; placeholder = "Price"; ObjectID = "tqh-ID-Vd8"; */
+"tqh-ID-Vd8.placeholder" = "価格";
+
+/* Class = "UILabel"; text = "Use a high quality images: (9: 5 ratio)."; ObjectID = "uIF-rm-vno"; */
+"uIF-rm-vno.text" = "高品質な画像を使用してください：（9:5の比率）。";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "uiI-I9-U6N"; */
+"uiI-I9-U6N.text" = "製品画像を追加するにはクリック";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "vdw-hI-b4o"; */
+"vdw-hI-b4o.text" = "製品画像を追加するにはクリック";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "wGe-PJ-VEl"; */
+"wGe-PJ-VEl.text" = "JPEGまたはPNG、10MB以下。";
+
+/* Class = "UILabel"; text = "Marketplace"; ObjectID = "y6X-Hw-k7A"; */
+"y6X-Hw-k7A.text" = "マーケットプレイス";
+
+/* Class = "UILabel"; text = "US$ 20"; ObjectID = "yJs-Bc-pWi"; */
+"yJs-Bc-pWi.text" = "20米ドル";

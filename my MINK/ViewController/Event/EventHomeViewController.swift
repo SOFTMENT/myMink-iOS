@@ -56,7 +56,7 @@ class EventHomeViewController: UIViewController {
             }
             self.present(activityViewController, animated: true)
         } else {
-            self.showSnack(messages: "Share URL not found.")
+            self.showSnack(messages: "Share URL not found.".localized())
         }
     }
     private func fetchAllEvents() {
@@ -82,7 +82,7 @@ class EventHomeViewController: UIViewController {
     }
     
     private func searchEvents(searchText: String) {
-        ProgressHUDShow(text: "Searching...")
+        ProgressHUDShow(text: "Searching...".localized())
         algoliaSearch(searchText: searchText, indexName: .events, filters: "isActive:true AND countryCode:\(getCountryCode())") { [weak self] models in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -150,7 +150,7 @@ extension EventHomeViewController: UITableViewDelegate, UITableViewDataSource {
        
         
         cell.eventDate.text = convertDateForEvent(event.eventStartDate ?? Date())
-        cell.eventTitle.text = event.eventTitle ?? "Something Went Wrong"
+        cell.eventTitle.text = event.eventTitle ?? "Something Went Wrong".localized()
         cell.eventType.text = event.address
         
         return cell

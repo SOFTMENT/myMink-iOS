@@ -94,13 +94,13 @@ class ShowEventViewController: UIViewController {
     }
 
     private func setupEventDetails(event: Event) {
-        eventTitle.text = event.eventTitle ?? "Something Went Wrong"
-        navigationTitle.text = event.eventTitle ?? "Something Went Wrong"
+        eventTitle.text = event.eventTitle ?? "Something Went Wrong".localized()
+        navigationTitle.text = event.eventTitle ?? "Something Went Wrong".localized()
         eventStartDate.text = convertDateForEvent(event.eventStartDate ?? Date())
         eventTime.text = "\(convertTimeFormater(event.eventStartDate ?? Date())) - \(convertTimeFormater(event.eventEndDate ?? Date()))"
         eventAddToCalendar.isUserInteractionEnabled = true
         eventAddToCalendar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addEventToCalendar)))
-        eventDescription.text = event.eventDescription ?? "Something Went Wrong"
+        eventDescription.text = event.eventDescription ?? "Something Went Wrong".localized()
         addressName.text = event.addressName ?? ""
         fullAddress.text = event.address ?? ""
         if let tag = event.tags, !tag.isEmpty {
@@ -109,7 +109,7 @@ class ShowEventViewController: UIViewController {
         }
         
         if let isFree = event.isFree, isFree {
-            ticketPrice.text = "Free!"
+            ticketPrice.text = "Free!".localized()
         } else {
             let price = event.ticketPrice ?? 0
             ticketPrice.text = "\(getCurrencyCode(forRegion: Locale.current.regionCode!) ?? "AU") \(String(format: "%.2f", Double(price)))"
@@ -151,6 +151,13 @@ class ShowEventViewController: UIViewController {
         if segue.identifier == "viewProfileSeg", let VC = segue.destination as? ViewUserProfileController {
             VC.user = self.userModel
         }
+        else if segue.identifier == "sendInviteSeg" {
+            if let VC = segue.destination as? SendEventInviteViewController {
+                if let eventModel = sender as? Event {
+                    VC.eventModel = eventModel
+                }
+            }
+        }
     }
 
     @objc private func viewProfileClick() {
@@ -168,7 +175,8 @@ class ShowEventViewController: UIViewController {
     }
 
     @IBAction func ticketBtnClicked(_ sender: Any) {
-            //Send Invites
+         
+        performSegue(withIdentifier: "sendInviteSeg", sender: event)
     }
 
     @objc private func addEventToCalendar() {
@@ -177,43 +185,43 @@ class ShowEventViewController: UIViewController {
             guard let self = self else { return }
             if granted && error == nil {
                 let cevent = EKEvent(eventStore: eventStore)
-                cevent.title = self.event?.eventTitle ?? "myMINK Event"
+                cevent.title = self.event?.eventTitle ?? "myMINK Event".localized()
                 cevent.startDate = self.event?.eventStartDate ?? Date()
                 cevent.endDate = self.event?.eventEndDate ?? Date()
-                cevent.notes = self.event?.eventDescription ?? "myMINK Description"
+                cevent.notes = self.event?.eventDescription ?? "myMINK Description".localized()
                 cevent.calendar = eventStore.defaultCalendarForNewEvents
                 do {
                     try eventStore.save(cevent, span: .thisEvent)
-                    self.showSnack(messages: "This event has been added to your calendar.")
+                    self.showSnack(messages: "This event has been added to your calendar.".localized())
                 } catch let e as NSError {
                     self.showError(e.localizedDescription)
                 }
             } else {
-                self.showMessage(title: "Permission Denied", message: "Please allow calendar access permission from device settings")
+                self.showMessage(title: "Permission Denied".localized(), message: "Please allow calendar access permission from device settings".localized())
             }
         }
     }
 
     private func showMapOptions(latitude: Double, longitude: Double) {
-        let alertController = UIAlertController(title: "Open Location", message: "Choose a Maps App", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Open Location".localized(), message: "Choose a Maps App".localized(), preferredStyle: .actionSheet)
         
-        let googleMapsAction = UIAlertAction(title: "Google Maps", style: .default) { _ in
+        let googleMapsAction = UIAlertAction(title: "Google Maps".localized(), style: .default) { _ in
             if UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!) {
                 let googleMapsURL = URL(string: "comgooglemaps://?q=\(latitude),\(longitude)")!
                 UIApplication.shared.open(googleMapsURL, options: [:], completionHandler: nil)
             } else {
-                self.showSnack(messages: "Google Maps is not installed.")
+                self.showSnack(messages: "Google Maps is not installed.".localized())
             }
         }
         
-        let appleMapsAction = UIAlertAction(title: "Apple Maps", style: .default) { _ in
+        let appleMapsAction = UIAlertAction(title: "Apple Maps".localized(), style: .default) { _ in
             let coordinate = CLLocationCoordinate2DMake(latitude, longitude)
             let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary: nil))
-            mapItem.name = "Target Location"
+            mapItem.name = "Target Location".localized()
             mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil)
         
         alertController.addAction(googleMapsAction)
         alertController.addAction(appleMapsAction)

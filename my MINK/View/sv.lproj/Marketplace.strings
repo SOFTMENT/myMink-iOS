@@ -1,0 +1,143 @@
+/* Class = "UILabel"; text = "TEDxMileHigh"; ObjectID = "01v-VG-P8e"; */
+"01v-VG-P8e.text" = "TEDxMileHigh";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "2NF-Lp-WEU"; */
+"2NF-Lp-WEU.text" = "Klicka för att lägga till produktbild";
+
+/* Class = "UIButton"; normalTitle = "My Store"; ObjectID = "3CM-4O-gIh"; */
+"3CM-4O-gIh.normalTitle" = "Min butik";
+
+/* Class = "UILabel"; text = "on myMINK"; ObjectID = "4P6-9a-cre"; */
+"4P6-9a-cre.text" = "på myMINK";
+
+/* Class = "UITextView"; text = " "; ObjectID = "8Us-dB-JrW"; */
+"8Us-dB-JrW.text" = " ";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "9fG-6e-ao3"; */
+"9fG-6e-ao3.text" = "Klicka för att lägga till produktbild";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "BfQ-cY-jgi"; */
+"BfQ-cY-jgi.text" = "JPEG eller PNG, inte större än 10 MB.";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "Eyu-M5-BLx"; */
+"Eyu-M5-BLx.text" = "JPEG eller PNG, inte större än 10 MB.";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "H0A-AH-yfk"; */
+"H0A-AH-yfk.text" = "JPEG eller PNG, inte större än 10 MB.";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "JX8-5C-6R2"; */
+"JX8-5C-6R2.normalTitle" = "Uppdatera";
+
+/* Class = "UITextField"; placeholder = "Select Category"; ObjectID = "LVs-gh-DgT"; */
+"LVs-gh-DgT.placeholder" = "Välj kategori";
+
+/* Class = "UILabel"; text = "50 AUD"; ObjectID = "MXZ-c3-idu"; */
+"MXZ-c3-idu.text" = "50 AUD";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "Prk-9c-Kbz"; */
+"Prk-9c-Kbz.text" = "Om";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "T0Z-Xw-6PE"; */
+"T0Z-Xw-6PE.normalTitle" = "Lägg till";
+
+/* Class = "UILabel"; text = "How to prepare and deliver a TED Talk"; ObjectID = "TOS-KZ-j2z"; */
+"TOS-KZ-j2z.text" = "Hur man förbereder och håller ett TED-tal";
+
+/* Class = "UIButton"; normalTitle = "All"; ObjectID = "UOX-5Z-N5k"; */
+"UOX-5Z-N5k.normalTitle" = "Alla";
+
+/* Class = "UITextField"; placeholder = "Price"; ObjectID = "UWb-sd-ebV"; */
+"UWb-sd-ebV.placeholder" = "Pris";
+
+/* Class = "UITextView"; text = " "; ObjectID = "Vsv-eO-bjX"; */
+"Vsv-eO-bjX.text" = " ";
+
+/* Class = "UILabel"; text = "Product Description"; ObjectID = "WaA-QN-zpQ"; */
+"WaA-QN-zpQ.text" = "Produktbeskrivning";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "Y2b-md-1CL"; */
+"Y2b-md-1CL.text" = "Mat & Dryck";
+
+/* Class = "UILabel"; text = "Edit Product"; ObjectID = "Zn8-m3-YbE"; */
+"Zn8-m3-YbE.text" = "Redigera produkt";
+
+/* Class = "UILabel"; text = "Product Image"; ObjectID = "aR0-xX-Enq"; */
+"aR0-xX-Enq.text" = "Produktbild";
+
+/* Class = "UITextField"; placeholder = "Title"; ObjectID = "cAN-Eh-A4O"; */
+"cAN-Eh-A4O.placeholder" = "Titel";
+
+/* Class = "UILabel"; text = "Flipkart, 'India ka Fashion Capital', is your one-stop fashion destination for anything and everything you need to look good."; ObjectID = "d7p-7E-yEt"; */
+"d7p-7E-yEt.text" = "Flipkart, 'Indiens modemecka', är din enda mode-destination för allt du behöver för att se bra ut.";
+
+/* Class = "UILabel"; text = "Add Product"; ObjectID = "dKx-3y-Wkk"; */
+"dKx-3y-Wkk.text" = "Lägg till produkt";
+
+/* Class = "UILabel"; text = "How to prepare and deliver a TED Talk"; ObjectID = "dq2-ma-OrN"; */
+"dq2-ma-OrN.text" = "Hur man förbereder och håller ett TED-tal";
+
+/* Class = "UILabel"; text = "50 AUD"; ObjectID = "ehE-Mz-TY9"; */
+"ehE-Mz-TY9.text" = "50 AUD";
+
+/* Class = "UILabel"; text = "No products available"; ObjectID = "fP0-qy-qF8"; */
+"fP0-qy-qF8.text" = "Inga produkter tillgängliga";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "hBe-bT-uCE"; */
+"hBe-bT-uCE.text" = "Mat & Dryck";
+
+/* Class = "UITextField"; placeholder = "Select Category"; ObjectID = "ht4-Je-3C9"; */
+"ht4-Je-3C9.placeholder" = "Välj kategori";
+
+/* Class = "UITextField"; placeholder = "Search"; ObjectID = "i2E-us-W4o"; */
+"i2E-us-W4o.placeholder" = "Sök";
+
+/* Class = "UILabel"; text = "Product Description"; ObjectID = "iJB-Cn-gVs"; */
+"iJB-Cn-gVs.text" = "Produktbeskrivning";
+
+/* Class = "UIButton"; normalTitle = "Contact"; ObjectID = "iN0-Kz-QRU"; */
+"iN0-Kz-QRU.normalTitle" = "Kontakta";
+
+/* Class = "UILabel"; text = "Gooney"; ObjectID = "l7S-w7-5I3"; */
+"l7S-w7-5I3.text" = "Gooney";
+
+/* Class = "UILabel"; text = "My Store"; ObjectID = "lYE-Pi-DZi"; */
+"lYE-Pi-DZi.text" = "Min butik";
+
+/* Class = "UILabel"; text = "@Leo"; ObjectID = "lvs-ig-kXq"; */
+"lvs-ig-kXq.text" = "@Leo";
+
+/* Class = "UILabel"; text = "No products available"; ObjectID = "oaz-XL-7up"; */
+"oaz-XL-7up.text" = "Inga produkter tillgängliga";
+
+/* Class = "UILabel"; text = "Gooney"; ObjectID = "pqA-PC-IYm"; */
+"pqA-PC-IYm.text" = "Gooney";
+
+/* Class = "UIButton"; normalTitle = "Add More Images"; ObjectID = "qQq-3i-I6O"; */
+"qQq-3i-I6O.normalTitle" = "Lägg till fler bilder";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "s95-Df-Pei"; */
+"s95-Df-Pei.text" = "Mat & Dryck";
+
+/* Class = "UITextField"; placeholder = "Title"; ObjectID = "sUo-nt-IbJ"; */
+"sUo-nt-IbJ.placeholder" = "Titel";
+
+/* Class = "UITextField"; placeholder = "Price"; ObjectID = "tqh-ID-Vd8"; */
+"tqh-ID-Vd8.placeholder" = "Pris";
+
+/* Class = "UILabel"; text = "Use a high quality images: (9: 5 ratio)."; ObjectID = "uIF-rm-vno"; */
+"uIF-rm-vno.text" = "Använd högkvalitativa bilder: (9:5-förhållande).";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "uiI-I9-U6N"; */
+"uiI-I9-U6N.text" = "Klicka för att lägga till produktbild";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "vdw-hI-b4o"; */
+"vdw-hI-b4o.text" = "Klicka för att lägga till produktbild";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "wGe-PJ-VEl"; */
+"wGe-PJ-VEl.text" = "JPEG eller PNG, inte större än 10 MB.";
+
+/* Class = "UILabel"; text = "Marketplace"; ObjectID = "y6X-Hw-k7A"; */
+"y6X-Hw-k7A.text" = "Marknadsplats";
+
+/* Class = "UILabel"; text = "US$ 20"; ObjectID = "yJs-Bc-pWi"; */
+"yJs-Bc-pWi.text" = "US$ 20";

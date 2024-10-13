@@ -1,0 +1,8 @@
+/* Class = "UILabel"; text = "No saved post available"; ObjectID = "Hzl-sa-wPy"; */
+"Hzl-sa-wPy.text" = "Сохраненных публикаций нет";
+
+/* Class = "UILabel"; text = "\"Roaming the world, one adventure at a time.\""; ObjectID = "It6-GO-ykK"; */
+"It6-GO-ykK.text" = "\"Путешествуя по миру, одно приключение за другим.\"";
+
+/* Class = "UILabel"; text = "Saved"; ObjectID = "TCd-kf-eEx"; */
+"TCd-kf-eEx.text" = "Сохранено";

@@ -2,6 +2,7 @@
 
 import UIKit
 import Lottie
+import RevenueCat
 class SuccessViewController: UIViewController {
     @IBOutlet var lottieAnimation: LottieAnimationView!
     
@@ -18,12 +19,9 @@ class SuccessViewController: UIViewController {
     
     private func navigateAfterDelay(seconds: Double) {
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            guard let userID = FirebaseStoreManager.auth.currentUser?.uid else {
-                // Handle the case where user ID is not available
-                self.showError("User ID not available")
-                return
-            }
-            self.getUserData(uid: userID, showProgress: false)
+            
+           
+            self.beRootScreen(storyBoardName: StoryBoard.tabBar, mIdentifier: Identifier.tabBarViewController)
         }
     }
 }

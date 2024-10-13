@@ -71,7 +71,7 @@ class ScheduleLiveViewController: UIViewController {
         if UIPasteboard.general.string != url {
             UIPasteboard.general.string = url
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
-            showSnack(messages: "Copied.")
+            showSnack(messages: "Copied.".localized())
         }
     }
 

@@ -73,7 +73,7 @@ class SearchViewController: UIViewController {
     }
 
      func searchStart(searchText: String) {
-        ProgressHUDShow(text: "Searching...")
+        ProgressHUDShow(text: "Searching...".localized())
         algoliaSearch(searchText: searchText, indexName: .posts, filters: "postType:video OR postType:image") { models in
             DispatchQueue.main.async {
                 self.ProgressHUDHide()

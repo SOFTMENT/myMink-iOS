@@ -1,0 +1,209 @@
+/* Class = "UITextField"; placeholder = "密码"; ObjectID = "0b8-WI-ohd"; */
+"0b8-WI-ohd.placeholder" = "密码";
+
+/* Class = "UILabel"; text = "输入您的详细信息以创建一个新帐户"; ObjectID = "1fm-KV-g8f"; */
+"1fm-KV-g8f.text" = "输入您的详细信息以创建一个新帐户";
+
+/* Class = "UIButton"; normalTitle = "转到登录屏幕"; ObjectID = "1jG-Bz-y8Y"; */
+"1jG-Bz-y8Y.normalTitle" = "转到登录屏幕";
+
+/* Class = "UILabel"; text = "没有帐户？"; ObjectID = "2Zv-NV-eUZ"; */
+"2Zv-NV-eUZ.text" = "没有帐户？";
+
+/* Class = "UITextField"; placeholder = "电子邮件地址"; ObjectID = "3I3-C8-52N"; */
+"3I3-C8-52N.placeholder" = "电子邮件地址";
+
+/* Class = "UILabel"; text = "注册"; ObjectID = "3xR-fE-zsb"; */
+"3xR-fE-zsb.text" = "注册";
+
+/* Class = "UITextField"; placeholder = "验证码"; ObjectID = "5HW-Pl-mIB"; */
+"5HW-Pl-mIB.placeholder" = "验证码";
+
+/* Class = "UILabel"; text = "输入验证码"; ObjectID = "5Ix-sf-BtG"; */
+"5Ix-sf-BtG.text" = "输入验证码";
+
+/* Class = "UILabel"; text = "重新发送验证码"; ObjectID = "5do-Zb-4wW"; */
+"5do-Zb-4wW.text" = "重新发送验证码";
+
+/* Class = "UILabel"; text = "输入您的电子邮件地址以获取验证码"; ObjectID = "5lz-ok-5g6"; */
+"5lz-ok-5g6.text" = "输入您的电子邮件地址以获取验证码";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "7Yp-9H-hqp"; */
+"7Yp-9H-hqp.normalTitle" = "注册";
+
+/* Class = "UIButton"; normalTitle = "创建一个帐户"; ObjectID = "7qc-te-agu"; */
+"7qc-te-agu.normalTitle" = "创建一个帐户";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "88U-ET-d39"; */
+"88U-ET-d39.normalTitle" = "登录";
+
+/* Class = "UIButton"; normalTitle = "开始免费试用"; ObjectID = "8j3-JS-g2E"; */
+"8j3-JS-g2E.normalTitle" = "开始免费试用";
+
+/* Class = "UILabel"; text = "每年"; ObjectID = "9QT-Sp-Vvh"; */
+"9QT-Sp-Vvh.text" = "每年";
+
+/* Class = "UITextField"; placeholder = "密码"; ObjectID = "BVa-JZ-UIL"; */
+"BVa-JZ-UIL.placeholder" = "密码";
+
+/* Class = "UILabel"; text = "使用条款"; ObjectID = "CEF-Tf-gu3"; */
+"CEF-Tf-gu3.text" = "使用条款";
+
+/* Class = "UILabel"; text = "终身"; ObjectID = "CaC-nj-0OM"; */
+"CaC-nj-0OM.text" = "终身";
+
+/* Class = "UIButton"; normalTitle = "推荐"; ObjectID = "Ctt-R4-Y7D"; */
+"Ctt-R4-Y7D.normalTitle" = "推荐";
+
+/* Class = "UITextField"; placeholder = "VIP 代码"; ObjectID = "CzU-RZ-qwx"; */
+"CzU-RZ-qwx.placeholder" = "VIP 代码";
+
+/* Class = "UITextField"; placeholder = "名字"; ObjectID = "FaG-jD-NxL"; */
+"FaG-jD-NxL.placeholder" = "名字";
+
+/* Class = "UILabel"; text = "85% 折扣"; ObjectID = "Fxr-l0-tRg"; */
+"Fxr-l0-tRg.text" = "85% 折扣";
+
+/* Class = "UITextField"; placeholder = "电子邮件地址"; ObjectID = "GH7-Z1-tdw"; */
+"GH7-Z1-tdw.placeholder" = "电子邮件地址";
+
+/* Class = "UILabel"; text = "VIP 代码"; ObjectID = "Gnb-2G-7A9"; */
+"Gnb-2G-7A9.text" = "VIP 代码";
+
+/* Class = "UILabel"; text = "阿斯托里亚, 俄勒冈州, 美国"; ObjectID = "Iwu-hi-Cyq"; */
+"Iwu-hi-Cyq.text" = "阿斯托里亚, 俄勒冈州, 美国";
+
+/* Class = "UILabel"; text = "输入发送到您电子邮件地址的一次性密码"; ObjectID = "JcF-6F-M6z"; */
+"JcF-6F-M6z.text" = "输入发送到您电子邮件地址的一次性密码";
+
+/* Class = "UILabel"; text = "传记"; ObjectID = "Jtg-iH-sXr"; */
+"Jtg-iH-sXr.text" = "传记";
+
+/* Class = "UILabel"; text = "在下面输入您的电子邮件地址和密码"; ObjectID = "K4S-bz-RMy"; */
+"K4S-bz-RMy.text" = "在下面输入您的电子邮件地址和密码";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "KN4-MK-fZl"; */
+"KN4-MK-fZl.normalTitle" = "登录";
+
+/* Class = "UILabel"; text = "在此处输入您的 VIP 代码"; ObjectID = "Ko0-Xi-rHP"; */
+"Ko0-Xi-rHP.text" = "在此处输入您的 VIP 代码";
+
+/* Class = "UILabel"; text = "开始 3 天免费试用"; ObjectID = "LDx-Y9-EOO"; */
+"LDx-Y9-EOO.text" = "开始 3 天免费试用";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "M85-AK-9Z0"; */
+"M85-AK-9Z0.normalTitle" = "注册";
+
+/* Class = "UILabel"; text = "我的 MINK"; ObjectID = "MMO-PY-SUi"; */
+"MMO-PY-SUi.text" = "我的 MINK";
+
+/* Class = "UILabel"; text = "登录"; ObjectID = "McP-re-x07"; */
+"McP-re-x07.text" = "登录";
+
+/* Class = "UILabel"; text = "输入验证码"; ObjectID = "NAp-ya-tuv"; */
+"NAp-ya-tuv.text" = "输入验证码";
+
+/* Class = "UILabel"; text = "找回密码"; ObjectID = "Nh0-LN-KU7"; */
+"Nh0-LN-KU7.text" = "找回密码";
+
+/* Class = "UILabel"; text = "或通过以下方式登录"; ObjectID = "Pxl-Ub-Ji8"; */
+"Pxl-Ub-Ji8.text" = "或通过以下方式登录";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "Q4I-GW-3wp"; */
+"Q4I-GW-3wp.normalTitle" = "登录";
+
+/* Class = "UITextField"; placeholder = "验证码"; ObjectID = "RLZ-sl-BBx"; */
+"RLZ-sl-BBx.placeholder" = "验证码";
+
+/* Class = "UILabel"; text = "太棒了!, 这是您的密码"; ObjectID = "RtB-ib-eLJ"; */
+"RtB-ib-eLJ.text" = "太棒了!, 这是您的密码";
+
+/* Class = "UITextField"; placeholder = "验证码"; ObjectID = "SUy-ib-U0f"; */
+"SUy-ib-U0f.placeholder" = "验证码";
+
+/* Class = "UILabel"; text = "成功"; ObjectID = "UvA-LL-upB"; */
+"UvA-LL-upB.text" = "成功";
+
+/* Class = "UILabel"; text = "登录"; ObjectID = "VPB-HK-bIn"; */
+"VPB-HK-bIn.text" = "登录";
+
+/* Class = "UITextField"; placeholder = "名字"; ObjectID = "YnH-6i-5UV"; */
+"YnH-6i-5UV.placeholder" = "名字";
+
+/* Class = "UILabel"; text = "解锁所有功能，使用应用程序。享受套餐。获取创建自己个人资料的权限，应用相机和滤镜。了解加密市场，探索我的 MINK 聊天机器人。观看短片，听音乐，并通过文字、聊天等进行实时流媒体。"; ObjectID = "ZPO-wB-Qgk"; */
+"ZPO-wB-Qgk.text" = "解锁所有功能，使用应用程序。享受套餐。获取创建自己个人资料的权限，应用相机和滤镜。了解加密市场，探索我的 MINK 聊天机器人。观看短片，听音乐，并通过文字、聊天等进行实时流媒体。";
+
+/* Class = "UITextField"; placeholder = "电话号码"; ObjectID = "aA9-9H-Ty6"; */
+"aA9-9H-Ty6.placeholder" = "电话号码";
+
+/* Class = "UILabel"; text = "每月"; ObjectID = "bcj-1L-UQ9"; */
+"bcj-1L-UQ9.text" = "每月";
+
+/* Class = "UILabel"; text = "$26.99 每年"; ObjectID = "c36-g6-zcS"; */
+"c36-g6-zcS.text" = "$26.99 每年";
+
+/* Class = "UILabel"; text = "重新发送验证码"; ObjectID = "cEQ-un-HD1"; */
+"cEQ-un-HD1.text" = "重新发送验证码";
+
+/* Class = "UITextField"; placeholder = "姓"; ObjectID = "cdi-YT-bHo"; */
+"cdi-YT-bHo.placeholder" = "姓";
+
+/* Class = "UILabel"; text = "在下面输入您的国家代码和电话号码"; ObjectID = "daI-la-2sc"; */
+"daI-la-2sc.text" = "在下面输入您的国家代码和电话号码";
+
+/* Class = "UILabel"; text = "登录"; ObjectID = "dea-ND-EGS"; */
+"dea-ND-EGS.text" = "登录";
+
+/* Class = "UILabel"; text = "忘记密码？"; ObjectID = "e9C-sg-yL1"; */
+"e9C-sg-yL1.text" = "忘记密码？";
+
+/* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "ea8-DQ-oGo"; */
+"ea8-DQ-oGo.normalTitle" = "获取验证码";
+
+/* Class = "UIButton"; normalTitle = "验证"; ObjectID = "eeJ-qI-wEm"; */
+"eeJ-qI-wEm.normalTitle" = "验证";
+
+/* Class = "UILabel"; text = "support@softment.in"; ObjectID = "fGH-Jd-xls"; */
+"fGH-Jd-xls.text" = "support@softment.in";
+
+/* Class = "UILabel"; text = "Password@2020"; ObjectID = "g6a-tG-Yd4"; */
+"g6a-tG-Yd4.text" = "Password@2020";
+
+/* Class = "UIButton"; normalTitle = "继续"; ObjectID = "gfu-cP-N2G"; */
+"gfu-cP-N2G.normalTitle" = "继续";
+
+/* Class = "UITextField"; placeholder = "姓"; ObjectID = "ggh-gb-X9P"; */
+"ggh-gb-X9P.placeholder" = "姓";
+
+/* Class = "UILabel"; text = "注册"; ObjectID = "h5q-27-WKO"; */
+"h5q-27-WKO.text" = "注册";
+
+/* Class = "UILabel"; text = "或重新发送"; ObjectID = "hcz-Cn-udr"; */
+"hcz-Cn-udr.text" = "或重新发送";
+
+/* Class = "UILabel"; text = "已经有账户了？"; ObjectID = "j0H-P0-fNt"; */
+"j0H-P0-fNt.text" = "已经有账户了？";
+
+/* Class = "UILabel"; text = "让我们开始登录或创建您的新 MINK 帐户。"; ObjectID = "jcl-nl-n8K"; */
+"jcl-nl-n8K.text" = "让我们开始登录或创建您的新 MINK 帐户。";
+
+/* Class = "UILabel"; text = "和"; ObjectID = "tNx-OQ-krh"; */
+"tNx-OQ-krh.text" = "和";
+
+/* Class = "UILabel"; text = "或重新发送"; ObjectID = "vDA-SG-6Hl"; */
+"vDA-SG-6Hl.text" = "或重新发送";
+
+/* Class = "UILabel"; text = "记住我"; ObjectID = "w4Q-XT-7ym"; */
+"w4Q-XT-7ym.text" = "记住我";
+
+/* Class = "UITextField"; placeholder = "位置"; ObjectID = "xUO-jf-M6h"; */
+"xUO-jf-M6h.placeholder" = "位置";
+
+/* Class = "UITextField"; placeholder = "验证码"; ObjectID = "xxR-vu-zdU"; */
+"xxR-vu-zdU.placeholder" = "验证码";
+
+/* Class = "UITextField"; placeholder = "电子邮件地址"; ObjectID = "xxb-qk-QkT"; */
+"xxb-qk-QkT.placeholder" = "电子邮件地址";
+
+/* Class = "UILabel"; text = "隐私政策"; ObjectID = "ylU-5L-ddS"; */
+"ylU-5L-ddS.text" = "隐私政策";

@@ -13,15 +13,15 @@ class BookViewController: UIViewController, UIPageViewControllerDataSource {
         setupNavigationBar()
         setupPageViewController()
         if let epubURL = epubURL {
-            self.ProgressHUDShow(text: "Loading Book")
+            self.ProgressHUDShow(text: "Loading Book".localized())
             loadEpubContent(from: epubURL)
         } else {
-            print("EPUB URL is not set")
+            print("EPUB URL is not set".localized())
         }
     }
 
     private func setupNavigationBar() {
-        let backButton = UIBarButtonItem(title: "Exit", style: .plain, target: self, action: #selector(backButtonTapped))
+        let backButton = UIBarButtonItem(title: "Exit".localized(), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = backButton
     }
 

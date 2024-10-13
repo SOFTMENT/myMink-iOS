@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
     var cell: PostTableViewCell!
     var postModels = [PostModel]()
     var postDocumentSnapshot: DocumentSnapshot?
-    var pageSize = 10
+    var pageSize = 8
     var dataMayContinue = true
     var uniquePostIDs: Set<String> = Set()
     var activePlayers: [AVPlayer] = []
@@ -69,7 +69,7 @@ class HomeViewController: UIViewController {
         setupObservers()
         setupCountryModel()
         
-        if haveBlueTick() {
+        if haveBlueTick(userModel: UserModel.data) {
             getFollowingPosts()
         } else {
             getAllPosts()
@@ -133,6 +133,8 @@ class HomeViewController: UIViewController {
 
     private func setupNotificationView() {
         notificationView.layer.cornerRadius = 8
+        notificationView.isUserInteractionEnabled = true
+        notificationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationViewClicked)))
     }
 
     private func setupMessageView() {
@@ -172,6 +174,8 @@ class HomeViewController: UIViewController {
         tableView.contentInsetAdjustmentBehavior = .never
     }
 
+
+    
     private func setupPlayerPool() {
         playerPool = PlayerPool(playerCount: 6)
     }
@@ -242,11 +246,13 @@ class HomeViewController: UIViewController {
 
         query.getDocuments { snapshot, error in
             if let error = error {
+                self.ProgressHUDHide()
                 self.handleError(error)
                 return
             }
             guard let snapshot = snapshot, !snapshot.isEmpty else {
                 self.stopSpinner()
+                self.ProgressHUDHide()
                 return
             }
             self.processSnapshot(snapshot, documents: documents)
@@ -266,17 +272,12 @@ class HomeViewController: UIViewController {
                 if let postModel = processedPostModel {
                     self.checkCurrentUserLikedPost(postID: postModel.postID ?? "") { isLike in
                      
-                        if isLike {
-                            FavoritesManager.shared.toggleFavorite(for: postModel.postID ?? "", isLiked: isLike)
-                        }
-                       
+                     
                         FavoritesManager.shared.setFavorites(with: postModel.postID ?? "", isLiked: isLike)
                         
                     }
                     self.checkCurrentUserSavePost(postID: postModel.postID ?? "") { isSave in
-                        if isSave {
-                            SavedManager.shared.toggleSave(for: postModel.postID ?? "", isSave: isSave)
-                        }
+
                      
                         SavedManager.shared.setSave(with: postModel.postID ?? "", isSave: isSave)
                     }
@@ -305,7 +306,7 @@ class HomeViewController: UIViewController {
 
     private func alertWithTF(postID: String) {
         let alertController = UIAlertController(
-            title: "Report",
+            title: "Report".localized(),
             message: "\n\n\n\n\n",
             preferredStyle: .alert
         ) // Added extra newlines for textView space
@@ -317,10 +318,10 @@ class HomeViewController: UIViewController {
 
         alertController.view.addSubview(textView)
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .default, handler: nil)
         alertController.addAction(cancelAction)
 
-        let saveAction = UIAlertAction(title: "Submit", style: .default) { _ in
+        let saveAction = UIAlertAction(title: "Submit".localized(), style: .default) { _ in
             let enteredText = textView.text ?? ""
             if !enteredText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 self.reportPost(reason: enteredText, postID: postID) { message in
@@ -328,7 +329,7 @@ class HomeViewController: UIViewController {
                 }
             } else {
                 // Handle empty text case
-                self.showSnack(messages: "Please enter a reason for reporting.")
+                self.showSnack(messages: "Please enter a reason for reporting.".localized())
             }
         }
         alertController.addAction(saveAction)
@@ -389,7 +390,7 @@ class HomeViewController: UIViewController {
     private func getFollowingPosts(shouldScrollToTop: Bool = false) {
         showProgressHUDIfNeeded()
         guard let userId = Auth.auth().currentUser?.uid else {
-            // handle error
+            self.ProgressHUDHide()
             return
         }
         let feedRef = FirebaseStoreManager.db.collection(Collections.feeds.rawValue).document(userId)
@@ -409,6 +410,7 @@ class HomeViewController: UIViewController {
                 self.scrollToTop(animated: true)
             }
             if let error = error {
+                self.ProgressHUDHide()
                 self.handleError(error)
                 return
             }
@@ -419,6 +421,7 @@ class HomeViewController: UIViewController {
                 return
             }
 
+         
             self.postDocumentSnapshot = snapshot.documents.last
             let postIds = snapshot.documents.map { $0.documentID }
             self.fetchPosts(postIds: postIds, documents: snapshot.documents)
@@ -426,7 +429,7 @@ class HomeViewController: UIViewController {
     }
 
     private func getAllPosts(shouldScrollToTop: Bool = false) {
-        showProgressHUDIfNeeded()
+       showProgressHUDIfNeeded()
         var query = FirebaseStoreManager.db.collection(Collections.posts.rawValue)
             .order(by: "postCreateDate", descending: true)
             .whereField("isActive", isEqualTo: true)
@@ -460,7 +463,7 @@ class HomeViewController: UIViewController {
     }
 
     private func searchStart(searchText: String) {
-        ProgressHUDShow(text: "Searching...")
+        ProgressHUDShow(text: "Searching...".localized())
         algoliaSearch(searchText: searchText, indexName: .posts, filters: "") { models in
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
@@ -529,6 +532,13 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
+    @objc func notificationViewClicked() {
+        
+        
+        Constants.selectedTabBarPosition = 5
+        self.beRootScreen(storyBoardName: StoryBoard.tabBar, mIdentifier: Identifier.tabBarViewController)
+    }
 
     // MARK: - Action Methods
     @objc func tempViewClicked() {
@@ -568,7 +578,7 @@ class HomeViewController: UIViewController {
         uniquePostIDs.removeAll()
         postDocumentSnapshot = nil
 
-        if haveBlueTick() {
+        if haveBlueTick(userModel: UserModel.data) {
             getFollowingPosts(shouldScrollToTop: true)
         } else {
             getAllPosts(shouldScrollToTop: true)
@@ -599,7 +609,7 @@ class HomeViewController: UIViewController {
                 if let shareURL = postModel.shareURL, !shareURL.isEmpty {
                     shareImageAndVideo(postCell: value.postCell, link: shareURL, postId: postModel.postID ?? "")
                 } else {
-                    showSnack(messages: "Share URL not found.")
+                    showSnack(messages: "Share URL not found.".localized())
                 }
             } else {
                 if let image = preparePostScreenshot(view: value.postCell.mView) {
@@ -622,7 +632,7 @@ class HomeViewController: UIViewController {
     }
 
     @objc func likeBtnClicked(gest: MyGesture) {
-        onPressLikeButton(postId: postModels[gest.index].postID ?? "", gest: gest)
+        onPressLikeButton(postModel: postModels[gest.index], gest: gest)
     }
 
     @objc func saveBtnClicked(gest: MyGesture) {
@@ -703,7 +713,7 @@ class HomeViewController: UIViewController {
         UIPasteboard.general.string = caption
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
-        showSnack(messages: "Caption has copied.")
+        showSnack(messages: "Caption has copied.".localized())
     }
 
     @objc func deletePostClicked(postModel: PostModel, completion: @escaping (String?) -> Void) {
@@ -735,13 +745,16 @@ class HomeViewController: UIViewController {
             switch linkType {
             case BranchIOFeature.liveStream.rawValue:
                 handleLivestreamLink(params)
-            case BranchIOFeature.post.rawValue:
+            case BranchIOFeature.userProfile.rawValue:
                 handleUserLink(params)
+           
             default:
                 print("Unknown link type")
             }
         }
     }
+    
+   
 
     func handleLivestreamLink(_ params: [String: AnyObject]) {
         if let uid = params["uid"] as? String {
@@ -752,7 +765,7 @@ class HomeViewController: UIViewController {
                     if let liveModel = liveModel, let isOnline = liveModel.isOnline, isOnline {
                         self.performSegue(withIdentifier: "joinLiveStreamSeg", sender: liveModel)
                     } else {
-                        self.showMessage(title: "Livestraming", message: "Host is not live.", shouldDismiss: false)
+                        self.showMessage(title: "Livestraming".localized(), message: "Host is not live.".localized(), shouldDismiss: false)
                     }
                 }
             }
@@ -783,7 +796,7 @@ class HomeViewController: UIViewController {
         spinner.startAnimating()
         tableView.tableFooterView = spinner
 
-        if haveBlueTick() {
+        if haveBlueTick(userModel: UserModel.data) {
             getFollowingPosts()
         } else {
             getAllPosts()
@@ -1029,7 +1042,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             let report = UIAction(
-                title: "Report",
+                title: "Report".localized(),
                 image: UIImage(systemName: "exclamationmark.triangle.fill")
             ) { _ in
                 
@@ -1040,8 +1053,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             uiMenuElements.append(report)
             
             if let caption = postModel.caption, !caption.isEmpty {
-                let transalte = UIAction(title: "Translate", image: UIImage(systemName: "translate")) { _ in
-                    self.ProgressHUDShow(text: "Translating...")
+                let transalte = UIAction(title: "Translate".localized(), image: UIImage(systemName: "translate")) { _ in
+                    self.ProgressHUDShow(text: "Translating...".localized())
                     TranslationService.shared.translateText(text: caption) { translateString in
                         DispatchQueue.main.async {
                             self.ProgressHUDHide()
@@ -1379,14 +1392,7 @@ extension HomeViewController: MediaBrowserViewControllerDataSource {
     }
 }
 
-// MARK: ReloadTableViewDelegate
 
-extension HomeViewController: ReloadTableViewDelegate {
-    func reloadTableView() {
-        self.tableView.reloadData()
-        self.handleScroll()
-    }
-}
 
 extension NSLayoutConstraint {
     func constraintWithMultiplier(_ multiplier: CGFloat) -> NSLayoutConstraint {

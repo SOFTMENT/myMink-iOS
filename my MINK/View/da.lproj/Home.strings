@@ -1,0 +1,371 @@
+/* Class = "UILabel"; text = "0"; ObjectID = "01Z-DA-FcC"; */
+"01Z-DA-FcC.text" = "0";
+
+/* Class = "UILabel"; text = "QR Code"; ObjectID = "09Q-JI-8Kh"; */
+"09Q-JI-8Kh.text" = "QR-kode";
+
+/* Class = "UILabel"; text = "Following"; ObjectID = "0Lt-je-c5W"; */
+"0Lt-je-c5W.text" = "Følger";
+
+/* Class = "UILabel"; text = "Joined on 26 Jun 2023"; ObjectID = "0Nw-bu-ELF"; */
+"0Nw-bu-ELF.text" = "Tilmeldt den 26. jun 2023";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "0Xg-aV-Xoo"; */
+"0Xg-aV-Xoo.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Follow"; ObjectID = "0om-0c-qbB"; */
+"0om-0c-qbB.normalTitle" = "Følg";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "1M8-a3-WEH"; */
+"1M8-a3-WEH.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "3Im-oC-x0v"; */
+"3Im-oC-x0v.text" = "0";
+
+/* Class = "UILabel"; text = "Andrew Smith"; ObjectID = "49B-zY-0tU"; */
+"49B-zY-0tU.text" = "Andrew Smith";
+
+/* Class = "UILabel"; text = "Welcome"; ObjectID = "4An-af-Mgr"; */
+"4An-af-Mgr.text" = "Velkommen";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "4Y2-vZ-if5"; */
+"4Y2-vZ-if5.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Share Profile"; ObjectID = "5Hb-cx-iz0"; */
+"5Hb-cx-iz0.normalTitle" = "Del Profil";
+
+/* Class = "UIButton"; normalTitle = "Follow"; ObjectID = "6LN-Fq-lrZ"; */
+"6LN-Fq-lrZ.normalTitle" = "Følg";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "7Gu-JR-LYN"; */
+"7Gu-JR-LYN.text" = "0";
+
+/* Class = "UILabel"; text = "4 0f 11"; ObjectID = "8Aa-cQ-wn6"; */
+"8Aa-cQ-wn6.text" = "4 af 11";
+
+/* Class = "UILabel"; text = "UserName"; ObjectID = "909-Bd-Hxl"; */
+"909-Bd-Hxl.text" = "Brugernavn";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "9aA-RD-6jF"; */
+"9aA-RD-6jF.text" = "0";
+
+/* Class = "UILabel"; text = "Sponsored"; ObjectID = "ARl-oE-q79"; */
+"ARl-oE-q79.text" = "Sponsoreret";
+
+/* Class = "UILabel"; text = "Developer"; ObjectID = "AYr-uM-BwM"; */
+"AYr-uM-BwM.text" = "Udvikler";
+
+/* Class = "UILabel"; text = "Image"; ObjectID = "Aiz-uH-KZa"; */
+"Aiz-uH-KZa.text" = "Billede";
+
+/* Class = "UILabel"; text = "No messages available"; ObjectID = "Bly-E3-PNa"; */
+"Bly-E3-PNa.text" = "Ingen beskeder tilgængelige";
+
+/* Class = "UILabel"; text = "my MINK"; ObjectID = "CSQ-4O-w0x"; */
+"CSQ-4O-w0x.text" = "my MINK";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Dy5-Eg-HmE"; */
+"Dy5-Eg-HmE.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "EY9-bX-uU5"; */
+"EY9-bX-uU5.text" = "0";
+
+/* Class = "UILabel"; text = "Pressure"; ObjectID = "Eu7-m5-vTA"; */
+"Eu7-m5-vTA.text" = "Tryk";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "FSP-Ih-JHf"; */
+"FSP-Ih-JHf.text" = "0";
+
+/* Class = "UITextField"; placeholder = "Search "; ObjectID = "G6K-JM-nED"; */
+"G6K-JM-nED.placeholder" = "Søg ";
+
+/* Class = "UILabel"; text = "Vijay Rathore"; ObjectID = "G6e-ZT-rKV"; */
+"G6e-ZT-rKV.text" = "Vijay Rathore";
+
+/* Class = "UITextView"; text = " "; ObjectID = "Hy1-zk-nQP"; */
+"Hy1-zk-nQP.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "Scan QR"; ObjectID = "Ico-7D-ogF"; */
+"Ico-7D-ogF.normalTitle" = "Scan QR";
+
+/* Class = "UILabel"; text = "28.8°C"; ObjectID = "IuQ-n3-aaF"; */
+"IuQ-n3-aaF.text" = "28.8°C";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Jlb-pG-USl"; */
+"Jlb-pG-USl.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Post"; ObjectID = "JsS-6O-z0n"; */
+"JsS-6O-z0n.normalTitle" = "Opslag";
+
+/* Class = "UILabel"; text = "SOFTMENT"; ObjectID = "KrI-hB-sG8"; */
+"KrI-hB-sG8.text" = "SOFTMENT";
+
+/* Class = "UILabel"; text = "www.mymink.com.au"; ObjectID = "LYG-6O-faE"; */
+"LYG-6O-faE.text" = "www.mymink.com.au";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Lmd-9g-RF3"; */
+"Lmd-9g-RF3.text" = "0";
+
+/* Class = "UITextField"; placeholder = "Search Posts"; ObjectID = "LrK-9t-PVV"; */
+"LrK-9t-PVV.placeholder" = "Søg Indlæg";
+
+/* Class = "UILabel"; text = "No posts available"; ObjectID = "MXp-7g-QZr"; */
+"MXp-7g-QZr.text" = "Ingen indlæg tilgængelige";
+
+/* Class = "UILabel"; text = "Image"; ObjectID = "N2N-CS-4fe"; */
+"N2N-CS-4fe.text" = "Billede";
+
+/* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "NMG-hW-vHH"; */
+"NMG-hW-vHH.normalTitle" = "Rediger";
+
+/* Class = "UITextField"; placeholder = "Search "; ObjectID = "NZw-e6-Eam"; */
+"NZw-e6-Eam.placeholder" = "Søg ";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Nv7-I7-R5i"; */
+"Nv7-I7-R5i.text" = "0";
+
+/* Class = "UILabel"; text = "support@mymink.com.au"; ObjectID = "O9g-tj-qRK"; */
+"O9g-tj-qRK.text" = "support@mymink.com.au";
+
+/* Class = "UILabel"; text = "All"; ObjectID = "PV6-Kw-MLQ"; */
+"PV6-Kw-MLQ.text" = "Alle";
+
+/* Class = "UILabel"; text = "Please align the QR Code within the scanner"; ObjectID = "Qac-qr-YJn"; */
+"Qac-qr-YJn.text" = "Venligst juster QR-koden i scanneren";
+
+/* Class = "UILabel"; text = "Scan QR Code"; ObjectID = "RPL-EN-WU9"; */
+"RPL-EN-WU9.text" = "Scan QR-kode";
+
+/* Class = "UILabel"; text = "Add Caption"; ObjectID = "Rn0-0j-Rsm"; */
+"Rn0-0j-Rsm.text" = "Tilføj Billedtekst";
+
+/* Class = "UILabel"; text = "| 02:39 PM"; ObjectID = "RxY-Wu-dgK"; */
+"RxY-Wu-dgK.text" = "| 02:39 PM";
+
+/* Class = "UILabel"; text = "\"Roaming the world, one adventure at a time.\""; ObjectID = "SKV-EF-GAd"; */
+"SKV-EF-GAd.text" = "\"Oplever verden, én eventyr ad gangen.\"";
+
+/* Class = "UILabel"; text = "45%"; ObjectID = "SQl-5y-kvU"; */
+"SQl-5y-kvU.text" = "45%";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "ST9-aC-3ju"; */
+"ST9-aC-3ju.text" = "0";
+
+/* Class = "UILabel"; text = "Me"; ObjectID = "SY0-tb-afq"; */
+"SY0-tb-afq.text" = "Mig";
+
+/* Class = "UILabel"; text = "28°C"; ObjectID = "Sal-7O-qQK"; */
+"Sal-7O-qQK.text" = "28°C";
+
+/* Class = "UILabel"; text = "28°C"; ObjectID = "TCj-vR-MII"; */
+"TCj-vR-MII.text" = "28°C";
+
+/* Class = "UILabel"; text = "Reel"; ObjectID = "VmA-QK-pWU"; */
+"VmA-QK-pWU.text" = "Reel";
+
+/* Class = "UILabel"; text = "No comments available"; ObjectID = "VvE-WC-u7d"; */
+"VvE-WC-u7d.text" = "Ingen kommentarer tilgængelige";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "Xhm-al-Cz0"; */
+"Xhm-al-Cz0.text" = "|";
+
+/* Class = "UILabel"; text = "5 minutes ago"; ObjectID = "Xsa-WX-vuR"; */
+"Xsa-WX-vuR.text" = "5 minutter siden";
+
+/* Class = "UILabel"; text = "..."; ObjectID = "YGH-ZW-0Kl"; */
+"YGH-ZW-0Kl.text" = "...";
+
+/* Class = "UILabel"; text = "Full Name"; ObjectID = "ZIS-78-ULi"; */
+"ZIS-78-ULi.text" = "Fulde Navn";
+
+/* Class = "UILabel"; text = "Full Name"; ObjectID = "Zll-rV-FKN"; */
+"Zll-rV-FKN.text" = "Fulde Navn";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "a2k-td-MaC"; */
+"a2k-td-MaC.text" = "Indlæg";
+
+/* Class = "UILabel"; text = "Temprature"; ObjectID = "aHh-pE-xEI"; */
+"aHh-pE-xEI.text" = "Temperatur";
+
+/* Class = "UILabel"; text = "..."; ObjectID = "agc-bd-cqO"; */
+"agc-bd-cqO.text" = "...";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "bYi-EC-vnu"; */
+"bYi-EC-vnu.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "beO-AA-heD"; */
+"beO-AA-heD.normalTitle" = "Rediger";
+
+/* Class = "UILabel"; text = "Messages"; ObjectID = "bhe-43-ryg"; */
+"bhe-43-ryg.text" = "Beskeder";
+
+/* Class = "UILabel"; text = "Reel"; ObjectID = "by9-Lr-5ni"; */
+"by9-Lr-5ni.text" = "Reel";
+
+/* Class = "UILabel"; text = "Add Caption"; ObjectID = "cAV-fY-1U8"; */
+"cAV-fY-1U8.text" = "Tilføj Billedtekst";
+
+/* Class = "UILabel"; text = "Text"; ObjectID = "cS4-rN-gnO"; */
+"cS4-rN-gnO.text" = "Tekst";
+
+/* Class = "UIButton"; normalTitle = "Update Post"; ObjectID = "cdL-U1-0W9"; */
+"cdL-U1-0W9.normalTitle" = "Opdater Indlæg";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "d6F-Tr-dBD"; */
+"d6F-Tr-dBD.text" = "0";
+
+/* Class = "UILabel"; text = "my MINK"; ObjectID = "dZK-xI-cAl"; */
+"dZK-xI-cAl.text" = "my MINK";
+
+/* Class = "UILabel"; text = "No users available"; ObjectID = "dbM-NM-pgc"; */
+"dbM-NM-pgc.text" = "Ingen brugere tilgængelige";
+
+/* Class = "UILabel"; text = "This is your unique QR Code for another person to scan"; ObjectID = "dw5-3P-ozx"; */
+"dw5-3P-ozx.text" = "Dette er din unikke QR-kode, som en anden kan scanne";
+
+/* Class = "UILabel"; text = "Create a Post"; ObjectID = "eCa-zG-BfF"; */
+"eCa-zG-BfF.text" = "Opret et Indlæg";
+
+/* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "eF0-pT-SGr"; */
+"eF0-pT-SGr.normalTitle" = "Rediger";
+
+/* Class = "UILabel"; text = "28°C"; ObjectID = "ecE-0R-es2"; */
+"ecE-0R-es2.text" = "28°C";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "ecn-W1-i0N"; */
+"ecn-W1-i0N.text" = "0";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "fLX-4F-Q6n"; */
+"fLX-4F-Q6n.text" = "|";
+
+/* Class = "UILabel"; text = "@softment"; ObjectID = "fZa-44-6tg"; */
+"fZa-44-6tg.text" = "@softment";
+
+/* Class = "UITextView"; text = "📞 VIDEO CALL"; ObjectID = "fb7-qn-OL1"; */
+"fb7-qn-OL1.text" = "📞 VIDEOOPKALD";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "ffh-e7-1Ix"; */
+"ffh-e7-1Ix.text" = "0";
+
+/* Class = "UILabel"; text = "Wind"; ObjectID = "fgs-2i-t4k"; */
+"fgs-2i-t4k.text" = "Vind";
+
+/* Class = "UILabel"; text = "a moment ago"; ObjectID = "ftl-Lm-QVc"; */
+"ftl-Lm-QVc.text" = "for et øjeblik siden";
+
+/* Class = "UILabel"; text = "+917869992340"; ObjectID = "gwm-IA-lRs"; */
+"gwm-IA-lRs.text" = "+917869992340";
+
+/* Class = "UITextView"; text = " "; ObjectID = "hDa-gk-PCe"; */
+"hDa-gk-PCe.text" = " ";
+
+/* Class = "UILabel"; text = "UV Index"; ObjectID = "htr-Jw-i0J"; */
+"htr-Jw-i0J.text" = "UV-indeks";
+
+/* Class = "UILabel"; text = "45/23, near shiv shree cinema, totalaa marg tarana"; ObjectID = "j4L-eS-eg5"; */
+"j4L-eS-eg5.text" = "45/23, nær Shiv Shree Cinema, Totalaa Marg Tarana";
+
+/* Class = "UILabel"; text = "0 Posts"; ObjectID = "j8E-gp-j9Y"; */
+"j8E-gp-j9Y.text" = "0 Indlæg";
+
+/* Class = "UILabel"; text = "8.5 km"; ObjectID = "ju8-Rf-JbA"; */
+"ju8-Rf-JbA.text" = "8.5 km";
+
+/* Class = "UILabel"; text = "Create a Post"; ObjectID = "kmR-CK-ae9"; */
+"kmR-CK-ae9.text" = "Opret et Indlæg";
+
+/* Class = "UILabel"; text = "12/km "; ObjectID = "kmy-2k-YOG"; */
+"kmy-2k-YOG.text" = "12/km ";
+
+/* Class = "UILabel"; text = "a moment ago"; ObjectID = "kuM-Gs-mDd"; */
+"kuM-Gs-mDd.text" = "for et øjeblik siden";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "lJt-GH-nqP"; */
+"lJt-GH-nqP.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Chat"; ObjectID = "ldw-rR-UWE"; */
+"ldw-rR-UWE.normalTitle" = "Chat";
+
+/* Class = "UILabel"; text = "Post Created"; ObjectID = "lj9-Uo-awi"; */
+"lj9-Uo-awi.text" = "Indlæg Oprettet";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "lkF-ic-JTv"; */
+"lkF-ic-JTv.text" = "0";
+
+/* Class = "UILabel"; text = "Views"; ObjectID = "m2e-DT-Mqk"; */
+"m2e-DT-Mqk.text" = "Visninger";
+
+/* Class = "UILabel"; text = "my MINK"; ObjectID = "mAB-AL-Dw6"; */
+"mAB-AL-Dw6.text" = "my MINK";
+
+/* Class = "UILabel"; text = "16 Jun 2023"; ObjectID = "mTL-2S-Q1P"; */
+"mTL-2S-Q1P.text" = "16. jun 2023";
+
+/* Class = "UIButton"; normalTitle = "Copy Link"; ObjectID = "mkb-0F-RaB"; */
+"mkb-0F-RaB.normalTitle" = "Kopiér Link";
+
+/* Class = "UILabel"; text = "Feels Like"; ObjectID = "my6-TP-AKg"; */
+"my6-TP-AKg.text" = "Føles som";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "myr-1A-gO5"; */
+"myr-1A-gO5.text" = "0";
+
+/* Class = "UILabel"; text = "Followers"; ObjectID = "nH0-oc-Bql"; */
+"nH0-oc-Bql.text" = "Følgere";
+
+/* Class = "UILabel"; text = "Hello, How are you?"; ObjectID = "oiT-R3-r0f"; */
+"oiT-R3-r0f.text" = "Hej, Hvordan har du det?";
+
+/* Class = "UILabel"; text = "Indore Madhaya Pradesh "; ObjectID = "pEJ-Rf-m12"; */
+"pEJ-Rf-m12.text" = "Indore Madhya Pradesh ";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "pJ8-O5-eav"; */
+"pJ8-O5-eav.text" = "0";
+
+/* Class = "UILabel"; text = "..."; ObjectID = "ptc-8N-FrG"; */
+"ptc-8N-FrG.text" = "...";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "rZe-hY-PQJ"; */
+"rZe-hY-PQJ.text" = "Indlæg";
+
+/* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "sUw-cB-lT5"; */
+"sUw-cB-lT5.normalTitle" = "Rediger";
+
+/* Class = "UILabel"; text = "Humidity"; ObjectID = "tNa-Qf-aEE"; */
+"tNa-Qf-aEE.text" = "Fugtighed";
+
+/* Class = "UILabel"; text = "Edit Post"; ObjectID = "tVp-3M-tYk"; */
+"tVp-3M-tYk.text" = "Rediger Indlæg";
+
+/* Class = "UITextView"; text = "📞 VIDEO CALL"; ObjectID = "uLx-8B-BjS"; */
+"uLx-8B-BjS.text" = "📞 VIDEOOPKALD";
+
+/* Class = "UILabel"; text = "Comments"; ObjectID = "uzq-0d-x6A"; */
+"uzq-0d-x6A.text" = "Kommentarer";
+
+/* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "vnz-rb-guz"; */
+"vnz-rb-guz.normalTitle" = "Rediger";
+
+/* Class = "UILabel"; text = "Create a Post"; ObjectID = "vt9-93-OZB"; */
+"vt9-93-OZB.text" = "Opret et Indlæg";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "wMd-SB-GcH"; */
+"wMd-SB-GcH.text" = "0";
+
+/* Class = "UILabel"; text = "Visibility"; ObjectID = "wlx-oz-p5e"; */
+"wlx-oz-p5e.text" = "Synlighed";
+
+/* Class = "UILabel"; text = "No posts available"; ObjectID = "x3W-35-wjI"; */
+"x3W-35-wjI.text" = "Ingen indlæg tilgængelige";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "x3Z-n8-vZL"; */
+"x3Z-n8-vZL.text" = "0";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "ywJ-iE-bvQ"; */
+"ywJ-iE-bvQ.text" = "|";
+
+/* Class = "UILabel"; text = "Likes"; ObjectID = "yyJ-Du-kUO"; */
+"yyJ-Du-kUO.text" = "Synes godt om";
+
+/* Class = "UILabel"; text = "10.16 mb"; ObjectID = "zqA-cr-S7Z"; */
+"zqA-cr-S7Z.text" = "10.16 mb";

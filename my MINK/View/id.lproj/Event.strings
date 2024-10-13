@@ -1,0 +1,410 @@
+/* Class = "UILabel"; text = "Sat, Jul 24 • 11:00 AM"; ObjectID = "1HM-uV-iwd"; */
+"1HM-uV-iwd.text" = "Sabtu, 24 Jul • 11:00 AM";
+
+/* Class = "UILabel"; text = "Street Address"; ObjectID = "1Mp-VI-7n5"; */
+"1Mp-VI-7n5.text" = "Alamat Jalan";
+
+/* Class = "UILabel"; text = "Add more details to your event like your schedule, sponsors, or featured guests."; ObjectID = "1bn-tU-XrC"; */
+"1bn-tU-XrC.text" = "Tambahkan lebih banyak detail ke acara Anda seperti jadwal, sponsor, atau tamu unggulan.";
+
+/* Class = "UIButton"; normalTitle = "Add More Images"; ObjectID = "1vc-ya-A0A"; */
+"1vc-ya-A0A.normalTitle" = "Tambahkan Lebih Banyak Gambar";
+
+/* Class = "UILabel"; text = "Movin Presents : Suaturday Night DJ Party Suaturday Night DJ Party"; ObjectID = "2LN-BF-dfV"; */
+"2LN-BF-dfV.text" = "Movin Presents: Sabtu Malam Pesta DJ Sabtu Malam Pesta DJ";
+
+/* Class = "UILabel"; text = "How to prepare and deliver a TED Talk"; ObjectID = "2PD-RG-CAK"; */
+"2PD-RG-CAK.text" = "Cara mempersiapkan dan menyampaikan TED Talk";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "2aj-xI-WyZ"; */
+"2aj-xI-WyZ.text" = "Tentang";
+
+/* Class = "UILabel"; text = "No Events Available"; ObjectID = "2s8-n5-bmk"; */
+"2s8-n5-bmk.text" = "Tidak Ada Acara Tersedia";
+
+/* Class = "UIButton"; normalTitle = "Free"; ObjectID = "31M-qM-5zS"; */
+"31M-qM-5zS.normalTitle" = "Gratis";
+
+/* Class = "UILabel"; text = "Tags"; ObjectID = "38z-ZY-y79"; */
+"38z-ZY-y79.text" = "Tag";
+
+/* Class = "UILabel"; text = "Saturday, 26 July"; ObjectID = "4gZ-6s-QSp"; */
+"4gZ-6s-QSp.text" = "Sabtu, 26 Juli";
+
+/* Class = "UILabel"; text = "Event Image"; ObjectID = "5Ia-BP-fG5"; */
+"5Ia-BP-fG5.text" = "Gambar Acara";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "6AO-Uz-Oln"; */
+"6AO-Uz-Oln.text" = "JPEG atau PNG, tidak lebih dari 10MB.";
+
+/* Class = "UILabel"; text = "TEDxMileHigh"; ObjectID = "6J0-gb-zgg"; */
+"6J0-gb-zgg.text" = "TEDxMileHigh";
+
+/* Class = "UILabel"; text = "0 / 75"; ObjectID = "6K3-Lg-buL"; */
+"6K3-Lg-buL.text" = "0 / 75";
+
+/* Class = "UITextField"; placeholder = "Address*"; ObjectID = "6LV-zO-aP2"; */
+"6LV-zO-aP2.placeholder" = "Alamat*";
+
+/* Class = "UILabel"; text = "US$ 20"; ObjectID = "6Q0-qS-k2L"; */
+"6Q0-qS-k2L.text" = "US$ 20";
+
+/* Class = "UILabel"; text = "DB Mall Bhopal"; ObjectID = "6Qk-Fc-qRt"; */
+"6Qk-Fc-qRt.text" = "DB Mall Bhopal";
+
+/* Class = "UITextField"; placeholder = "Event Title*"; ObjectID = "6YF-Po-4X6"; */
+"6YF-Po-4X6.placeholder" = "Judul Acara*";
+
+/* Class = "UILabel"; text = "Date and time"; ObjectID = "7GF-Sc-CbY"; */
+"7GF-Sc-CbY.text" = "Tanggal dan Waktu";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "8dg-8p-d0u"; */
+"8dg-8p-d0u.text" = "JPEG atau PNG, tidak lebih dari 10MB.";
+
+/* Class = "UILabel"; text = "Times are displayed on your local timezone"; ObjectID = "9U7-VT-b2c"; */
+"9U7-VT-b2c.text" = "Waktu ditampilkan di zona waktu lokal Anda";
+
+/* Class = "UITextField"; placeholder = "Postal Code*"; ObjectID = "A0L-MS-2j0"; */
+"A0L-MS-2j0.placeholder" = "Kode Pos*";
+
+/* Class = "UITextField"; placeholder = "Price*"; ObjectID = "Bsl-7g-08L"; */
+"Bsl-7g-08L.placeholder" = "Harga*";
+
+/* Class = "UILabel"; text = "Improve discoverability of your event by adding tags relevant to the subject matter."; ObjectID = "D4g-eO-Sdk"; */
+"D4g-eO-Sdk.text" = "Tingkatkan visibilitas acara Anda dengan menambahkan tag yang relevan dengan topik acara.";
+
+/* Class = "UITextField"; placeholder = "Tag*"; ObjectID = "Dcv-1b-L2S"; */
+"Dcv-1b-L2S.placeholder" = "Tag*";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "Dqb-HQ-XlJ"; */
+"Dqb-HQ-XlJ.text" = "Klik untuk menambahkan gambar acara";
+
+/* Class = "UILabel"; text = "12:30 PM - 1:30 PM"; ObjectID = "EjG-yl-SVH"; */
+"EjG-yl-SVH.text" = "12:30 PM - 1:30 PM";
+
+/* Class = "UITextField"; placeholder = "Event Title*"; ObjectID = "EkG-lD-oi3"; */
+"EkG-lD-oi3.placeholder" = "Judul Acara*";
+
+/* Class = "UITextField"; placeholder = "Search for a venue or address."; ObjectID = "EpK-Jp-jZl"; */
+"EpK-Jp-jZl.placeholder" = "Cari tempat atau alamat.";
+
+/* Class = "UILabel"; text = "0 / 75"; ObjectID = "FQO-AP-6HG"; */
+"FQO-AP-6HG.text" = "0 / 75";
+
+/* Class = "UITextField"; placeholder = "Available Quantity*"; ObjectID = "FWD-6X-MKc"; */
+"FWD-6X-MKc.placeholder" = "Jumlah Tersedia*";
+
+/* Class = "UILabel"; text = "Near saket nagar, hoshangabad road, Bhopal, 462024, India"; ObjectID = "Fg3-5r-4sD"; */
+"Fg3-5r-4sD.text" = "Dekat Saket Nagar, Jalan Hoshangabad, Bhopal, 462024, India";
+
+/* Class = "UILabel"; text = "Tell event-goers when your event starts and ends so they can make plans to attend."; ObjectID = "G18-PB-9rW"; */
+"G18-PB-9rW.text" = "Beritahu peserta kapan acara Anda dimulai dan berakhir agar mereka bisa membuat rencana untuk hadir.";
+
+/* Class = "UIButton"; normalTitle = "Add More Images"; ObjectID = "G5e-es-fiz"; */
+"G5e-es-fiz.normalTitle" = "Tambahkan Lebih Banyak Gambar";
+
+/* Class = "UIButton"; normalTitle = "Publish Event"; ObjectID = "GL7-VC-6QG"; */
+"GL7-VC-6QG.normalTitle" = "Terbitkan Acara";
+
+/* Class = "UISegmentedControl"; HKC-2S-a8e.segmentTitles[0] = "Upcoming"; ObjectID = "HKC-2S-a8e"; */
+"HKC-2S-a8e.segmentTitles[0]" = "Mendatang";
+
+/* Class = "UISegmentedControl"; HKC-2S-a8e.segmentTitles[1] = "Past"; ObjectID = "HKC-2S-a8e"; */
+"HKC-2S-a8e.segmentTitles[1]" = "Lampau";
+
+/* Class = "UITextField"; placeholder = "Address*"; ObjectID = "IDE-19-330"; */
+"IDE-19-330.placeholder" = "Alamat*";
+
+/* Class = "UILabel"; text = "Update Event"; ObjectID = "Iac-Lw-RL4"; */
+"Iac-Lw-RL4.text" = "Perbarui Acara";
+
+/* Class = "UILabel"; text = "Add to calendar"; ObjectID = "IbL-ST-Aqi"; */
+"IbL-ST-Aqi.text" = "Tambahkan ke Kalender";
+
+/* Class = "UILabel"; text = "Tags"; ObjectID = "IeY-pv-N2J"; */
+"IeY-pv-N2J.text" = "Tag";
+
+/* Class = "UILabel"; text = "DB Mall Bhopal"; ObjectID = "Iv3-no-eMP"; */
+"Iv3-no-eMP.text" = "DB Mall Bhopal";
+
+/* Class = "UILabel"; text = "Tags"; ObjectID = "JJj-dd-Zci"; */
+"JJj-dd-Zci.text" = "Tag";
+
+/* Class = "UILabel"; text = "Astoria, OR, USA"; ObjectID = "LCx-8k-bJ9"; */
+"LCx-8k-bJ9.text" = "Astoria, OR, Amerika Serikat";
+
+/* Class = "UITextField"; placeholder = "Search..."; ObjectID = "Lba-jO-fUR"; */
+"Lba-jO-fUR.placeholder" = "Cari...";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "LjF-5b-4ad"; */
+"LjF-5b-4ad.text" = "JPEG atau PNG, tidak lebih dari 10MB.";
+
+/* Class = "UITextField"; placeholder = "End Time*"; ObjectID = "MRz-kJ-7gt"; */
+"MRz-kJ-7gt.placeholder" = "Waktu Akhir*";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "MVJ-i2-UfR"; */
+"MVJ-i2-UfR.text" = "Klik untuk menambahkan gambar acara";
+
+/* Class = "UILabel"; text = "Improve discoverability of your event by adding tags relevant to the subject matter."; ObjectID = "Mu5-XL-U8c"; */
+"Mu5-XL-U8c.text" = "Tingkatkan visibilitas acara Anda dengan menambahkan tag yang relevan dengan topik acara.";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "P7C-be-mJJ"; */
+"P7C-be-mJJ.text" = "Lokasi";
+
+/* Class = "UITextField"; placeholder = "Start Date*"; ObjectID = "PLz-Le-E9e"; */
+"PLz-Le-E9e.placeholder" = "Tanggal Mulai*";
+
+/* Class = "UITextField"; placeholder = "Start Time*"; ObjectID = "QFe-fk-Y60"; */
+"QFe-fk-Y60.placeholder" = "Waktu Mulai*";
+
+/* Class = "UILabel"; text = "No Upcoming Events Available"; ObjectID = "QHm-zc-OdN"; */
+"QHm-zc-OdN.text" = "Tidak Ada Acara Mendatang Tersedia";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "R2V-KS-Fuo"; */
+"R2V-KS-Fuo.normalTitle" = "Lanjutkan";
+
+/* Class = "UILabel"; text = "Movin Presents : Suaturday Night DJ Party Suaturday Night DJ Party"; ObjectID = "RWi-nT-P7t"; */
+"RWi-nT-P7t.text" = "Movin Presents: Sabtu Malam Pesta DJ Sabtu Malam Pesta DJ";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "Rd9-jf-7QO"; */
+"Rd9-jf-7QO.text" = "Deskripsi";
+
+/* Class = "UIButton"; normalTitle = "Paid"; ObjectID = "ReQ-fA-Vuf"; */
+"ReQ-fA-Vuf.normalTitle" = "Berbayar";
+
+/* Class = "UITextField"; placeholder = "Start Date*"; ObjectID = "Rkr-wJ-Iwi"; */
+"Rkr-wJ-Iwi.placeholder" = "Tanggal Mulai*";
+
+/* Class = "UILabel"; text = "Basic Info"; ObjectID = "Rxe-Cd-5GO"; */
+"Rxe-Cd-5GO.text" = "Info Dasar";
+
+/* Class = "UILabel"; text = "Update Event"; ObjectID = "Sh2-Dp-RUZ"; */
+"Sh2-Dp-RUZ.text" = "Perbarui Acara";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "Srk-1I-ADu"; */
+"Srk-1I-ADu.text" = "Lokasi";
+
+/* Class = "UILabel"; text = "Enter tags separated by comma. \nExample - fun, holiday, party"; ObjectID = "Sy5-Af-Kre"; */
+"Sy5-Af-Kre.text" = "Masukkan tag yang dipisahkan dengan koma. \nContoh - menyenangkan, liburan, pesta";
+
+/* Class = "UILabel"; text = "Sat, Jul 24 • 11:00 AM "; ObjectID = "TA8-jj-BPI"; */
+"TA8-jj-BPI.text" = "Sabtu, 24 Jul • 11:00 AM";
+
+/* Class = "UILabel"; text = "Add more details to your event like your schedule, sponsors, or featured guests."; ObjectID = "UkI-k4-5di"; */
+"UkI-k4-5di.text" = "Tambahkan lebih banyak detail ke acara Anda seperti jadwal, sponsor, atau tamu unggulan.";
+
+/* Class = "UILabel"; text = "Fri, 23 Jul 2021"; ObjectID = "VRT-fH-lFP"; */
+"VRT-fH-lFP.text" = "Jumat, 23 Jul 2021";
+
+/* Class = "UIButton"; normalTitle = "Update Event"; ObjectID = "WG1-iq-J9q"; */
+"WG1-iq-J9q.normalTitle" = "Perbarui Acara";
+
+/* Class = "UITextField"; placeholder = "Tag*"; ObjectID = "Wkw-Ga-Os3"; */
+"Wkw-Ga-Os3.placeholder" = "Tag*";
+
+/* Class = "UILabel"; text = "Help peoples in the area discover your event and let attendees know where to show up."; ObjectID = "Wzs-Kh-Xr2"; */
+"Wzs-Kh-Xr2.text" = "Bantu orang-orang di daerah tersebut menemukan acara Anda dan beri tahu peserta di mana harus datang.";
+
+/* Class = "UILabel"; text = "Basic Info"; ObjectID = "XUm-cl-a9h"; */
+"XUm-cl-a9h.text" = "Info Dasar";
+
+/* Class = "UITextField"; placeholder = "City*"; ObjectID = "XZo-lm-0XX"; */
+"XZo-lm-0XX.placeholder" = "Kota*";
+
+/* Class = "UIButton"; normalTitle = "Create Event"; ObjectID = "Yik-5H-x6v"; */
+"Yik-5H-x6v.normalTitle" = "Buat Acara";
+
+/* Class = "UILabel"; text = "Hi, Vijay Rathore"; ObjectID = "Ymg-pl-yL8"; */
+"Ymg-pl-yL8.text" = "Hai, Vijay Rathore";
+
+/* Class = "UITextField"; placeholder = "Country*"; ObjectID = "YzN-I3-TSV"; */
+"YzN-I3-TSV.placeholder" = "Negara*";
+
+/* Class = "UITextField"; placeholder = "Country*"; ObjectID = "ZPF-C7-FWc"; */
+"ZPF-C7-FWc.placeholder" = "Negara*";
+
+/* Class = "UITextField"; placeholder = "Ticket Name*"; ObjectID = "a0E-8h-yz2"; */
+"a0E-8h-yz2.placeholder" = "Nama Tiket*";
+
+/* Class = "UITextField"; placeholder = "State/Province*"; ObjectID = "bOP-vK-YKi"; */
+"bOP-vK-YKi.placeholder" = "Negara Bagian/Provinsi*";
+
+/* Class = "UIButton"; normalTitle = "Free"; ObjectID = "bTb-V3-ddb"; */
+"bTb-V3-ddb.normalTitle" = "Gratis";
+
+/* Class = "UILabel"; text = "Create Event"; ObjectID = "c6F-97-1bc"; */
+"c6F-97-1bc.text" = "Buat Acara";
+
+/* Class = "UILabel"; text = "@Leo"; ObjectID = "cL4-Lp-uMO"; */
+"cL4-Lp-uMO.text" = "@Leo";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "cTa-cK-TSC"; */
+"cTa-cK-TSC.text" = "JPEG atau PNG, tidak lebih dari 10MB.";
+
+/* Class = "UITextField"; placeholder = "Search for a venue or address."; ObjectID = "cz2-eo-WQa"; */
+"cz2-eo-WQa.placeholder" = "Cari tempat atau alamat.";
+
+/* Class = "UITextField"; placeholder = "Ticket Name*"; ObjectID = "dwT-dj-sdz"; */
+"dwT-dj-sdz.placeholder" = "Nama Tiket*";
+
+/* Class = "UILabel"; text = "Online"; ObjectID = "dzc-Rn-3iB"; */
+"dzc-Rn-3iB.text" = "Online";
+
+/* Class = "UILabel"; text = "AIIMS Hospital"; ObjectID = "eVP-yl-T7J"; */
+"eVP-yl-T7J.text" = "Rumah Sakit AIIMS";
+
+/* Class = "UIButton"; normalTitle = "Send Invite"; ObjectID = "ehw-LT-APp"; */
+"ehw-LT-APp.normalTitle" = "Kirim Undangan";
+
+/* Class = "UILabel"; text = "Date and time"; ObjectID = "f6d-sa-epZ"; */
+"f6d-sa-epZ.text" = "Tanggal dan Waktu";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "fEa-Uf-iDH"; */
+"fEa-Uf-iDH.text" = "Klik untuk menambahkan gambar acara";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "fpt-iB-Ur1"; */
+"fpt-iB-Ur1.text" = "Lokasi";
+
+/* Class = "UILabel"; text = "Tell event-goers when your event starts and ends so they can make plans to attend."; ObjectID = "gQr-s5-0zg"; */
+"gQr-s5-0zg.text" = "Beritahu peserta kapan acara Anda dimulai dan berakhir agar mereka bisa membuat rencana untuk hadir.";
+
+/* Class = "UITextField"; placeholder = "City*"; ObjectID = "gkJ-ge-zuu"; */
+"gkJ-ge-zuu.placeholder" = "Kota*";
+
+/* Class = "UILabel"; text = "No Past Events Available"; ObjectID = "gqC-8g-rZQ"; */
+"gqC-8g-rZQ.text" = "Tidak Ada Acara Lampau Tersedia";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "hVx-3k-NyX"; */
+"hVx-3k-NyX.normalTitle" = "Lanjutkan";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "hXY-cY-Z5n"; */
+"hXY-cY-Z5n.text" = "JPEG atau PNG, tidak lebih dari 10MB.";
+
+/* Class = "UILabel"; text = "Discard"; ObjectID = "hpt-bu-CcQ"; */
+"hpt-bu-CcQ.text" = "Buang";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "hxE-fu-tpX"; */
+"hxE-fu-tpX.text" = "Klik untuk menambahkan gambar acara";
+
+/* Class = "UITextField"; placeholder = "Available Quantity*"; ObjectID = "hzc-t7-EJA"; */
+"hzc-t7-EJA.placeholder" = "Jumlah Tersedia*";
+
+/* Class = "UILabel"; text = "0 / 50"; ObjectID = "iPb-pK-Zbf"; */
+"iPb-pK-Zbf.text" = "0 / 50";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "idc-6O-Rr3"; */
+"idc-6O-Rr3.text" = "Klik untuk menambahkan gambar acara";
+
+/* Class = "UILabel"; text = "How to prepare and deliver a TED Talk"; ObjectID = "jBv-gK-1PH"; */
+"jBv-gK-1PH.text" = "Cara mempersiapkan dan menyampaikan TED Talk";
+
+/* Class = "UIButton"; normalTitle = "Switch to user"; ObjectID = "jVn-p1-FZk"; */
+"jVn-p1-FZk.normalTitle" = "Beralih ke pengguna";
+
+/* Class = "UILabel"; text = "Use a high quality images: (9: 5 ratio)."; ObjectID = "l2f-qT-t98"; */
+"l2f-qT-t98.text" = "Gunakan gambar berkualitas tinggi: (rasio 9: 5).";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "lAa-Ic-8hl"; */
+"lAa-Ic-8hl.text" = "JPEG atau PNG, tidak lebih dari 10MB.";
+
+/* Class = "UILabel"; text = "Event Image"; ObjectID = "mGa-VQ-cKB"; */
+"mGa-VQ-cKB.text" = "Gambar Acara";
+
+/* Class = "UILabel"; text = "Street Address"; ObjectID = "n7h-zT-hjP"; */
+"n7h-zT-hjP.text" = "Alamat Jalan";
+
+/* Class = "UILabel"; text = "Events"; ObjectID = "nOG-BR-nZe"; */
+"nOG-BR-nZe.text" = "Acara";
+
+/* Class = "UILabel"; text = "Name your event and tell event-goers why they should come. Add details that highlight what makes it unique"; ObjectID = "nWx-ke-EMG"; */
+"nWx-ke-EMG.text" = "Beri nama acara Anda dan beri tahu peserta mengapa mereka harus datang. Tambahkan detail yang menonjolkan keunikan acara tersebut.";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "o74-5k-gKV"; */
+"o74-5k-gKV.text" = "Klik untuk menambahkan gambar acara";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "oTd-ag-4Jl"; */
+"oTd-ag-4Jl.text" = "Klik untuk menambahkan gambar acara";
+
+/* Class = "UILabel"; text = "View Profile"; ObjectID = "oWM-GD-nn0"; */
+"oWM-GD-nn0.text" = "Lihat Profil";
+
+/* Class = "UILabel"; text = "Sat, Jul 24 • 11:00 AM "; ObjectID = "olx-Ho-Gtb"; */
+"olx-Ho-Gtb.text" = "Sabtu, 24 Jul • 11:00 AM";
+
+/* Class = "UILabel"; text = "Flipkart, 'India ka Fashion Capital', is your one-stop fashion destination for anything and everything you need to look good."; ObjectID = "q7d-dE-eS8"; */
+"q7d-dE-eS8.text" = "Flipkart, 'India ka Fashion Capital', adalah tujuan fashion satu atap untuk semua yang Anda butuhkan agar terlihat baik.";
+
+/* Class = "UILabel"; text = "Venue Location"; ObjectID = "qJy-7q-2xe"; */
+"qJy-7q-2xe.text" = "Lokasi Tempat";
+
+/* Class = "UIButton"; normalTitle = "Party"; ObjectID = "qcq-Ol-T60"; */
+"qcq-Ol-T60.normalTitle" = "Pesta";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "qx4-1C-aQM"; */
+"qx4-1C-aQM.text" = "JPEG atau PNG, tidak lebih dari 10MB.";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "r4O-Nr-DTh"; */
+"r4O-Nr-DTh.text" = "JPEG atau PNG, tidak lebih dari 10MB.";
+
+/* Class = "UILabel"; text = "Movin Presents : Suaturday Night DJ Party Suaturday Night DJ Party"; ObjectID = "r4p-vq-ld5"; */
+"r4p-vq-ld5.text" = "Movin Presents: Sabtu Malam Pesta DJ Sabtu Malam Pesta DJ";
+
+/* Class = "UILabel"; text = "Name your event and tell event-goers why they should come. Add details that highlight what makes it unique"; ObjectID = "rQk-9f-ieA"; */
+"rQk-9f-ieA.text" = "Beri nama acara Anda dan beri tahu peserta mengapa mereka harus datang. Tambahkan detail yang menonjolkan keunikan acara tersebut.";
+
+/* Class = "UIButton"; normalTitle = "Paid"; ObjectID = "sVb-r9-arn"; */
+"sVb-r9-arn.normalTitle" = "Berbayar";
+
+/* Class = "UILabel"; text = "Create Event"; ObjectID = "snT-KV-pwu"; */
+"snT-KV-pwu.text" = "Buat Acara";
+
+/* Class = "UITextField"; placeholder = "Start Time*"; ObjectID = "sy6-u7-Bsf"; */
+"sy6-u7-Bsf.placeholder" = "Waktu Mulai*";
+
+/* Class = "UILabel"; text = "Astoria, OR, USA"; ObjectID = "tVF-yA-PPj"; */
+"tVF-yA-PPj.text" = "Astoria, OR, Amerika Serikat";
+
+/* Class = "UILabel"; text = "on myMINK"; ObjectID = "uUh-Ke-COA"; */
+"uUh-Ke-COA.text" = "di myMINK";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "utD-y5-9dQ"; */
+"utD-y5-9dQ.text" = "Deskripsi";
+
+/* Class = "UILabel"; text = "Venue Location"; ObjectID = "vgJ-Az-vp5"; */
+"vgJ-Az-vp5.text" = "Lokasi Tempat";
+
+/* Class = "UITextField"; placeholder = "State/Province*"; ObjectID = "vz2-o8-QlO"; */
+"vz2-o8-QlO.placeholder" = "Negara Bagian/Provinsi*";
+
+/* Class = "UILabel"; text = "Enter tags separated by comma. \nExample - fun, holiday, party"; ObjectID = "vzG-2Z-ZPb"; */
+"vzG-2Z-ZPb.text" = "Masukkan tag yang dipisahkan dengan koma. \nContoh - menyenangkan, liburan, pesta";
+
+/* Class = "UILabel"; text = "Help peoples in the area discover your event and let attendees know where to show up."; ObjectID = "wWl-jZ-1ZB"; */
+"wWl-jZ-1ZB.text" = "Bantu orang-orang di daerah tersebut menemukan acara Anda dan beri tahu peserta di mana harus datang.";
+
+/* Class = "UITextField"; placeholder = "Postal Code*"; ObjectID = "wl1-s1-5qm"; */
+"wl1-s1-5qm.placeholder" = "Kode Pos*";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "wn8-J8-MM6"; */
+"wn8-J8-MM6.text" = "Klik untuk menambahkan gambar acara";
+
+/* Class = "UITextField"; placeholder = "End Time*"; ObjectID = "y7e-Ss-2O8"; */
+"y7e-Ss-2O8.placeholder" = "Waktu Akhir*";
+
+/* Class = "UITextField"; placeholder = "End Date*"; ObjectID = "ybD-te-wBh"; */
+"ybD-te-wBh.placeholder" = "Tanggal Akhir*";
+
+/* Class = "UITextField"; placeholder = "Price*"; ObjectID = "ynF-zz-ARW"; */
+"ynF-zz-ARW.placeholder" = "Harga*";
+
+/* Class = "UIButton"; normalTitle = "Switch to organiser"; ObjectID = "z03-Z3-NET"; */
+"z03-Z3-NET.normalTitle" = "Beralih ke penyelenggara";
+
+/* Class = "UILabel"; text = "0 / 50"; ObjectID = "zBV-YY-UtP"; */
+"zBV-YY-UtP.text" = "0 / 50";
+
+/* Class = "UITextField"; placeholder = "End Date*"; ObjectID = "zbn-Bk-n0b"; */
+"zbn-Bk-n0b.placeholder" = "Tanggal Akhir*";
+
+/* Class = "UILabel"; text = "Use a high quality images: (9: 5 ratio)."; ObjectID = "zuq-SB-bSC"; */
+"zuq-SB-bSC.text" = "Gunakan gambar berkualitas tinggi: (rasio 9: 5).";

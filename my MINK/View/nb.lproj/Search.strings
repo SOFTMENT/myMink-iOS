@@ -1,0 +1,26 @@
+/* Class = "UISegmentedControl"; OHB-R9-wTb.segmentTitles[0] = "Posts"; ObjectID = "OHB-R9-wTb"; */
+"OHB-R9-wTb.segmentTitles[0]" = "Innlegg";
+
+/* Class = "UISegmentedControl"; OHB-R9-wTb.segmentTitles[1] = "Users"; ObjectID = "OHB-R9-wTb"; */
+"OHB-R9-wTb.segmentTitles[1]" = "Brukere";
+
+/* Class = "UITextField"; placeholder = "Search Users and Posts"; ObjectID = "SVy-IS-fPr"; */
+"SVy-IS-fPr.placeholder" = "Søk brukere og innlegg";
+
+/* Class = "UILabel"; text = "@Username"; ObjectID = "XaX-Yi-knk"; */
+"XaX-Yi-knk.text" = "@Brukernavn";
+
+/* Class = "UILabel"; text = "Full Name"; ObjectID = "d5S-Sn-JUw"; */
+"d5S-Sn-JUw.text" = "Fullt navn";
+
+/* Class = "UILabel"; text = "No results found"; ObjectID = "jaG-7c-OJN"; */
+"jaG-7c-OJN.text" = "Ingen resultater funnet";
+
+/* Class = "UILabel"; text = "Search"; ObjectID = "opQ-7M-XlJ"; */
+"opQ-7M-XlJ.text" = "Søk";
+
+/* Class = "UILabel"; text = "No results found"; ObjectID = "vdw-5D-3EO"; */
+"vdw-5D-3EO.text" = "Ingen resultater funnet";
+
+/* Class = "UILabel"; text = "Show All"; ObjectID = "z43-9o-lLB"; */
+"z43-9o-lLB.text" = "Vis alle";

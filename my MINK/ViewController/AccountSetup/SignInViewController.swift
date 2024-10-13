@@ -36,7 +36,7 @@ class SignInViewController: UIViewController {
         setupUI()
         configureGestureRecognizers()
         configureRememberMe()
-        
+        configurePasswordField()
       
     }
 
@@ -50,7 +50,7 @@ class SignInViewController: UIViewController {
             password.configureTextField(placeholderImage: lockIcon)
         }
 
-        password.configureRightView(image: UIImage(named: "hide"), target: self, action: #selector(passwordEyeClicked))
+      
 
         [loginBtn, gmailBtn, appleBtn, phoneBtn].forEach {
             $0?.layer.cornerRadius = 12
@@ -96,10 +96,31 @@ class SignInViewController: UIViewController {
         performSegue(withIdentifier: "phoneNumberSignInSeg", sender: nil)
     }
 
-    @objc func passwordEyeClicked() {
-        password.togglePasswordVisibility()
+    private func configurePasswordField() {
+        password.rightViewMode = .always
+        updatePasswordRightView(imageName: "hide")
     }
 
+    private func updatePasswordRightView(imageName: String) {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 13, width: 20, height: 20))
+        imageView.image = UIImage(named: imageName)
+        let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 45))
+        iconContainerView.addSubview(imageView)
+        password.rightView = iconContainerView
+        password.rightView?.isUserInteractionEnabled = true
+        password.rightView?.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(passwordEyeClicked)
+        ))
+    }
+
+    @objc private func passwordEyeClicked() {
+        let isSecure = password.isSecureTextEntry
+        password.isSecureTextEntry = !isSecure
+        let imageName = isSecure ? "view" : "hide"
+        updatePasswordRightView(imageName: imageName)
+    }
+    
     @objc private func backViewClicked() {
         dismiss(animated: true)
     }
@@ -120,7 +141,7 @@ class SignInViewController: UIViewController {
         guard let sEmail = emailAddress.text?.trimmingCharacters(in: .whitespacesAndNewlines),
               let sPassword = password.text?.trimmingCharacters(in: .whitespacesAndNewlines),
               !sEmail.isEmpty, !sPassword.isEmpty else {
-            showSnack(messages: "Enter Email Address and Password")
+            showSnack(messages: "Enter Email Address and Password".localized())
             return
         }
 
@@ -254,20 +275,5 @@ private extension UITextField {
         delegate = self as? UITextFieldDelegate
     }
 
-    func configureRightView(image: UIImage?, target: Any?, action: Selector) {
-        guard let image = image else { return }
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 13, width: 20, height: 20))
-        imageView.image = image
-        let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 45))
-        iconContainerView.addSubview(imageView)
-        rightView = iconContainerView
-        rightViewMode = .always
-        rightView?.isUserInteractionEnabled = true
-        rightView?.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
-    }
-
-    func togglePasswordVisibility() {
-        isSecureTextEntry.toggle()
-        configureRightView(image: isSecureTextEntry ? UIImage(named: "hide") : UIImage(named: "view"), target: self, action: #selector(SignInViewController.passwordEyeClicked))
-    }
+   
 }

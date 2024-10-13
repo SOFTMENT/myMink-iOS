@@ -1,0 +1,491 @@
+/* Class = "UILabel"; text = "账户隐私"; ObjectID = "0XM-Ky-H6u"; */
+"0XM-Ky-H6u.text" = "账户隐私";
+
+/* Class = "UIButton"; normalTitle = "更新任务"; ObjectID = "1gG-qR-CB3"; */
+"1gG-qR-CB3.normalTitle" = "更新任务";
+
+/* Class = "UILabel"; text = "用户名"; ObjectID = "3Kh-al-hMS"; */
+"3Kh-al-hMS.text" = "用户名";
+
+/* Class = "UILabel"; text = "24小时"; ObjectID = "3eQ-r7-V5T"; */
+"3eQ-r7-V5T.text" = "24小时";
+
+/* Class = "UITextField"; placeholder = "网站（可选）"; ObjectID = "3rK-1x-kb7"; */
+"3rK-1x-kb7.placeholder" = "网站（可选）";
+
+/* Class = "UILabel"; text = "双鱼座"; ObjectID = "3rw-VT-rdN"; */
+"3rw-VT-rdN.text" = "双鱼座";
+
+/* Class = "UILabel"; text = "白羊座"; ObjectID = "3y7-Pq-Rv2"; */
+"3y7-Pq-Rv2.text" = "白羊座";
+
+/* Class = "UILabel"; text = "水瓶座"; ObjectID = "4Fc-DG-AjK"; */
+"4Fc-DG-AjK.text" = "水瓶座";
+
+/* Class = "UILabel"; text = "全球前50"; ObjectID = "4iS-rk-PXd"; */
+"4iS-rk-PXd.text" = "全球前50";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "4yE-F3-sUJ"; */
+"4yE-F3-sUJ.text" = "0";
+
+/* Class = "UILabel"; text = "法律协议"; ObjectID = "57M-Q1-Qtg"; */
+"57M-Q1-Qtg.text" = "法律协议";
+
+/* Class = "UITextField"; placeholder = "搜索"; ObjectID = "5lG-wD-cid"; */
+"5lG-wD-cid.placeholder" = "搜索";
+
+/* Class = "UILabel"; text = "刚刚"; ObjectID = "5ry-SJ-5OT"; */
+"5ry-SJ-5OT.text" = "刚刚";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "6AV-Ph-g2J"; */
+"6AV-Ph-g2J.text" = "0";
+
+/* Class = "UILabel"; text = "媒体名称"; ObjectID = "6pg-sI-lzH"; */
+"6pg-sI-lzH.text" = "媒体名称";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "6t1-N9-Xc5"; */
+"6t1-N9-Xc5.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "7Ly-Vy-7Fi"; */
+"7Ly-Vy-7Fi.text" = "0";
+
+/* Class = "UILabel"; text = "2023年6月16日"; ObjectID = "7Vu-zN-Ct5"; */
+"7Vu-zN-Ct5.text" = "2023年6月16日";
+
+/* Class = "UILabel"; text = "阿里吉特·辛格"; ObjectID = "7bt-c0-9wS"; */
+"7bt-c0-9wS.text" = "阿里吉特·辛格";
+
+/* Class = "UILabel"; text = "$49.99/月"; ObjectID = "8fL-zl-qkY"; */
+"8fL-zl-qkY.text" = "$49.99/月";
+
+/* Class = "UILabel"; text = "我的 MINK 高级版"; ObjectID = "8lQ-Qy-zIm"; */
+"8lQ-Qy-zIm.text" = "我的 MINK 高级版";
+
+/* Class = "UILabel"; text = "没有可用的帖子"; ObjectID = "9Lk-c2-iAh"; */
+"9Lk-c2-iAh.text" = "没有可用的帖子";
+
+/* Class = "UILabel"; text = "活跃"; ObjectID = "9Pu-x1-cXV"; */
+"9Pu-x1-cXV.text" = "活跃";
+
+/* Class = "UILabel"; text = "帖子"; ObjectID = "9SI-EP-oQa"; */
+"9SI-EP-oQa.text" = "帖子";
+
+/* Class = "UILabel"; text = "添加社交媒体"; ObjectID = "A2A-Ur-fh0"; */
+"A2A-Ur-fh0.text" = "添加社交媒体";
+
+/* Class = "UILabel"; text = "删除账户"; ObjectID = "A6f-wz-R84"; */
+"A6f-wz-R84.text" = "删除账户";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Akd-lR-eQr"; */
+"Akd-lR-eQr.text" = "0";
+
+/* Class = "UILabel"; text = "编辑任务"; ObjectID = "Al0-M4-YuU"; */
+"Al0-M4-YuU.text" = "编辑任务";
+
+/* Class = "UITextField"; placeholder = "输入任务标题"; ObjectID = "Ath-vJ-t7u"; */
+"Ath-vJ-t7u.placeholder" = "输入任务标题";
+
+/* Class = "UILabel"; text = "我的 MINK 聊天机器人"; ObjectID = "BRf-kh-Uab"; */
+"BRf-kh-Uab.text" = "我的 MINK 聊天机器人";
+
+/* Class = "UILabel"; text = "当您的账户处于公开模式时，所有用户都可以看到您的内容。处于私密状态时，只有您关注的人或您的关注者才能看到您的内容。"; ObjectID = "Bgf-py-gg4"; */
+"Bgf-py-gg4.text" = "当您的账户处于公开模式时，所有用户都可以看到您的内容。处于私密状态时，只有您关注的人或您的关注者才能看到您的内容。";
+
+/* Class = "UILabel"; text = "| 02:39 PM"; ObjectID = "Bid-tW-gJI"; */
+"Bid-tW-gJI.text" = "| 02:39 PM";
+
+/* Class = "UILabel"; text = "您精力充沛，社交活跃，大部分晚上都会在外面度过。您可能会养成经常在外面就餐的习惯，这可能会对您的健康造成影响。您可能会与朋友一起大量饮酒，之后会后悔。现在比以往任何时候都更需要关注您的健康。"; ObjectID = "C46-pc-igD"; */
+"C46-pc-igD.text" = "您精力充沛，社交活跃，大部分晚上都会在外面度过。您可能会养成经常在外面就餐的习惯，这可能会对您的健康造成影响。您可能会与朋友一起大量饮酒，之后会后悔。现在比以往任何时候都更需要关注您的健康。";
+
+/* Class = "UILabel"; text = "狮子座"; ObjectID = "C5g-sk-tHA"; */
+"C5g-sk-tHA.text" = "狮子座";
+
+/* Class = "UILabel"; text = "巨蟹座"; ObjectID = "CHV-Dt-hVI"; */
+"CHV-Dt-hVI.text" = "巨蟹座";
+
+/* Class = "UILabel"; text = "$2343"; ObjectID = "CSF-cs-wgr"; */
+"CSF-cs-wgr.text" = "$2343";
+
+/* Class = "UITextView"; text = "📞 视频通话"; ObjectID = "Cfm-a7-F6I"; */
+"Cfm-a7-F6I.text" = "📞 视频通话";
+
+/* Class = "UILabel"; text = "媒体名称"; ObjectID = "D8d-Xt-8sv"; */
+"D8d-Xt-8sv.text" = "媒体名称";
+
+/* Class = "UILabel"; text = "价格"; ObjectID = "DUN-y8-LfF"; */
+"DUN-y8-LfF.text" = "价格";
+
+/* Class = "UILabel"; text = "市场"; ObjectID = "Dvv-ga-EGz"; */
+"Dvv-ga-EGz.text" = "市场";
+
+/* Class = "UIButton"; normalTitle = "添加签名"; ObjectID = "EXr-Yn-RpY"; */
+"EXr-Yn-RpY.normalTitle" = "添加签名";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Eg0-79-sn5"; */
+"Eg0-79-sn5.text" = "0";
+
+/* Class = "UILabel"; text = "我"; ObjectID = "EpA-BG-ilv"; */
+"EpA-BG-ilv.text" = "我";
+
+/* Class = "UILabel"; text = "“游走世界，每次一场冒险。”"; ObjectID = "FEJ-Q3-t5y"; */
+"FEJ-Q3-t5y.text" = "“游走世界，每次一场冒险。”";
+
+/* Class = "UILabel"; text = "双子座"; ObjectID = "FWi-OA-vTe"; */
+"FWi-OA-vTe.text" = "双子座";
+
+/* Class = "UILabel"; text = "图书馆"; ObjectID = "FZW-qL-Z5M"; */
+"FZW-qL-Z5M.text" = "图书馆";
+
+/* Class = "UILabel"; text = "市值"; ObjectID = "GTo-cX-JBL"; */
+"GTo-cX-JBL.text" = "市值";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Gk4-VS-lOP"; */
+"Gk4-VS-lOP.text" = "0";
+
+/* Class = "UILabel"; text = "赞助"; ObjectID = "IQv-M4-0OS"; */
+"IQv-M4-0OS.text" = "赞助";
+
+/* Class = "UILabel"; text = "歌曲名称"; ObjectID = "Ias-9i-0y4"; */
+"Ias-9i-0y4.text" = "歌曲名称";
+
+/* Class = "UITextField"; placeholder = "输入当前密码"; ObjectID = "Jgt-QW-kIp"; */
+"Jgt-QW-kIp.placeholder" = "输入当前密码";
+
+/* Class = "UILabel"; text = "发布"; ObjectID = "Joa-QW-PnX"; */
+"Joa-QW-PnX.text" = "发布";
+
+/* Class = "UILabel"; text = "support@mymink.com.au"; ObjectID = "LXK-5Y-Yp8"; */
+"LXK-5Y-Yp8.text" = "support@mymink.com.au";
+
+/* Class = "UILabel"; text = "关注者"; ObjectID = "LeL-cO-lNo"; */
+"LeL-cO-lNo.text" = "关注者";
+
+/* Class = "UILabel"; text = "3:16"; ObjectID = "Lnb-sA-vbN"; */
+"Lnb-sA-vbN.text" = "3:16";
+
+/* Class = "UILabel"; text = "天秤座"; ObjectID = "LvL-rP-zyj"; */
+"LvL-rP-zyj.text" = "天秤座";
+
+/* Class = "UILabel"; text = "启用 2FA"; ObjectID = "MFg-4M-3M9"; */
+"MFg-4M-3M9.text" = "启用 2FA";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "Mo3-dc-HNx"; */
+"Mo3-dc-HNx.text" = "|";
+
+/* Class = "UILabel"; text = "处女座"; ObjectID = "N1L-ko-OI0"; */
+"N1L-ko-OI0.text" = "处女座";
+
+/* Class = "UILabel"; text = "澳元"; ObjectID = "NC0-Rg-Xbt"; */
+"NC0-Rg-Xbt.text" = "澳元";
+
+/* Class = "UILabel"; text = "2.8%"; ObjectID = "NEM-Kr-X5U"; */
+"NEM-Kr-X5U.text" = "2.8%";
+
+/* Class = "UITextField"; placeholder = "搜索"; ObjectID = "NvM-cB-ZhO"; */
+"NvM-cB-ZhO.placeholder" = "搜索";
+
+/* Class = "UIButton"; normalTitle = "更改密码"; ObjectID = "Nyv-2q-44T"; */
+"Nyv-2q-44T.normalTitle" = "更改密码";
+
+/* Class = "UITextField"; placeholder = "确认新密码"; ObjectID = "OBs-wH-0dz"; */
+"OBs-wH-0dz.placeholder" = "确认新密码";
+
+/* Class = "UITextField"; placeholder = "输入新密码"; ObjectID = "P1B-v4-rXL"; */
+"P1B-v4-rXL.placeholder" = "输入新密码";
+
+/* Class = "UILabel"; text = "狮子座"; ObjectID = "PNG-q8-v2G"; */
+"PNG-q8-v2G.text" = "狮子座";
+
+/* Class = "UILabel"; text = "编辑社交媒体"; ObjectID = "PVw-dg-lmn"; */
+"PVw-dg-lmn.text" = "编辑社交媒体";
+
+/* Class = "UILabel"; text = "更改密码"; ObjectID = "PYb-S1-lGE"; */
+"PYb-S1-lGE.text" = "更改密码";
+
+/* Class = "UILabel"; text = "谁可以看到您的内容"; ObjectID = "QN2-OP-QdX"; */
+"QN2-OP-QdX.text" = "谁可以看到您的内容";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Qlx-LU-GFS"; */
+"Qlx-LU-GFS.text" = "0";
+
+/* Class = "UILabel"; text = "比特币"; ObjectID = "QtW-PL-cug"; */
+"QtW-PL-cug.text" = "比特币";
+
+/* Class = "UIButton"; normalTitle = "更新"; ObjectID = "R8t-rz-0oh"; */
+"R8t-rz-0oh.normalTitle" = "更新";
+
+/* Class = "UILabel"; text = "浏览量"; ObjectID = "RTL-kG-iF9"; */
+"RTL-kG-iF9.text" = "浏览量";
+
+/* Class = "UILabel"; text = "刚刚"; ObjectID = "Rto-Em-rut"; */
+"Rto-Em-rut.text" = "刚刚";
+
+/* Class = "UILabel"; text = "社交媒体"; ObjectID = "RyB-6W-YO4"; */
+"RyB-6W-YO4.text" = "社交媒体";
+
+/* Class = "UILabel"; text = "全名"; ObjectID = "S8b-zo-9V8"; */
+"S8b-zo-9V8.text" = "全名";
+
+/* Class = "UILabel"; text = "帖子"; ObjectID = "SGD-V4-jWf"; */
+"SGD-V4-jWf.text" = "帖子";
+
+/* Class = "UILabel"; text = "金牛座"; ObjectID = "SI9-Ry-1bZ"; */
+"SI9-Ry-1bZ.text" = "金牛座";
+
+/* Class = "UILabel"; text = "每日星座运势"; ObjectID = "T9X-O2-4Vs"; */
+"T9X-O2-4Vs.text" = "每日星座运势";
+
+/* Class = "UILabel"; text = "$2343"; ObjectID = "TBN-Ox-Z1h"; */
+"TBN-Ox-Z1h.text" = "$2343";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "TS9-Xl-Yqu"; */
+"TS9-Xl-Yqu.text" = "0";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "Ubb-tL-C63"; */
+"Ubb-tL-C63.text" = "|";
+
+/* Class = "UIButton"; normalTitle = "添加"; ObjectID = "UgT-Y5-tTm"; */
+"UgT-Y5-tTm.normalTitle" = "添加";
+
+/* Class = "UILabel"; text = "白羊座"; ObjectID = "UxY-Gc-ebw"; */
+"UxY-Gc-ebw.text" = "白羊座";
+
+/* Class = "UILabel"; text = "我的 MINK 聊天机器人"; ObjectID = "VIU-33-GGN"; */
+"VIU-33-GGN.text" = "我的 MINK 聊天机器人";
+
+/* Class = "UILabel"; text = "上传您的照片"; ObjectID = "VQy-fc-b7U"; */
+"VQy-fc-b7U.text" = "上传您的照片";
+
+/* Class = "UILabel"; text = "硬币"; ObjectID = "Vqu-OF-9Kb"; */
+"Vqu-OF-9Kb.text" = "硬币";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "WXG-46-W1N"; */
+"WXG-46-W1N.text" = "0";
+
+/* Class = "UILabel"; text = "艺术家"; ObjectID = "Xk2-wf-BRb"; */
+"Xk2-wf-BRb.text" = "艺术家";
+
+/* Class = "UIButton"; normalTitle = "更新个人资料"; ObjectID = "YCh-xe-d14"; */
+"YCh-xe-d14.normalTitle" = "更新个人资料";
+
+/* Class = "UITextField"; placeholder = "位置"; ObjectID = "YKu-jY-HHy"; */
+"YKu-jY-HHy.placeholder" = "位置";
+
+/* Class = "UILabel"; text = "帖子"; ObjectID = "Z10-dP-cIC"; */
+"Z10-dP-cIC.text" = "帖子";
+
+/* Class = "UILabel"; text = "Kesariya Bharmaastra"; ObjectID = "ZR2-Ak-Rjm"; */
+"ZR2-Ak-Rjm.text" = "Kesariya Bharmaastra";
+
+/* Class = "UILabel"; text = "45/23, 靠近 shiv shree 电影院, totalaa marg tarana"; ObjectID = "ajx-zq-Wat"; */
+"ajx-zq-Wat.text" = "45/23, 靠近 shiv shree 电影院, totalaa marg tarana";
+
+/* Class = "UILabel"; text = "没有可用的任务"; ObjectID = "anE-1v-hKf"; */
+"anE-1v-hKf.text" = "没有可用的任务";
+
+/* Class = "UILabel"; text = "停用账户"; ObjectID = "azm-j7-EmT"; */
+"azm-j7-EmT.text" = "停用账户";
+
+/* Class = "UILabel"; text = "Vijay Rathore"; ObjectID = "bEg-7s-ol9"; */
+"bEg-7s-ol9.text" = "Vijay Rathore";
+
+/* Class = "UILabel"; text = "www.mymink.com.au"; ObjectID = "bJj-db-zcm"; */
+"bJj-db-zcm.text" = "www.mymink.com.au";
+
+/* Class = "UILabel"; text = "个人资料链接"; ObjectID = "bK2-gA-w0E"; */
+"bK2-gA-w0E.text" = "个人资料链接";
+
+/* Class = "UILabel"; text = "商业推广"; ObjectID = "cBE-9E-rKm"; */
+"cBE-9E-rKm.text" = "商业推广";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "cDI-Cy-hAq"; */
+"cDI-Cy-hAq.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "cRr-EM-D0Z"; */
+"cRr-EM-D0Z.text" = "0";
+
+/* Class = "UILabel"; text = "没有可用的帖子"; ObjectID = "cXL-yd-eul"; */
+"cXL-yd-eul.text" = "没有可用的帖子";
+
+/* Class = "UILabel"; text = "今日星座运势"; ObjectID = "chb-m0-YGD"; */
+"chb-m0-YGD.text" = "今日星座运势";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "dKS-8e-HT2"; */
+"dKS-8e-HT2.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "dOC-Wq-yhi"; */
+"dOC-Wq-yhi.text" = "0";
+
+/* Class = "UITextView"; text = "📞 视频通话"; ObjectID = "dVf-Oy-ii9"; */
+"dVf-Oy-ii9.text" = "📞 视频通话";
+
+/* Class = "UITextField"; placeholder = "全名"; ObjectID = "dko-D0-GfB"; */
+"dko-D0-GfB.placeholder" = "全名";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "e6a-kG-6ND"; */
+"e6a-kG-6ND.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "eGG-RN-BbX"; */
+"eGG-RN-BbX.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "eWu-Vb-vrr"; */
+"eWu-Vb-vrr.text" = "0";
+
+/* Class = "UILabel"; text = "朋友或活动"; ObjectID = "enP-FY-LhB"; */
+"enP-FY-LhB.text" = "朋友或活动";
+
+/* Class = "UILabel"; text = "简介"; ObjectID = "f2c-hV-Cwa"; */
+"f2c-hV-Cwa.text" = "简介";
+
+/* Class = "UITextField"; placeholder = "输入任务标题"; ObjectID = "fHn-ER-eEo"; */
+"fHn-ER-eEo.placeholder" = "输入任务标题";
+
+/* Class = "UITextField"; placeholder = "搜索"; ObjectID = "fHv-Ma-psJ"; */
+"fHv-Ma-psJ.placeholder" = "搜索";
+
+/* Class = "UILabel"; text = "没有可用的歌曲"; ObjectID = "fZq-LX-A7k"; */
+"fZq-LX-A7k.text" = "没有可用的歌曲";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "fhh-Tc-3Tz"; */
+"fhh-Tc-3Tz.text" = "0";
+
+/* Class = "UILabel"; text = "萨拉尔夜场"; ObjectID = "fiq-vH-OSz"; */
+"fiq-vH-OSz.text" = "萨拉尔夜场";
+
+/* Class = "UILabel"; text = "+917869992340"; ObjectID = "gk3-R1-joO"; */
+"gk3-R1-joO.text" = "+917869992340";
+
+/* Class = "UILabel"; text = "开发者"; ObjectID = "h2r-6T-R3M"; */
+"h2r-6T-R3M.text" = "开发者";
+
+/* Class = "UILabel"; text = "待办"; ObjectID = "hUX-RF-fB0"; */
+"hUX-RF-fB0.text" = "待办";
+
+/* Class = "UILabel"; text = "音乐"; ObjectID = "hj4-D5-cby"; */
+"hj4-D5-cby.text" = "音乐";
+
+/* Class = "UILabel"; text = "射手座"; ObjectID = "iIR-3o-3ho"; */
+"iIR-3o-3ho.text" = "射手座";
+
+/* Class = "UILabel"; text = "会员"; ObjectID = "iln-Hh-Sa7"; */
+"iln-Hh-Sa7.text" = "会员";
+
+/* Class = "UILabel"; text = "待办是一个数字任务管理器，允许用户以简单、用户友好的界面组织、跟踪和优先处理他们的日常任务和提醒。它通过在一个可访问的位置管理用户的个人和专业责任，帮助用户保持专注和高效"; ObjectID = "kI0-e0-QNb"; */
+"kI0-e0-QNb.text" = "待办是一个数字任务管理器，允许用户以简单、用户友好的界面组织、跟踪和优先处理他们的日常任务和提醒。它通过在一个可访问的位置管理用户的个人和专业责任，帮助用户保持专注和高效";
+
+/* Class = "UILabel"; text = "Vijay Rathore"; ObjectID = "kKk-hj-aZe"; */
+"kKk-hj-aZe.text" = "Vijay Rathore";
+
+/* Class = "UILabel"; text = "许可协议"; ObjectID = "kSu-q0-exJ"; */
+"kSu-q0-exJ.text" = "许可协议";
+
+/* Class = "UILabel"; text = "00 : 00"; ObjectID = "kqz-J0-fx8"; */
+"kqz-J0-fx8.text" = "00 : 00";
+
+/* Class = "UILabel"; text = "待办"; ObjectID = "kvt-jC-FyZ"; */
+"kvt-jC-FyZ.text" = "待办";
+
+/* Class = "UILabel"; text = "隐私政策"; ObjectID = "lAe-Q7-gnQ"; */
+"lAe-Q7-gnQ.text" = "隐私政策";
+
+/* Class = "UIButton"; normalTitle = "上传"; ObjectID = "lG9-Na-GxN"; */
+"lG9-Na-GxN.normalTitle" = "上传";
+
+/* Class = "UILabel"; text = "私人账户"; ObjectID = "mCt-3x-9Tl"; */
+"mCt-3x-9Tl.text" = "私人账户";
+
+/* Class = "UILabel"; text = "比特币"; ObjectID = "mXw-za-WFq"; */
+"mXw-za-WFq.text" = "比特币";
+
+/* Class = "UILabel"; text = "2024年2月18日"; ObjectID = "mYn-UN-068"; */
+"mYn-UN-068.text" = "2024年2月18日";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "miY-pb-OqT"; */
+"miY-pb-OqT.text" = "0";
+
+/* Class = "UILabel"; text = "加入于2023年6月26日"; ObjectID = "mif-5e-pew"; */
+"mif-5e-pew.text" = "加入于2023年6月26日";
+
+/* Class = "UIButton"; normalTitle = "退订"; ObjectID = "o3B-EQ-Hhw"; */
+"o3B-EQ-Hhw.normalTitle" = "退订";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "oMW-JM-ZK1"; */
+"oMW-JM-ZK1.text" = "|";
+
+/* Class = "UILabel"; text = "每日星座运势"; ObjectID = "oSn-ay-OwU"; */
+"oSn-ay-OwU.text" = "每日星座运势";
+
+/* Class = "UILabel"; text = "加密货币"; ObjectID = "ooB-Xe-7sp"; */
+"ooB-Xe-7sp.text" = "加密货币";
+
+/* Class = "UIButton"; normalTitle = "开始"; ObjectID = "pUx-7D-l8G"; */
+"pUx-7D-l8G.normalTitle" = "开始";
+
+/* Class = "UILabel"; text = "摩羯座"; ObjectID = "pkV-gi-Oze"; */
+"pkV-gi-Oze.text" = "摩羯座";
+
+/* Class = "UILabel"; text = "音乐播放器"; ObjectID = "ppz-ia-UrQ"; */
+"ppz-ia-UrQ.text" = "音乐播放器";
+
+/* Class = "UILabel"; text = "免责声明"; ObjectID = "qZJ-KQ-69C"; */
+"qZJ-KQ-69C.text" = "免责声明";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "rJG-Fo-zly"; */
+"rJG-Fo-zly.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "rKX-yl-2ZI"; */
+"rKX-yl-2ZI.text" = "0";
+
+/* Class = "UILabel"; text = "03:20 PM"; ObjectID = "rh2-bY-ubz"; */
+"rh2-bY-ubz.text" = "03:20 PM";
+
+/* Class = "UILabel"; text = "关注中"; ObjectID = "sFu-d8-7Kb"; */
+"sFu-d8-7Kb.text" = "关注中";
+
+/* Class = "UILabel"; text = "加密货币"; ObjectID = "tHs-0V-dJc"; */
+"tHs-0V-dJc.text" = "加密货币";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "tct-aX-g2u"; */
+"tct-aX-g2u.text" = "0";
+
+/* Class = "UILabel"; text = "个人资料链接"; ObjectID = "tyP-hx-UqZ"; */
+"tyP-hx-UqZ.text" = "个人资料链接";
+
+/* Class = "UILabel"; text = "天蝎座"; ObjectID = "u3Z-gX-xJE"; */
+"u3Z-gX-xJE.text" = "天蝎座";
+
+/* Class = "UILabel"; text = "@softment"; ObjectID = "uUW-YH-tPK"; */
+"uUW-YH-tPK.text" = "@softment";
+
+/* Class = "UILabel"; text = "阿斯托里亚, 俄勒冈州, 美国"; ObjectID = "uat-TB-o1J"; */
+"uat-TB-o1J.text" = "阿斯托里亚, 俄勒冈州, 美国";
+
+/* Class = "UILabel"; text = "使用条款"; ObjectID = "uro-k6-Fcp"; */
+"uro-k6-Fcp.text" = "使用条款";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "uz3-hA-QZP"; */
+"uz3-hA-QZP.text" = "0";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "w65-oQ-cfX"; */
+"w65-oQ-cfX.text" = "1";
+
+/* Class = "UILabel"; text = "今日截止"; ObjectID = "wLR-sH-o0n"; */
+"wLR-sH-o0n.text" = "今日截止";
+
+/* Class = "UILabel"; text = "VIJAY_RATHORE"; ObjectID = "wYT-f9-qEw"; */
+"wYT-f9-qEw.text" = "VIJAY_RATHORE";
+
+/* Class = "UILabel"; text = "谁可以看到您的内容"; ObjectID = "wxe-U7-T8F"; */
+"wxe-U7-T8F.text" = "谁可以看到您的内容";
+
+/* Class = "UIButton"; normalTitle = "添加任务"; ObjectID = "ylN-w7-aXy"; */
+"ylN-w7-aXy.normalTitle" = "添加任务";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "yu8-9v-Zs9"; */
+"yu8-9v-Zs9.text" = "0";
+
+/* Class = "UILabel"; text = "添加任务"; ObjectID = "zOZ-81-9Bm"; */
+"zOZ-81-9Bm.text" = "添加任务";
+
+/* Class = "UIButton"; normalTitle = "添加"; ObjectID = "zYV-0n-itF"; */
+"zYV-0n-itF.normalTitle" = "添加";

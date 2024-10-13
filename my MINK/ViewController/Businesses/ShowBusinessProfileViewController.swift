@@ -74,7 +74,8 @@ class ShowBusinessProfileViewController : UIViewController {
             self.subsriberLoading.isHidden = true
             self.mSubscriber.isHidden = false
             if let count = count {
-                self.mSubscriber.text =  count > 1 ? "\(count) Subscribers" : "\(count) Subscriber"
+                self.mSubscriber.text = count > 1 ? String(format: "%d Subscribers".localized(), count) : String(format: "%d Subscriber".localized(), count)
+
             }
         }
         
@@ -83,7 +84,7 @@ class ShowBusinessProfileViewController : UIViewController {
             self.ProgressHUDHide()
             if isSubscribe {
                 self.subscribeBtn.backgroundColor = .lightGray
-                self.subscribeBtn.setTitle("Subscribed", for: .normal)
+                self.subscribeBtn.setTitle("Subscribed".localized(), for: .normal)
             }
         }
         
@@ -104,7 +105,7 @@ class ShowBusinessProfileViewController : UIViewController {
     
     
     func searchBtnClicked(searchText : String){
-        ProgressHUDShow(text: "Searching...")
+        ProgressHUDShow(text: "Searching...".localized())
         algoliaSearch(searchText: searchText, indexName: .posts, filters: "uid:\(FirebaseStoreManager.auth.currentUser!.uid)") { models in
             
             DispatchQueue.main.async {
@@ -208,24 +209,26 @@ class ShowBusinessProfileViewController : UIViewController {
                 self.deleteSubscribe(bId: self.businessModel!.businessId ?? "123") {
                     self.getCount(for: self.businessModel!.businessId!, countType: "Subscribers") { count, error in
                         if let count = count {
-                            self.mSubscriber.text = count > 1 ? "\(count) Subscribers" : "\(count) Subscriber"
+                        
+                            self.mSubscriber.text = count > 1 ? String(format: "%d Subscribers".localized(), count) : String(format: "%d Subscriber".localized(), count)
+
                         }
                     }
                     
                 }
                 
                 self.subscribeBtn.backgroundColor = UIColor(red: 210/255, green: 0/1, blue: 1/255, alpha: 1)
-                self.subscribeBtn.setTitle("Subscribe", for: .normal)
+                self.subscribeBtn.setTitle("Subscribe".localized(), for: .normal)
             }
             else {
                 
                 self.subscribeBtn.backgroundColor = .lightGray
-                self.subscribeBtn.setTitle("Subscribed", for: .normal)
+                self.subscribeBtn.setTitle("Subscribed".localized(), for: .normal)
                 
                 self.addSubscribe(self.businessModel!.businessId ?? "123") {
                     self.getCount(for: self.businessModel!.businessId!, countType: "Subscribers") { count, error in
                         if let count = count {
-                            self.mSubscriber.text = count > 1 ? "\(count) Subscribers" : "\(count) Subscriber"
+                            self.mSubscriber.text = count > 1 ? String(format: "%d Subscribers".localized(), count) : String(format: "%d Subscriber".localized(), count)
                         }
                     }
                     
@@ -306,7 +309,10 @@ extension ShowBusinessProfileViewController : UICollectionViewDelegate, UICollec
     }
 
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        self.postCount.text = self.usePostModels.count > 1 ? "\(self.usePostModels.count) Posts" : "\(self.usePostModels.count) Post"
+        self.postCount.text = self.usePostModels.count > 1
+            ? String(format: "%d Posts".localized(), self.usePostModels.count)
+            : String(format: "%d Post".localized(), self.usePostModels.count)
+
         self.noPostsAvailable.isHidden = self.usePostModels.count > 0 ? true : false
         return self.usePostModels.count
     }

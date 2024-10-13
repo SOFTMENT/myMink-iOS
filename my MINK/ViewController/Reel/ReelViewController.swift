@@ -29,6 +29,7 @@ class ReelViewController: UIViewController {
     var isAlreadyPlaying = false
     private var cancellables = Set<AnyCancellable>()
     let fileManager = FileManager.default
+  
 
     // MARK: - Public Methods
 
@@ -38,9 +39,10 @@ class ReelViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupObservers()
-        fetchDeletedPosts()
         setupManagers()
         playerPool = PlayerPool(playerCount: 5)
+        
+     
     }
     
     private func setupUI() {
@@ -85,6 +87,9 @@ class ReelViewController: UIViewController {
             }
         }
     }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     private func setupManagers() {
         FavoritesManager.shared.favoriteChanged
@@ -107,26 +112,41 @@ class ReelViewController: UIViewController {
     }
 
     private func updateCommentCount(for postID: String) {
-        guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
-        let indexPath = IndexPath(row: index, section: 0)
-        if let cell = tableView.cellForRow(at: indexPath) as? ReelsTableViewCell {
-            cell.updateCommentCount(postID: postID)
+      
+        if isScreenVisible {
+            guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) as? ReelsTableViewCell {
+             
+                 
+                cell.updateCommentCount(postID: postID)
+            }
         }
+       
     }
 
     private func updateSavedButton(for postID: String) {
-        guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
-        let indexPath = IndexPath(row: index, section: 0)
-        if let cell = tableView.cellForRow(at: indexPath) as? ReelsTableViewCell {
-            cell.updateSavedButton(isFromCell: false)
+        if isScreenVisible {
+            guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) as? ReelsTableViewCell {
+                
+                
+                cell.updateSavedButton(isFromCell: false)
+            }
         }
     }
 
     private func updateFavoriteButton(for postID: String) {
-        guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
-        let indexPath = IndexPath(row: index, section: 0)
-        if let cell = tableView.cellForRow(at: indexPath) as? ReelsTableViewCell {
-            cell.updateFavoriteButton(isFromCell: false)
+        if isScreenVisible {
+            
+            guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) as? ReelsTableViewCell {
+                
+                
+                cell.updateFavoriteButton(isFromCell: false)
+            }
         }
     }
 
@@ -159,13 +179,12 @@ class ReelViewController: UIViewController {
     }
     
     func pauseAllPlayers() {
-        if let activeCell = activeCell {
-            isScreenVisible = false
-            isAlreadyPlaying = false
-            DispatchQueue.main.async {
-                activeCell.player?.pause()
-            }
+        isScreenVisible = false
+        isAlreadyPlaying = false
+        playerPool.availablePlayers.forEach { player in
+            player.pause()
         }
+        activeCell?.player?.pause()
     }
 
     @objc func refresh(_: AnyObject) {
@@ -184,6 +203,7 @@ class ReelViewController: UIViewController {
     }
 
     func getAllPosts(isManual: Bool) {
+      
         if postDocumentSnapshot == nil {
             ProgressHUDShow(text: "")
         }
@@ -211,18 +231,11 @@ class ReelViewController: UIViewController {
                         if let path = postModel.postVideo {
                             self.checkCurrentUserLikedPost(postID: postModel.postID ?? "") { isLike in
                              
-                                if isLike {
-                                    FavoritesManager.shared.toggleFavorite(for: postModel.postID ?? "", isLiked: isLike)
-                                }
-                               
                                 FavoritesManager.shared.setFavorites(with: postModel.postID ?? "", isLiked: isLike)
                                 
                             }
                             self.checkCurrentUserSavePost(postID: postModel.postID ?? "") { isSave in
-                                if isSave {
-                                    SavedManager.shared.toggleSave(for: postModel.postID ?? "", isSave: isSave)
-                                }
-                             
+                                 
                                 SavedManager.shared.setSave(with: postModel.postID ?? "", isSave: isSave)
                             }
 
@@ -243,7 +256,7 @@ class ReelViewController: UIViewController {
                                         self.uniquePostIDs.insert(postModel.postID ?? "123")
                                         self.postModels.append(postModel)
                                     } else {
-                                        self.businessPostdeletedErrorFirebase(error: "Post Deleted REELViewController Business")
+                                        self.businessPostdeletedErrorFirebase(error: "Post Deleted REELViewController Business".localized())
                                         self.deletePostClicked(postModel: postModel) { _ in }
                                     }
                                     group.leave()
@@ -256,7 +269,7 @@ class ReelViewController: UIViewController {
                                         self.uniquePostIDs.insert(postModel.postID ?? "123")
                                         self.postModels.append(postModel)
                                     } else {
-                                        self.businessPostdeletedErrorFirebase(error: "Post Deleted REELViewController USER")
+                                        self.businessPostdeletedErrorFirebase(error: "Post Deleted REELViewController USER".localized())
                                         self.deletePostClicked(postModel: postModel) { _ in }
                                     }
                                     group.leave()
@@ -282,7 +295,10 @@ class ReelViewController: UIViewController {
                         let startIndex = self.postModels.count - x
                         let indexPaths = (startIndex ..< self.self.postModels.count).map { IndexPath(row: $0, section: 0) }
                         self.tableView.insertRows(at: indexPaths, with: .none)
+                        self.pauseAllPlayers()
+                        self.fetchDeletedPosts()
                     }
+                
                     self.tableView.tableFooterView = nil
                 }
             } else {
@@ -313,41 +329,13 @@ class ReelViewController: UIViewController {
     }
 
     @objc func likeBtnClicked(gest: MyGesture) {
-        onPressLikeButton(postId: postModels[gest.index].postID ?? "123", gest: gest)
+        onPressLikeButton(postModel: postModels[gest.index] , gest: gest)
     }
 
     @objc func commentClicked(value: MyGesture) {
         performSegue(withIdentifier: "reelCommentSeg", sender: postModels[value.index])
     }
-
-    @objc func shareBtnClicked(value: MyGesture) {
-        let postModel = postModels[value.index]
-        if let postType = postModel.postType, postType == "video" {
-            if let shareURL = postModel.shareURL, !shareURL.isEmpty {
-                shareImageAndVideo(postCell: nil, link: shareURL, postId: postModel.postID!)
-            } else {
-                showSnack(messages: "Share URL not found.")
-            }
-        }
-    }
-
-    func fetchMoreData() {
-        guard postDocumentSnapshot != nil, dataMayContinue else {
-            return
-        }
-        dataMayContinue = false
-        let spinner = UIActivityIndicatorView(style: .medium)
-        spinner.color = UIColor.darkGray
-        spinner.hidesWhenStopped = true
-        spinner.startAnimating()
-        tableView.tableFooterView = spinner
-        getAllPosts(isManual: true)
-    }
-}
-
-// MARK: UITableViewDelegate, UITableViewDataSource
-
-extension ReelViewController: UITableViewDelegate, UITableViewDataSource {
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "reelCommentSeg" {
             if let vc = segue.destination as? CommentViewController, let value = sender as? PostModel {
@@ -369,6 +357,36 @@ extension ReelViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
+
+    @objc func shareBtnClicked(value: MyGesture) {
+        let postModel = postModels[value.index]
+        if let postType = postModel.postType, postType == "video" {
+            if let shareURL = postModel.shareURL, !shareURL.isEmpty {
+                shareImageAndVideo(postCell: nil, link: shareURL, postId: postModel.postID!)
+            } else {
+                showSnack(messages: "Share URL not found.".localized())
+            }
+        }
+    }
+
+    func fetchMoreData() {
+        guard postDocumentSnapshot != nil, dataMayContinue else {
+            return
+        }
+        dataMayContinue = false
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.color = UIColor.darkGray
+        spinner.hidesWhenStopped = true
+        spinner.startAnimating()
+        tableView.tableFooterView = spinner
+        getAllPosts(isManual: true)
+    }
+}
+
+// MARK: UITableViewDelegate, UITableViewDataSource
+
+extension ReelViewController: UITableViewDelegate, UITableViewDataSource {
+   
     func getLocalAssetURL(for videoURL: String) -> URL? {
         let userDefaults = UserDefaults.standard
         if let localURLString = userDefaults.string(forKey: videoURL) {
@@ -392,7 +410,7 @@ extension ReelViewController: UITableViewDelegate, UITableViewDataSource {
 
     func alertWithTF(postID: String) {
         let alertController = UIAlertController(
-            title: "Report",
+            title: "Report".localized(),
             message: "\n\n\n\n\n",
             preferredStyle: .alert
         ) // Added extra newlines for textView space
@@ -404,10 +422,10 @@ extension ReelViewController: UITableViewDelegate, UITableViewDataSource {
 
         alertController.view.addSubview(textView)
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .default, handler: nil)
         alertController.addAction(cancelAction)
 
-        let saveAction = UIAlertAction(title: "Submit", style: .default) { _ in
+        let saveAction = UIAlertAction(title: "Submit".localized(), style: .default) { _ in
             let enteredText = textView.text
             if enteredText != "" {
                 self.reportPost(reason: enteredText ?? "", postID: postID) { message in
@@ -608,7 +626,7 @@ extension ReelViewController: UITableViewDelegate, UITableViewDataSource {
             cell.moreBtn.isUserInteractionEnabled = true
             cell.moreBtn.showsMenuAsPrimaryAction = true
             let report = UIAction(
-                title: "Report",
+                title: "Report".localized(),
                 image: UIImage(systemName: "exclamationmark.triangle.fill")
             ) { _ in
                 self.alertWithTF(postID: postModel.postID ?? "123")
@@ -625,13 +643,7 @@ extension ReelViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: ReloadTableViewDelegate
 
-extension ReelViewController: ReloadTableViewDelegate {
-    func reloadTableView() {
-        tableView.reloadData()
-    }
-}
 
 // MARK: UIImagePickerControllerDelegate, UINavigationControllerDelegate
 

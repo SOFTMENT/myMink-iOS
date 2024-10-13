@@ -55,9 +55,9 @@ class AddBusinessProfileViewController: UIViewController {
         toolbar.tintColor = .link
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(businessTypePickerDoneClicked))
+        let doneButton = UIBarButtonItem(title: "Done".localized(), style: .plain, target: self, action: #selector(businessTypePickerDoneClicked))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(businessTypePickerCancelClicked))
+        let cancelButton = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: self, action: #selector(businessTypePickerCancelClicked))
         
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
@@ -106,7 +106,7 @@ class AddBusinessProfileViewController: UIViewController {
         guard validateInputs() else { return }
         let businessModel = createBusinessModel()
         
-        ProgressHUDShow(text: "Uploading Pictures")
+        ProgressHUDShow(text: "Uploading Pictures".localized())
         let group = DispatchGroup()
         
         group.enter()
@@ -129,27 +129,27 @@ class AddBusinessProfileViewController: UIViewController {
     
     private func validateInputs() -> Bool {
         guard isImageSelected else {
-            showSnack(messages: "Upload Profile Picture")
+            showSnack(messages: "Upload Profile Picture".localized())
             return false
         }
         guard isCoverPhotoSelected else {
-            showSnack(messages: "Upload Cover Picture")
+            showSnack(messages: "Upload Cover Picture".localized())
             return false
         }
         guard let title = businessNameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines), !title.isEmpty else {
-            showSnack(messages: "Enter Business Name")
+            showSnack(messages: "Enter Business Name".localized())
             return false
         }
         guard let website = websiteURLTF.text?.trimmingCharacters(in: .whitespacesAndNewlines), !website.isEmpty else {
-            showSnack(messages: "Enter Website")
+            showSnack(messages: "Enter Website".localized())
             return false
         }
         guard let type = businessType.text, !type.isEmpty else {
-            showSnack(messages: "Select Business Type")
+            showSnack(messages: "Select Business Type".localized())
             return false
         }
         guard let description = descriptionTF.text?.trimmingCharacters(in: .whitespacesAndNewlines), !description.isEmpty else {
-            showSnack(messages: "Enter Description")
+            showSnack(messages: "Enter Description".localized())
             return false
         }
         return true
@@ -189,7 +189,7 @@ class AddBusinessProfileViewController: UIViewController {
                 if let error = error {
                     self.showError(error.localizedDescription)
                 } else {
-                    self.showSnack(messages: "Business Added")
+                    self.showSnack(messages: "Business Added".localized())
                     self.delegate?.reloadTableView()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         self.dismiss(animated: true)
@@ -204,14 +204,14 @@ class AddBusinessProfileViewController: UIViewController {
     }
     
     private func presentImagePicker(title: String) {
-        let alert = UIAlertController(title: "Upload \(title)", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Using Camera", style: .default) { _ in
+        let alert = UIAlertController(title: "Upload \(title)".localized(), message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Using Camera".localized(), style: .default) { _ in
             self.showImagePicker(sourceType: .camera, title: title)
         })
-        alert.addAction(UIAlertAction(title: "From Photo Library", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: "From Photo Library".localized(), style: .default) { _ in
             self.showImagePicker(sourceType: .photoLibrary, title: title)
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         present(alert, animated: true)
     }
     

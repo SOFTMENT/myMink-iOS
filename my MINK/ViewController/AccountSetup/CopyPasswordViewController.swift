@@ -38,8 +38,9 @@ class CopyPasswordViewController: UIViewController {
     }
 
     @objc private func copyBtnClicked() {
-        showSnack(messages: "Copied")
-        UIPasteboard.general.string = "Email - \(email ?? "")\n\nPassword - \(password ?? "")"
+        showSnack(messages: "Copied".localized())
+        UIPasteboard.general.string = String(format: "Email - %@\n\nPassword - %@".localized(), email ?? "", password ?? "")
+
     }
 
     @IBAction private func loginScreenClicked(_: Any) {

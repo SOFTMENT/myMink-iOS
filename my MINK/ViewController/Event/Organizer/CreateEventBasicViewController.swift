@@ -76,9 +76,9 @@ class CreateEventBasicViewController: UIViewController {
         countriestoolBar.sizeToFit()
 
         // Adding Button ToolBar
-        let countriesDoneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(countriesDoneClicked))
+        let countriesDoneButton = UIBarButtonItem(title: "Done".localized(), style: .plain, target: self, action: #selector(countriesDoneClicked))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let countriesCancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(countriesCancelClicked))
+        let countriesCancelButton = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: self, action: #selector(countriesCancelClicked))
         countriestoolBar.setItems([countriesCancelButton, spaceButton, countriesDoneButton], animated: false)
         countriestoolBar.isUserInteractionEnabled = true
         country.inputAccessoryView = countriestoolBar
@@ -327,33 +327,33 @@ class CreateEventBasicViewController: UIViewController {
         let event = Event()
         
         if sEventTitle == "" {
-            self.showSnack(messages: "Enter Event Title")
+            self.showSnack(messages: "Enter Event Title".localized())
             return
         }
         else  if sTag == "" {
-            self.showSnack(messages: "Enter Atleast 1 Tag")
+            self.showSnack(messages: "Enter Atleast 1 Tag".localized())
             return
         }
         
         
         if sAddress == "" {
-            self.showSnack(messages: "Enter Address")
+            self.showSnack(messages: "Enter Address".localized())
             return
         }
         else if sCity == "" {
-            self.showSnack(messages: "Enter City")
+            self.showSnack(messages: "Enter City".localized())
             return
         }
         else if sState == "" {
-            self.showSnack(messages: "Enter State")
+            self.showSnack(messages: "Enter State".localized())
             return
         }
         else if sPostalCode == "" {
-            self.showSnack(messages: "Enter Postal Code")
+            self.showSnack(messages: "Enter Postal Code".localized())
             return
         }
         else if sCountry == "" {
-            self.showSnack(messages: "Select Country")
+            self.showSnack(messages: "Select Country".localized())
             return
         }
         
@@ -374,19 +374,19 @@ class CreateEventBasicViewController: UIViewController {
             
           
                 if sEventStartDate == "" {
-                    self.showSnack(messages: "Select Event Start Date")
+                    self.showSnack(messages: "Select Event Start Date".localized())
                     return
                 }
                 else if sEventStartTime == "" {
-                    self.showSnack(messages: "Select Event Start Time")
+                    self.showSnack(messages: "Select Event Start Time".localized())
                     return
                 }
                 else if sEventEndDate == "" {
-                    self.showSnack(messages: "Select Event End Date")
+                    self.showSnack(messages: "Select Event End Date".localized())
                     return
                 }
                 else if sEventEndTime == "" {
-                    self.showSnack(messages: "Select Event End Time")
+                    self.showSnack(messages: "Select Event End Time".localized())
                     return
                 }
                 else {
@@ -561,8 +561,8 @@ extension CreateEventBasicViewController : UIPickerViewDataSource, UIPickerViewD
     }
     
     func showOpenMapPopup(latitude : Double, longitude : Double){
-        let alert = UIAlertController(title: "Open in maps", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Apple Maps", style: .default, handler: { action in
+        let alert = UIAlertController(title: "Open in maps".localized(), message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Apple Maps".localized(), style: .default, handler: { action in
             
             let coordinate = CLLocationCoordinate2DMake(latitude,longitude)
             let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
@@ -572,13 +572,13 @@ extension CreateEventBasicViewController : UIPickerViewDataSource, UIPickerViewD
         
         if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
             
-            alert.addAction(UIAlertAction(title: "Google Maps", style: .default, handler: { action in
+            alert.addAction(UIAlertAction(title: "Google Maps".localized(), style: .default, handler: { action in
                 
                 UIApplication.shared.open(URL(string:"comgooglemaps://?center=\(latitude),\(longitude)&zoom=14&views=traffic&q=\(latitude),\(longitude)")!, options: [:], completionHandler: nil)
             }))
         }
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: { action in
             alert.dismiss(animated: true, completion: nil)
         }))
         
@@ -603,7 +603,7 @@ extension CreateEventBasicViewController : UITableViewDelegate, UITableViewDataS
         if let cell = tableView.dequeueReusableCell(withIdentifier: "placescell", for: indexPath) as? GooglePlacesCell {
             
            
-            cell.name.text = places[indexPath.row].name ?? "Something Went Wrong"
+            cell.name.text = places[indexPath.row].name ?? "Something Went Wrong".localized()
             cell.mView.isUserInteractionEnabled = true
             let myGesture = MyGesture(target: self, action: #selector(locationCellClicked(myGesture:)))
             myGesture.index = indexPath.row

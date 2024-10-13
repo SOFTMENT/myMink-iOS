@@ -55,9 +55,9 @@ class AccountPrivacyViewController: UIViewController {
             self.Manage2FAView.isHidden = true
         } else {
             if self.checkIfUserHas2FAEnabled() {
-                self.manage2FALbl.text = "Disable 2FA"
+                self.manage2FALbl.text = "Disable 2FA".localized()
             } else {
-                self.manage2FALbl.text = "Enable 2FA"
+                self.manage2FALbl.text = "Enable 2FA".localized()
             }
 
             self.Manage2FAView.isUserInteractionEnabled = true
@@ -75,16 +75,16 @@ class AccountPrivacyViewController: UIViewController {
 
     private func showDisable2FAAlert() {
         let alert = UIAlertController(
-            title: "Disable 2FA",
-            message: "Are you sure you want to disable 2FA?",
+            title: "Disable 2FA".localized(),
+            message: "Are you sure you want to disable 2FA?".localized(),
             preferredStyle: .alert
         )
 
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Yes".localized(), style: .default, handler: { _ in
             self.disable2FA()
         }))
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         present(alert, animated: true)
     }
 
@@ -98,7 +98,7 @@ class AccountPrivacyViewController: UIViewController {
                     self.showError(error.localizedDescription)
                 } else {
                     UserModel.data?.is2FAActive = false
-                    self.showSnack(messages: "2FA has been removed")
+                    self.showSnack(messages: "2FA has been removed".localized())
                 }
             }
     }
@@ -111,7 +111,7 @@ class AccountPrivacyViewController: UIViewController {
 
     func checkIfUserHas2FAEnabled() -> Bool {
         guard let data = UserModel.data else {
-            print("No user is currently signed in")
+            print("No user is currently signed in".localized())
             return false
         }
         return data.is2FAActive ?? false
@@ -131,12 +131,12 @@ class AccountPrivacyViewController: UIViewController {
 
     private func showDeactivateAccountAlert() {
         let alert = UIAlertController(
-            title: "DEACTIVATE ACCOUNT",
-            message: "Are you sure you want to deactivate your account?",
+            title: "DEACTIVATE ACCOUNT".localized(),
+            message: "Are you sure you want to deactivate your account?".localized(),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Deactivate", style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
+        alert.addAction(UIAlertAction(title: "Deactivate".localized(), style: .destructive, handler: { _ in
             self.deactivateAccountContinue()
         }))
         present(alert, animated: true)
@@ -144,13 +144,13 @@ class AccountPrivacyViewController: UIViewController {
 
     private func deactivateAccountContinue() {
         guard let user = FirebaseStoreManager.auth.currentUser else { return }
-        self.ProgressHUDShow(text: "Account Deactivating...")
+        self.ProgressHUDShow(text: "Account Deactivating...".localized())
         self.deactivateUserAccount(userId: user.uid) { error in
             self.ProgressHUDHide()
             if let error = error {
                 self.showError(error)
             } else {
-                self.showSnack(messages: "Account Deactivated")
+                self.showSnack(messages: "Account Deactivated".localized())
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                     self.logoutPlease()
                 }
@@ -164,12 +164,12 @@ class AccountPrivacyViewController: UIViewController {
 
     private func showDeleteAccountAlert() {
         let alert = UIAlertController(
-            title: "DELETE ACCOUNT",
-            message: "Are you sure you want to delete your account?",
+            title: "DELETE ACCOUNT".localized(),
+            message: "Are you sure you want to delete your account?".localized(),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
+        alert.addAction(UIAlertAction(title: "Delete".localized(), style: .destructive, handler: { _ in
             self.deleteAccountContinue()
         }))
         present(alert, animated: true)
@@ -177,13 +177,13 @@ class AccountPrivacyViewController: UIViewController {
 
     private func deleteAccountContinue() {
         guard let user = FirebaseStoreManager.auth.currentUser, let username = UserModel.data?.username else { return }
-        self.ProgressHUDShow(text: "Account Deleting...")
+        self.ProgressHUDShow(text: "Account Deleting...".localized())
         self.deleteUserAccount(userId: user.uid, username: username) { error in
             self.ProgressHUDHide()
             if let error = error {
                 self.showError(error)
             } else {
-                self.showSnack(messages: "Account Deleted")
+                self.showSnack(messages: "Account Deleted".localized())
             }
         }
     }

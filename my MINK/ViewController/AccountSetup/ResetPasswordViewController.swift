@@ -41,10 +41,10 @@ class ResetPasswordViewController: UIViewController {
 
     @IBAction func getLinkClicked(_: Any) {
         guard let sEmail = emailAddressTF.text, !sEmail.isEmpty else {
-            showSnack(messages: "Enter email address")
+            showSnack(messages: "Enter email address".localized())
             return
         }
-        ProgressHUDShow(text: "Retrieving Password...")
+        ProgressHUDShow(text: "Retrieving Password...".localized())
 
         FirebaseStoreManager.db.collection(Collections.users.rawValue).whereField("email", isEqualTo: sEmail)
             .whereField("regiType", isEqualTo: "custom").getDocuments { snapshot, _ in
@@ -54,7 +54,7 @@ class ResetPasswordViewController: UIViewController {
                     self.sendResetMail(randomNumber: String(n), email: sEmail)
                 } else {
                     self.ProgressHUDHide()
-                    self.showError("Account not registered with this mail address.")
+                    self.showError("Account not registered with this mail address.".localized())
                 }
             }
     }
@@ -65,7 +65,7 @@ class ResetPasswordViewController: UIViewController {
         sendMail(
             to_name: "my MINK",
             to_email: email,
-            subject: "Retrieve Password",
+            subject: "Retrieve Password".localized(),
             body: passwordResetHTMLTemplate
         ) { error in
             DispatchQueue.main.async {

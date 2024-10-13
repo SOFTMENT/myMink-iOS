@@ -1,0 +1,410 @@
+/* Class = "UILabel"; text = "Sat, Jul 24 • 11:00 AM"; ObjectID = "1HM-uV-iwd"; */
+"1HM-uV-iwd.text" = "土曜日, 7月24日 • 午前11時00分";
+
+/* Class = "UILabel"; text = "Street Address"; ObjectID = "1Mp-VI-7n5"; */
+"1Mp-VI-7n5.text" = "住所";
+
+/* Class = "UILabel"; text = "Add more details to your event like your schedule, sponsors, or featured guests."; ObjectID = "1bn-tU-XrC"; */
+"1bn-tU-XrC.text" = "スケジュール、スポンサー、または特別ゲストの詳細をイベントに追加してください。";
+
+/* Class = "UIButton"; normalTitle = "Add More Images"; ObjectID = "1vc-ya-A0A"; */
+"1vc-ya-A0A.normalTitle" = "さらに画像を追加";
+
+/* Class = "UILabel"; text = "Movin Presents : Suaturday Night DJ Party Suaturday Night DJ Party"; ObjectID = "2LN-BF-dfV"; */
+"2LN-BF-dfV.text" = "Movin Presents : 土曜日の夜のDJパーティー";
+
+/* Class = "UILabel"; text = " How to prepare and deliver a TED Talk "; ObjectID = "2PD-RG-CAK"; */
+"2PD-RG-CAK.text" = "TEDトークを準備して提供する方法";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "2aj-xI-WyZ"; */
+"2aj-xI-WyZ.text" = "概要";
+
+/* Class = "UILabel"; text = "No Events Available"; ObjectID = "2s8-n5-bmk"; */
+"2s8-n5-bmk.text" = "利用可能なイベントはありません";
+
+/* Class = "UIButton"; normalTitle = "Free"; ObjectID = "31M-qM-5zS"; */
+"31M-qM-5zS.normalTitle" = "無料";
+
+/* Class = "UILabel"; text = "Tags"; ObjectID = "38z-ZY-y79"; */
+"38z-ZY-y79.text" = "タグ";
+
+/* Class = "UILabel"; text = "Saturday, 26 July"; ObjectID = "4gZ-6s-QSp"; */
+"4gZ-6s-QSp.text" = "土曜日, 7月26日";
+
+/* Class = "UILabel"; text = "Event Image"; ObjectID = "5Ia-BP-fG5"; */
+"5Ia-BP-fG5.text" = "イベント画像";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "6AO-Uz-Oln"; */
+"6AO-Uz-Oln.text" = "JPEGまたはPNG、10MB以下。";
+
+/* Class = "UILabel"; text = "TEDxMileHigh"; ObjectID = "6J0-gb-zgg"; */
+"6J0-gb-zgg.text" = "TEDxMileHigh";
+
+/* Class = "UILabel"; text = "0 / 75"; ObjectID = "6K3-Lg-buL"; */
+"6K3-Lg-buL.text" = "0 / 75";
+
+/* Class = "UITextField"; placeholder = "Address*"; ObjectID = "6LV-zO-aP2"; */
+"6LV-zO-aP2.placeholder" = "住所*";
+
+/* Class = "UILabel"; text = "US$ 20"; ObjectID = "6Q0-qS-k2L"; */
+"6Q0-qS-k2L.text" = "20米ドル";
+
+/* Class = "UILabel"; text = "DB Mall Bhopal"; ObjectID = "6Qk-Fc-qRt"; */
+"6Qk-Fc-qRt.text" = "DBモール ボパール";
+
+/* Class = "UITextField"; placeholder = "Event Title*"; ObjectID = "6YF-Po-4X6"; */
+"6YF-Po-4X6.placeholder" = "イベントタイトル*";
+
+/* Class = "UILabel"; text = "Date and time"; ObjectID = "7GF-Sc-CbY"; */
+"7GF-Sc-CbY.text" = "日付と時間";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "8dg-8p-d0u"; */
+"8dg-8p-d0u.text" = "JPEGまたはPNG、10MB以下。";
+
+/* Class = "UILabel"; text = "Times are displayed on your local timezone"; ObjectID = "9U7-VT-b2c"; */
+"9U7-VT-b2c.text" = "時間はローカルタイムゾーンで表示されます";
+
+/* Class = "UITextField"; placeholder = "Postal Code*"; ObjectID = "A0L-MS-2j0"; */
+"A0L-MS-2j0.placeholder" = "郵便番号*";
+
+/* Class = "UITextField"; placeholder = "Price*"; ObjectID = "Bsl-7g-08L"; */
+"Bsl-7g-08L.placeholder" = "価格*";
+
+/* Class = "UILabel"; text = "Improve discoverability of your event by adding tags relevant to the subject matter."; ObjectID = "D4g-eO-Sdk"; */
+"D4g-eO-Sdk.text" = "関連するタグを追加してイベントの発見性を向上させます。";
+
+/* Class = "UITextField"; placeholder = "Tag*"; ObjectID = "Dcv-1b-L2S"; */
+"Dcv-1b-L2S.placeholder" = "タグ*";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "Dqb-HQ-XlJ"; */
+"Dqb-HQ-XlJ.text" = "イベント画像を追加するにはクリック";
+
+/* Class = "UILabel"; text = "12:30 PM - 1:30 PM"; ObjectID = "EjG-yl-SVH"; */
+"EjG-yl-SVH.text" = "午後12時30分 - 午後1時30分";
+
+/* Class = "UITextField"; placeholder = "Event Title*"; ObjectID = "EkG-lD-oi3"; */
+"EkG-lD-oi3.placeholder" = "イベントタイトル*";
+
+/* Class = "UITextField"; placeholder = "Search for a venue or address."; ObjectID = "EpK-Jp-jZl"; */
+"EpK-Jp-jZl.placeholder" = "会場または住所を検索";
+
+/* Class = "UILabel"; text = "0 / 75"; ObjectID = "FQO-AP-6HG"; */
+"FQO-AP-6HG.text" = "0 / 75";
+
+/* Class = "UITextField"; placeholder = "Available Quantity*"; ObjectID = "FWD-6X-MKc"; */
+"FWD-6X-MKc.placeholder" = "利用可能数量*";
+
+/* Class = "UILabel"; text = "Near saket nagar, hoshangabad road, Bhopal, 462024, India"; ObjectID = "Fg3-5r-4sD"; */
+"Fg3-5r-4sD.text" = "サケト・ナガール近く、ホシャンガバード・ロード、ボパール、462024、インド";
+
+/* Class = "UILabel"; text = "Tell event-goers when your event starts and ends so they can make plans to attend."; ObjectID = "G18-PB-9rW"; */
+"G18-PB-9rW.text" = "イベントの開始と終了を参加者に知らせて、参加計画を立てられるようにします。";
+
+/* Class = "UIButton"; normalTitle = "Add More Images"; ObjectID = "G5e-es-fiz"; */
+"G5e-es-fiz.normalTitle" = "さらに画像を追加";
+
+/* Class = "UIButton"; normalTitle = "Publish Event"; ObjectID = "GL7-VC-6QG"; */
+"GL7-VC-6QG.normalTitle" = "イベントを公開";
+
+/* Class = "UISegmentedControl"; HKC-2S-a8e.segmentTitles[0] = "Upcoming"; ObjectID = "HKC-2S-a8e"; */
+"HKC-2S-a8e.segmentTitles[0]" = "今後のイベント";
+
+/* Class = "UISegmentedControl"; HKC-2S-a8e.segmentTitles[1] = "Past"; ObjectID = "HKC-2S-a8e"; */
+"HKC-2S-a8e.segmentTitles[1]" = "過去のイベント";
+
+/* Class = "UITextField"; placeholder = "Address*"; ObjectID = "IDE-19-330"; */
+"IDE-19-330.placeholder" = "住所*";
+
+/* Class = "UILabel"; text = "Update Event"; ObjectID = "Iac-Lw-RL4"; */
+"Iac-Lw-RL4.text" = "イベントを更新";
+
+/* Class = "UILabel"; text = "Add to calendar"; ObjectID = "IbL-ST-Aqi"; */
+"IbL-ST-Aqi.text" = "カレンダーに追加";
+
+/* Class = "UILabel"; text = "Tags"; ObjectID = "IeY-pv-N2J"; */
+"IeY-pv-N2J.text" = "タグ";
+
+/* Class = "UILabel"; text = "DB Mall Bhopal"; ObjectID = "Iv3-no-eMP"; */
+"Iv3-no-eMP.text" = "DBモール ボパール";
+
+/* Class = "UILabel"; text = "Tags"; ObjectID = "JJj-dd-Zci"; */
+"JJj-dd-Zci.text" = "タグ";
+
+/* Class = "UILabel"; text = "Astoria, OR, USA"; ObjectID = "LCx-8k-bJ9"; */
+"LCx-8k-bJ9.text" = "アストリア、オレゴン州、アメリカ";
+
+/* Class = "UITextField"; placeholder = "Search..."; ObjectID = "Lba-jO-fUR"; */
+"Lba-jO-fUR.placeholder" = "検索...";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "LjF-5b-4ad"; */
+"LjF-5b-4ad.text" = "JPEGまたはPNG、10MB以下。";
+
+/* Class = "UITextField"; placeholder = "End Time*"; ObjectID = "MRz-kJ-7gt"; */
+"MRz-kJ-7gt.placeholder" = "終了時刻*";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "MVJ-i2-UfR"; */
+"MVJ-i2-UfR.text" = "イベント画像を追加するにはクリック";
+
+/* Class = "UILabel"; text = "Improve discoverability of your event by adding tags relevant to the subject matter."; ObjectID = "Mu5-XL-U8c"; */
+"Mu5-XL-U8c.text" = "関連するタグを追加してイベントの発見性を向上させます。";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "P7C-be-mJJ"; */
+"P7C-be-mJJ.text" = "場所";
+
+/* Class = "UITextField"; placeholder = "Start Date*"; ObjectID = "PLz-Le-E9e"; */
+"PLz-Le-E9e.placeholder" = "開始日*";
+
+/* Class = "UITextField"; placeholder = "Start Time*"; ObjectID = "QFe-fk-Y60"; */
+"QFe-fk-Y60.placeholder" = "開始時刻*";
+
+/* Class = "UILabel"; text = "No Upcoming Events Available"; ObjectID = "QHm-zc-OdN"; */
+"QHm-zc-OdN.text" = "利用可能な今後のイベントはありません";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "R2V-KS-Fuo"; */
+"R2V-KS-Fuo.normalTitle" = "続ける";
+
+/* Class = "UILabel"; text = "Movin Presents : Suaturday Night DJ Party Suaturday Night DJ Party"; ObjectID = "RWi-nT-P7t"; */
+"RWi-nT-P7t.text" = "Movin Presents : 土曜日の夜のDJパーティー";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "Rd9-jf-7QO"; */
+"Rd9-jf-7QO.text" = "説明";
+
+/* Class = "UIButton"; normalTitle = "Paid"; ObjectID = "ReQ-fA-Vuf"; */
+"ReQ-fA-Vuf.normalTitle" = "有料";
+
+/* Class = "UITextField"; placeholder = "Start Date*"; ObjectID = "Rkr-wJ-Iwi"; */
+"Rkr-wJ-Iwi.placeholder" = "開始日*";
+
+/* Class = "UILabel"; text = "Basic Info"; ObjectID = "Rxe-Cd-5GO"; */
+"Rxe-Cd-5GO.text" = "基本情報";
+
+/* Class = "UILabel"; text = "Update Event"; ObjectID = "Sh2-Dp-RUZ"; */
+"Sh2-Dp-RUZ.text" = "イベントを更新";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "Srk-1I-ADu"; */
+"Srk-1I-ADu.text" = "場所";
+
+/* Class = "UILabel"; text = "Enter tags separated by comma. \nExample - fun, holiday, party"; ObjectID = "Sy5-Af-Kre"; */
+"Sy5-Af-Kre.text" = "タグをカンマで区切って入力してください。\n例 - 楽しい、休日、パーティー";
+
+/* Class = "UILabel"; text = "Sat, Jul 24 • 11:00 AM "; ObjectID = "TA8-jj-BPI"; */
+"TA8-jj-BPI.text" = "土曜日, 7月24日 • 午前11時00分";
+
+/* Class = "UILabel"; text = "Add more details to your event like your schedule, sponsors, or featured guests."; ObjectID = "UkI-k4-5di"; */
+"UkI-k4-5di.text" = "スケジュール、スポンサー、または特別ゲストの詳細をイベントに追加してください。";
+
+/* Class = "UILabel"; text = "Fri, 23 Jul 2021"; ObjectID = "VRT-fH-lFP"; */
+"VRT-fH-lFP.text" = "金曜日, 2021年7月23日";
+
+/* Class = "UIButton"; normalTitle = "Update Event"; ObjectID = "WG1-iq-J9q"; */
+"WG1-iq-J9q.normalTitle" = "イベントを更新";
+
+/* Class = "UITextField"; placeholder = "Tag*"; ObjectID = "Wkw-Ga-Os3"; */
+"Wkw-Ga-Os3.placeholder" = "タグ*";
+
+/* Class = "UILabel"; text = "Help peoples in the area discover your event and let attendees know where to show up."; ObjectID = "Wzs-Kh-Xr2"; */
+"Wzs-Kh-Xr2.text" = "地域の人々がイベントを見つけ、参加者に出席場所を知らせる手助けをします。";
+
+/* Class = "UILabel"; text = "Basic Info"; ObjectID = "XUm-cl-a9h"; */
+"XUm-cl-a9h.text" = "基本情報";
+
+/* Class = "UITextField"; placeholder = "City*"; ObjectID = "XZo-lm-0XX"; */
+"XZo-lm-0XX.placeholder" = "都市*";
+
+/* Class = "UIButton"; normalTitle = "Create Event"; ObjectID = "Yik-5H-x6v"; */
+"Yik-5H-x6v.normalTitle" = "イベントを作成";
+
+/* Class = "UILabel"; text = "Hi, Vijay Rathore"; ObjectID = "Ymg-pl-yL8"; */
+"Ymg-pl-yL8.text" = "こんにちは, Vijay Rathore";
+
+/* Class = "UITextField"; placeholder = "Country*"; ObjectID = "YzN-I3-TSV"; */
+"YzN-I3-TSV.placeholder" = "国*";
+
+/* Class = "UITextField"; placeholder = "Country*"; ObjectID = "ZPF-C7-FWc"; */
+"ZPF-C7-FWc.placeholder" = "国*";
+
+/* Class = "UITextField"; placeholder = "Ticket Name*"; ObjectID = "a0E-8h-yz2"; */
+"a0E-8h-yz2.placeholder" = "チケット名*";
+
+/* Class = "UITextField"; placeholder = "State/Province*"; ObjectID = "bOP-vK-YKi"; */
+"bOP-vK-YKi.placeholder" = "州/省*";
+
+/* Class = "UIButton"; normalTitle = "Free"; ObjectID = "bTb-V3-ddb"; */
+"bTb-V3-ddb.normalTitle" = "無料";
+
+/* Class = "UILabel"; text = "Create Event"; ObjectID = "c6F-97-1bc"; */
+"c6F-97-1bc.text" = "イベントを作成";
+
+/* Class = "UILabel"; text = "@Leo"; ObjectID = "cL4-Lp-uMO"; */
+"cL4-Lp-uMO.text" = "@Leo";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "cTa-cK-TSC"; */
+"cTa-cK-TSC.text" = "JPEGまたはPNG、10MB以下。";
+
+/* Class = "UITextField"; placeholder = "Search for a venue or address."; ObjectID = "cz2-eo-WQa"; */
+"cz2-eo-WQa.placeholder" = "会場または住所を検索";
+
+/* Class = "UITextField"; placeholder = "Ticket Name*"; ObjectID = "dwT-dj-sdz"; */
+"dwT-dj-sdz.placeholder" = "チケット名*";
+
+/* Class = "UILabel"; text = "Online"; ObjectID = "dzc-Rn-3iB"; */
+"dzc-Rn-3iB.text" = "オンライン";
+
+/* Class = "UILabel"; text = "AIIMS Hospital"; ObjectID = "eVP-yl-T7J"; */
+"eVP-yl-T7J.text" = "AIIMS病院";
+
+/* Class = "UIButton"; normalTitle = "Send Invite"; ObjectID = "ehw-LT-APp"; */
+"ehw-LT-APp.normalTitle" = "招待を送信";
+
+/* Class = "UILabel"; text = "Date and time"; ObjectID = "f6d-sa-epZ"; */
+"f6d-sa-epZ.text" = "日付と時間";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "fEa-Uf-iDH"; */
+"fEa-Uf-iDH.text" = "イベント画像を追加するにはクリック";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "fpt-iB-Ur1"; */
+"fpt-iB-Ur1.text" = "場所";
+
+/* Class = "UILabel"; text = "Tell event-goers when your event starts and ends so they can make plans to attend."; ObjectID = "gQr-s5-0zg"; */
+"gQr-s5-0zg.text" = "参加者が出席計画を立てられるように、イベントの開始と終了を知らせます。";
+
+/* Class = "UITextField"; placeholder = "City*"; ObjectID = "gkJ-ge-zuu"; */
+"gkJ-ge-zuu.placeholder" = "都市*";
+
+/* Class = "UILabel"; text = "No Past Events Available"; ObjectID = "gqC-8g-rZQ"; */
+"gqC-8g-rZQ.text" = "過去のイベントは利用できません";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "hVx-3k-NyX"; */
+"hVx-3k-NyX.normalTitle" = "続ける";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "hXY-cY-Z5n"; */
+"hXY-cY-Z5n.text" = "JPEGまたはPNG、10MB以下。";
+
+/* Class = "UILabel"; text = "Discard"; ObjectID = "hpt-bu-CcQ"; */
+"hpt-bu-CcQ.text" = "破棄";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "hxE-fu-tpX"; */
+"hxE-fu-tpX.text" = "イベント画像を追加するにはクリック";
+
+/* Class = "UITextField"; placeholder = "Available Quantity*"; ObjectID = "hzc-t7-EJA"; */
+"hzc-t7-EJA.placeholder" = "利用可能数量*";
+
+/* Class = "UILabel"; text = "0 / 50"; ObjectID = "iPb-pK-Zbf"; */
+"iPb-pK-Zbf.text" = "0 / 50";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "idc-6O-Rr3"; */
+"idc-6O-Rr3.text" = "イベント画像を追加するにはクリック";
+
+/* Class = "UILabel"; text = "How to prepare and deliver a TED Talk"; ObjectID = "jBv-gK-1PH"; */
+"jBv-gK-1PH.text" = "TEDトークを準備して提供する方法";
+
+/* Class = "UIButton"; normalTitle = "Switch to user"; ObjectID = "jVn-p1-FZk"; */
+"jVn-p1-FZk.normalTitle" = "ユーザーに切り替え";
+
+/* Class = "UILabel"; text = "Use a high quality images: (9: 5 ratio)."; ObjectID = "l2f-qT-t98"; */
+"l2f-qT-t98.text" = "高品質な画像を使用してください：（9:5の比率）。";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "lAa-Ic-8hl"; */
+"lAa-Ic-8hl.text" = "JPEGまたはPNG、10MB以下。";
+
+/* Class = "UILabel"; text = "Event Image"; ObjectID = "mGa-VQ-cKB"; */
+"mGa-VQ-cKB.text" = "イベント画像";
+
+/* Class = "UILabel"; text = "Street Address"; ObjectID = "n7h-zT-hjP"; */
+"n7h-zT-hjP.text" = "住所";
+
+/* Class = "UILabel"; text = "Events"; ObjectID = "nOG-BR-nZe"; */
+"nOG-BR-nZe.text" = "イベント";
+
+/* Class = "UILabel"; text = "Name your event and tell event - goers why they should come. Add details that highlight what makes it unique"; ObjectID = "nWx-ke-EMG"; */
+"nWx-ke-EMG.text" = "イベントに名前を付け、なぜ参加者が来るべきかを説明してください。ユニークな点を強調する詳細を追加します。";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "o74-5k-gKV"; */
+"o74-5k-gKV.text" = "イベント画像を追加するにはクリック";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "oTd-ag-4Jl"; */
+"oTd-ag-4Jl.text" = "イベント画像を追加するにはクリック";
+
+/* Class = "UILabel"; text = "View Profile"; ObjectID = "oWM-GD-nn0"; */
+"oWM-GD-nn0.text" = "プロフィールを表示";
+
+/* Class = "UILabel"; text = "Sat, Jul 24 • 11:00 AM "; ObjectID = "olx-Ho-Gtb"; */
+"olx-Ho-Gtb.text" = "土曜日, 7月24日 • 午前11時00分";
+
+/* Class = "UILabel"; text = "Flipkart, 'India ka Fashion Capital', is your one-stop fashion destination for anything and everything you need to look good."; ObjectID = "q7d-dE-eS8"; */
+"q7d-dE-eS8.text" = "Flipkart、「インドのファッション首都」は、あなたが良く見えるために必要なすべてのファッションの目的地です。";
+
+/* Class = "UILabel"; text = "Venue Location"; ObjectID = "qJy-7q-2xe"; */
+"qJy-7q-2xe.text" = "会場の場所";
+
+/* Class = "UIButton"; normalTitle = "Party"; ObjectID = "qcq-Ol-T60"; */
+"qcq-Ol-T60.normalTitle" = "パーティー";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "qx4-1C-aQM"; */
+"qx4-1C-aQM.text" = "JPEGまたはPNG、10MB以下。";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "r4O-Nr-DTh"; */
+"r4O-Nr-DTh.text" = "JPEGまたはPNG、10MB以下。";
+
+/* Class = "UILabel"; text = "Movin Presents : Suaturday Night DJ Party Suaturday Night DJ Party"; ObjectID = "r4p-vq-ld5"; */
+"r4p-vq-ld5.text" = "Movin Presents : 土曜日の夜のDJパーティー";
+
+/* Class = "UILabel"; text = "Name your event and tell event - goers why they should come. Add details that highlight what makes it unique"; ObjectID = "rQk-9f-ieA"; */
+"rQk-9f-ieA.text" = "イベントに名前を付け、なぜ参加者が来るべきかを説明してください。ユニークな点を強調する詳細を追加します。";
+
+/* Class = "UIButton"; normalTitle = "Paid"; ObjectID = "sVb-r9-arn"; */
+"sVb-r9-arn.normalTitle" = "有料";
+
+/* Class = "UILabel"; text = "Create Event"; ObjectID = "snT-KV-pwu"; */
+"snT-KV-pwu.text" = "イベントを作成";
+
+/* Class = "UITextField"; placeholder = "Start Time*"; ObjectID = "sy6-u7-Bsf"; */
+"sy6-u7-Bsf.placeholder" = "開始時刻*";
+
+/* Class = "UILabel"; text = "Astoria, OR, USA"; ObjectID = "tVF-yA-PPj"; */
+"tVF-yA-PPj.text" = "アストリア、オレゴン州、アメリカ";
+
+/* Class = "UILabel"; text = "on myMINK"; ObjectID = "uUh-Ke-COA"; */
+"uUh-Ke-COA.text" = "myMINKで";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "utD-y5-9dQ"; */
+"utD-y5-9dQ.text" = "説明";
+
+/* Class = "UILabel"; text = "Venue Location"; ObjectID = "vgJ-Az-vp5"; */
+"vgJ-Az-vp5.text" = "会場の場所";
+
+/* Class = "UITextField"; placeholder = "State/Province*"; ObjectID = "vz2-o8-QlO"; */
+"vz2-o8-QlO.placeholder" = "州/省*";
+
+/* Class = "UILabel"; text = "Enter tags separated by comma. \nExample - fun, holiday, party"; ObjectID = "vzG-2Z-ZPb"; */
+"vzG-2Z-ZPb.text" = "タグをカンマで区切って入力してください。\n例 - 楽しい、休日、パーティー";
+
+/* Class = "UILabel"; text = "Help peoples in the area discover your event and let attendees know where to show up."; ObjectID = "wWl-jZ-1ZB"; */
+"wWl-jZ-1ZB.text" = "地域の人々がイベントを見つけ、参加者に出席場所を知らせる手助けをします。";
+
+/* Class = "UITextField"; placeholder = "Postal Code*"; ObjectID = "wl1-s1-5qm"; */
+"wl1-s1-5qm.placeholder" = "郵便番号*";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "wn8-J8-MM6"; */
+"wn8-J8-MM6.text" = "イベント画像を追加するにはクリック";
+
+/* Class = "UITextField"; placeholder = "End Time*"; ObjectID = "y7e-Ss-2O8"; */
+"y7e-Ss-2O8.placeholder" = "終了時刻*";
+
+/* Class = "UITextField"; placeholder = "End Date*"; ObjectID = "ybD-te-wBh"; */
+"ybD-te-wBh.placeholder" = "終了日*";
+
+/* Class = "UITextField"; placeholder = "Price*"; ObjectID = "ynF-zz-ARW"; */
+"ynF-zz-ARW.placeholder" = "価格*";
+
+/* Class = "UIButton"; normalTitle = "Switch to organiser"; ObjectID = "z03-Z3-NET"; */
+"z03-Z3-NET.normalTitle" = "主催者に切り替え";
+
+/* Class = "UILabel"; text = "0 / 50"; ObjectID = "zBV-YY-UtP"; */
+"zBV-YY-UtP.text" = "0 / 50";
+
+/* Class = "UITextField"; placeholder = "End Date*"; ObjectID = "zbn-Bk-n0b"; */
+"zbn-Bk-n0b.placeholder" = "終了日*";
+
+/* Class = "UILabel"; text = "Use a high quality images: (9: 5 ratio)."; ObjectID = "zuq-SB-bSC"; */
+"zuq-SB-bSC.text" = "高品質な画像を使用してください：（9:5の比率）。";

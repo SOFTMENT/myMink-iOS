@@ -23,7 +23,7 @@ import SwiftUI
 import TTGSnackbar
 import UIKit
 import FirebaseFirestore
-
+import RevenueCat
 
 // MARK: - UIViewController Extensions
 extension UIViewController {
@@ -69,7 +69,7 @@ extension UIViewController {
             if let data = result?.data as? [String: Any], let message = data["message"] as? String {
                 completion(message)
             } else {
-                completion("An error occurred while submitting your report.")
+                completion("An error occurred while submitting your report.".localized())
             }
         }
     }
@@ -86,14 +86,14 @@ extension UIViewController {
         functions.httpsCallable("reportPost").call(data) { result, error in
             if let error = error {
                 print("Error calling cloud function: \(error.localizedDescription)")
-                completion("An error occurred while submitting your report.")
+                completion("An error occurred while submitting your report.".localized())
                 return
             }
 
             if let data = result?.data as? [String: Any], let message = data["message"] as? String {
                 completion(message)
             } else {
-                completion("An error occurred while submitting your report.")
+                completion("An error occurred while submitting your report.".localized())
             }
         }
     }
@@ -124,7 +124,7 @@ extension UIViewController {
                 let isFollowing = data["isFollowing"] as? Bool ?? false
                 completion(isFollowing, nil)
             } else {
-                completion(false, "Unknown error")
+                completion(false, "Unknown error".localized())
             }
         }
     }
@@ -144,7 +144,7 @@ extension UIViewController {
     func checkAuthProvider() -> String {
         
         guard let user = Auth.auth().currentUser else {
-            return "No user is currently signed in."
+            return "No user is currently signed in.".localized()
         }
 
         for userInfo in user.providerData {
@@ -235,25 +235,29 @@ extension UIViewController {
 
     func addUserData(userData: UserModel) {
         guard let uid = userData.uid, !uid.isEmpty else {
-            self.showError("Invalid user ID")
+            self.showError("Invalid user ID".localized())
             return
         }
-
         self.ProgressHUDShow(text: "")
+        
         do {
-            try FirebaseStoreManager.db.collection(Collections.users.rawValue).document(uid).setData(from: userData) { [weak self] error in
+            try FirebaseStoreManager.db.collection(Collections.users.rawValue).document(userData.uid!).setData(from: userData) { [weak self] error in
                 self?.ProgressHUDHide()
 
                 if let error = error {
                     self?.showError(error.localizedDescription)
                 } else {
-                    self?.getUserData(uid: uid, showProgress: true)
+                    self?.getUserData(uid: userData.uid!, showProgress: true)
                 }
             }
         } catch {
             self.showError(error.localizedDescription)
         }
+        
+      
     }
+    
+   
 
     func membershipDaysLeft(currentDate: Date, expireDate: Date) -> Int {
         let calendar = Calendar.current
@@ -270,6 +274,24 @@ extension UIViewController {
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 10
         return numberFormatter.string(from: NSNumber(floatLiteral: largeNumber))
+    }
+    
+    func getPostBy(postId : String, completion: @escaping (PostModel?, String?) -> Void) {
+        FirebaseStoreManager.db.collection(Collections.posts.rawValue).document(postId).getDocument { snapshot, error in
+            if let snapshot = snapshot {
+                if snapshot.exists {
+                    if let postModel = try? snapshot.data(as: PostModel.self) {
+                        completion(postModel, nil)
+                    }
+                }
+                else {
+                    completion(nil, "Post not found".localized())
+                }
+            }
+            else {
+                completion(nil, error?.localizedDescription ?? "Unknown error occurred".localized())
+            }
+        }
     }
 
     /// Retrieves an array of `PostModel` objects for a given user ID.
@@ -292,7 +314,7 @@ extension UIViewController {
         postsQuery.addSnapshotListener { snapshot, error in
             guard let snapshot = snapshot, error == nil else {
                 // If an error occurs, return with the error message.
-                completion(nil, error?.localizedDescription ?? "Unknown error occurred")
+                completion(nil, error?.localizedDescription ?? "Unknown error occurred".localized())
                 return
             }
 
@@ -423,7 +445,7 @@ extension UIViewController {
 
         query.limit(to: limit).addSnapshotListener { snapshot, error in
             guard let snapshot = snapshot, error == nil else {
-                completion(nil, error?.localizedDescription ?? "Unknown error occurred")
+                completion(nil, error?.localizedDescription ?? "Unknown error occurred".localized())
                 return
             }
 
@@ -529,7 +551,7 @@ extension UIViewController {
     
     func addSave(to postID: String,completion : @escaping (_ isSaved : Bool, _ error : String?)->Void) {
         guard let userID = FirebaseStoreManager.auth.currentUser?.uid else {
-            completion(false, "User must be logged in to like a post.")
+            completion(false, "User must be logged in to like a post.".localized())
             return
         }
 
@@ -564,11 +586,14 @@ extension UIViewController {
             return
         }
 
+        
+        
         let likeModel = LikeModel()
         likeModel.postID = postID
         likeModel.userID = userID
         likeModel.likeDate = Date()
 
+       
        
             try? FirebaseStoreManager.db.collection(Collections.posts.rawValue).document(postID).collection(Collections.likes.rawValue)
                 .document(userID).setData(from: likeModel) { error in
@@ -577,6 +602,27 @@ extension UIViewController {
                     completion()
                     
             }
+        
+    }
+    
+    func addNotification(to  id : String, userId : String, comment : String? = nil, type : String){
+        guard let uid = FirebaseStoreManager.auth.currentUser?.uid else {
+
+            return
+        }
+        
+        let notificationModel = NotificationModel()
+        notificationModel.date = Date()
+        notificationModel.type = type
+        notificationModel.uid = uid
+        notificationModel.id = id
+        notificationModel.comment = comment
+        notificationModel.notificationId =  "\(type)-\(uid)"
+        
+        try? FirebaseStoreManager.db.collection(Collections.users.rawValue).document(userId).collection(Collections.notifications.rawValue).document(notificationModel.notificationId!).setData(from: notificationModel)
+        
+        FirebaseStoreManager.db.collection(Collections.users.rawValue).document(userId).collection("UnreadNotifications")
+            .document("doc").setData(["count":FieldValue.increment(Int64(1))])
         
     }
     
@@ -656,23 +702,38 @@ extension UIViewController {
         }
     }
     
-    func onPressLikeButton(postId : String, gest : MyGesture){
+    func onPressLikeButton(postModel : PostModel, gest : MyGesture){
         
         gest.isEnabled = false
         
-        checkCurrentUserLikedPost(postID: postId) { isLiked in
+        checkCurrentUserLikedPost(postID: postModel.postID!) { isLiked in
             
-            FavoritesManager.shared.toggleFavorite(for: postId, isLiked: !isLiked)
+            FavoritesManager.shared.toggleFavorite(for: postModel.postID!, isLiked: !isLiked)
             
             if isLiked {
-                self.deleteLike(postId: postId) {
+                self.deleteLike(postId:  postModel.postID!) {
                     gest.isEnabled = true
                 }
             }
             else {
-                self.addLike(to: postId) {
+                
+                if FirebaseStoreManager.auth.currentUser!.uid != postModel.uid! {
+                  
+                        PushNotificationSender().sendPushNotification(
+                            title: "Enjoy",
+                            body: "\(UserModel.data!.fullName ?? "123") wants you to Enjoy!",
+                            topic: postModel.notificationToken ?? "123"
+                        )
+                   
+                    self.addNotification(to: postModel.postID!, userId: postModel.uid!, type: Notifications.like.rawValue)
+                 
+                }
+                
+                self.addLike(to:  postModel.postID!) {
                     gest.isEnabled = true
                 }
+                
+                
             }
         }
     }
@@ -718,7 +779,8 @@ extension UIViewController {
         if postType == .image {
             var loading: MBProgressHUD?
             if !shouldHideProgress {
-                loading = self.DownloadProgressHUDShow(text: "Image Uploading : 0.0%")
+                loading = self.DownloadProgressHUDShow(text: String(format: "Image Uploading : %@".localized(), "0.0%"))
+
             }
 
             let data: Data?
@@ -735,9 +797,10 @@ extension UIViewController {
             Task {
                 for await progress in await uploadTask.progress {
                     if !shouldHideProgress {
+                        let progressPercentage = String(format: "%.2f", progress.fractionCompleted * 100)
                         self.DownloadProgressHUDUpdate(
                             loading: loading!,
-                            text: "Image Uploading : \(String(format: "%.2f", progress.fractionCompleted * 100))%"
+                            text: String(format: "Image Uploading : %@".localized(), progressPercentage)
                         )
                     }
                 }
@@ -748,6 +811,7 @@ extension UIViewController {
                     }
                 }
             }
+
             Task {
                 if let value = try? await uploadTask.value {
                     self.deleteAWSFile(by: previousKey, type: postType)
@@ -759,16 +823,18 @@ extension UIViewController {
         } else if postType == .video {
             var loading: MBProgressHUD?
             if !shouldHideProgress {
-                loading = self.DownloadProgressHUDShow(text: "Video Uploading : 0.0%")
+                loading = self.DownloadProgressHUDShow(text: String(format: "Video Uploading : %@".localized(), "0.0%"))
+
             }
             let uploadTask = Amplify.Storage.uploadFile(key: "\(folderName)/\(UUID().uuidString).mov", local: videoPath!)
 
             Task {
                 for await progress in await uploadTask.progress {
                     if !shouldHideProgress {
+                        let progressPercentage = String(format: "%.2f", progress.fractionCompleted * 100)
                         self.DownloadProgressHUDUpdate(
                             loading: loading!,
-                            text: "Video Uploading : \(String(format: "%.2f", progress.fractionCompleted * 100))%"
+                            text: String(format: "Video Uploading : %@".localized(), progressPercentage)
                         )
                     }
                 }
@@ -830,7 +896,7 @@ extension UIViewController {
         userModel: UserModel,
         completion: @escaping (_ url: String?, _ error: Error?) -> Void
     ) {
-        let buo = BranchUniversalObject(canonicalIdentifier: userModel.uid ?? "123")
+        let buo = BranchUniversalObject(canonicalIdentifier: userModel.username ?? "123")
         buo.title = userModel.fullName ?? "Full Name"
         buo.contentDescription = userModel.biography
         buo.imageUrl = "\(Constants.awsImageBaseURL)/public/\(userModel.profilePic ?? "")"
@@ -1118,7 +1184,7 @@ extension UIViewController {
                 string: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=\(currency)&order=market_cap_desc&per_page=200&page=1&sparkline=false&locale=en"
             )
         else {
-            completion(nil, "Invalid URL")
+            completion(nil, "Invalid URL".localized())
             return
         }
 
@@ -1138,7 +1204,7 @@ extension UIViewController {
 
                 guard let data = data else {
                     DispatchQueue.main.async {
-                        completion(nil, "No data received from the server")
+                        completion(nil, "No data received from the server".localized())
                     }
                     return
                 }
@@ -1174,7 +1240,7 @@ extension UIViewController {
                     }
                 }
                 else {
-                    completion(nil, "Does not exist.")
+                    completion(nil, "Does not exist.".localized())
                 }
             }
         }
@@ -1363,7 +1429,7 @@ extension UIViewController {
     func getMostPopularBooks(completion: @escaping (_ bookModel: BookModel?, _ error: String?) -> Void) {
         let urlString = "https://gutendex.com/books/?sort=downloads"
         guard let url = URL(string: urlString) else {
-            completion(nil, "Invalid URL")
+            completion(nil, "Invalid URL".localized())
             return
         }
 
@@ -1372,7 +1438,7 @@ extension UIViewController {
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
-                completion(nil, error?.localizedDescription ?? "No data received")
+                completion(nil, error?.localizedDescription ?? "No data received".localized())
                 return
             }
 
@@ -1406,7 +1472,7 @@ extension UIViewController {
     func searchBooks(bookName: String, completion: @escaping (_ bookModel: BookModel?, _ error: String?) -> Void) {
         let urlString = "https://gutendex.com/books/?search=\(bookName)"
         guard let url = URL(string: urlString) else {
-            completion(nil, "Invalid URL")
+            completion(nil, "Invalid URL".localized())
             return
         }
 
@@ -1415,7 +1481,7 @@ extension UIViewController {
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
-                completion(nil, error?.localizedDescription ?? "No data received")
+                completion(nil, error?.localizedDescription ?? "No data received".localized())
                 return
             }
 
@@ -1620,6 +1686,7 @@ extension UIViewController {
                        let code = FunctionsErrorCode(rawValue: error.code)
                        let details = error.userInfo[FunctionsErrorDetailsKey]
                        completion(nil,"Cancel Subscription Error: \(code ?? .unknown), details: \(details ?? "")" )
+
                    }
                } else if let resultData = result?.data as? [String: Any] {
                    // Handle Cloud Function success
@@ -1690,6 +1757,11 @@ extension UIViewController {
                       completion(events)
                       return
                       
+                  case .businesses:
+                      let businesses = try decoder.decode([BusinessModel].self, from: jsonData)
+                      completion(businesses)
+                      return
+                      
                   }
               
                 } catch {
@@ -1699,6 +1771,8 @@ extension UIViewController {
             
         }
     }
+    
+    
     
     func deleteProduct(productId: String, images: [String], completion : @escaping (_ error : String?)->Void){
         let functions = Functions.functions()
@@ -1718,6 +1792,13 @@ extension UIViewController {
             "id": postId
         ]) { result, error in
             completion(self.hasError(result: result, error: error))
+        }
+    }
+    
+    func deleteNotification(notificationId: String, completion : @escaping ()->Void) {
+        let functions = Functions.functions()
+        functions.httpsCallable("deleteUsersNotification").call(["notificationId": notificationId]) { result, error in
+          completion()
         }
     }
 
@@ -1896,7 +1977,6 @@ extension UIViewController {
         }
 
         
-            
             let mfollowModel = FollowModel()
             mfollowModel.name = mUser.fullName ?? ""
             mfollowModel.uid = mUser.uid ?? ""
@@ -1915,7 +1995,7 @@ extension UIViewController {
     
     func getMarketplaceProductsBy(uid : String, completion : @escaping (_ products : Array<MarketplaceModel>?, _ error : String?)->Void){
         
-        FirebaseStoreManager.db.collection(Collections.marketplace.rawValue).whereField("uid", isEqualTo: uid).order(by: "dateCreated",descending: true).getDocuments { snapshot, error in
+        FirebaseStoreManager.db.collection(Collections.marketplace.rawValue).whereField("uid", isEqualTo: uid).order(by: "dateCreated",descending: true).addSnapshotListener { snapshot, error in
             if let error = error {
                 completion(nil, error.localizedDescription)
             }
@@ -1958,6 +2038,27 @@ extension UIViewController {
             }
         }
         
+    }
+    
+    func getAllNotifications(uid : String, completion : @escaping (_ notifications : Array<NotificationModel>?, _ error : String?)->Void){
+        
+        FirebaseStoreManager.db.collection(Collections.users.rawValue).document(uid).collection(Collections.notifications.rawValue).order(by: "date",descending: true).addSnapshotListener { snapshot, error in
+            if let error = error {
+                completion(nil, error.localizedDescription)
+            }
+            else {
+                var notifications = Array<NotificationModel>()
+                if let snapshot = snapshot, !snapshot.isEmpty {
+                    for qdr in snapshot.documents {
+                        if let notificationModel = try? qdr.data(as: NotificationModel.self) {
+                           
+                            notifications.append(notificationModel)
+                        }
+                    }
+                }
+                completion(notifications, nil)
+            }
+        }
     }
     
      func increaseProfileView(mUid : String, mFriendUid : String){
@@ -2331,7 +2432,7 @@ extension UIViewController {
 
     
     func hasMembership()->Bool{
-        if let user = UserModel.data, let isActive = user.isAccountActive , isActive {
+        if let user = UserModel.data, let isActive = user.entitlementStatus , (isActive == "active" || isActive == "trialing") {
             return true
         }
         return false
@@ -2355,11 +2456,11 @@ extension UIViewController {
                     UserModel.data = userModel
                     if let isBlocked = userModel.isBlocked, isBlocked {
                     
-                        let okAction = UIAlertAction(title: "OK", style: .default) { action in
+                        let okAction = UIAlertAction(title: "OK".localized(), style: .default) { action in
                             self.logoutPlease()
                          
                         }
-                        self.showError("Your account has been blocked. Please contact us on support@mymink.com.au","Blocked", okAction)
+                        self.showError("Your account has been blocked. Please contact us on support@mymink.com.au".localized(),"Blocked".localized(), okAction)
                         return
                     }
                     
@@ -2490,15 +2591,15 @@ extension UIViewController {
         }
     }
     
-    func haveBlackTick()->Bool{
-        if let userModel = UserModel.data, let haveBlueTick = userModel.haveBlueTick, haveBlueTick {
+    func haveBlueTick(userModel : UserModel?)->Bool{
+        if let userModel = userModel, let haveBlueTick = userModel.haveBlueTick, haveBlueTick {
             return true
         }
         return false
     }
     
-    func haveBlueTick()->Bool{
-        if let userModel = UserModel.data, let haveBlackTick = userModel.haveBlackTick, haveBlackTick {
+    func haveBlackTick(userModel : UserModel?)->Bool{
+        if let userModel = userModel, let haveBlackTick = userModel.haveBlackTick, haveBlackTick {
             return true
         }
         return false
@@ -2580,6 +2681,7 @@ extension UIViewController {
                 "callUUID": callUUID
             ] as [String: Any]) { result, error in
                 if let error = error {
+                    
                     completion(nil, error.localizedDescription)
                 } else {
                     if let result = result, let data = result.data as? [String: String] {
@@ -2635,7 +2737,7 @@ extension UIViewController {
                   let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
                   let token = json["token"] as? String
             else {
-                completion("Server not responding")
+                completion("Server not responding".localized())
                 return
             }
             completion(token)
@@ -2660,6 +2762,58 @@ extension UIViewController {
         window.makeKeyAndVisible()
     }
 
+    func blockUser(blockedUserID: String, completion: @escaping (_ error : String?) -> Void) {
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+
+       
+        let blockedUserRef = FirebaseStoreManager.db.collection("Users").document(currentUserID).collection("BlockedUsers").document(blockedUserID)
+        
+        let blockUserModel = BlockUserModel()
+        blockUserModel.blockedAt = Date()
+        blockUserModel.userId = blockedUserID
+        
+        try? blockedUserRef.setData(from: blockUserModel) { error in
+            if let error = error {
+               
+                completion(error.localizedDescription)
+            } else {
+               
+                completion(nil)
+            }
+        }
+    }
+    
+    func unBlockUser(blockedUserID: String, completion: @escaping (_ error : String?) -> Void) {
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+
+       
+        let blockedUserRef = FirebaseStoreManager.db.collection("Users").document(currentUserID).collection("BlockedUsers").document(blockedUserID)
+        
+        blockedUserRef.delete() { error in
+            if let error = error {
+               
+                completion(error.localizedDescription)
+            } else {
+               
+                completion(nil)
+            }
+        }
+    }
+
+    func isUserBlock(userId : String, completion: @escaping (Bool) -> Void) {
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+        FirebaseStoreManager.db.collection("Users").document(currentUserID).collection("BlockedUsers").document(userId).getDocument { snapshot, error in
+            if let snapshot = snapshot, snapshot.exists {
+                completion(true)
+            }
+            else {
+                completion(false)
+            }
+        }
+        
+    }
+        
+    
     func generateThumbnail(path: URL) -> UIImage? {
         do {
             let asset = AVURLAsset(url: path, options: nil)
@@ -2819,7 +2973,7 @@ extension UIViewController {
         return df.string(from: date)
     }
 
-    func showError(_ message: String,_ title : String = "ERROR", _ okAction : UIAlertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)) {
+    func showError(_ message: String,_ title : String = "ERROR".localized(), _ okAction : UIAlertAction = UIAlertAction(title: "Ok".localized(), style: .default, handler: nil)) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         alert.addAction(okAction)
@@ -2830,7 +2984,7 @@ extension UIViewController {
     func showMessage(title: String, message: String, shouldDismiss: Bool = false) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-        let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+        let okAction = UIAlertAction(title: "Ok".localized(), style: .default) { _ in
             if shouldDismiss {
                 self.dismiss(animated: true, completion: nil)
             }
@@ -2850,22 +3004,24 @@ extension UIViewController {
         let dueDateStartOfDay = calendar.startOfDay(for: dueDate)
         
         if dueDateStartOfDay == today {
-            return "Due Today"
+            return "Due Today".localized()
         } else if dueDateStartOfDay == tomorrow {
-            return "Due Tomorrow"
+            return "Due Tomorrow".localized()
         } else if dueDateStartOfDay < today {
-            return "Overdue"
+            return "Overdue".localized()
         } else {
             // For dates beyond tomorrow, calculate the difference and show the date or "In X days"
             let components = calendar.dateComponents([.day], from: today, to: dueDateStartOfDay)
             if let days = components.day, days > 1 {
-                return "Due in \(days) days"
+                return String(format: "Due in %d days".localized(), days)
+
             } else {
                 // Use DateFormatter for dates far in the future
                 let formatter = DateFormatter()
                 formatter.dateStyle = .medium
                 formatter.timeStyle = .none
-                return "Due on \(formatter.string(from:  dueDate))"
+                return String(format: "Due on %@".localized(), formatter.string(from: dueDate))
+
             }
         }
     }
@@ -2932,6 +3088,7 @@ extension UIViewController {
                                             sender: phoneNumber
                                         )
                                     } else if from == "signUp" {
+                                        
                                         self.performSegue(
                                             withIdentifier: "signUpPhoneVerificationSeg",
                                             sender: phoneNumber
@@ -2976,7 +3133,7 @@ extension UIViewController {
                                         userData.registredAt = user.metadata.creationDate ?? Date()
                                         userData.regiType = type
                                         userData.phoneNumber = phoneNumber
-
+                                        
                                         self.addUserData(userData: userData)
                                     }
                                 }
@@ -3081,11 +3238,11 @@ extension UIViewController {
                     if let status = jsonObject["status"] as? String, status == "approved" {
                         completion(nil)
                     } else {
-                        completion("Verification code is invalid or expired. Please resend new code and try again.")
+                        completion("Verification code is invalid or expired. Please resend new code and try again.".localized())
                     }
 
                 } else {
-                    completion("Data is not a valid JSON object")
+                    completion("Data is not a valid JSON object".localized())
                 }
             } catch {
                 completion(error.localizedDescription)
@@ -3102,9 +3259,10 @@ extension UIViewController {
 
   
 
-    public func logoutPlease() {
-       
+    public func logoutPlease()  {
+        Purchases.shared.logOut { info, error in
+        }
         try? Auth.auth().signOut()
-        
+       
     }
 }

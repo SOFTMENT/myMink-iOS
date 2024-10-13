@@ -5,6 +5,7 @@ import SDWebImage
 import UIKit
 
 class ReelsTableViewCell: UITableViewCell {
+    
     @IBOutlet var nameAndDateStack: UIStackView!
 
     @IBOutlet var videoMainView: UIView!

@@ -46,7 +46,7 @@ class AddSocialMediaViewController: UIViewController {
     }
 
     @objc private func mediaNameClicked() {
-        let alert = UIAlertController(title: "Select Media", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Select Media".localized(), message: nil, preferredStyle: .actionSheet)
         let socialMedias: [SocialMedia] = [
             .discord, .etsy, .facebook, .instagram, .linkedin, .mastodon, .pinterest, .reddit, .rumble, .telegram,
             .tiktok, .tumblr, .twitch, .twitter, .youtube, .whatsapp
@@ -58,7 +58,7 @@ class AddSocialMediaViewController: UIViewController {
             }))
         }
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         present(alert, animated: true)
     }
 
@@ -75,12 +75,12 @@ class AddSocialMediaViewController: UIViewController {
         let sUrl = profileLinkTF.text?.trimmingCharacters(in: .whitespacesAndNewlines)
 
         guard let name = sName, !name.isEmpty else {
-            showSnack(messages: "Select Media")
+            showSnack(messages: "Select Media".localized())
             return
         }
 
         guard let url = sUrl, !url.isEmpty else {
-            showSnack(messages: "Enter URL")
+            showSnack(messages: "Enter URL".localized())
             return
         }
 
@@ -95,7 +95,7 @@ class AddSocialMediaViewController: UIViewController {
 
         guard let uid = UserModel.data?.uid else {
             ProgressHUDHide()
-            showSnack(messages: "User ID not found")
+            showSnack(messages: "User ID not found".localized())
             return
         }
 
@@ -107,7 +107,7 @@ class AddSocialMediaViewController: UIViewController {
             if let error = error {
                 self.showSnack(messages: error.localizedDescription)
             } else {
-                self.showSnack(messages: "Added")
+                self.showSnack(messages: "Added".localized())
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
                     self.dismiss(animated: true)
                 }

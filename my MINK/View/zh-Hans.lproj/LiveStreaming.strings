@@ -1,0 +1,71 @@
+/* Class = "UIButton"; normalTitle = "直播"; ObjectID = "0PV-I1-ofc"; */
+"0PV-I1-ofc.normalTitle" = "直播";
+
+/* Class = "UILabel"; text = "分享直播流"; ObjectID = "7Vs-oO-k2A"; */
+"7Vs-oO-k2A.text" = "分享直播流";
+
+/* Class = "UILabel"; text = "直播"; ObjectID = "8op-va-FGE"; */
+"8op-va-FGE.text" = "直播";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Dd8-Xs-254"; */
+"Dd8-Xs-254.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "分享"; ObjectID = "HDz-gs-crQ"; */
+"HDz-gs-crQ.normalTitle" = "分享";
+
+/* Class = "UILabel"; text = "app.mymink.com.au/livestream"; ObjectID = "ID1-a9-KhA"; */
+"ID1-a9-KhA.text" = "app.mymink.com.au/livestream";
+
+/* Class = "UILabel"; text = "通过将详细信息添加到帖子中，帮助人们发现您的直播视频。"; ObjectID = "Iet-qt-ANA"; */
+"Iet-qt-ANA.text" = "通过将详细信息添加到帖子中，帮助人们发现您的直播视频。";
+
+/* Class = "UILabel"; text = "计划"; ObjectID = "MA5-0e-Cdy"; */
+"MA5-0e-Cdy.text" = "计划";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "MND-3E-l5K"; */
+"MND-3E-l5K.text" = "0";
+
+/* Class = "UITextField"; placeholder = "消息..."; ObjectID = "MNL-oM-qrI"; */
+"MNL-oM-qrI.placeholder" = "消息...";
+
+/* Class = "UIButton"; normalTitle = "否"; ObjectID = "NY0-rR-CZx"; */
+"NY0-rR-CZx.normalTitle" = "否";
+
+/* Class = "UILabel"; text = "计划直播"; ObjectID = "P26-u3-gjb"; */
+"P26-u3-gjb.text" = "计划直播";
+
+/* Class = "UILabel"; text = "全名"; ObjectID = "UZb-O4-aLP"; */
+"UZb-O4-aLP.text" = "全名";
+
+/* Class = "UILabel"; text = "您想分享此直播流吗？"; ObjectID = "Uku-cg-Smx"; */
+"Uku-cg-Smx.text" = "您想分享此直播流吗？";
+
+/* Class = "UITextField"; placeholder = "搜索"; ObjectID = "Vmz-v5-qGv"; */
+"Vmz-v5-qGv.placeholder" = "搜索";
+
+/* Class = "UILabel"; text = "准备好直播"; ObjectID = "ZvC-tZ-Czf"; */
+"ZvC-tZ-Czf.text" = "准备好直播";
+
+/* Class = "UILabel"; text = "暂无直播"; ObjectID = "lQQ-f7-bjL"; */
+"lQQ-f7-bjL.text" = "暂无直播";
+
+/* Class = "UILabel"; text = "取消"; ObjectID = "naq-eE-EVb"; */
+"naq-eE-EVb.text" = "取消";
+
+/* Class = "UILabel"; text = "直播已结束"; ObjectID = "nhz-bY-WBk"; */
+"nhz-bY-WBk.text" = "直播已结束";
+
+/* Class = "UILabel"; text = "标签"; ObjectID = "q89-LZ-jwg"; */
+"q89-LZ-jwg.text" = "标签";
+
+/* Class = "UILabel"; text = "全名"; ObjectID = "r7K-QL-q1f"; */
+"r7K-QL-q1f.text" = "全名";
+
+/* Class = "UILabel"; text = "标签"; ObjectID = "u0p-4q-TK0"; */
+"u0p-4q-TK0.text" = "标签";
+
+/* Class = "UILabel"; text = "直播"; ObjectID = "y89-F1-Bxa"; */
+"y89-F1-Bxa.text" = "直播";
+
+/* Class = "UILabel"; text = "您的直播视频已安排"; ObjectID = "yne-8G-gWp"; */
+"yne-8G-gWp.text" = "您的直播视频已安排";

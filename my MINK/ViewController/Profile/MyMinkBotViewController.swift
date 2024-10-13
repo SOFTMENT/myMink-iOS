@@ -71,11 +71,11 @@ class MyMinkBotViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     private func loadData() {
-        ProgressHUDShow(text: "Loading...")
+        ProgressHUDShow(text: "Loading...".localized())
 
         guard let currentUserUID = FirebaseStoreManager.auth.currentUser?.uid else {
             self.ProgressHUDHide()
-            self.showError("User not logged in.")
+            self.showError("User not logged in.".localized())
             return
         }
 
@@ -101,7 +101,7 @@ class MyMinkBotViewController: UIViewController, UITableViewDelegate, UITableVie
 
     private func sendMessage(sMessage: String) {
         guard let currentUserUID = FirebaseStoreManager.auth.currentUser?.uid else {
-            self.showError("User not logged in.")
+            self.showError("User not logged in.".localized())
             return
         }
 
@@ -116,7 +116,7 @@ class MyMinkBotViewController: UIViewController, UITableViewDelegate, UITableVie
                 } else {
                     guard let chatCompletion = chatCompletion, let chatMessage = chatCompletion.choices.first?.message.content else {
                         self.ProgressHUDHide()
-                        self.showError("Failed to get chat response.")
+                        self.showError("Failed to get chat response.".localized())
                         return
                     }
 

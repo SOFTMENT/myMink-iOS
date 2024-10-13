@@ -548,15 +548,15 @@ class JoinLiveStreamViewController: UIViewController, AVCaptureMetadataOutputObj
     @objc func backViewClicked() {
         if self.isAdmin && self.isLiveStreamingStarted {
             let alert = UIAlertController(
-                title: "Live Stream",
-                message: "Are you sure you want to end your live stream?",
+                title: "Live Stream".localized(),
+                message: "Are you sure you want to end your live stream?".localized(),
                 preferredStyle: .alert
             )
-            alert.addAction(UIAlertAction(title: "End", style: .destructive, handler: { action in
+            alert.addAction(UIAlertAction(title: "End".localized(), style: .destructive, handler: { action in
                 self.leaveChannel()
                 self.performSegue(withIdentifier: "recordingShareSeg", sender: nil)
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
             self.present(alert, animated: true)
         } else {
             self.leaveChannel()
@@ -628,7 +628,7 @@ extension JoinLiveStreamViewController: AgoraRtcEngineDelegate {
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid: UInt, reason: AgoraUserOfflineReason) {
         if self.isBroadcaster(uid: uid) {
             self.leaveChannel()
-            self.showMessage(title: "Live Stream", message: "Live streaming has ended", shouldDismiss: true)
+            self.showMessage(title: "Live Stream".localized(), message: "Live streaming has ended".localized(), shouldDismiss: true)
         }
     }
 

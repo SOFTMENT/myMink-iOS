@@ -10,6 +10,7 @@ import UIKit
 class CouponModel: NSObject, Codable {
     var couponCode: String?
     var id: String?
+   
     
     init(data: [String: Any]) {
         self.couponCode = data["couponCode"] as? String

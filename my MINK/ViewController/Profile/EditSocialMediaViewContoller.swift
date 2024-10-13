@@ -62,11 +62,11 @@ class EditSocialMediaViewContoller: UIViewController {
     }
     
     @objc private func deleteSocialClicked() {
-        ProgressHUDShow(text: "Deleting...")
+        ProgressHUDShow(text: "Deleting...".localized())
         
         guard let userId = UserModel.data?.uid, let socialMediaId = socialMediaModel?.id else {
             ProgressHUDHide()
-            showError("Failed to delete: Invalid user or social media ID")
+            showError("Failed to delete: Invalid user or social media ID".localized())
             return
         }
         
@@ -75,7 +75,7 @@ class EditSocialMediaViewContoller: UIViewController {
             if let error = error {
                 self.showError(error.localizedDescription)
             } else {
-                self.showSnack(messages: "Deleted")
+                self.showSnack(messages: "Deleted".localized())
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
                     self.dismiss(animated: true)
                 }
@@ -93,12 +93,12 @@ class EditSocialMediaViewContoller: UIViewController {
     
     @IBAction private func saveBtnClicked(_ sender: Any) {
         guard let sUrl = profileLinkTF.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sUrl.isEmpty else {
-            showSnack(messages: "Enter URL")
+            showSnack(messages: "Enter URL".localized())
             return
         }
         
         guard let socialMediaModel = socialMediaModel else {
-            showError("Failed to save: Social media model is missing")
+            showError("Failed to save: Social media model is missing".localized())
             return
         }
         
@@ -107,11 +107,11 @@ class EditSocialMediaViewContoller: UIViewController {
     }
     
     private func updateSocialMedia(socialMediaModel: SocialMediaModel) {
-        ProgressHUDShow(text: "Updating...")
+        ProgressHUDShow(text: "Updating...".localized())
         
         guard let userId = UserModel.data?.uid, let socialMediaId = socialMediaModel.id else {
             ProgressHUDHide()
-            showError("Failed to update: Invalid user or social media ID")
+            showError("Failed to update: Invalid user or social media ID".localized())
             return
         }
         
@@ -120,7 +120,7 @@ class EditSocialMediaViewContoller: UIViewController {
             if let error = error {
                 self.showSnack(messages: error.localizedDescription)
             } else {
-                self.showSnack(messages: "Updated")
+                self.showSnack(messages: "Updated".localized())
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
                     self.dismiss(animated: true)
                 }

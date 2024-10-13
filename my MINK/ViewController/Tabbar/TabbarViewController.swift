@@ -21,7 +21,9 @@ class TabbarViewController: UIViewController {
     @IBOutlet var reelImage: UIImageView!
     @IBOutlet var notificationImage: UIImageView!
     @IBOutlet var userImage: UIImageView!
-
+    @IBOutlet weak var notificationCountView: UIView!
+    @IBOutlet weak var notificationCount: UILabel!
+    let badgeCountKey = "badgeCountKey"
     // Page view controller for managing child view controllers
     var pageViewController: UIPageViewController!
 
@@ -45,10 +47,14 @@ class TabbarViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         true
     }
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      
+        FirebaseStoreManager.messaging.subscribe(toTopic: "all")
+
         // Check if the user is authenticated
         guard FirebaseStoreManager.auth.currentUser != nil else {
             DispatchQueue.main.async {
@@ -56,7 +62,12 @@ class TabbarViewController: UIViewController {
             }
             return
         }
+        
+        notificationCountView.layer.cornerRadius = notificationCountView.bounds.height / 2
 
+        
+        updateNotificationCounts()
+        
         observeUserStatus()
         updateFCMToken()
 
@@ -78,13 +89,65 @@ class TabbarViewController: UIViewController {
             searchBtnClicked()
         case 3:
             cameraBtnClicked()
+        case 5:
+            notificationBtnClicked()
         case 6:
             userBtnClicked()
         default:
             homeBtnClicked()
         }
     }
+    
+ 
+    func updateNotificationCounts() {
+        
+        self.notificationCountView.isHidden = true
+        
+        FirebaseStoreManager.db.collection(Collections.users.rawValue)
+            .document(FirebaseStoreManager.auth.currentUser!.uid)
+            .collection("UnreadNotifications")
+            .document("doc")
+            .addSnapshotListener { snapshot, error in
+                
+                if let error = error {
+                    print("Error fetching unread notifications: \(error)")
+                    return
+                }
+                
+                // Check if the document exists and has data
+                guard let data = snapshot?.data() else {
+                    print("Document does not exist or has no data")
+                    return
+                }
+               
+                // Try to get the 'count' field from the document data
+                if let count = data["count"] as? Int {
+                 
+                    if count > 0 {
+                        self.notificationCountView.isHidden = false
+                        self.notificationCount.text = String(count)
+                    }
+                    else {
+                        self.notificationCountView.isHidden = true
+                    }
+                    
+                    self.notificationCountView.layoutIfNeeded()
+                    self.loadViewIfNeeded()
+                }
+            }
 
+        
+      
+        
+    }
+
+    func resetBadgeNumber() {
+            FirebaseStoreManager.db.collection(Collections.users.rawValue).document(FirebaseStoreManager.auth.currentUser!.uid).collection("UnreadNotifications")
+            .document("doc").setData(["count":0])
+            notificationCountView.isHidden = true
+            notificationCount.text = ""
+        }
+    
     // Updates the FCM token for notifications
     func updateFCMToken() {
         Messaging.messaging().token { token, error in
@@ -186,6 +249,7 @@ class TabbarViewController: UIViewController {
 
     @objc func notificationBtnClicked() {
         if hasMembership() {
+            self.resetBadgeNumber()
             switchToViewController(at: 5, withImageName: "notification2F", andResetOtherImages: true)
         } else {
             performSegue(withIdentifier: "membershipSeg", sender: nil)

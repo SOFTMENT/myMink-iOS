@@ -7,15 +7,17 @@ class WelcomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         self.handleFirstTimeAppLaunch()
         self.navigateToNextScreen()
+        
      
     }
 
     private func handleFirstTimeAppLaunch() {
         if self.userDefaults.value(forKey: "appFirstTimeOpend") == nil {
             self.userDefaults.setValue(true, forKey: "appFirstTimeOpend")
-            FirebaseStoreManager.messaging.subscribe(toTopic: "all")
+           
             self.signOutUser()
         }
     }

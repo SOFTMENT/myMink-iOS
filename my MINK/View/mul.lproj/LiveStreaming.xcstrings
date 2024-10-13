@@ -1,0 +1,294 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "0PV-I1-ofc.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"LIVE\"; ObjectID = \"0PV-I1-ofc\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "LIVE"
+          }
+        }
+      }
+    },
+    "7Vs-oO-k2A.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Share Live Stream\"; ObjectID = \"7Vs-oO-k2A\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share Live Stream"
+          }
+        }
+      }
+    },
+    "8op-va-FGE.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"LIVE\"; ObjectID = \"8op-va-FGE\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "LIVE"
+          }
+        }
+      }
+    },
+    "Dd8-Xs-254.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"0\"; ObjectID = \"Dd8-Xs-254\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "0"
+          }
+        }
+      }
+    },
+    "HDz-gs-crQ.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"Share\"; ObjectID = \"HDz-gs-crQ\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share"
+          }
+        }
+      }
+    },
+    "ID1-a9-KhA.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"app.mymink.com.au/livestream\"; ObjectID = \"ID1-a9-KhA\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "app.mymink.com.au/livestream"
+          }
+        }
+      }
+    },
+    "Iet-qt-ANA.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Help people discover your live video by adding the details to a post.\"; ObjectID = \"Iet-qt-ANA\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Help people discover your live video by adding the details to a post."
+          }
+        }
+      }
+    },
+    "lQQ-f7-bjL.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"No live streamings available\"; ObjectID = \"lQQ-f7-bjL\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "No live streamings available"
+          }
+        }
+      }
+    },
+    "MA5-0e-Cdy.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Schedule\"; ObjectID = \"MA5-0e-Cdy\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Schedule"
+          }
+        }
+      }
+    },
+    "MND-3E-l5K.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"0\"; ObjectID = \"MND-3E-l5K\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "0"
+          }
+        }
+      }
+    },
+    "MNL-oM-qrI.placeholder" : {
+      "comment" : "Class = \"UITextField\"; placeholder = \"Message...\"; ObjectID = \"MNL-oM-qrI\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Message..."
+          }
+        }
+      }
+    },
+    "naq-eE-EVb.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Cancel\"; ObjectID = \"naq-eE-EVb\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "nhz-bY-WBk.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Livestream has ended\"; ObjectID = \"nhz-bY-WBk\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Livestream has ended"
+          }
+        }
+      }
+    },
+    "NY0-rR-CZx.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"No\"; ObjectID = \"NY0-rR-CZx\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "No"
+          }
+        }
+      }
+    },
+    "P26-u3-gjb.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Schedule Livestream\"; ObjectID = \"P26-u3-gjb\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Schedule Livestream"
+          }
+        }
+      }
+    },
+    "q89-LZ-jwg.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Label\"; ObjectID = \"q89-LZ-jwg\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label"
+          }
+        }
+      }
+    },
+    "r7K-QL-q1f.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Full Name\"; ObjectID = \"r7K-QL-q1f\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Full Name"
+          }
+        }
+      }
+    },
+    "u0p-4q-TK0.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Label\"; ObjectID = \"u0p-4q-TK0\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label"
+          }
+        }
+      }
+    },
+    "Uku-cg-Smx.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Do you want to share this live stream?\"; ObjectID = \"Uku-cg-Smx\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Do you want to share this live stream?"
+          }
+        }
+      }
+    },
+    "UZb-O4-aLP.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Full Name\"; ObjectID = \"UZb-O4-aLP\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Full Name"
+          }
+        }
+      }
+    },
+    "Vmz-v5-qGv.placeholder" : {
+      "comment" : "Class = \"UITextField\"; placeholder = \"Search\"; ObjectID = \"Vmz-v5-qGv\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Search"
+          }
+        }
+      }
+    },
+    "y89-F1-Bxa.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Live Streaming\"; ObjectID = \"y89-F1-Bxa\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Live Streaming"
+          }
+        }
+      }
+    },
+    "yne-8G-gWp.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Your live video is Scheduled\"; ObjectID = \"yne-8G-gWp\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your live video is Scheduled"
+          }
+        }
+      }
+    },
+    "ZvC-tZ-Czf.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Ready to go live\"; ObjectID = \"ZvC-tZ-Czf\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Ready to go live"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

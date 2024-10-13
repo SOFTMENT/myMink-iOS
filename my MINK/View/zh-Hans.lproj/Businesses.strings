@@ -1,0 +1,104 @@
+/* Class = "UILabel"; text = "软件开发,"; ObjectID = "4wT-g3-saX"; */
+"4wT-g3-saX.text" = "软件开发,";
+
+/* Class = "UILabel"; text = "0 订阅者"; ObjectID = "7di-Lx-Ace"; */
+"7di-Lx-Ace.text" = "0 订阅者";
+
+/* Class = "UITextField"; placeholder = "业务类型"; ObjectID = "7ne-g8-Vxm"; */
+"7ne-g8-Vxm.placeholder" = "业务类型";
+
+/* Class = "UILabel"; text = "关于"; ObjectID = "7yn-fs-EtC"; */
+"7yn-fs-EtC.text" = "关于";
+
+/* Class = "UILabel"; text = "上传业务图片"; ObjectID = "85p-hR-8IS"; */
+"85p-hR-8IS.text" = "上传业务图片";
+
+/* Class = "UILabel"; text = "0 帖子"; ObjectID = "C0F-gE-Dxr"; */
+"C0F-gE-Dxr.text" = "0 帖子";
+
+/* Class = "UILabel"; text = "食品和饮料"; ObjectID = "Crt-7Z-blV"; */
+"Crt-7Z-blV.text" = "食品和饮料";
+
+/* Class = "UIButton"; normalTitle = "我的业务"; ObjectID = "IYS-bO-QGW"; */
+"IYS-bO-QGW.normalTitle" = "我的业务";
+
+/* Class = "UILabel"; text = "上传业务图片"; ObjectID = "Jvb-EN-Lig"; */
+"Jvb-EN-Lig.text" = "上传业务图片";
+
+/* Class = "UITextField"; placeholder = "网站 URL"; ObjectID = "Mgg-Qc-72L"; */
+"Mgg-Qc-72L.placeholder" = "网站 URL";
+
+/* Class = "UILabel"; text = "描述"; ObjectID = "ND4-9f-p9P"; */
+"ND4-9f-p9P.text" = "描述";
+
+/* Class = "UIButton"; normalTitle = "订阅"; ObjectID = "NXT-hB-jyb"; */
+"NXT-hB-jyb.normalTitle" = "订阅";
+
+/* Class = "UILabel"; text = "添加更多关于您业务的详细信息"; ObjectID = "QJo-g2-CKD"; */
+"QJo-g2-CKD.text" = "添加更多关于您业务的详细信息";
+
+/* Class = "UITextField"; placeholder = "网站 URL"; ObjectID = "QSE-ic-Ix5"; */
+"QSE-ic-Ix5.placeholder" = "网站 URL";
+
+/* Class = "UILabel"; text = "业务"; ObjectID = "RA4-om-R53"; */
+"RA4-om-R53.text" = "业务";
+
+/* Class = "UILabel"; text = "我们是一家领先的软件开发公司，凭借丰富的经验、专业的团队、关键的业务洞察力和专注的工作流程，提供顶级的软件开发服务。"; ObjectID = "SCQ-AA-tKO"; */
+"SCQ-AA-tKO.text" = "我们是一家领先的软件开发公司，凭借丰富的经验、专业的团队、关键的业务洞察力和专注的工作流程，提供顶级的软件开发服务。";
+
+/* Class = "UILabel"; text = "“漫游世界，一次冒险。”"; ObjectID = "Va5-Vz-3k9"; */
+"Va5-Vz-3k9.text" = "“漫游世界，一次冒险。”";
+
+/* Class = "UILabel"; text = "www.softment.com"; ObjectID = "Wff-a4-yBa"; */
+"Wff-a4-yBa.text" = "www.softment.com";
+
+/* Class = "UILabel"; text = "帖子"; ObjectID = "XBb-aa-VNI"; */
+"XBb-aa-VNI.text" = "帖子";
+
+/* Class = "UIButton"; normalTitle = "添加"; ObjectID = "ZZH-hT-lqG"; */
+"ZZH-hT-lqG.normalTitle" = "添加";
+
+/* Class = "UILabel"; text = "添加更多关于您业务的详细信息"; ObjectID = "a9t-Mp-BO8"; */
+"a9t-Mp-BO8.text" = "添加更多关于您业务的详细信息";
+
+/* Class = "UILabel"; text = "没有可用的帖子"; ObjectID = "avP-ew-FB5"; */
+"avP-ew-FB5.text" = "没有可用的帖子";
+
+/* Class = "UIButton"; normalTitle = "上传"; ObjectID = "b9F-fB-vlF"; */
+"b9F-fB-vlF.normalTitle" = "上传";
+
+/* Class = "UIButton"; normalTitle = "更新"; ObjectID = "bBp-2Q-wwi"; */
+"bBp-2Q-wwi.normalTitle" = "更新";
+
+/* Class = "UITextField"; placeholder = "业务名称"; ObjectID = "dDD-Tw-i5E"; */
+"dDD-Tw-i5E.placeholder" = "业务名称";
+
+/* Class = "UIButton"; normalTitle = "消息"; ObjectID = "e9E-Fc-fww"; */
+"e9E-Fc-fww.normalTitle" = "消息";
+
+/* Class = "UILabel"; text = "没有可用的业务"; ObjectID = "fBw-mz-dgf"; */
+"fBw-mz-dgf.text" = "没有可用的业务";
+
+/* Class = "UITextField"; placeholder = "业务类型"; ObjectID = "r5b-HP-gPH"; */
+"r5b-HP-gPH.placeholder" = "业务类型";
+
+/* Class = "UIButton"; normalTitle = "上传"; ObjectID = "tQW-dc-jcp"; */
+"tQW-dc-jcp.normalTitle" = "上传";
+
+/* Class = "UILabel"; text = "www.softment.com"; ObjectID = "tkL-zg-SbP"; */
+"tkL-zg-SbP.text" = "www.softment.com";
+
+/* Class = "UILabel"; text = "SOFTMENT SOLUTIONS PVT LTD"; ObjectID = "umM-0f-QI1"; */
+"umM-0f-QI1.text" = "SOFTMENT SOLUTIONS PVT LTD";
+
+/* Class = "UILabel"; text = "描述"; ObjectID = "xLL-yW-agT"; */
+"xLL-yW-agT.text" = "描述";
+
+/* Class = "UITextField"; placeholder = "搜索..."; ObjectID = "yGa-0g-8EX"; */
+"yGa-0g-8EX.placeholder" = "搜索...";
+
+/* Class = "UILabel"; text = "SOFTMENT SOLUTIONS"; ObjectID = "zff-m5-FEJ"; */
+"zff-m5-FEJ.text" = "SOFTMENT SOLUTIONS";
+
+/* Class = "UITextField"; placeholder = "业务名称"; ObjectID = "zqF-ol-sP0"; */
+"zqF-ol-sP0.placeholder" = "业务名称";

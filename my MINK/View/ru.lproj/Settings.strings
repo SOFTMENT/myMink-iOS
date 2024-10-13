@@ -1,0 +1,491 @@
+/* Class = "UILabel"; text = "Account Privacy"; ObjectID = "0XM-Ky-H6u"; */
+"0XM-Ky-H6u.text" = "Конфиденциальность учетной записи";
+
+/* Class = "UIButton"; normalTitle = "Update Task"; ObjectID = "1gG-qR-CB3"; */
+"1gG-qR-CB3.normalTitle" = "Обновить задачу";
+
+/* Class = "UILabel"; text = "UserName"; ObjectID = "3Kh-al-hMS"; */
+"3Kh-al-hMS.text" = "Имя пользователя";
+
+/* Class = "UILabel"; text = "24H"; ObjectID = "3eQ-r7-V5T"; */
+"3eQ-r7-V5T.text" = "24 часа";
+
+/* Class = "UITextField"; placeholder = "Website (Optional)"; ObjectID = "3rK-1x-kb7"; */
+"3rK-1x-kb7.placeholder" = "Веб-сайт (необязательно)";
+
+/* Class = "UILabel"; text = "PISCES"; ObjectID = "3rw-VT-rdN"; */
+"3rw-VT-rdN.text" = "Рыбы";
+
+/* Class = "UILabel"; text = "ARIES"; ObjectID = "3y7-Pq-Rv2"; */
+"3y7-Pq-Rv2.text" = "Овен";
+
+/* Class = "UILabel"; text = "AQUARIUS"; ObjectID = "4Fc-DG-AjK"; */
+"4Fc-DG-AjK.text" = "Водолей";
+
+/* Class = "UILabel"; text = "Top 50 - Global "; ObjectID = "4iS-rk-PXd"; */
+"4iS-rk-PXd.text" = "Топ 50 - Мировой";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "4yE-F3-sUJ"; */
+"4yE-F3-sUJ.text" = "0";
+
+/* Class = "UILabel"; text = "Legal Agreements"; ObjectID = "57M-Q1-Qtg"; */
+"57M-Q1-Qtg.text" = "Юридические соглашения";
+
+/* Class = "UITextField"; placeholder = "Search "; ObjectID = "5lG-wD-cid"; */
+"5lG-wD-cid.placeholder" = "Поиск";
+
+/* Class = "UILabel"; text = "a moment ago"; ObjectID = "5ry-SJ-5OT"; */
+"5ry-SJ-5OT.text" = "мгновение назад";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "6AV-Ph-g2J"; */
+"6AV-Ph-g2J.text" = "0";
+
+/* Class = "UILabel"; text = "Media Name"; ObjectID = "6pg-sI-lzH"; */
+"6pg-sI-lzH.text" = "Название медиа";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "6t1-N9-Xc5"; */
+"6t1-N9-Xc5.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "7Ly-Vy-7Fi"; */
+"7Ly-Vy-7Fi.text" = "0";
+
+/* Class = "UILabel"; text = "16 Jun 2023"; ObjectID = "7Vu-zN-Ct5"; */
+"7Vu-zN-Ct5.text" = "16 июня 2023";
+
+/* Class = "UILabel"; text = "Arijit Singh"; ObjectID = "7bt-c0-9wS"; */
+"7bt-c0-9wS.text" = "Arijит Сингх";
+
+/* Class = "UILabel"; text = "$49.99/month"; ObjectID = "8fL-zl-qkY"; */
+"8fL-zl-qkY.text" = "$49.99/месяц";
+
+/* Class = "UILabel"; text = "my MINK Premium"; ObjectID = "8lQ-Qy-zIm"; */
+"8lQ-Qy-zIm.text" = "my MINK Premium";
+
+/* Class = "UILabel"; text = "No posts available"; ObjectID = "9Lk-c2-iAh"; */
+"9Lk-c2-iAh.text" = "Нет доступных постов";
+
+/* Class = "UILabel"; text = "Active"; ObjectID = "9Pu-x1-cXV"; */
+"9Pu-x1-cXV.text" = "Активный";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "9SI-EP-oQa"; */
+"9SI-EP-oQa.text" = "Посты";
+
+/* Class = "UILabel"; text = "Add Social Media"; ObjectID = "A2A-Ur-fh0"; */
+"A2A-Ur-fh0.text" = "Добавить социальные сети";
+
+/* Class = "UILabel"; text = "Delete Account"; ObjectID = "A6f-wz-R84"; */
+"A6f-wz-R84.text" = "Удалить аккаунт";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Akd-lR-eQr"; */
+"Akd-lR-eQr.text" = "0";
+
+/* Class = "UILabel"; text = "Edit Task"; ObjectID = "Al0-M4-YuU"; */
+"Al0-M4-YuU.text" = "Редактировать задачу";
+
+/* Class = "UITextField"; placeholder = "Enter task title"; ObjectID = "Ath-vJ-t7u"; */
+"Ath-vJ-t7u.placeholder" = "Введите название задачи";
+
+/* Class = "UILabel"; text = "my MINK Chatbot"; ObjectID = "BRf-kh-Uab"; */
+"BRf-kh-Uab.text" = "my MINK Чат-бот";
+
+/* Class = "UILabel"; text = "When your account is in public mode. All users can see your contents. When it is private, only the people that you are following or your followers can see your contents."; ObjectID = "Bgf-py-gg4"; */
+"Bgf-py-gg4.text" = "Когда ваш аккаунт находится в публичном режиме, все пользователи могут видеть ваши материалы. Когда он приватный, только люди, на которых вы подписаны, или ваши подписчики могут видеть ваши материалы.";
+
+/* Class = "UILabel"; text = "| 02:39 PM"; ObjectID = "Bid-tW-gJI"; */
+"Bid-tW-gJI.text" = "| 02:39 PM";
+
+/* Class = "UILabel"; text = "You are charged and socially active and spend most of your evenings outside. You may get into the habit of dining from outside regularly, which may take a toll on your health. You may consume a lot alcohol with your friends, and you will regret it later. Focus on your health, now more than ever."; ObjectID = "C46-pc-igD"; */
+"C46-pc-igD.text" = "Вы заряжены и социально активны и проводите большинство вечеров вне дома. Возможно, у вас появится привычка часто ужинать вне дома, что может сказаться на вашем здоровье. Возможно, вы будете пить много алкоголя с друзьями и потом пожалеете об этом. Сосредоточьтесь на своем здоровье, сейчас как никогда.";
+
+/* Class = "UILabel"; text = "LEO"; ObjectID = "C5g-sk-tHA"; */
+"C5g-sk-tHA.text" = "Лев";
+
+/* Class = "UILabel"; text = "CANCER"; ObjectID = "CHV-Dt-hVI"; */
+"CHV-Dt-hVI.text" = "Рак";
+
+/* Class = "UILabel"; text = "$2343"; ObjectID = "CSF-cs-wgr"; */
+"CSF-cs-wgr.text" = "$2343";
+
+/* Class = "UITextView"; text = "📞 VIDEO CALL"; ObjectID = "Cfm-a7-F6I"; */
+"Cfm-a7-F6I.text" = "📞 Видеозвонок";
+
+/* Class = "UILabel"; text = "Media Name"; ObjectID = "D8d-Xt-8sv"; */
+"D8d-Xt-8sv.text" = "Название медиа";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "DUN-y8-LfF"; */
+"DUN-y8-LfF.text" = "Цена";
+
+/* Class = "UILabel"; text = "Market"; ObjectID = "Dvv-ga-EGz"; */
+"Dvv-ga-EGz.text" = "Рынок";
+
+/* Class = "UIButton"; normalTitle = "Add Autograph"; ObjectID = "EXr-Yn-RpY"; */
+"EXr-Yn-RpY.normalTitle" = "Добавить автограф";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Eg0-79-sn5"; */
+"Eg0-79-sn5.text" = "0";
+
+/* Class = "UILabel"; text = "Me"; ObjectID = "EpA-BG-ilv"; */
+"EpA-BG-ilv.text" = "Я";
+
+/* Class = "UILabel"; text = "\"Roaming the world, one adventure at a time.\""; ObjectID = "FEJ-Q3-t5y"; */
+"FEJ-Q3-t5y.text" = "\"Странствуя по миру, одно приключение за раз.\"";
+
+/* Class = "UILabel"; text = "GEMINI"; ObjectID = "FWi-OA-vTe"; */
+"FWi-OA-vTe.text" = "Близнецы";
+
+/* Class = "UILabel"; text = "Library"; ObjectID = "FZW-qL-Z5M"; */
+"FZW-qL-Z5M.text" = "Библиотека";
+
+/* Class = "UILabel"; text = "Market Cap"; ObjectID = "GTo-cX-JBL"; */
+"GTo-cX-JBL.text" = "Рыночная капитализация";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Gk4-VS-lOP"; */
+"Gk4-VS-lOP.text" = "0";
+
+/* Class = "UILabel"; text = "Sponsored"; ObjectID = "IQv-M4-0OS"; */
+"IQv-M4-0OS.text" = "Спонсируемый";
+
+/* Class = "UILabel"; text = "Song Name"; ObjectID = "Ias-9i-0y4"; */
+"Ias-9i-0y4.text" = "Название песни";
+
+/* Class = "UITextField"; placeholder = "Enter Current Password"; ObjectID = "Jgt-QW-kIp"; */
+"Jgt-QW-kIp.placeholder" = "Введите текущий пароль";
+
+/* Class = "UILabel"; text = "Post"; ObjectID = "Joa-QW-PnX"; */
+"Joa-QW-PnX.text" = "Пост";
+
+/* Class = "UILabel"; text = "support@mymink.com.au"; ObjectID = "LXK-5Y-Yp8"; */
+"LXK-5Y-Yp8.text" = "support@mymink.com.au";
+
+/* Class = "UILabel"; text = "Followers"; ObjectID = "LeL-cO-lNo"; */
+"LeL-cO-lNo.text" = "Подписчики";
+
+/* Class = "UILabel"; text = "3:16"; ObjectID = "Lnb-sA-vbN"; */
+"Lnb-sA-vbN.text" = "3:16";
+
+/* Class = "UILabel"; text = "LIBRA"; ObjectID = "LvL-rP-zyj"; */
+"LvL-rP-zyj.text" = "Весы";
+
+/* Class = "UILabel"; text = "Enable 2FA"; ObjectID = "MFg-4M-3M9"; */
+"MFg-4M-3M9.text" = "Включить 2FA";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "Mo3-dc-HNx"; */
+"Mo3-dc-HNx.text" = "|";
+
+/* Class = "UILabel"; text = "VIRGO"; ObjectID = "N1L-ko-OI0"; */
+"N1L-ko-OI0.text" = "Дева";
+
+/* Class = "UILabel"; text = "AUD"; ObjectID = "NC0-Rg-Xbt"; */
+"NC0-Rg-Xbt.text" = "AUD";
+
+/* Class = "UILabel"; text = "2.8%"; ObjectID = "NEM-Kr-X5U"; */
+"NEM-Kr-X5U.text" = "2.8%";
+
+/* Class = "UITextField"; placeholder = "Search "; ObjectID = "NvM-cB-ZhO"; */
+"NvM-cB-ZhO.placeholder" = "Поиск";
+
+/* Class = "UIButton"; normalTitle = "Change Password"; ObjectID = "Nyv-2q-44T"; */
+"Nyv-2q-44T.normalTitle" = "Изменить пароль";
+
+/* Class = "UITextField"; placeholder = "Confirm New Password"; ObjectID = "OBs-wH-0dz"; */
+"OBs-wH-0dz.placeholder" = "Подтвердите новый пароль";
+
+/* Class = "UITextField"; placeholder = "Enter New Password"; ObjectID = "P1B-v4-rXL"; */
+"P1B-v4-rXL.placeholder" = "Введите новый пароль";
+
+/* Class = "UILabel"; text = "LEO"; ObjectID = "PNG-q8-v2G"; */
+"PNG-q8-v2G.text" = "Лев";
+
+/* Class = "UILabel"; text = "Edit Social Media"; ObjectID = "PVw-dg-lmn"; */
+"PVw-dg-lmn.text" = "Редактировать социальные сети";
+
+/* Class = "UILabel"; text = "Change Password"; ObjectID = "PYb-S1-lGE"; */
+"PYb-S1-lGE.text" = "Изменить пароль";
+
+/* Class = "UILabel"; text = "Who can see your contents"; ObjectID = "QN2-OP-QdX"; */
+"QN2-OP-QdX.text" = "Кто может видеть ваши материалы";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Qlx-LU-GFS"; */
+"Qlx-LU-GFS.text" = "0";
+
+/* Class = "UILabel"; text = "Bitcoin"; ObjectID = "QtW-PL-cug"; */
+"QtW-PL-cug.text" = "Биткоин";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "R8t-rz-0oh"; */
+"R8t-rz-0oh.normalTitle" = "Обновить";
+
+/* Class = "UILabel"; text = "Views"; ObjectID = "RTL-kG-iF9"; */
+"RTL-kG-iF9.text" = "Просмотры";
+
+/* Class = "UILabel"; text = "a moment ago"; ObjectID = "Rto-Em-rut"; */
+"Rto-Em-rut.text" = "мгновение назад";
+
+/* Class = "UILabel"; text = "Social Media"; ObjectID = "RyB-6W-YO4"; */
+"RyB-6W-YO4.text" = "Социальные сети";
+
+/* Class = "UILabel"; text = "Full Name"; ObjectID = "S8b-zo-9V8"; */
+"S8b-zo-9V8.text" = "Полное имя";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "SGD-V4-jWf"; */
+"SGD-V4-jWf.text" = "Посты";
+
+/* Class = "UILabel"; text = "TAURUS"; ObjectID = "SI9-Ry-1bZ"; */
+"SI9-Ry-1bZ.text" = "Телец";
+
+/* Class = "UILabel"; text = "Daily Horoscopes"; ObjectID = "T9X-O2-4Vs"; */
+"T9X-O2-4Vs.text" = "Гороскоп на сегодня";
+
+/* Class = "UILabel"; text = "$2343"; ObjectID = "TBN-Ox-Z1h"; */
+"TBN-Ox-Z1h.text" = "$2343";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "TS9-Xl-Yqu"; */
+"TS9-Xl-Yqu.text" = "0";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "Ubb-tL-C63"; */
+"Ubb-tL-C63.text" = "|";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "UgT-Y5-tTm"; */
+"UgT-Y5-tTm.normalTitle" = "Добавить";
+
+/* Class = "UILabel"; text = "ARIES"; ObjectID = "UxY-Gc-ebw"; */
+"UxY-Gc-ebw.text" = "Овен";
+
+/* Class = "UILabel"; text = "my MINK Chatbot"; ObjectID = "VIU-33-GGN"; */
+"VIU-33-GGN.text" = "my MINK Чат-бот";
+
+/* Class = "UILabel"; text = "Upload your picture"; ObjectID = "VQy-fc-b7U"; */
+"VQy-fc-b7U.text" = "Загрузить ваше фото";
+
+/* Class = "UILabel"; text = "Coin"; ObjectID = "Vqu-OF-9Kb"; */
+"Vqu-OF-9Kb.text" = "Монета";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "WXG-46-W1N"; */
+"WXG-46-W1N.text" = "0";
+
+/* Class = "UILabel"; text = "Artist"; ObjectID = "Xk2-wf-BRb"; */
+"Xk2-wf-BRb.text" = "Исполнитель";
+
+/* Class = "UIButton"; normalTitle = "Update Profile"; ObjectID = "YCh-xe-d14"; */
+"YCh-xe-d14.normalTitle" = "Обновить профиль";
+
+/* Class = "UITextField"; placeholder = "Location"; ObjectID = "YKu-jY-HHy"; */
+"YKu-jY-HHy.placeholder" = "Местоположение";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "Z10-dP-cIC"; */
+"Z10-dP-cIC.text" = "Посты";
+
+/* Class = "UILabel"; text = "Kesariya Bharmaastra"; ObjectID = "ZR2-Ak-Rjm"; */
+"ZR2-Ak-Rjm.text" = "Кесария Брахмаастра";
+
+/* Class = "UILabel"; text = "45/23, near shiv shree cinema, totalaa marg tarana"; ObjectID = "ajx-zq-Wat"; */
+"ajx-zq-Wat.text" = "45/23, возле кинотеатра Шив Шри, Тоталаа Марг Тарана";
+
+/* Class = "UILabel"; text = "No tasks available"; ObjectID = "anE-1v-hKf"; */
+"anE-1v-hKf.text" = "Нет доступных задач";
+
+/* Class = "UILabel"; text = "Deactivate Account"; ObjectID = "azm-j7-EmT"; */
+"azm-j7-EmT.text" = "Деактивировать аккаунт";
+
+/* Class = "UILabel"; text = "Vijay Rathore"; ObjectID = "bEg-7s-ol9"; */
+"bEg-7s-ol9.text" = "Виджай Ратхор";
+
+/* Class = "UILabel"; text = "www.mymink.com.au"; ObjectID = "bJj-db-zcm"; */
+"bJj-db-zcm.text" = "www.mymink.com.au";
+
+/* Class = "UILabel"; text = "Profile Link"; ObjectID = "bK2-gA-w0E"; */
+"bK2-gA-w0E.text" = "Ссылка на профиль";
+
+/* Class = "UILabel"; text = "Business Promotion"; ObjectID = "cBE-9E-rKm"; */
+"cBE-9E-rKm.text" = "Продвижение бизнеса";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "cDI-Cy-hAq"; */
+"cDI-Cy-hAq.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "cRr-EM-D0Z"; */
+"cRr-EM-D0Z.text" = "0";
+
+/* Class = "UILabel"; text = "No posts available"; ObjectID = "cXL-yd-eul"; */
+"cXL-yd-eul.text" = "Нет доступных постов";
+
+/* Class = "UILabel"; text = "Today's Horoscope"; ObjectID = "chb-m0-YGD"; */
+"chb-m0-YGD.text" = "Гороскоп на сегодня";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "dKS-8e-HT2"; */
+"dKS-8e-HT2.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "dOC-Wq-yhi"; */
+"dOC-Wq-yhi.text" = "0";
+
+/* Class = "UITextView"; text = "📞 VIDEO CALL"; ObjectID = "dVf-Oy-ii9"; */
+"dVf-Oy-ii9.text" = "📞 Видеозвонок";
+
+/* Class = "UITextField"; placeholder = "Full Name"; ObjectID = "dko-D0-GfB"; */
+"dko-D0-GfB.placeholder" = "Полное имя";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "e6a-kG-6ND"; */
+"e6a-kG-6ND.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "eGG-RN-BbX"; */
+"eGG-RN-BbX.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "eWu-Vb-vrr"; */
+"eWu-Vb-vrr.text" = "0";
+
+/* Class = "UILabel"; text = "Friends or Events"; ObjectID = "enP-FY-LhB"; */
+"enP-FY-LhB.text" = "Друзья или события";
+
+/* Class = "UILabel"; text = "Biography"; ObjectID = "f2c-hV-Cwa"; */
+"f2c-hV-Cwa.text" = "Биография";
+
+/* Class = "UITextField"; placeholder = "Enter task title"; ObjectID = "fHn-ER-eEo"; */
+"fHn-ER-eEo.placeholder" = "Введите название задачи";
+
+/* Class = "UITextField"; placeholder = "Search "; ObjectID = "fHv-Ma-psJ"; */
+"fHv-Ma-psJ.placeholder" = "Поиск";
+
+/* Class = "UILabel"; text = "No songs available"; ObjectID = "fZq-LX-A7k"; */
+"fZq-LX-A7k.text" = "Нет доступных песен";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "fhh-Tc-3Tz"; */
+"fhh-Tc-3Tz.text" = "0";
+
+/* Class = "UILabel"; text = "Salaar Night Show  "; ObjectID = "fiq-vH-OSz"; */
+"fiq-vH-OSz.text" = "Ночной показ Салаара";
+
+/* Class = "UILabel"; text = "+917869992340"; ObjectID = "gk3-R1-joO"; */
+"gk3-R1-joO.text" = "+917869992340";
+
+/* Class = "UILabel"; text = "Developer"; ObjectID = "h2r-6T-R3M"; */
+"h2r-6T-R3M.text" = "Разработчик";
+
+/* Class = "UILabel"; text = "To Do"; ObjectID = "hUX-RF-fB0"; */
+"hUX-RF-fB0.text" = "Задачи";
+
+/* Class = "UILabel"; text = "Music "; ObjectID = "hj4-D5-cby"; */
+"hj4-D5-cby.text" = "Музыка";
+
+/* Class = "UILabel"; text = "SAGITTARIUS"; ObjectID = "iIR-3o-3ho"; */
+"iIR-3o-3ho.text" = "Стрелец";
+
+/* Class = "UILabel"; text = "Membership"; ObjectID = "iln-Hh-Sa7"; */
+"iln-Hh-Sa7.text" = "Членство";
+
+/* Class = "UILabel"; text = "A To do is a digital task manager that allows user to organise, track and prioritise their daily tasks and reminders in a simple, user-friendly interface. It helps users stay focused and efficient by managing their personal and professional responsibilities in one accessible location"; ObjectID = "kI0-e0-QNb"; */
+"kI0-e0-QNb.text" = "Задачи - это цифровой менеджер задач, который позволяет пользователю организовывать, отслеживать и приоритизировать свои ежедневные задачи и напоминания в простом и удобном интерфейсе. Это помогает пользователям оставаться сосредоточенными и эффективными, управляя своими личными и профессиональными обязанностями в одном доступном месте.";
+
+/* Class = "UILabel"; text = "Vijay Rathore"; ObjectID = "kKk-hj-aZe"; */
+"kKk-hj-aZe.text" = "Виджай Ратхор";
+
+/* Class = "UILabel"; text = "Licence Agreement"; ObjectID = "kSu-q0-exJ"; */
+"kSu-q0-exJ.text" = "Лицензионное соглашение";
+
+/* Class = "UILabel"; text = "00 : 00"; ObjectID = "kqz-J0-fx8"; */
+"kqz-J0-fx8.text" = "00 : 00";
+
+/* Class = "UILabel"; text = "To-Do"; ObjectID = "kvt-jC-FyZ"; */
+"kvt-jC-FyZ.text" = "Задачи";
+
+/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "lAe-Q7-gnQ"; */
+"lAe-Q7-gnQ.text" = "Политика конфиденциальности";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "lG9-Na-GxN"; */
+"lG9-Na-GxN.normalTitle" = "Загрузить";
+
+/* Class = "UILabel"; text = "Private Account"; ObjectID = "mCt-3x-9Tl"; */
+"mCt-3x-9Tl.text" = "Приватный аккаунт";
+
+/* Class = "UILabel"; text = "BTC"; ObjectID = "mXw-za-WFq"; */
+"mXw-za-WFq.text" = "BTC";
+
+/* Class = "UILabel"; text = "18 Feb 2024"; ObjectID = "mYn-UN-068"; */
+"mYn-UN-068.text" = "18 февраля 2024";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "miY-pb-OqT"; */
+"miY-pb-OqT.text" = "0";
+
+/* Class = "UILabel"; text = "Joined on 26 Jun 2023"; ObjectID = "mif-5e-pew"; */
+"mif-5e-pew.text" = "Зарегистрирован 26 июня 2023";
+
+/* Class = "UIButton"; normalTitle = "Unsubscribe"; ObjectID = "o3B-EQ-Hhw"; */
+"o3B-EQ-Hhw.normalTitle" = "Отписаться";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "oMW-JM-ZK1"; */
+"oMW-JM-ZK1.text" = "|";
+
+/* Class = "UILabel"; text = "Daily Horoscopes"; ObjectID = "oSn-ay-OwU"; */
+"oSn-ay-OwU.text" = "Гороскоп на сегодня";
+
+/* Class = "UILabel"; text = "Cryptocurrency"; ObjectID = "ooB-Xe-7sp"; */
+"ooB-Xe-7sp.text" = "Криптовалюта";
+
+/* Class = "UIButton"; normalTitle = "Get Started"; ObjectID = "pUx-7D-l8G"; */
+"pUx-7D-l8G.normalTitle" = "Начать";
+
+/* Class = "UILabel"; text = "CAPRICORNUS"; ObjectID = "pkV-gi-Oze"; */
+"pkV-gi-Oze.text" = "Козерог";
+
+/* Class = "UILabel"; text = "Music Player"; ObjectID = "ppz-ia-UrQ"; */
+"ppz-ia-UrQ.text" = "Музыкальный проигрыватель";
+
+/* Class = "UILabel"; text = "Disclaimer"; ObjectID = "qZJ-KQ-69C"; */
+"qZJ-KQ-69C.text" = "Отказ от ответственности";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "rJG-Fo-zly"; */
+"rJG-Fo-zly.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "rKX-yl-2ZI"; */
+"rKX-yl-2ZI.text" = "0";
+
+/* Class = "UILabel"; text = "03:20 PM"; ObjectID = "rh2-bY-ubz"; */
+"rh2-bY-ubz.text" = "03:20 PM";
+
+/* Class = "UILabel"; text = "Following"; ObjectID = "sFu-d8-7Kb"; */
+"sFu-d8-7Kb.text" = "Подписки";
+
+/* Class = "UILabel"; text = "Cryptocurrency"; ObjectID = "tHs-0V-dJc"; */
+"tHs-0V-dJc.text" = "Криптовалюта";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "tct-aX-g2u"; */
+"tct-aX-g2u.text" = "0";
+
+/* Class = "UILabel"; text = "Profile Link"; ObjectID = "tyP-hx-UqZ"; */
+"tyP-hx-UqZ.text" = "Ссылка на профиль";
+
+/* Class = "UILabel"; text = "SCORPIO"; ObjectID = "u3Z-gX-xJE"; */
+"u3Z-gX-xJE.text" = "Скорпион";
+
+/* Class = "UILabel"; text = "@softment"; ObjectID = "uUW-YH-tPK"; */
+"uUW-YH-tPK.text" = "@softment";
+
+/* Class = "UILabel"; text = "Astoria, OR, USA"; ObjectID = "uat-TB-o1J"; */
+"uat-TB-o1J.text" = "Астория, Орегон, США";
+
+/* Class = "UILabel"; text = "Terms Of Use"; ObjectID = "uro-k6-Fcp"; */
+"uro-k6-Fcp.text" = "Условия использования";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "uz3-hA-QZP"; */
+"uz3-hA-QZP.text" = "0";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "w65-oQ-cfX"; */
+"w65-oQ-cfX.text" = "1";
+
+/* Class = "UILabel"; text = "Due today"; ObjectID = "wLR-sH-o0n"; */
+"wLR-sH-o0n.text" = "На сегодня";
+
+/* Class = "UILabel"; text = "VIJAY_RATHORE"; ObjectID = "wYT-f9-qEw"; */
+"wYT-f9-qEw.text" = "VIJAY_RATHORE";
+
+/* Class = "UILabel"; text = "Who can see your contents"; ObjectID = "wxe-U7-T8F"; */
+"wxe-U7-T8F.text" = "Кто может видеть ваши материалы";
+
+/* Class = "UIButton"; normalTitle = "Add Task"; ObjectID = "ylN-w7-aXy"; */
+"ylN-w7-aXy.normalTitle" = "Добавить задачу";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "yu8-9v-Zs9"; */
+"yu8-9v-Zs9.text" = "0";
+
+/* Class = "UILabel"; text = "Add Task"; ObjectID = "zOZ-81-9Bm"; */
+"zOZ-81-9Bm.text" = "Добавить задачу";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "zYV-0n-itF"; */
+"zYV-0n-itF.normalTitle" = "Добавить";

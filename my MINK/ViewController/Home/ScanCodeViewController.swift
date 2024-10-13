@@ -141,7 +141,7 @@ class ScanCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             captureSession.stopRunning()
             checkQRCode(value: value)
         } else {
-            showAlert(title: "", message: "Invalid QR CODE") { self.captureSession.startRunning() }
+            showAlert(title: "", message: "Invalid QR CODE".localized()) { self.captureSession.startRunning() }
         }
     }
 
@@ -151,7 +151,7 @@ class ScanCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
                 guard let uid = uid else {
-                    self.showAlert(title: "ERROR", message: "Invalid QR Code") { self.captureSession.startRunning() }
+                    self.showAlert(title: "ERROR".localized(), message: "Invalid QR Code".localized()) { self.captureSession.startRunning() }
                     return
                 }
 
@@ -159,7 +159,7 @@ class ScanCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                     if let snapshot = snapshot, snapshot.exists, let userModel = try? snapshot.data(as: UserModel.self) {
                         self.performSegue(withIdentifier: "scanViewUserProfileSeg", sender: userModel)
                     } else {
-                        self.showAlert(title: "", message: "No user found") { self.captureSession.startRunning() }
+                        self.showAlert(title: "", message: "No user found".localized()) { self.captureSession.startRunning() }
                     }
                 }
             }
@@ -168,7 +168,7 @@ class ScanCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
 
     private func showAlert(title: String, message: String, completion: @escaping () -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in completion() })
+        alert.addAction(UIAlertAction(title: "OK".localized(), style: .default) { _ in completion() })
         present(alert, animated: true)
     }
 }

@@ -34,6 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         NotificationCenter.default.post(name: NSNotification.Name("PauseAVPlayerNotification"), object: nil)
     }
 
+    
     func sceneDidBecomeActive(_: UIScene) {
         UIApplication.shared.applicationIconBadgeNumber = 0
         // Called when the scene has moved from an inactive state to an active state.

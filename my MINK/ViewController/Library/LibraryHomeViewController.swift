@@ -91,7 +91,7 @@ class LibraryHomeViewController: UIViewController {
     }
     
     private func searchBook(searchText: String) {
-        ProgressHUDShow(text: "Searching...")
+        ProgressHUDShow(text: "Searching...".localized())
         searchBooks(bookName: searchText) { [weak self] bookModel, error in
             DispatchQueue.main.async {
                 self?.ProgressHUDHide()
@@ -106,7 +106,7 @@ class LibraryHomeViewController: UIViewController {
     
     @objc private func openBookTapped(url: String) {
         guard let epubURL = URL(string: url) else {
-            print("Invalid EPUB URL")
+            print("Invalid EPUB URL".localized())
             return
         }
         openBook(url: epubURL)

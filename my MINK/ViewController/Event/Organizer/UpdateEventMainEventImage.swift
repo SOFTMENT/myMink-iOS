@@ -106,7 +106,7 @@ class UpdateEventMainEventImage: UIViewController {
         if let free = event.isFree, free {
           
                 isFree = true
-                price.text = "Free"
+                price.text = "Free".localized()
                 price.isEnabled = false
                 updatePaidButtonAppearance(selected: false)
                 updateFreeButtonAppearance(selected: true)
@@ -190,7 +190,7 @@ class UpdateEventMainEventImage: UIViewController {
     }
     
     private func setupEventDescription() {
-        eventDescription.text = event!.eventDescription ?? "Summary*"
+        eventDescription.text = event!.eventDescription ?? "Summary*".localized()
         eventDescription.layer.borderColor = UIColor.lightGray.cgColor
         eventDescription.layer.borderWidth = 0.8
         eventDescription.layer.cornerRadius = 8
@@ -253,7 +253,7 @@ class UpdateEventMainEventImage: UIViewController {
     
     @IBAction func freeBtnClicked(_ sender: Any) {
         isFree = true
-        price.text = "Free"
+        price.text = "Free".localized()
         price.isEnabled = false
         updatePaidButtonAppearance(selected: false)
         updateFreeButtonAppearance(selected: true)
@@ -274,18 +274,18 @@ class UpdateEventMainEventImage: UIViewController {
     @IBAction private func continueBtnClicked(_ sender: Any) {
         
         guard let sName = name.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sName.isEmpty else {
-            self.showSnack(messages: "Please fill in the name")
+            self.showSnack(messages: "Please fill in the name".localized())
             return
         }
 
         guard let sQuantity = availableQuantity.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sQuantity.isEmpty else {
-            self.showSnack(messages: "Please fill in the available quantity")
+            self.showSnack(messages: "Please fill in the available quantity".localized())
             return
         }
 
      
             guard let priceText = price.text?.trimmingCharacters(in: .whitespacesAndNewlines), !priceText.isEmpty else {
-                self.showSnack(messages: "Please fill in the price")
+                self.showSnack(messages: "Please fill in the price".localized())
                 return
             }
          
@@ -293,7 +293,7 @@ class UpdateEventMainEventImage: UIViewController {
         
 
         guard let sDescription = eventDescription.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sDescription.isEmpty else {
-            self.showSnack(messages: "Please fill in the description")
+            self.showSnack(messages: "Please fill in the description".localized())
             return
         }
         
@@ -303,7 +303,7 @@ class UpdateEventMainEventImage: UIViewController {
         }
         else {
             guard Int(sQuantity) ?? 0 > 0 else {
-                self.showSnack(messages: "Enter a valid quantity")
+                self.showSnack(messages: "Enter a valid quantity".localized())
                 return
             }
     
@@ -325,7 +325,7 @@ class UpdateEventMainEventImage: UIViewController {
         event.ticketQuantity = Int(sQuantity) ?? 1
         event.ticketPrice = Int(sPrice) ?? 1
       
-        self.ProgressHUDShow(text: "Updating...")
+        self.ProgressHUDShow(text: "Updating...".localized())
         
         let batch = FirebaseStoreManager.db.batch()
         let docRef = FirebaseStoreManager.db.collection(Collections.events.rawValue).document(event.eventId!)
@@ -343,7 +343,7 @@ class UpdateEventMainEventImage: UIViewController {
             if let error = error {
                 self.showError(error.localizedDescription)
             } else {
-                self.showSnack(messages: "Event Updated")
+                self.showSnack(messages: "Event Updated".localized())
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
                     self.beRootScreen(storyBoardName: StoryBoard.event, mIdentifier: Identifier.organizerDashboardController)
                 }
@@ -363,7 +363,7 @@ extension UpdateEventMainEventImage: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Summary*"
+            textView.text = "Summary*".localized()
             textView.textColor = .lightGray
         }
     }
@@ -389,7 +389,7 @@ extension UpdateEventMainEventImage: UIImagePickerControllerDelegate, UINavigati
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
         guard let title = cropViewController.title else { return }
         
-        self.ProgressHUDShow(text: "Updating...")
+        self.ProgressHUDShow(text: "Updating...".localized())
         
         switch title {
         case "Event Image 1":

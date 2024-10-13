@@ -47,12 +47,12 @@ class UpdateToDoViewController: UIViewController {
     }
     
     @objc func deleteBtnClicked() {
-        let alert = UIAlertController(title: "DELETE", message: "Are you sure you want to delete this task.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "DELETE", style: .destructive, handler: { action in
-            self.ProgressHUDShow(text: "Deleting...")
+        let alert = UIAlertController(title: "DELETE".localized(), message: "Are you sure you want to delete this task.".localized(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "DELETE".localized(), style: .destructive, handler: { action in
+            self.ProgressHUDShow(text: "Deleting...".localized())
             guard let todoId = self.todoModel?.id else {
                 self.ProgressHUDHide()
-                self.showError("Task ID not found.")
+                self.showError("Task ID not found.".localized())
                 return
             }
             FirebaseStoreManager.db.collection(Collections.tasks.rawValue).document(todoId).delete { error in
@@ -60,35 +60,35 @@ class UpdateToDoViewController: UIViewController {
                 if let error = error {
                     self.showError(error.localizedDescription)
                 } else {
-                    self.showSnack(messages: "Deleted")
+                    self.showSnack(messages: "Deleted".localized())
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         self.dismiss(animated: true)
                     }
                 }
             }
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         present(alert, animated: true)
     }
     
     @IBAction func addTaskClicked(_ sender: Any) {
         guard let sTitle = titleTF.text, !sTitle.isEmpty else {
-            self.showSnack(messages: "Enter Title")
+            self.showSnack(messages: "Enter Title".localized())
             return
         }
         
         guard var todoModel = todoModel else {
-            self.showSnack(messages: "Task model not found")
+            self.showSnack(messages: "Task model not found".localized())
             return
         }
         
         todoModel.title = sTitle
         todoModel.date = calendarView.date
         
-        ProgressHUDShow(text: "Updating Task...")
+        ProgressHUDShow(text: "Updating Task...".localized())
         guard let todoId = todoModel.id else {
             self.ProgressHUDHide()
-            self.showError("Task ID not found.")
+            self.showError("Task ID not found.".localized())
             return
         }
         
@@ -97,7 +97,7 @@ class UpdateToDoViewController: UIViewController {
             if let error = error {
                 self.showError(error.localizedDescription)
             } else {
-                self.showSnack(messages: "Task Updated")
+                self.showSnack(messages: "Task Updated".localized())
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.dismiss(animated: true)
                 }

@@ -47,7 +47,7 @@ class EmailVerificationController: UIViewController {
     }
 
     @objc private func updateTime() {
-        resendCode.text = "\(totalTime) seconds remaining"
+        resendCode.text = String(format: "%d seconds remaining".localized(), totalTime)
 
         if totalTime != 0 {
             totalTime -= 1
@@ -79,7 +79,7 @@ class EmailVerificationController: UIViewController {
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
                 if error.isEmpty {
-                    self.showSnack(messages: "Code has been sent")
+                    self.showSnack(messages: "Code has been sent".localized())
                 } else {
                     self.showError(error)
                 }
@@ -91,13 +91,13 @@ class EmailVerificationController: UIViewController {
         sendMail(
             to_name: "my MINK",
             to_email: email,
-            subject: "Email Verification",
+            subject: "Email Verification".localized(),
             body: getEmailVerificationTemplate(randomNumber: randomNumber)
         ) { error in
             DispatchQueue.main.async {
                 self.ProgressHUDHide()
                 if error.isEmpty {
-                    self.showSnack(messages: "Code has been sent")
+                    self.showSnack(messages: "Code has been sent".localized())
                 } else {
                     self.showError(error)
                 }
@@ -108,7 +108,7 @@ class EmailVerificationController: UIViewController {
     private func endTimer() {
         countdownTimer?.invalidate()
         countdownTimer = nil
-        resendCode.text = "Resend Code"
+        resendCode.text = "Resend Code".localized()
     }
 
     @objc private func hideKeyboard() {
@@ -121,12 +121,12 @@ class EmailVerificationController: UIViewController {
 
     @IBAction private func verifyBtnClicked(_: Any) {
         guard let sCode = codeTF.text, !sCode.isEmpty else {
-            showSnack(messages: "Enter Code")
+            showSnack(messages: "Enter Code".localized())
             return
         }
 
         guard let verificationCode = verificationCode, sCode == verificationCode else {
-            showSnack(messages: "Incorrect Code")
+            showSnack(messages: "Incorrect Code".localized())
             return
         }
 
@@ -149,7 +149,7 @@ class EmailVerificationController: UIViewController {
                     let password = try! self.decryptMessage(encryptedMessage: resetPasswordModel.encryptPassword ?? "", encryptionKey: resetPasswordModel.encryptKey ?? "")
                     self.performSegue(withIdentifier: "copyPasswordSeg", sender: password)
                 } else {
-                    self.showError("Account not registered with this email address.")
+                    self.showError("Account not registered with this email address.".localized())
                 }
             }
     }
@@ -157,7 +157,7 @@ class EmailVerificationController: UIViewController {
     private func handleEmailVerification() {
         guard let userModel = userModel else { return }
         let password = try? decryptMessage(encryptedMessage: userModel.encryptPassword ?? "", encryptionKey: userModel.encryptKey ?? "")
-        ProgressHUDShow(text: "Creating Account...")
+        ProgressHUDShow(text: "Creating Account...".localized())
         FirebaseStoreManager.auth.createUser(withEmail: userModel.email ?? "", password: password ?? "") { _, error in
             self.ProgressHUDHide()
             if error == nil {

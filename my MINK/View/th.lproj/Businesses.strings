@@ -1,0 +1,104 @@
+/* Class = "UILabel"; text = "Software Development,"; ObjectID = "4wT-g3-saX"; */
+"4wT-g3-saX.text" = "การพัฒนาซอฟต์แวร์,";
+
+/* Class = "UILabel"; text = "0 Subscriber"; ObjectID = "7di-Lx-Ace"; */
+"7di-Lx-Ace.text" = "0 ผู้ติดตาม";
+
+/* Class = "UITextField"; placeholder = "Business Type"; ObjectID = "7ne-g8-Vxm"; */
+"7ne-g8-Vxm.placeholder" = "ประเภทธุรกิจ";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "7yn-fs-EtC"; */
+"7yn-fs-EtC.text" = "เกี่ยวกับ";
+
+/* Class = "UILabel"; text = "Upload business picture"; ObjectID = "85p-hR-8IS"; */
+"85p-hR-8IS.text" = "อัปโหลดรูปภาพธุรกิจ";
+
+/* Class = "UILabel"; text = "0 Post"; ObjectID = "C0F-gE-Dxr"; */
+"C0F-gE-Dxr.text" = "0 โพสต์";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "Crt-7Z-blV"; */
+"Crt-7Z-blV.text" = "อาหารและเครื่องดื่ม";
+
+/* Class = "UIButton"; normalTitle = "My Business"; ObjectID = "IYS-bO-QGW"; */
+"IYS-bO-QGW.normalTitle" = "ธุรกิจของฉัน";
+
+/* Class = "UILabel"; text = "Upload business picture"; ObjectID = "Jvb-EN-Lig"; */
+"Jvb-EN-Lig.text" = "อัปโหลดรูปภาพธุรกิจ";
+
+/* Class = "UITextField"; placeholder = "Website URL"; ObjectID = "Mgg-Qc-72L"; */
+"Mgg-Qc-72L.placeholder" = "URL เว็บไซต์";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "ND4-9f-p9P"; */
+"ND4-9f-p9P.text" = "คำอธิบาย";
+
+/* Class = "UIButton"; normalTitle = "Subscribe"; ObjectID = "NXT-hB-jyb"; */
+"NXT-hB-jyb.normalTitle" = "สมัครสมาชิก";
+
+/* Class = "UILabel"; text = "Add more details about your business"; ObjectID = "QJo-g2-CKD"; */
+"QJo-g2-CKD.text" = "เพิ่มรายละเอียดเพิ่มเติมเกี่ยวกับธุรกิจของคุณ";
+
+/* Class = "UITextField"; placeholder = "Website URL"; ObjectID = "QSE-ic-Ix5"; */
+"QSE-ic-Ix5.placeholder" = "URL เว็บไซต์";
+
+/* Class = "UILabel"; text = "Businesses"; ObjectID = "RA4-om-R53"; */
+"RA4-om-R53.text" = "ธุรกิจ";
+
+/* Class = "UILabel"; text = "We are a leading software development company that offers top-rated Software Development Services due to our vast experience, team of skilled professionals, key business insights, and a dedicated working process."; ObjectID = "SCQ-AA-tKO"; */
+"SCQ-AA-tKO.text" = "เราเป็นบริษัทพัฒนาซอฟต์แวร์ชั้นนำที่ให้บริการพัฒนาซอฟต์แวร์ระดับสูง ด้วยประสบการณ์อันกว้างขวาง ทีมงานมืออาชีพที่มีทักษะ ข้อมูลเชิงลึกทางธุรกิจที่สำคัญ และกระบวนการทำงานที่ทุ่มเท";
+
+/* Class = "UILabel"; text = "\"Roaming the world, one adventure at a time.\""; ObjectID = "Va5-Vz-3k9"; */
+"Va5-Vz-3k9.text" = "\"ท่องโลกไปทีละการผจญภัย\"";
+
+/* Class = "UILabel"; text = "www.softment.com"; ObjectID = "Wff-a4-yBa"; */
+"Wff-a4-yBa.text" = "www.softment.com";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "XBb-aa-VNI"; */
+"XBb-aa-VNI.text" = "โพสต์";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "ZZH-hT-lqG"; */
+"ZZH-hT-lqG.normalTitle" = "เพิ่ม";
+
+/* Class = "UILabel"; text = "Add more details about your business"; ObjectID = "a9t-Mp-BO8"; */
+"a9t-Mp-BO8.text" = "เพิ่มรายละเอียดเพิ่มเติมเกี่ยวกับธุรกิจของคุณ";
+
+/* Class = "UILabel"; text = "No posts available"; ObjectID = "avP-ew-FB5"; */
+"avP-ew-FB5.text" = "ไม่มีโพสต์ที่พร้อมใช้งาน";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "b9F-fB-vlF"; */
+"b9F-fB-vlF.normalTitle" = "อัปโหลด";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "bBp-2Q-wwi"; */
+"bBp-2Q-wwi.normalTitle" = "อัปเดต";
+
+/* Class = "UITextField"; placeholder = "Business Name"; ObjectID = "dDD-Tw-i5E"; */
+"dDD-Tw-i5E.placeholder" = "ชื่อธุรกิจ";
+
+/* Class = "UIButton"; normalTitle = "Message"; ObjectID = "e9E-Fc-fww"; */
+"e9E-Fc-fww.normalTitle" = "ข้อความ";
+
+/* Class = "UILabel"; text = "No businesses available"; ObjectID = "fBw-mz-dgf"; */
+"fBw-mz-dgf.text" = "ไม่มีธุรกิจที่พร้อมใช้งาน";
+
+/* Class = "UITextField"; placeholder = "Business Type"; ObjectID = "r5b-HP-gPH"; */
+"r5b-HP-gPH.placeholder" = "ประเภทธุรกิจ";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "tQW-dc-jcp"; */
+"tQW-dc-jcp.normalTitle" = "อัปโหลด";
+
+/* Class = "UILabel"; text = "www.softment.com"; ObjectID = "tkL-zg-SbP"; */
+"tkL-zg-SbP.text" = "www.softment.com";
+
+/* Class = "UILabel"; text = "SOFTMENT SOLUTIONS PVT LTD"; ObjectID = "umM-0f-QI1"; */
+"umM-0f-QI1.text" = "SOFTMENT SOLUTIONS PVT LTD";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "xLL-yW-agT"; */
+"xLL-yW-agT.text" = "คำอธิบาย";
+
+/* Class = "UITextField"; placeholder = "Search..."; ObjectID = "yGa-0g-8EX"; */
+"yGa-0g-8EX.placeholder" = "ค้นหา...";
+
+/* Class = "UILabel"; text = "SOFTMENT SOLUTIONS"; ObjectID = "zff-m5-FEJ"; */
+"zff-m5-FEJ.text" = "SOFTMENT SOLUTIONS";
+
+/* Class = "UITextField"; placeholder = "Business Name"; ObjectID = "zqF-ol-sP0"; */
+"zqF-ol-sP0.placeholder" = "ชื่อธุรกิจ";

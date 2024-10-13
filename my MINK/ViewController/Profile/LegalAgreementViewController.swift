@@ -62,6 +62,14 @@ class LegalAgreementViewController: UIViewController {
         guard let url = URL(string: urlString) else {
             return
         }
-        UIApplication.shared.open(url)
+        
+        // Use the updated open method with options and completion handler
+        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+            if success {
+                print("URL was opened successfully.")
+            } else {
+                print("Failed to open the URL.")
+            }
+        })
     }
 }

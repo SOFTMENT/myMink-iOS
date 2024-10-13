@@ -88,10 +88,7 @@ class UsersProductViewController: UIViewController {
         if segue.identifier == "editProductSeg", let VC = segue.destination as? EditProductViewController, let position = sender as? Int {
             VC.product = self.products[position]
             VC.position = position
-            VC.delegate = self
-        } else if segue.identifier == "addProductSeg", let VC = segue.destination as? AddProductViewController {
-            
-            VC.delegate = self
+           
         }
     }
 }
@@ -137,21 +134,3 @@ extension UsersProductViewController: UICollectionViewDelegate, UICollectionView
     }
 }
 
-extension UsersProductViewController: ProductDelegate {
-    func updateProduct(productModel: MarketplaceModel, position: Int) {
-        self.products[position] = productModel
-        self.storeCollectionView.reloadData()
-    }
-    
-    func addProduct(productModel: MarketplaceModel) {
-        products.append(productModel)
-        self.storeCollectionView.reloadData()
-    }
-    
-    func removeProduct(productModel: MarketplaceModel) {
-        if let index = products.firstIndex(where: { $0.id == productModel.id }) {
-            products.remove(at: index)
-            self.storeCollectionView.reloadData()
-        }
-    }
-}

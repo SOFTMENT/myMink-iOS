@@ -157,7 +157,7 @@ class VideoCallViewController: UIViewController {
 
     func joinChannel(token: String, channelName: String) async {
         if await !self.checkForPermissions() {
-            self.showMessage(title: "Error", text: "Permissions were not granted")
+            self.showMessage(title: "Error".localized(), text: "Permissions were not granted".localized())
             return
         }
 

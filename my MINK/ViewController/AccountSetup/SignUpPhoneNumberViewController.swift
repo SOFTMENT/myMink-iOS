@@ -72,37 +72,37 @@ class SignUpPhoneNumberViewController: UIViewController {
 
     @IBAction func signUpClicked(_: Any) {
         guard let sFirstName = firstName.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sFirstName.isEmpty else {
-            showSnack(messages: "Enter First Name")
+            showSnack(messages: "Enter First Name".localized())
             return
         }
 
         guard let sLastName = lastName.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sLastName.isEmpty else {
-            showSnack(messages: "Enter Last Name")
+            showSnack(messages: "Enter Last Name".localized())
             return
         }
 
         guard !sCode.isEmpty else {
-            showSnack(messages: "Select Phone Code")
+            showSnack(messages: "Select Phone Code".localized())
             return
         }
 
         guard let sPhone = phoneTF.text, !sPhone.isEmpty else {
-            showSnack(messages: "Enter Phone Number")
+            showSnack(messages: "Enter Phone Number".localized())
             return
         }
 
         fullName = "\(sFirstName) \(sLastName)"
         phoneNumber = "+\(sCode)\(sPhone)"
 
-        ProgressHUDShow(text: "Creating Account...")
+        ProgressHUDShow(text: "Creating Account...".localized())
 
         FirebaseStoreManager.db.collection(Collections.users.rawValue).whereField("phoneNumber", isEqualTo: phoneNumber)
             .getDocuments { snapshot, error in
                 self.ProgressHUDHide()
                 if let snapshot = snapshot, !snapshot.isEmpty {
                     self.showMessage(
-                        title: "Account Exist",
-                        message: "There is an account already available with the same phone number. Please Sign In."
+                        title: "Account Exist".localized(),
+                        message: "There is an account already available with the same phone number. Please Sign In.".localized()
                     )
                 } else {
                     self.sendTwilioVerification(to: self.phoneNumber) { error in

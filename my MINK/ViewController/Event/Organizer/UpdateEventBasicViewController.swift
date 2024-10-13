@@ -158,11 +158,11 @@ class UpdateEventBasicViewController: UIViewController {
     private func createToolbar(doneSelector: Selector, cancelSelector: Selector?) -> UIToolbar {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: nil, action: doneSelector)
+        let doneButton = UIBarButtonItem(title: "Done".localized(), style: .plain, target: nil, action: doneSelector)
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         var items = [spaceButton, doneButton]
         if let cancelSelector = cancelSelector {
-            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: cancelSelector)
+            let cancelButton = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: nil, action: cancelSelector)
             items.insert(cancelButton, at: 0)
         }
         toolbar.setItems(items, animated: true)
@@ -230,47 +230,47 @@ class UpdateEventBasicViewController: UIViewController {
     
     @IBAction func continueBtnClicked(_ sender: Any) {
         guard let sEventTitle = eventTitle.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sEventTitle.isEmpty else {
-            showSnack(messages: "Please fill in the event title")
+            showSnack(messages: "Please fill in the event title".localized())
             return
         }
         guard let sTag = eventTags.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sTag.isEmpty else {
-            showSnack(messages: "Please fill in the event tags")
+            showSnack(messages: "Please fill in the event tags".localized())
             return
         }
         guard let sAddress = address.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sAddress.isEmpty else {
-            showSnack(messages: "Please fill in the address")
+            showSnack(messages: "Please fill in the address".localized())
             return
         }
         guard let sCity = city.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sCity.isEmpty else {
-            showSnack(messages: "Please fill in the city")
+            showSnack(messages: "Please fill in the city".localized())
             return
         }
         guard let sState = state.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sState.isEmpty else {
-            showSnack(messages: "Please fill in the state")
+            showSnack(messages: "Please fill in the state".localized())
             return
         }
         guard let sPostalCode = pincode.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sPostalCode.isEmpty else {
-            showSnack(messages: "Please fill in the postal code")
+            showSnack(messages: "Please fill in the postal code".localized())
             return
         }
         guard let sCountry = country.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sCountry.isEmpty else {
-            showSnack(messages: "Please fill in the country")
+            showSnack(messages: "Please fill in the country".localized())
             return
         }
         guard let sEventStartDate = eventStart.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sEventStartDate.isEmpty else {
-            showSnack(messages: "Please fill in the event start date")
+            showSnack(messages: "Please fill in the event start date".localized())
             return
         }
         guard let sEventStartTime = startTime.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sEventStartTime.isEmpty else {
-            showSnack(messages: "Please fill in the event start time")
+            showSnack(messages: "Please fill in the event start time".localized())
             return
         }
         guard let sEventEndDate = eventEnd.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sEventEndDate.isEmpty else {
-            showSnack(messages: "Please fill in the event end date")
+            showSnack(messages: "Please fill in the event end date".localized())
             return
         }
         guard let sEventEndTime = endTime.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sEventEndTime.isEmpty else {
-            showSnack(messages: "Please fill in the event end time")
+            showSnack(messages: "Please fill in the event end time".localized())
             return
         }
         
@@ -351,21 +351,21 @@ class UpdateEventBasicViewController: UIViewController {
     }
 
     private func showOpenMapPopup(latitude: Double, longitude: Double) {
-        let alert = UIAlertController(title: "Open in maps", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Apple Maps", style: .default, handler: { _ in
+        let alert = UIAlertController(title: "Open in maps".localized(), message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Apple Maps".localized(), style: .default, handler: { _ in
             let coordinate = CLLocationCoordinate2DMake(latitude, longitude)
             let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary: nil))
-            mapItem.name = "Event Location"
+            mapItem.name = "Event Location".localized()
             mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
         }))
         
         if UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!) {
-            alert.addAction(UIAlertAction(title: "Google Maps", style: .default, handler: { _ in
+            alert.addAction(UIAlertAction(title: "Google Maps".localized(), style: .default, handler: { _ in
                 UIApplication.shared.open(URL(string: "comgooglemaps://?center=\(latitude),\(longitude)&zoom=14&views=traffic&q=\(latitude),\(longitude)")!, options: [:], completionHandler: nil)
             }))
         }
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: { _ in
             alert.dismiss(animated: true, completion: nil)
         }))
         
@@ -425,7 +425,7 @@ extension UpdateEventBasicViewController: UITableViewDelegate, UITableViewDataSo
             return GooglePlacesCell()
         }
         
-        cell.name.text = places[indexPath.row].name ?? "Something Went Wrong"
+        cell.name.text = places[indexPath.row].name ?? "Something Went Wrong".localized()
         let myGesture = MyGesture(target: self, action: #selector(locationCellClicked(myGesture:)))
         myGesture.index = indexPath.row
         cell.mView.addGestureRecognizer(myGesture)

@@ -33,23 +33,21 @@ class UserModel: NSObject, Codable{
     var encryptKey: String?
     var encryptPassword: String?
     var autoGraphImage: String?
-    var subscriptionId : String?
     var isAccountPrivate: Bool?
-    var isAccountActive: Bool?
     var profileURL: String?
     var is2FAActive: Bool?
     var phoneNumber2FA: String?
     var braintreeCustomerId : String?
-    var status : String?
-    var isFreeTrial : Bool?
-    var daysLeft : Int?
-    var planID : String?
     var isBlocked : Bool?
-    var isDuringTrial : Bool?
     var livestreamingURL : String?
     var isAccountDeactivate : Bool?
     var haveBlueTick : Bool?
     var haveBlackTick : Bool?
+    var activeEntitlement : String?
+    var entitlementStatus : String?
+    var isAccountActive : Bool?
+    var daysLeft : Int?
+    
     static func clearUserData() {
        userData = nil
     }

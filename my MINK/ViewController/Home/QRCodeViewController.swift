@@ -38,7 +38,7 @@ class QRCodeViewController: UIViewController {
             action: #selector(self.backViewClicked)
         ))
 
-        mName.text = UserModel.data?.fullName ?? "Name"
+        mName.text = UserModel.data?.fullName ?? "Name".localized()
         if let path = UserModel.data?.profilePic, !path.isEmpty {
             mProfile.setImage(
                 imageKey: path,
@@ -79,7 +79,7 @@ class QRCodeViewController: UIViewController {
         guard let link = UserModel.data?.profileURL, UIPasteboard.general.string != link else { return }
         UIPasteboard.general.string = link
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-        showSnack(messages: "Link has copied.")
+        showSnack(messages: "Link has copied.".localized())
     }
 
     @objc private func backViewClicked() {

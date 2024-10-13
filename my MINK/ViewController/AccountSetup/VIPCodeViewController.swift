@@ -36,11 +36,11 @@ class VIPCodeViewController: UIViewController {
 
     @IBAction private func getLinkClicked(_: Any) {
         guard let sCode = codeTF.text, !sCode.isEmpty else {
-            showSnack(messages: "Enter VIP Code")
+            showSnack(messages: "Enter VIP Code".localized())
             return
         }
         
-        ProgressHUDShow(text: "Verifying")
+        ProgressHUDShow(text: "Verifying".localized())
         verifyCouponCode(sCode)
     }
 
@@ -49,24 +49,26 @@ class VIPCodeViewController: UIViewController {
             guard let self = self else { return }
             self.ProgressHUDHide()
             
-            if let _ = couponModel {
+            if let couponModel = couponModel {
+            
+                FirebaseStoreManager.db.collection("Coupons").document(couponModel.id!).delete()
                 self.updateUserModel(for: sCode)
+            
             } else {
-                self.showError("Invalid Coupon Code.")
+                self.showError("Invalid Coupon Code or Redeemed.".localized())
             }
         }
     }
 
     private func updateUserModel(for sCode: String) {
-        UserModel.data?.planID = PriceID.lifetime.rawValue
-        UserModel.data?.daysLeft = 3
-        UserModel.data?.status = "active"
+        UserModel.data?.activeEntitlement = PriceID.lifetime.rawValue
+        UserModel.data?.entitlementStatus = "active"
         UserModel.data?.isAccountActive = true
 
         let userUpdates: [String: Any] = [
-            "planID": PriceID.lifetime.rawValue,
             "status": "active",
-            "isAccountActive": true
+            "isAccountActive": true,
+            "activeEntitlement" : PriceID.lifetime.rawValue
         ]
 
         FirebaseStoreManager.db.collection(Collections.users.rawValue)

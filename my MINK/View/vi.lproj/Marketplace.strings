@@ -1,0 +1,143 @@
+/* Class = "UILabel"; text = "TEDxMileHigh"; ObjectID = "01v-VG-P8e"; */
+"01v-VG-P8e.text" = "TEDxMileHigh";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "2NF-Lp-WEU"; */
+"2NF-Lp-WEU.text" = "Nhấn để thêm hình ảnh sản phẩm";
+
+/* Class = "UIButton"; normalTitle = "My Store"; ObjectID = "3CM-4O-gIh"; */
+"3CM-4O-gIh.normalTitle" = "Cửa Hàng Của Tôi";
+
+/* Class = "UILabel"; text = "on myMINK"; ObjectID = "4P6-9a-cre"; */
+"4P6-9a-cre.text" = "trên myMINK";
+
+/* Class = "UITextView"; text = " "; ObjectID = "8Us-dB-JrW"; */
+"8Us-dB-JrW.text" = " ";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "9fG-6e-ao3"; */
+"9fG-6e-ao3.text" = "Nhấn để thêm hình ảnh sản phẩm";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "BfQ-cY-jgi"; */
+"BfQ-cY-jgi.text" = "JPEG hoặc PNG, không quá 10MB.";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "Eyu-M5-BLx"; */
+"Eyu-M5-BLx.text" = "JPEG hoặc PNG, không quá 10MB.";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "H0A-AH-yfk"; */
+"H0A-AH-yfk.text" = "JPEG hoặc PNG, không quá 10MB.";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "JX8-5C-6R2"; */
+"JX8-5C-6R2.normalTitle" = "Cập Nhật";
+
+/* Class = "UITextField"; placeholder = "Select Category"; ObjectID = "LVs-gh-DgT"; */
+"LVs-gh-DgT.placeholder" = "Chọn Danh Mục";
+
+/* Class = "UILabel"; text = "50 AUD"; ObjectID = "MXZ-c3-idu"; */
+"MXZ-c3-idu.text" = "50 AUD";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "Prk-9c-Kbz"; */
+"Prk-9c-Kbz.text" = "Giới Thiệu";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "T0Z-Xw-6PE"; */
+"T0Z-Xw-6PE.normalTitle" = "Thêm";
+
+/* Class = "UILabel"; text = "How to prepare and deliver a TED Talk"; ObjectID = "TOS-KZ-j2z"; */
+"TOS-KZ-j2z.text" = "Cách chuẩn bị và trình bày một bài TED Talk";
+
+/* Class = "UIButton"; normalTitle = "All"; ObjectID = "UOX-5Z-N5k"; */
+"UOX-5Z-N5k.normalTitle" = "Tất Cả";
+
+/* Class = "UITextField"; placeholder = "Price"; ObjectID = "UWb-sd-ebV"; */
+"UWb-sd-ebV.placeholder" = "Giá";
+
+/* Class = "UITextView"; text = " "; ObjectID = "Vsv-eO-bjX"; */
+"Vsv-eO-bjX.text" = " ";
+
+/* Class = "UILabel"; text = "Product Description"; ObjectID = "WaA-QN-zpQ"; */
+"WaA-QN-zpQ.text" = "Mô tả Sản phẩm";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "Y2b-md-1CL"; */
+"Y2b-md-1CL.text" = "Thực Phẩm & Đồ Uống";
+
+/* Class = "UILabel"; text = "Edit Product"; ObjectID = "Zn8-m3-YbE"; */
+"Zn8-m3-YbE.text" = "Chỉnh Sửa Sản Phẩm";
+
+/* Class = "UILabel"; text = "Product Image"; ObjectID = "aR0-xX-Enq"; */
+"aR0-xX-Enq.text" = "Hình Ảnh Sản Phẩm";
+
+/* Class = "UITextField"; placeholder = "Title"; ObjectID = "cAN-Eh-A4O"; */
+"cAN-Eh-A4O.placeholder" = "Tiêu Đề";
+
+/* Class = "UILabel"; text = "Flipkart, 'India ka Fashion Capital', is your one-stop fashion destination for anything and everything you need to look good."; ObjectID = "d7p-7E-yEt"; */
+"d7p-7E-yEt.text" = "Flipkart, 'Thủ đô Thời Trang Ấn Độ', là điểm đến thời trang duy nhất của bạn cho mọi thứ bạn cần để trông thật phong cách.";
+
+/* Class = "UILabel"; text = "Add Product"; ObjectID = "dKx-3y-Wkk"; */
+"dKx-3y-Wkk.text" = "Thêm Sản Phẩm";
+
+/* Class = "UILabel"; text = "How to prepare and deliver a TED Talk"; ObjectID = "dq2-ma-OrN"; */
+"dq2-ma-OrN.text" = "Cách chuẩn bị và trình bày một bài TED Talk";
+
+/* Class = "UILabel"; text = "50 AUD"; ObjectID = "ehE-Mz-TY9"; */
+"ehE-Mz-TY9.text" = "50 AUD";
+
+/* Class = "UILabel"; text = "No products available"; ObjectID = "fP0-qy-qF8"; */
+"fP0-qy-qF8.text" = "Không có sản phẩm nào có sẵn";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "hBe-bT-uCE"; */
+"hBe-bT-uCE.text" = "Thực Phẩm & Đồ Uống";
+
+/* Class = "UITextField"; placeholder = "Select Category"; ObjectID = "ht4-Je-3C9"; */
+"ht4-Je-3C9.placeholder" = "Chọn Danh Mục";
+
+/* Class = "UITextField"; placeholder = "Search"; ObjectID = "i2E-us-W4o"; */
+"i2E-us-W4o.placeholder" = "Tìm Kiếm";
+
+/* Class = "UILabel"; text = "Product Description"; ObjectID = "iJB-Cn-gVs"; */
+"iJB-Cn-gVs.text" = "Mô tả Sản phẩm";
+
+/* Class = "UIButton"; normalTitle = "Contact"; ObjectID = "iN0-Kz-QRU"; */
+"iN0-Kz-QRU.normalTitle" = "Liên Hệ";
+
+/* Class = "UILabel"; text = "Gooney"; ObjectID = "l7S-w7-5I3"; */
+"l7S-w7-5I3.text" = "Gooney";
+
+/* Class = "UILabel"; text = "My Store"; ObjectID = "lYE-Pi-DZi"; */
+"lYE-Pi-DZi.text" = "Cửa Hàng Của Tôi";
+
+/* Class = "UILabel"; text = "@Leo"; ObjectID = "lvs-ig-kXq"; */
+"lvs-ig-kXq.text" = "@Leo";
+
+/* Class = "UILabel"; text = "No products available"; ObjectID = "oaz-XL-7up"; */
+"oaz-XL-7up.text" = "Không có sản phẩm nào có sẵn";
+
+/* Class = "UILabel"; text = "Gooney"; ObjectID = "pqA-PC-IYm"; */
+"pqA-PC-IYm.text" = "Gooney";
+
+/* Class = "UIButton"; normalTitle = "Add More Images"; ObjectID = "qQq-3i-I6O"; */
+"qQq-3i-I6O.normalTitle" = "Thêm Nhiều Hình Ảnh";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "s95-Df-Pei"; */
+"s95-Df-Pei.text" = "Thực Phẩm & Đồ Uống";
+
+/* Class = "UITextField"; placeholder = "Title"; ObjectID = "sUo-nt-IbJ"; */
+"sUo-nt-IbJ.placeholder" = "Tiêu Đề";
+
+/* Class = "UITextField"; placeholder = "Price"; ObjectID = "tqh-ID-Vd8"; */
+"tqh-ID-Vd8.placeholder" = "Giá";
+
+/* Class = "UILabel"; text = "Use a high quality images: (9: 5 ratio)."; ObjectID = "uIF-rm-vno"; */
+"uIF-rm-vno.text" = "Sử dụng hình ảnh chất lượng cao: (tỉ lệ 9: 5).";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "uiI-I9-U6N"; */
+"uiI-I9-U6N.text" = "Nhấn để thêm hình ảnh sản phẩm";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "vdw-hI-b4o"; */
+"vdw-hI-b4o.text" = "Nhấn để thêm hình ảnh sản phẩm";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "wGe-PJ-VEl"; */
+"wGe-PJ-VEl.text" = "JPEG hoặc PNG, không quá 10MB.";
+
+/* Class = "UILabel"; text = "Marketplace"; ObjectID = "y6X-Hw-k7A"; */
+"y6X-Hw-k7A.text" = "Chợ Trực Tuyến";
+
+/* Class = "UILabel"; text = "US$ 20"; ObjectID = "yJs-Bc-pWi"; */
+"yJs-Bc-pWi.text" = "US$ 20";

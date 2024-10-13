@@ -86,12 +86,12 @@ extension OrganisorUpcomingDashboard: UITableViewDelegate, UITableViewDataSource
     }
 
     private func createContextMenu(for event: Event) -> UIMenu {
-        let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash.fill")) { _ in
-            self.ProgressHUDShow(text: "Deleting...")
+        let deleteAction = UIAction(title: "Delete".localized(), image: UIImage(systemName: "trash.fill")) { _ in
+            self.ProgressHUDShow(text: "Deleting...".localized())
             self.deleteEvent(eventId: event.eventId ?? "123") { error in
                 self.ProgressHUDHide()
                 if error == nil {
-                    self.showSnack(messages: "Event Deleted")
+                    self.showSnack(messages: "Event Deleted".localized())
                     self.upcomingEvents.removeAll { $0.eventId == event.eventId }
                     self.tableView.reloadData()
                     self.no_coming_events_available.isHidden = !self.upcomingEvents.isEmpty

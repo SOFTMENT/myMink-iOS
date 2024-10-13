@@ -17,12 +17,14 @@ import IQKeyboardManagerSwift
 import PushKit
 import UIKit
 import FirebaseFirestore
+import RevenueCat
 
 // MARK: - AppDelegate
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    let badgeCountKey = "badgeCountKey"
     let gcmMessageIDKey = "gcm.message_id"
     var body = "message"
     var title = "Title"
@@ -37,8 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Perform any operations when the user disconnects from app here.
         // ...
     }
-    
-    
 
     func application(
         _ application: UIApplication,
@@ -50,21 +50,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application,
             didFinishLaunchingWithOptions: launchOptions
         )
+        Purchases.configure(withAPIKey: "appl_dOBdJyUAdDOlfPQGlcSkWQRZPzD")
         
         Branch.setUseTestBranchKey(false)
+        
         Branch.getInstance().initSession(launchOptions: launchOptions) { params, _ in
 
-
             if let data = params as? [String: AnyObject] {
-                
-                
                 let isFirstSession = data["+is_first_session"] as? Bool ?? false
                 let clickedBranchLink = data["+clicked_branch_link"] as? Bool ?? false
                 
                 if (isFirstSession || clickedBranchLink) && Constants.deeplinkData == nil {
-                    
                     Constants.deeplinkData = data
-                    
                     if FirebaseStoreManager.auth.currentUser != nil && UserModel.data != nil {
                         let main = UIStoryboard(name: StoryBoard.tabBar.rawValue, bundle: nil)
                         if let rootController = main
@@ -73,13 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     .rawValue
                             ) as? TabbarViewController
                         {
-                            
-                            
                             Constants.selectedTabBarPosition = 0
                             UIApplication.shared.windows.first?.rootViewController = rootController
                             UIApplication.shared.windows.first?.makeKeyAndVisible()
                         }
-                        
                     }
                 }
             }
@@ -88,10 +82,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
             try Amplify.add(plugin: AWSAPIPlugin())
-            try Amplify.add(plugin: AWSCognitoAuthPlugin())
             try Amplify.add(plugin: AWSS3StoragePlugin())
             try Amplify.add(plugin: AWSDataStorePlugin(modelRegistration: AmplifyModels()))
-            // and so on ...
             try Amplify.configure()
         } catch {
             print("An error occurred setting up Amplify: \(error)")
@@ -119,49 +111,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         Messaging.messaging().isAutoInitEnabled = true
 
-        // FirebaseOptions.defaultOptions()?.deepLinkURLScheme =
         IQKeyboardManager.shared.enable = true
         FirebaseApp.configure()
 
         Auth.auth().addStateDidChangeListener { _, user in
-            
             if user == nil {
                 self.showLoginScreen()
             }
         }
-        
-        
+
         Auth.auth().currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
             if error != nil {
-                // The user's account has been deleted.
                 self.showLoginScreen()
                 return
             }
-            // The token is valid, and you can proceed with the user's request.
         }
-        
+
         BTAppContextSwitcher.setReturnURLScheme("in.softment.mymink.payment")
         return true
     }
- 
-   
+
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Check the auth state when the app becomes active
+        // Reset the badge number when the app becomes active
+      
+
         if Auth.auth().currentUser == nil {
-            
             self.showLoginScreen()
         }
     }
-  
-    func showLoginScreen(){
-        
+
+    func showLoginScreen() {
         Constants.selectedTabBarPosition = 0
         UserModel.clearUserData()
-        
-   
-        
         try? Auth.auth().signOut()
-        
+
         let main = UIStoryboard(name: StoryBoard.accountSetup.rawValue, bundle: nil)
         if let rootController = main
             .instantiateViewController(
@@ -169,72 +152,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     .rawValue
             ) as? EntryViewController
         {
-         
             UIApplication.shared.windows.first?.rootViewController = rootController
             UIApplication.shared.windows.first?.makeKeyAndVisible()
         }
     }
-    
-    func observeUserStatus(userId : String) {
-        
-       
-            let db = Firestore.firestore()
-            db.collection(Collections.users.rawValue).document(userId).addSnapshotListener { documentSnapshot, error in
-                guard let document = documentSnapshot else {
-                 
-                    return
-                }
-                guard let data = document.data() else {
-                   
-                    return
-                }
-                let isBlocked = data["isBlocked"] as? Bool ?? false
-                UserModel.data?.isBlocked = isBlocked
-                if isBlocked {
-                    // Log out the user
-                    
-                    self.showLoginScreen()
-                    
-                }
+
+    func observeUserStatus(userId: String) {
+        let db = Firestore.firestore()
+        db.collection(Collections.users.rawValue).document(userId).addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else { return }
+            guard let data = document.data() else { return }
+            let isBlocked = data["isBlocked"] as? Bool ?? false
+            UserModel.data?.isBlocked = isBlocked
+            if isBlocked {
+                self.showLoginScreen()
             }
+        }
     }
-    
-    
 
     func voipRegistration() {
         if FirebaseStoreManager.auth.currentUser != nil, UserModel.data != nil {
-            // Create a push registry object
             let mainQueue = DispatchQueue.main
             let voipRegistry = PKPushRegistry(queue: mainQueue)
             voipRegistry.delegate = self
-
             voipRegistry.desiredPushTypes = [PKPushType.voIP]
         }
     }
- 
+
     func application(
         _: UIApplication,
         configurationForConnecting connectingSceneSession: UISceneSession,
         options _: UIScene.ConnectionOptions
     ) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
         UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
-    func application(_: UIApplication, didDiscardSceneSessions _: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after
-        // application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
+    func application(_: UIApplication, didDiscardSceneSessions _: Set<UISceneSession>) {}
 
     func application(
         _: UIApplication,
         continue userActivity: NSUserActivity,
         restorationHandler _: @escaping ([UIUserActivityRestoring]?) -> Void
     ) -> Bool {
-        // Handler for Universal Links
         Branch.getInstance().continue(userActivity)
         return true
     }
@@ -248,7 +207,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if url.scheme?.localizedCaseInsensitiveCompare("in.softment.mymink.payment") == .orderedSame {
             return BTAppContextSwitcher.handleOpenURL(url)
         }
-
         return GIDSignIn.sharedInstance.handle(url)
     }
 }
@@ -274,26 +232,20 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             -> Void
     ) {
         let userInfo = notification.request.content.userInfo
+        // Increment badge number
+        UIApplication.shared.applicationIconBadgeNumber += 1
 
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-        UIApplication.shared.applicationIconBadgeNumber = 4
-
-        // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            print("Message ID 1: \(messageID)")
         }
-
-        // Print full message.
-        print(userInfo)
 
         // Change this to your preferred presentation option
         if #available(iOS 14.0, *) {
-            completionHandler([.banner, .list, .sound])
+            completionHandler([.badge, .sound, .banner])
         } else {
-            completionHandler([.alert])
+            completionHandler([.alert, .sound])
         }
+
     }
 
     func userNotificationCenter(
@@ -302,10 +254,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         let userInfo = response.notification.request.content.userInfo
+        // Increment badge number
+        UIApplication.shared.applicationIconBadgeNumber += 1
 
-        // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            print("Message ID 2: \(messageID)")
         }
 
         let aps = userInfo["aps"] as? NSDictionary
@@ -319,20 +272,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 
     func application(_: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-        // Print message ID.
-
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            print("Message ID 3: \(messageID)")
         }
-
-        // Print full message.
         print(userInfo)
     }
 
@@ -341,40 +283,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         didReceiveRemoteNotification userInfo: [AnyHashable: Any],
         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
     ) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
+        // Increment badge number for background notifications
+        application.applicationIconBadgeNumber += 1
 
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-        Branch.getInstance().handlePushNotification(userInfo)
-
-        let state = application.applicationState
-        switch state {
-        case .inactive:
-            print("Inactive")
-
-        case .background:
-            print("Background")
-            // update badge count here
-            application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
-
-        case .active:
-            print("Active")
-
-        @unknown default:
-            print("ERROR")
-        }
-
-        // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            print("Message ID 4: \(messageID)")
         }
 
-        // Print full message.
         print(userInfo)
-
         completionHandler(UIBackgroundFetchResult.newData)
     }
 }

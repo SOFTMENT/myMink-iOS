@@ -1,0 +1,104 @@
+/* Class = "UILabel"; text = "Software Development,"; ObjectID = "4wT-g3-saX"; */
+"4wT-g3-saX.text" = "ソフトウェア開発,";
+
+/* Class = "UILabel"; text = "0 Subscriber"; ObjectID = "7di-Lx-Ace"; */
+"7di-Lx-Ace.text" = "0人の購読者";
+
+/* Class = "UITextField"; placeholder = "Business Type"; ObjectID = "7ne-g8-Vxm"; */
+"7ne-g8-Vxm.placeholder" = "事業タイプ";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "7yn-fs-EtC"; */
+"7yn-fs-EtC.text" = "概要";
+
+/* Class = "UILabel"; text = "Upload business picture"; ObjectID = "85p-hR-8IS"; */
+"85p-hR-8IS.text" = "ビジネス画像をアップロード";
+
+/* Class = "UILabel"; text = "0 Post"; ObjectID = "C0F-gE-Dxr"; */
+"C0F-gE-Dxr.text" = "0件の投稿";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "Crt-7Z-blV"; */
+"Crt-7Z-blV.text" = "食品 & 飲料";
+
+/* Class = "UIButton"; normalTitle = "My Business"; ObjectID = "IYS-bO-QGW"; */
+"IYS-bO-QGW.normalTitle" = "マイビジネス";
+
+/* Class = "UILabel"; text = "Upload business picture"; ObjectID = "Jvb-EN-Lig"; */
+"Jvb-EN-Lig.text" = "ビジネス画像をアップロード";
+
+/* Class = "UITextField"; placeholder = "Website URL"; ObjectID = "Mgg-Qc-72L"; */
+"Mgg-Qc-72L.placeholder" = "ウェブサイトURL";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "ND4-9f-p9P"; */
+"ND4-9f-p9P.text" = "説明";
+
+/* Class = "UIButton"; normalTitle = "Subscribe"; ObjectID = "NXT-hB-jyb"; */
+"NXT-hB-jyb.normalTitle" = "購読";
+
+/* Class = "UILabel"; text = "Add more details about your business"; ObjectID = "QJo-g2-CKD"; */
+"QJo-g2-CKD.text" = "ビジネスの詳細を追加";
+
+/* Class = "UITextField"; placeholder = "Website URL"; ObjectID = "QSE-ic-Ix5"; */
+"QSE-ic-Ix5.placeholder" = "ウェブサイトURL";
+
+/* Class = "UILabel"; text = "Businesses"; ObjectID = "RA4-om-R53"; */
+"RA4-om-R53.text" = "ビジネス";
+
+/* Class = "UILabel"; text = "We are a leading software development company that offers top-rated Software Development Services due to our vast experience, team of skilled professionals, key business insights, and a dedicated working process."; ObjectID = "SCQ-AA-tKO"; */
+"SCQ-AA-tKO.text" = "当社は、豊富な経験、熟練した専門家チーム、重要なビジネス洞察、そして専用の作業プロセスにより、トップクラスのソフトウェア開発サービスを提供する、業界をリードするソフトウェア開発会社です。";
+
+/* Class = "UILabel"; text = "\"Roaming the world, one adventure at a time.\""; ObjectID = "Va5-Vz-3k9"; */
+"Va5-Vz-3k9.text" = "\"世界を巡る、一度に一つの冒険を。\"";
+
+/* Class = "UILabel"; text = "www.softment.com"; ObjectID = "Wff-a4-yBa"; */
+"Wff-a4-yBa.text" = "www.softment.com";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "XBb-aa-VNI"; */
+"XBb-aa-VNI.text" = "投稿";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "ZZH-hT-lqG"; */
+"ZZH-hT-lqG.normalTitle" = "追加";
+
+/* Class = "UILabel"; text = "Add more details about your business"; ObjectID = "a9t-Mp-BO8"; */
+"a9t-Mp-BO8.text" = "ビジネスの詳細を追加";
+
+/* Class = "UILabel"; text = "No posts available"; ObjectID = "avP-ew-FB5"; */
+"avP-ew-FB5.text" = "利用可能な投稿はありません";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "b9F-fB-vlF"; */
+"b9F-fB-vlF.normalTitle" = "アップロード";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "bBp-2Q-wwi"; */
+"bBp-2Q-wwi.normalTitle" = "更新";
+
+/* Class = "UITextField"; placeholder = "Business Name"; ObjectID = "dDD-Tw-i5E"; */
+"dDD-Tw-i5E.placeholder" = "事業名";
+
+/* Class = "UIButton"; normalTitle = "Message"; ObjectID = "e9E-Fc-fww"; */
+"e9E-Fc-fww.normalTitle" = "メッセージ";
+
+/* Class = "UILabel"; text = "No businesses available"; ObjectID = "fBw-mz-dgf"; */
+"fBw-mz-dgf.text" = "利用可能なビジネスはありません";
+
+/* Class = "UITextField"; placeholder = "Business Type"; ObjectID = "r5b-HP-gPH"; */
+"r5b-HP-gPH.placeholder" = "事業タイプ";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "tQW-dc-jcp"; */
+"tQW-dc-jcp.normalTitle" = "アップロード";
+
+/* Class = "UILabel"; text = "www.softment.com"; ObjectID = "tkL-zg-SbP"; */
+"tkL-zg-SbP.text" = "www.softment.com";
+
+/* Class = "UILabel"; text = "SOFTMENT SOLUTIONS PVT LTD"; ObjectID = "umM-0f-QI1"; */
+"umM-0f-QI1.text" = "SOFTMENT SOLUTIONS PVT LTD";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "xLL-yW-agT"; */
+"xLL-yW-agT.text" = "説明";
+
+/* Class = "UITextField"; placeholder = "Search..."; ObjectID = "yGa-0g-8EX"; */
+"yGa-0g-8EX.placeholder" = "検索...";
+
+/* Class = "UILabel"; text = "SOFTMENT SOLUTIONS"; ObjectID = "zff-m5-FEJ"; */
+"zff-m5-FEJ.text" = "SOFTMENT SOLUTIONS";
+
+/* Class = "UITextField"; placeholder = "Business Name"; ObjectID = "zqF-ol-sP0"; */
+"zqF-ol-sP0.placeholder" = "事業名";

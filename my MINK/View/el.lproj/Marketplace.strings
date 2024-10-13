@@ -1,0 +1,143 @@
+/* Class = "UILabel"; text = "TEDxMileHigh"; ObjectID = "01v-VG-P8e"; */
+"01v-VG-P8e.text" = "TEDxMileHigh";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "2NF-Lp-WEU"; */
+"2NF-Lp-WEU.text" = "Κάντε κλικ για να προσθέσετε εικόνα προϊόντος";
+
+/* Class = "UIButton"; normalTitle = "My Store"; ObjectID = "3CM-4O-gIh"; */
+"3CM-4O-gIh.normalTitle" = "Το Κατάστημά Μου";
+
+/* Class = "UILabel"; text = "on myMINK"; ObjectID = "4P6-9a-cre"; */
+"4P6-9a-cre.text" = "στο myMINK";
+
+/* Class = "UITextView"; text = " "; ObjectID = "8Us-dB-JrW"; */
+"8Us-dB-JrW.text" = " ";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "9fG-6e-ao3"; */
+"9fG-6e-ao3.text" = "Κάντε κλικ για να προσθέσετε εικόνα προϊόντος";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "BfQ-cY-jgi"; */
+"BfQ-cY-jgi.text" = "JPEG ή PNG, όχι μεγαλύτερο από 10MB.";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "Eyu-M5-BLx"; */
+"Eyu-M5-BLx.text" = "JPEG ή PNG, όχι μεγαλύτερο από 10MB.";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "H0A-AH-yfk"; */
+"H0A-AH-yfk.text" = "JPEG ή PNG, όχι μεγαλύτερο από 10MB.";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "JX8-5C-6R2"; */
+"JX8-5C-6R2.normalTitle" = "Ενημέρωση";
+
+/* Class = "UITextField"; placeholder = "Select Category"; ObjectID = "LVs-gh-DgT"; */
+"LVs-gh-DgT.placeholder" = "Επιλέξτε Κατηγορία";
+
+/* Class = "UILabel"; text = "50 AUD"; ObjectID = "MXZ-c3-idu"; */
+"MXZ-c3-idu.text" = "50 AUD";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "Prk-9c-Kbz"; */
+"Prk-9c-Kbz.text" = "Σχετικά";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "T0Z-Xw-6PE"; */
+"T0Z-Xw-6PE.normalTitle" = "Προσθήκη";
+
+/* Class = "UILabel"; text = " How to prepare and deliver a TED Talk "; ObjectID = "TOS-KZ-j2z"; */
+"TOS-KZ-j2z.text" = "Πώς να προετοιμάσετε και να παρουσιάσετε μια ομιλία TED";
+
+/* Class = "UIButton"; normalTitle = "All"; ObjectID = "UOX-5Z-N5k"; */
+"UOX-5Z-N5k.normalTitle" = "Όλα";
+
+/* Class = "UITextField"; placeholder = "Price"; ObjectID = "UWb-sd-ebV"; */
+"UWb-sd-ebV.placeholder" = "Τιμή";
+
+/* Class = "UITextView"; text = " "; ObjectID = "Vsv-eO-bjX"; */
+"Vsv-eO-bjX.text" = " ";
+
+/* Class = "UILabel"; text = "Product Description"; ObjectID = "WaA-QN-zpQ"; */
+"WaA-QN-zpQ.text" = "Περιγραφή Προϊόντος";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "Y2b-md-1CL"; */
+"Y2b-md-1CL.text" = "Φαγητό & Ποτό";
+
+/* Class = "UILabel"; text = "Edit Product"; ObjectID = "Zn8-m3-YbE"; */
+"Zn8-m3-YbE.text" = "Επεξεργασία Προϊόντος";
+
+/* Class = "UILabel"; text = "Product Image"; ObjectID = "aR0-xX-Enq"; */
+"aR0-xX-Enq.text" = "Εικόνα Προϊόντος";
+
+/* Class = "UITextField"; placeholder = "Title"; ObjectID = "cAN-Eh-A4O"; */
+"cAN-Eh-A4O.placeholder" = "Τίτλος";
+
+/* Class = "UILabel"; text = "Flipkart, 'India ka Fashion Capital', is your one-stop fashion destination for anything and everything you need to look good."; ObjectID = "d7p-7E-yEt"; */
+"d7p-7E-yEt.text" = "Το Flipkart, 'India ka Fashion Capital', είναι ο προορισμός σας για μόδα για οτιδήποτε και οτιδήποτε χρειάζεστε για να φαίνεστε καλά.";
+
+/* Class = "UILabel"; text = "Add Product"; ObjectID = "dKx-3y-Wkk"; */
+"dKx-3y-Wkk.text" = "Προσθήκη Προϊόντος";
+
+/* Class = "UILabel"; text = "How to prepare and deliver a TED Talk"; ObjectID = "dq2-ma-OrN"; */
+"dq2-ma-OrN.text" = "Πώς να προετοιμάσετε και να παρουσιάσετε μια ομιλία TED";
+
+/* Class = "UILabel"; text = "50 AUD"; ObjectID = "ehE-Mz-TY9"; */
+"ehE-Mz-TY9.text" = "50 AUD";
+
+/* Class = "UILabel"; text = "No products available"; ObjectID = "fP0-qy-qF8"; */
+"fP0-qy-qF8.text" = "Δεν υπάρχουν διαθέσιμα προϊόντα";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "hBe-bT-uCE"; */
+"hBe-bT-uCE.text" = "Φαγητό & Ποτό";
+
+/* Class = "UITextField"; placeholder = "Select Category"; ObjectID = "ht4-Je-3C9"; */
+"ht4-Je-3C9.placeholder" = "Επιλέξτε Κατηγορία";
+
+/* Class = "UITextField"; placeholder = "Search"; ObjectID = "i2E-us-W4o"; */
+"i2E-us-W4o.placeholder" = "Αναζήτηση";
+
+/* Class = "UILabel"; text = "Product Description"; ObjectID = "iJB-Cn-gVs"; */
+"iJB-Cn-gVs.text" = "Περιγραφή Προϊόντος";
+
+/* Class = "UIButton"; normalTitle = "Contact"; ObjectID = "iN0-Kz-QRU"; */
+"iN0-Kz-QRU.normalTitle" = "Επικοινωνία";
+
+/* Class = "UILabel"; text = "Gooney"; ObjectID = "l7S-w7-5I3"; */
+"l7S-w7-5I3.text" = "Gooney";
+
+/* Class = "UILabel"; text = "My Store"; ObjectID = "lYE-Pi-DZi"; */
+"lYE-Pi-DZi.text" = "Το Κατάστημά Μου";
+
+/* Class = "UILabel"; text = "@Leo"; ObjectID = "lvs-ig-kXq"; */
+"lvs-ig-kXq.text" = "@Leo";
+
+/* Class = "UILabel"; text = "No products available"; ObjectID = "oaz-XL-7up"; */
+"oaz-XL-7up.text" = "Δεν υπάρχουν διαθέσιμα προϊόντα";
+
+/* Class = "UILabel"; text = "Gooney"; ObjectID = "pqA-PC-IYm"; */
+"pqA-PC-IYm.text" = "Gooney";
+
+/* Class = "UIButton"; normalTitle = "Add More Images"; ObjectID = "qQq-3i-I6O"; */
+"qQq-3i-I6O.normalTitle" = "Προσθήκη Περισσότερων Εικόνων";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "s95-Df-Pei"; */
+"s95-Df-Pei.text" = "Φαγητό & Ποτό";
+
+/* Class = "UITextField"; placeholder = "Title"; ObjectID = "sUo-nt-IbJ"; */
+"sUo-nt-IbJ.placeholder" = "Τίτλος";
+
+/* Class = "UITextField"; placeholder = "Price"; ObjectID = "tqh-ID-Vd8"; */
+"tqh-ID-Vd8.placeholder" = "Τιμή";
+
+/* Class = "UILabel"; text = "Use a high quality images: (9: 5 ratio)."; ObjectID = "uIF-rm-vno"; */
+"uIF-rm-vno.text" = "Χρησιμοποιήστε εικόνες υψηλής ποιότητας: (9:5 αναλογία).";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "uiI-I9-U6N"; */
+"uiI-I9-U6N.text" = "Κάντε κλικ για να προσθέσετε εικόνα προϊόντος";
+
+/* Class = "UILabel"; text = "Click to add product image"; ObjectID = "vdw-hI-b4o"; */
+"vdw-hI-b4o.text" = "Κάντε κλικ για να προσθέσετε εικόνα προϊόντος";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "wGe-PJ-VEl"; */
+"wGe-PJ-VEl.text" = "JPEG ή PNG, όχι μεγαλύτερο από 10MB.";
+
+/* Class = "UILabel"; text = "Marketplace"; ObjectID = "y6X-Hw-k7A"; */
+"y6X-Hw-k7A.text" = "Αγορά";
+
+/* Class = "UILabel"; text = "US$ 20"; ObjectID = "yJs-Bc-pWi"; */
+"yJs-Bc-pWi.text" = "US$ 20";

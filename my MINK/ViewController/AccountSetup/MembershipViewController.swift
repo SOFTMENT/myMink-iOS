@@ -1,8 +1,10 @@
 // Copyright © 2023 SOFTMENT. All rights reserved.
 
 import Braintree
-import BraintreeDropIn
 import UIKit
+import RevenueCat
+import StoreKit
+import FirebaseFunctions
 
 // MARK: - MembershipViewController
 
@@ -33,9 +35,139 @@ class MembershipViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        
         fetchSubscriptionInfo()
+        fetchAvailablePackages()
     }
+    
+    func fetchAvailablePackages() {
+        Purchases.shared.getProducts([PriceID.month.rawValue, PriceID.year.rawValue, PriceID.lifetime.rawValue]) { (products) in
+                // Display the products (monthly, yearly, lifetime) to the user
+                for product in products {
+                    print("Product available: \(product.localizedTitle) - \(product.price)")
+                    
+                    // If there's a free trial, display the trial info
+                    if let introDiscount = product.introductoryDiscount {
+                        let trialPeriod = introDiscount.subscriptionPeriod
+                        let trialDuration = "\(trialPeriod.value) \(self.unitDescription(for: trialPeriod.unit))"
+                        print("Free Trial: \(trialDuration) for \(product.localizedTitle)")
+                    }
+                }
+            }
+        }
+        
+        // Helper function to get the description of the subscription unit
+        func unitDescription(for unit: SubscriptionPeriod.Unit) -> String {
+            switch unit {
+            case .day:
+                return "day(s)"
+            case .week:
+                return "week(s)"
+            case .month:
+                return "month(s)"
+            case .year:
+                return "year(s)"
+            @unknown default:
+                return "unknown unit"
+            }
+        }
+        
+      func purchase(productIdentifier: String) {
+          self.ProgressHUDShow(text: "Purchasing...")
+          Purchases.shared.getProducts([productIdentifier]) { (products) in
+              guard let productToPurchase = products.first else {
+                  self.showError("Product not found")
+                  self.ProgressHUDHide()
+                  return
+              }
+              
+              
+              // First, get the user’s unique ID (e.g., from FirebaseAuth)
+              if let currentUser = FirebaseStoreManager.auth.currentUser {
+                  let userId = currentUser.uid  // Use Firebase UID as the App User ID
+                  
+                  // Log the user in to RevenueCat using their unique user ID
+                  Purchases.shared.logIn(userId) { (customerInfo, created, error) in
+                      if let error = error {
+                          self.ProgressHUDHide()
+                          self.showError("Error logging in: \(error.localizedDescription)")
+                        
+                      } else {
+                          Purchases.shared.purchase(product: productToPurchase) { (transaction, purchaserInfo, error, userCancelled) in
+                              if let error = error {
+                                  self.ProgressHUDHide()
+                                  self.showError("Purchase Failed ",error.localizedDescription)
+                               
+                              }
+                              else if let purchaserInfo = purchaserInfo {
+                                  // Call unlockPremiumFeatures with the purchaser info
+                                  self.unlockPremiumFeatures(for: purchaserInfo)
+                              }
+                          }
+                      }
+                  }
+              } else {
+                  print("User not logged in to Firebase.")
+              }
 
+          }
+      }
+        
+    func unlockPremiumFeatures(for purchaserInfo: CustomerInfo) {
+        // Check if the user has the "Premium" entitlement active
+        if let entitlement = purchaserInfo.entitlements["Premium"], entitlement.isActive {
+
+            
+            // Get the active subscription product identifier
+            let activeSubscriptions = entitlement.productIdentifier
+            
+            // Check if the active subscription is monthly, yearly, or lifetime
+            if activeSubscriptions.contains("in.softment.monthly") {
+            
+                self.updateUserModel(planId: .month)
+                self.updateSubscriptionInFirestore()
+            } else if activeSubscriptions.contains("in.softment.yearly") {
+               
+                self.updateUserModel(planId: .year)
+                self.updateSubscriptionInFirestore()
+            } else if activeSubscriptions.contains("in.softment.lifetime") {
+              
+                self.setLifetimeMembership()
+             
+            }
+           
+        }
+        else{
+            self.ProgressHUDHide()
+        }
+        
+    }
+    
+    private func setLifetimeMembership() {
+      
+        UserModel.data?.isAccountActive = true
+        UserModel.data?.entitlementStatus = "active"
+        UserModel.data?.activeEntitlement = PriceID.lifetime.rawValue
+        
+        let userUpdates: [String: Any] = [
+            "isAccountActive": true,
+            "entitlementStatus" : "active",
+            "activeEntitlement" : PriceID.lifetime.rawValue
+        ]
+
+        FirebaseStoreManager.db.collection(Collections.users.rawValue)
+            .document(FirebaseStoreManager.auth.currentUser!.uid)
+            .setData(userUpdates, merge: true) { [weak self] error in
+                self?.ProgressHUDHide()
+                if let error = error {
+                    self?.showError(error.localizedDescription)
+                } else {
+                    self?.gotoSuccessPage()
+                }
+            }
+    }
+    
+    
     private func setupViews() {
         [montView, yearView, lifetimeView, startFreeBtn, mostPopularView].forEach {
             $0?.layer.cornerRadius = 8
@@ -63,72 +195,56 @@ class MembershipViewController: UIViewController {
     private func fetchSubscriptionInfo() {
         ProgressHUDShow(text: "")
         
-        getSubscriptionInfo(planID: PriceID.month.rawValue) { [weak self] price, isActive in
+        getSubscriptionInfo(planID: "ID_MONTHLY") { [weak self] price, isActive in
             guard let self = self else { return }
             self.ProgressHUDHide()
             self.montView.isHidden = !isActive
-            self.monthPrice.text = "$\(price) per month"
+            self.monthPrice.text = String(format: "%@ USD per month".localized(), price)
         }
         
-        getSubscriptionInfo(planID: PriceID.year.rawValue) { [weak self] price, isActive in
+        getSubscriptionInfo(planID: "ID_YEARLY") { [weak self] price, isActive in
             guard let self = self else { return }
             self.yearView.isHidden = !isActive
-            self.yearlyPrice.text = "$\(price) per year"
+            self.yearlyPrice.text = String(format: "$%@ USD per year".localized(), price)
+
         }
         
-        getSubscriptionInfo(planID: PriceID.lifetime.rawValue) { [weak self] price, isActive in
+        getSubscriptionInfo(planID: "ID_LIFETIME") { [weak self] price, isActive in
             guard let self = self else { return }
             self.lifetimeView.isHidden = !isActive
-            self.lifetimePrice.text = "$\(price)"
-        }
-    }
-
-    private func showDropIn(clientTokenOrTokenizationKey: String, planID: PriceID) {
-        let request = BTDropInRequest()
-        let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request) { controller, result, error in
-            if let error = error {
-                DispatchQueue.main.async {
-                    self.showError(error.localizedDescription)
-                }
-            } else if result?.isCanceled == true {
-                print("CANCELED")
-            } else if let result = result, let paymentMethod = result.paymentMethod {
-                self.handlePaymentMethodSelected(paymentMethod, planID: planID)
-            }
-            controller.dismiss(animated: true, completion: nil)
-        }
-        if let dropInController = dropIn {
-            present(dropInController, animated: true, completion: nil)
-        }
-    }
-
-    private func handlePaymentMethodSelected(_ paymentMethod: BTPaymentMethodNonce, planID: PriceID) {
-        ProgressHUDShow(text: "")
-        handleSubscriptionCreation(paymentMethodNonce: paymentMethod.nonce, planId: planID)
-    }
-    
-    private func handleSubscriptionCreation(paymentMethodNonce: String, planId: PriceID) {
-        callCreateSubscriptionFunction(nonce: paymentMethodNonce, planId: planId.rawValue) { [weak self] success, error in
-            guard let self = self else { return }
-            self.ProgressHUDHide()
-            if let error = error {
-                self.showError(error)
-            } else {
-                self.updateUserModel(planId: planId)
-                self.gotoSuccessPage()
-            }
+            self.lifetimePrice.text = "\(price) USD"
         }
     }
 
     private func updateUserModel(planId: PriceID) {
-        UserModel.data?.isFreeTrial = true
-        UserModel.data?.isDuringTrial = true
+        
         UserModel.data?.daysLeft = 3
-        UserModel.data?.status = "active"
+        UserModel.data?.entitlementStatus = "trialing"
         UserModel.data?.isAccountActive = true
-        UserModel.data?.planID = planId.rawValue
+        UserModel.data?.activeEntitlement = planId.rawValue
+        
     }
     
+    // Function to send userId to Firebase Cloud Function
+       func updateSubscriptionInFirestore() {
+           guard let userID = FirebaseStoreManager.auth.currentUser?.uid else {
+               self.logoutPlease()
+               self.ProgressHUDHide()
+               return
+           }
+           
+           // Call Firebase Cloud Function with only userId
+           let functions = Functions.functions()
+           functions.httpsCallable("updateSubscriptionFromClient").call(["userId": userID]) { result, error in
+               self.ProgressHUDHide()
+               if let error = error {
+                  
+                   self.showError("Error updating subscription in Firestore: \(error.localizedDescription)")
+               } else {
+                   self.gotoSuccessPage()
+               }
+           }
+       }
     private func gotoSuccessPage() {
         performSegue(withIdentifier: "successSeg", sender: nil)
     }
@@ -172,13 +288,20 @@ class MembershipViewController: UIViewController {
 
     @IBAction private func startFreeTrialClicked(_ sender: Any) {
         guard let membershipType = membershipType else {
-            showSnack(messages: "Select membership")
+            showSnack(messages: "Select membership".localized())
             return
         }
-        brainTreePaymentProcess(for: membershipType)
+        if membershipType == .month {
+            self.purchase(productIdentifier: PriceID.month.rawValue)
+        }
+        else if membershipType == .year {
+            self.purchase(productIdentifier: PriceID.year.rawValue)
+        }
+        else if membershipType == .lifetime {
+            self.purchase(productIdentifier: PriceID.lifetime.rawValue)
+        }
+        
     }
 
-    private func brainTreePaymentProcess(for planID: PriceID) {
-        showDropIn(clientTokenOrTokenizationKey: ENV.ClientTokenOrTokenizationKey, planID: planID)
-    }
+    
 }

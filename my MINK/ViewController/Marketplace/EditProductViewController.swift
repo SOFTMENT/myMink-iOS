@@ -38,7 +38,7 @@ class EditProductViewController: UIViewController {
     let categoryPicker = UIPickerView()
     var photoURL = [String]()
     var images = [UIImage]()
-    var delegate: ProductDelegate?
+
     var product: MarketplaceModel?
     var position: Int?
     
@@ -88,9 +88,9 @@ class EditProductViewController: UIViewController {
         selectCategoryBar.tintColor = .link
         selectCategoryBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(categoryPickerDoneClicked))
+        let doneButton = UIBarButtonItem(title: "Done".localized(), style: .plain, target: self, action: #selector(categoryPickerDoneClicked))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(categoryPickerCancelClicked))
+        let cancelButton = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: self, action: #selector(categoryPickerCancelClicked))
         selectCategoryBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         selectCategoryBar.isUserInteractionEnabled = true
         selectCategoryTV.inputAccessoryView = selectCategoryBar
@@ -151,25 +151,23 @@ class EditProductViewController: UIViewController {
     }
     
     @objc func deleteBtnClicked() {
-        let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this product?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
-            self.ProgressHUDShow(text: "Deleting...")
+        let alert = UIAlertController(title: "Delete".localized(), message: "Are you sure you want to delete this product?".localized(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete".localized(), style: .destructive) { _ in
+            self.ProgressHUDShow(text: "Deleting...".localized())
             self.deleteProduct(productId: self.product?.id ?? "123", images: self.product?.productImages ?? []) { error in
                 self.ProgressHUDHide()
                 if let error = error {
                     self.showError(error)
                 } else {
-                    self.showSnack(messages: "Product Deleted")
+                    self.showSnack(messages: "Product Deleted".localized())
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                        if let product = self.product {
-                            self.delegate?.removeProduct(productModel: product)
-                        }
+                       
                         self.dismiss(animated: true)
                     }
                 }
             }
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         present(alert, animated: true)
     }
     
@@ -188,7 +186,7 @@ class EditProductViewController: UIViewController {
               let category = selectCategoryTV.text, !category.isEmpty,
               let price = priceTV.text, !price.isEmpty,
               let description = productDescriptionTV.text, !description.isEmpty else {
-            showSnack(messages: "All fields are required")
+            showSnack(messages: "All fields are required".localized())
             return
         }
         
@@ -204,13 +202,14 @@ class EditProductViewController: UIViewController {
         photoURL.removeAll()
         let fetchGroup = DispatchGroup()
         
-        let loading = DownloadProgressHUDShow(text: "Image 1 Uploading...")
+        let loading = DownloadProgressHUDShow(text: "Image 1 Uploading...".localized())
         for (index, photo) in images.enumerated() {
             fetchGroup.enter()
             uploadFilesOnAWS(photo: photo, folderName: "ProductImages", postType: .image, shouldHideProgress: true) { downloadURL in
                 if let downloadURL = downloadURL {
                     self.photoURL.append(downloadURL)
-                    self.DownloadProgressHUDUpdate(loading: loading, text: "Image \(index + 2) Uploading...")
+                    self.DownloadProgressHUDUpdate(loading: loading, text: String(format: "Image %d Uploading...".localized(), index + 2))
+
                     loading.label.layoutIfNeeded()
                 }
                 fetchGroup.leave()
@@ -233,11 +232,9 @@ class EditProductViewController: UIViewController {
             if let error = error {
                 self.showError(error)
             } else {
-                self.showSnack(messages: "Product Updated")
+                self.showSnack(messages: "Product Updated".localized())
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                    if let position = self.position {
-                        self.delegate?.updateProduct(productModel: productModel, position: position)
-                    }
+                   
                     self.dismiss(animated: true)
                 }
             }

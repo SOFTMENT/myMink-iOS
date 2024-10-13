@@ -21,7 +21,7 @@ class PhoneNumberVerificationController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let verificationID = verificationID else {
+        guard verificationID != nil else {
             DispatchQueue.main.async {
                 self.dismiss(animated: true)
             }
@@ -29,7 +29,7 @@ class PhoneNumberVerificationController: UIViewController {
         }
 
         if for2FA {
-            getLinkBtn.setTitle("Enable 2FA", for: .normal)
+            getLinkBtn.setTitle("Enable 2FA".localized(), for: .normal)
         }
 
         setupViews()
@@ -58,7 +58,8 @@ class PhoneNumberVerificationController: UIViewController {
     }
 
     @objc private func updateTime() {
-        resendCode.text = "\(totalTime) seconds remaining"
+        resendCode.text = String(format: "%d seconds remaining".localized(), totalTime)
+
         totalTime -= 1
 
         if totalTime == 0 {
@@ -69,7 +70,7 @@ class PhoneNumberVerificationController: UIViewController {
     private func endTimer() {
         countdownTimer?.invalidate()
         countdownTimer = nil
-        resendCode.text = "Resend Code"
+        resendCode.text = "Resend Code".localized()
     }
 
     @objc private func resendCodeBtnClicked() {
@@ -84,7 +85,7 @@ class PhoneNumberVerificationController: UIViewController {
                 if let error = error {
                     self.showError(error)
                 } else {
-                    self.showSnack(messages: "Code has been sent")
+                    self.showSnack(messages: "Code has been sent".localized())
                 }
             }
         }
@@ -100,15 +101,16 @@ class PhoneNumberVerificationController: UIViewController {
 
     @IBAction private func getLinkClicked(_: Any) {
         guard let sCode = codeTF.text, !sCode.isEmpty else {
-            showSnack(messages: "Enter Verification Code")
+            showSnack(messages: "Enter Verification Code".localized())
             return
         }
 
-        ProgressHUDShow(text: "Verifying...")
+        ProgressHUDShow(text: "Verifying...".localized())
         verifyTwilioCode(phoneNumber: phoneNumber!, code: sCode) { error in
             DispatchQueue.main.async {
-                self.ProgressHUDHide()
+              
                 if let error = error {
+                    self.ProgressHUDHide()
                     self.showError(error)
                 } else {
                     self.handleVerificationSuccess()
@@ -142,17 +144,18 @@ class PhoneNumberVerificationController: UIViewController {
 
     private func show2FAActivationAlert() {
         let alert = UIAlertController(
-            title: "Activated",
-            message: "We have enabled 2FA for your account.",
+            title: "Activated".localized(),
+            message: "We have enabled 2FA for your account.".localized(),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: "OK".localized(), style: .default) { _ in
             self.beRootScreen(storyBoardName: StoryBoard.tabBar, mIdentifier: Identifier.tabBarViewController)
         })
         present(alert, animated: true)
     }
 
     private func authenticateUser() {
+        
         createCustomToken(userId: verificationID!) { token, error in
             if let error = error {
                 self.ProgressHUDHide()
@@ -167,7 +170,7 @@ class PhoneNumberVerificationController: UIViewController {
         FirebaseStoreManager.auth.signIn(withCustomToken: token) { authResult, error in
             self.ProgressHUDHide()
             if let error = error {
-                self.showError("Sign Up : \(error.localizedDescription)")
+                self.showError(String(format: "Sign Up : %@".localized(), error.localizedDescription))
             } else if let fullName = self.fullName {
                 self.createUserModel(authResult: authResult, fullName: fullName)
             } else {

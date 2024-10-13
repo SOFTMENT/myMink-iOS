@@ -13,6 +13,8 @@ class SignUpViewController: UIViewController {
     
     // MARK: - Outlets
 
+    @IBOutlet weak var logoMarginTop: NSLayoutConstraint!
+    @IBOutlet weak var headerHeight: NSLayoutConstraint!
     @IBOutlet var gmailBtn: UIView!
     @IBOutlet var appleBtn: UIView!
     @IBOutlet var phoneBtn: UIView!
@@ -36,6 +38,12 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         configureGestureRecognizers()
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            headerHeight.constant = 160
+            logoMarginTop.constant = 55
+            view.layoutIfNeeded()
+        }
     }
 
     // MARK: - Setup Methods
@@ -123,19 +131,19 @@ class SignUpViewController: UIViewController {
 
     @IBAction private func signUpClicked(_ sender: Any) {
         guard let sFirstName = firstName.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sFirstName.isEmpty else {
-            showSnack(messages: "Enter First Name")
+            showSnack(messages: "Enter First Name".localized())
             return
         }
         guard let sLastName = lastName.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sLastName.isEmpty else {
-            showSnack(messages: "Enter Last Name")
+            showSnack(messages: "Enter Last Name".localized())
             return
         }
         guard let sEmail = emailTF.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sEmail.isEmpty else {
-            showSnack(messages: "Enter Email")
+            showSnack(messages: "Enter Email".localized())
             return
         }
         guard let sPassword = passwordTF.text?.trimmingCharacters(in: .whitespacesAndNewlines), !sPassword.isEmpty else {
-            showSnack(messages: "Enter Password")
+            showSnack(messages: "Enter Password".localized())
             return
         }
 
@@ -148,18 +156,52 @@ class SignUpViewController: UIViewController {
         userData.registredAt = Date()
         userData.regiType = "custom"
 
+        self.ProgressHUDShow(text: "")
         FirebaseStoreManager.db.collection(Collections.users.rawValue).whereField("email", isEqualTo: sEmail).getDocuments { snapshot, error in
-            if let snapshot = snapshot, snapshot.isEmpty {
+            self.ProgressHUDHide()
+            
+            if let error = error {
+                self.showError(error.localizedDescription)
+                return
+            }
+            
+          
+            if let snapshot = snapshot, !snapshot.isEmpty {
+                for qdr in snapshot.documents {
+                    if let userModel = try? qdr.data(as: UserModel.self) {
+                        if let email = userModel.email, email == sEmail, let regiType = userModel.regiType, regiType == "custom" {
+                            self.showSnack(messages: "Email already exists".localized())
+                            break
+                            
+                        }
+                        else {
+                            let n = Int.random(in: 10000 ... 99999)
+                            self.sendVerificationMail(randomNumber: String(n), email: sEmail, userModel: userData)
+                        }
+                    }
+                }
+            }
+            else {
                 let n = Int.random(in: 10000 ... 99999)
                 self.sendVerificationMail(randomNumber: String(n), email: sEmail, userModel: userData)
-            } else if let error = error {
-                self.showError(error.localizedDescription)
-            } else {
-                self.showError("Account with email : \(sEmail) already exist.")
             }
+            
+          
         }
     }
 
+    func isDeviceBelowIPhone8() -> Bool {
+        let screenHeight = UIScreen.main.nativeBounds.height
+        
+        // iPhone 8 has a screen height of 1334 points in native bounds
+        // Check if the screen height is smaller than that
+        if screenHeight < 1334 {
+            return true // The device is below iPhone 8
+        } else {
+            return false // The device is iPhone 8 or above
+        }
+    }
+    
     private func sendVerificationMail(randomNumber: String, email: String, userModel: UserModel) {
         ProgressHUDShow(text: "")
         let passwordResetHTMLTemplate = getEmailVerificationTemplate(randomNumber: randomNumber)

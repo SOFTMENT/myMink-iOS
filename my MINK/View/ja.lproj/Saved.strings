@@ -1,0 +1,8 @@
+/* Class = "UILabel"; text = "No saved post available"; ObjectID = "Hzl-sa-wPy"; */
+"Hzl-sa-wPy.text" = "保存された投稿はありません";
+
+/* Class = "UILabel"; text = "\"Roaming the world, one adventure at a time.\""; ObjectID = "It6-GO-ykK"; */
+"It6-GO-ykK.text" = "\"世界を旅する、一度に一つの冒険を。\"";
+
+/* Class = "UILabel"; text = "Saved"; ObjectID = "TCd-kf-eEx"; */
+"TCd-kf-eEx.text" = "保存済み";

@@ -37,8 +37,8 @@ class SettingsPresentationController: UIPresentationController {
 
     override var frameOfPresentedViewInContainerView: CGRect {
         CGRect(
-            origin: CGPoint(x: 0, y: self.containerView!.frame.height - 565),
-            size: CGSize(width: self.containerView!.frame.width, height: 565)
+            origin: CGPoint(x: 0, y: self.containerView!.frame.height - 610),
+            size: CGSize(width: self.containerView!.frame.width, height: 610)
         )
     }
 
@@ -103,15 +103,15 @@ class SettingsPresentationController: UIPresentationController {
         self.dismissController(r: UITapGestureRecognizer())
 
         let alert = UIAlertController(
-            title: "Logout",
-            message: "Are you sure you want to logout?",
+            title: "Logout".localized(),
+            message: "Are you sure you want to logout?".localized(),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "Logout", style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Logout".localized(), style: .destructive, handler: { _ in
 
             self.profileVC?.logoutPlease()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         self.profileVC?.present(alert, animated: true)
     }
 
@@ -189,14 +189,21 @@ class SettingsPresentationController: UIPresentationController {
             action: #selector(self.logoutME)
         ))
 
-        if let daysLeft = UserModel.data?.daysLeft, daysLeft > 0 {
-            if UserModel.data?.planID == PriceID.lifetime.rawValue {
+     
+            if UserModel.data?.activeEntitlement == PriceID.lifetime.rawValue {
                 profileVC.settingsVC.membershipView.isHidden = true
             } else {
-                if let isFree = UserModel.data?.isDuringTrial, isFree {
-                    profileVC.settingsVC.timeLeft.text = "\(daysLeft) free \(daysLeft > 1 ? "days" : "day")"
+                if let daysLeft = UserModel.data?.daysLeft, daysLeft > 0 {
+                if let status = UserModel.data?.entitlementStatus, status == "trialing" {
+                    profileVC.settingsVC.timeLeft.text = daysLeft > 1
+                        ? String(format: "%d free days".localized(), daysLeft)
+                        : String(format: "%d free day".localized(), daysLeft)
+
                 } else {
-                    profileVC.settingsVC.timeLeft.text = "\(daysLeft) \((daysLeft) > 1 ? "days" : "day")"
+                    profileVC.settingsVC.timeLeft.text = daysLeft > 1
+                        ? String(format: "%d days".localized(), daysLeft)
+                        : String(format: "%d day".localized(), daysLeft)
+
                 }
 
                 profileVC.settingsVC.membershipView.isUserInteractionEnabled = true
@@ -205,8 +212,9 @@ class SettingsPresentationController: UIPresentationController {
                     action: #selector(self.membershipViewClicked)
                 ))
             }
-        } else {
-            profileVC.settingsVC.membershipView.isHidden = true
+                else {
+                    profileVC.settingsVC.membershipView.isHidden = true
+                }
         }
 
         containerView?.addSubview(self.blurEffectView)

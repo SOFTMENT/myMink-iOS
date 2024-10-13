@@ -83,6 +83,9 @@ class CommentViewController: UIViewController, UITextViewDelegate {
         }
 
         if currentUserID != postModel?.uid {
+            
+            self.addNotification(to: postModel!.postID!, userId: postModel!.uid ?? "123", comment: sComment, type: Notifications.comment.rawValue)
+            
             PushNotificationSender().sendPushNotification(
                 title: "Comment",
                 body: "\(UserModel.data?.fullName ?? "") commented on your post.",
@@ -168,7 +171,7 @@ class CommentViewController: UIViewController, UITextViewDelegate {
 
     private func alertWithTF(commentID: String) {
         let alertController = UIAlertController(
-            title: "Report",
+            title: "Report".localized(),
             message: "\n\n\n\n\n",
             preferredStyle: .alert
         )
@@ -180,17 +183,17 @@ class CommentViewController: UIViewController, UITextViewDelegate {
 
         alertController.view.addSubview(textView)
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .default, handler: nil)
         alertController.addAction(cancelAction)
 
-        let saveAction = UIAlertAction(title: "Submit", style: .default) { _ in
+        let saveAction = UIAlertAction(title: "Submit".localized(), style: .default) { _ in
             let enteredText = textView.text ?? ""
             if !enteredText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 self.reportComment(reason: enteredText, commentID: commentID, postId: self.postModel?.postID ?? "") { message in
                     self.showSnack(messages: message)
                 }
             } else {
-                self.showSnack(messages: "Please enter a reason for reporting.")
+                self.showSnack(messages: "Please enter a reason for reporting.".localized())
             }
         }
         alertController.addAction(saveAction)
@@ -208,7 +211,7 @@ class CommentViewController: UIViewController, UITextViewDelegate {
 
     private func editComment(comment: String, commentID: String) {
         let alertController = UIAlertController(
-            title: "Edit",
+            title: "Edit".localized(),
             message: "\n\n\n\n\n",
             preferredStyle: .alert
         )
@@ -220,18 +223,18 @@ class CommentViewController: UIViewController, UITextViewDelegate {
         textView.text = comment
         alertController.view.addSubview(textView)
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .default, handler: nil)
         alertController.addAction(cancelAction)
 
-        let saveAction = UIAlertAction(title: "Edit", style: .default) { _ in
+        let saveAction = UIAlertAction(title: "Edit".localized(), style: .default) { _ in
             let enteredText = textView.text ?? ""
             if !enteredText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 guard let postID = self.postModel?.postID else { return }
                 FirebaseStoreManager.db.collection(Collections.posts.rawValue).document(postID)
                     .collection(Collections.comments.rawValue).document(commentID).setData(["comment": enteredText], merge: true)
-                self.showSnack(messages: "Comment Updated")
+                self.showSnack(messages: "Comment Updated".localized())
             } else {
-                self.showSnack(messages: "Please enter a valid comment.")
+                self.showSnack(messages: "Please enter a valid comment.".localized())
             }
         }
         alertController.addAction(saveAction)
@@ -278,26 +281,26 @@ extension CommentViewController: UITableViewDelegate, UITableViewDataSource {
         cell.comment.text = commentModel.comment ?? ""
 
         var uiMenuElement = [UIMenuElement]()
-        let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash.fill")) { _ in
+        let delete = UIAction(title: "Delete".localized(), image: UIImage(systemName: "trash.fill")) { _ in
             self.deleteComment(postId: self.postModel?.postID ?? "", commentId: commentModel.id ?? "") { _ in
                 CommentManager.shared.reloadComment(for: self.postModel?.postID ?? "")
             }
         }
-        let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil.circle.fill")) { _ in
+        let edit = UIAction(title: "Edit".localized(), image: UIImage(systemName: "pencil.circle.fill")) { _ in
             self.editComment(comment: commentModel.comment ?? "", commentID: commentModel.id ?? "")
         }
         if FirebaseStoreManager.auth.currentUser?.uid == commentModel.uid {
             uiMenuElement.append(edit)
             uiMenuElement.append(delete)
         }
-        let report = UIAction(title: "Report", image: UIImage(systemName: "exclamationmark.triangle.fill")) { _ in
+        let report = UIAction(title: "Report".localized(), image: UIImage(systemName: "exclamationmark.triangle.fill")) { _ in
             self.alertWithTF(commentID: commentModel.id ?? "")
         }
         uiMenuElement.append(report)
 
         if let caption = commentModel.comment, !caption.isEmpty {
-            let translate = UIAction(title: "Translate", image: UIImage(systemName: "translate")) { _ in
-                self.ProgressHUDShow(text: "Translating...")
+            let translate = UIAction(title: "Translate".localized(), image: UIImage(systemName: "translate")) { _ in
+                self.ProgressHUDShow(text: "Translating...".localized())
                 TranslationService.shared.translateText(text: caption) { translate in
                     DispatchQueue.main.async {
                         self.ProgressHUDHide()
@@ -312,6 +315,7 @@ extension CommentViewController: UITableViewDelegate, UITableViewDataSource {
         cell.moreBtn.showsMenuAsPrimaryAction = true
         cell.moreBtn.menu = UIMenu(title: "", children: uiMenuElement)
 
+        cell.profilePic.setImage(imageKey: "", placeholder: "profile-placeholder",shouldShowAnimationPlaceholder: true)
         getUserDataByID(uid: commentModel.uid ?? "") { friendModel, _ in
             if let friendModel = friendModel {
                 if friendModel.uid != FirebaseStoreManager.auth.currentUser?.uid {
@@ -327,7 +331,7 @@ extension CommentViewController: UITableViewDelegate, UITableViewDataSource {
                         shouldShowAnimationPlaceholder: true
                     )
                 }
-                cell.name.text = friendModel.fullName ?? "ERROR"
+                cell.name.text = friendModel.fullName ?? "ERROR".localized()
                 cell.commentDate.text = (commentModel.commentDate ?? Date()).timeAgoSinceDate()
             } else {
                 self.deleteComment(postId: self.postModel?.postID ?? "", commentId: commentModel.id ?? "") { error in

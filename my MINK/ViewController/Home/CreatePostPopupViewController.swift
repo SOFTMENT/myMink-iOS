@@ -57,14 +57,14 @@ class CreatePostPopupViewController: UIViewController {
     }
 
     @objc private func uploadVideoClicked() {
-        let alert = UIAlertController(title: "Upload Video", message: "", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Using Camera", style: .default) { _ in
+        let alert = UIAlertController(title: "Upload Video".localized(), message: "", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Using Camera".localized(), style: .default) { _ in
             self.presentImagePickerController(sourceType: .camera)
         }
-        let action2 = UIAlertAction(title: "From Photo Library", style: .default) { _ in
+        let action2 = UIAlertAction(title: "From Photo Library".localized(), style: .default) { _ in
             self.presentImagePickerController(sourceType: .photoLibrary)
         }
-        let action3 = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let action3 = UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil)
         alert.addAction(action1)
         alert.addAction(action2)
         alert.addAction(action3)

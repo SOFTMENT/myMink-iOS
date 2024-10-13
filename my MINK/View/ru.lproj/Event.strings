@@ -1,0 +1,404 @@
+/* Class = "UILabel"; text = "Sat, Jul 24 • 11:00 AM"; ObjectID = "1HM-uV-iwd"; */
+"1HM-uV-iwd.text" = "Сб, 24 июля • 11:00";
+
+/* Class = "UILabel"; text = "Street Address"; ObjectID = "1Mp-VI-7n5"; */
+"1Mp-VI-7n5.text" = "Улица";
+
+/* Class = "UILabel"; text = "Add more details to your event like your schedule, sponsors, or featured guests."; ObjectID = "1bn-tU-XrC"; */
+"1bn-tU-XrC.text" = "Добавьте больше информации о мероприятии, такие как расписание, спонсоры или приглашенные гости.";
+
+/* Class = "UIButton"; normalTitle = "Add More Images"; ObjectID = "1vc-ya-A0A"; */
+"1vc-ya-A0A.normalTitle" = "Добавить больше изображений";
+
+/* Class = "UILabel"; text = "Movin Presents : Suaturday Night DJ Party Suaturday Night DJ Party"; ObjectID = "2LN-BF-dfV"; */
+"2LN-BF-dfV.text" = "Movin представляет: субботняя вечеринка DJ Party";
+
+/* Class = "UILabel"; text = "How to prepare and deliver a TED Talk"; ObjectID = "2PD-RG-CAK"; */
+"2PD-RG-CAK.text" = "Как подготовить и провести TED Talk";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "2aj-xI-WyZ"; */
+"2aj-xI-WyZ.text" = "О мероприятии";
+
+/* Class = "UILabel"; text = "No Events Available"; ObjectID = "2s8-n5-bmk"; */
+"2s8-n5-bmk.text" = "Мероприятий нет";
+
+/* Class = "UIButton"; normalTitle = "Free"; ObjectID = "31M-qM-5zS"; */
+"31M-qM-5zS.normalTitle" = "Бесплатно";
+
+/* Class = "UILabel"; text = "Tags"; ObjectID = "38z-ZY-y79"; */
+"38z-ZY-y79.text" = "Теги";
+
+/* Class = "UILabel"; text = "Saturday, 26 July"; ObjectID = "4gZ-6s-QSp"; */
+"4gZ-6s-QSp.text" = "Суббота, 26 июля";
+
+/* Class = "UILabel"; text = "Event Image"; ObjectID = "5Ia-BP-fG5"; */
+"5Ia-BP-fG5.text" = "Изображение мероприятия";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "6AO-Uz-Oln"; */
+"6AO-Uz-Oln.text" = "JPEG или PNG, не более 10 МБ.";
+
+/* Class = "UILabel"; text = "TEDxMileHigh"; ObjectID = "6J0-gb-zgg"; */
+"6J0-gb-zgg.text" = "TEDxMileHigh";
+
+/* Class = "UILabel"; text = "0 / 75"; ObjectID = "6K3-Lg-buL"; */
+"6K3-Lg-buL.text" = "0 / 75";
+
+/* Class = "UITextField"; placeholder = "Address*"; ObjectID = "6LV-zO-aP2"; */
+"6LV-zO-aP2.placeholder" = "Адрес*";
+
+/* Class = "UILabel"; text = "US$ 20"; ObjectID = "6Q0-qS-k2L"; */
+"6Q0-qS-k2L.text" = "20 долларов США";
+
+/* Class = "UILabel"; text = "DB Mall Bhopal"; ObjectID = "6Qk-Fc-qRt"; */
+"6Qk-Fc-qRt.text" = "DB Mall Bhopal";
+
+/* Class = "UITextField"; placeholder = "Event Title*"; ObjectID = "6YF-Po-4X6"; */
+"6YF-Po-4X6.placeholder" = "Название мероприятия*";
+
+/* Class = "UILabel"; text = "Date and time"; ObjectID = "7GF-Sc-CbY"; */
+"7GF-Sc-CbY.text" = "Дата и время";
+
+/* Class = "UILabel"; text = "Times are displayed on your local timezone"; ObjectID = "9U7-VT-b2c"; */
+"9U7-VT-b2c.text" = "Время отображается в вашем местном часовом поясе";
+
+/* Class = "UITextField"; placeholder = "Postal Code*"; ObjectID = "A0L-MS-2j0"; */
+"A0L-MS-2j0.placeholder" = "Почтовый индекс*";
+
+/* Class = "UITextField"; placeholder = "Price*"; ObjectID = "Bsl-7g-08L"; */
+"Bsl-7g-08L.placeholder" = "Цена*";
+
+/* Class = "UILabel"; text = "Improve discoverability of your event by adding tags relevant to the subject matter."; ObjectID = "D4g-eO-Sdk"; */
+"D4g-eO-Sdk.text" = "Улучшите доступность вашего мероприятия, добавив релевантные теги.";
+
+/* Class = "UITextField"; placeholder = "Tag*"; ObjectID = "Dcv-1b-L2S"; */
+"Dcv-1b-L2S.placeholder" = "Тег*";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "Dqb-HQ-XlJ"; */
+"Dqb-HQ-XlJ.text" = "Нажмите, чтобы добавить изображение мероприятия";
+
+/* Class = "UILabel"; text = "12:30 PM - 1:30 PM"; ObjectID = "EjG-yl-SVH"; */
+"EjG-yl-SVH.text" = "12:30 - 13:30";
+
+/* Class = "UITextField"; placeholder = "Event Title*"; ObjectID = "EkG-lD-oi3"; */
+"EkG-lD-oi3.placeholder" = "Название мероприятия*";
+
+/* Class = "UITextField"; placeholder = "Search for a venue or address."; ObjectID = "EpK-Jp-jZl"; */
+"EpK-Jp-jZl.placeholder" = "Искать место или адрес";
+
+/* Class = "UILabel"; text = "0 / 75"; ObjectID = "FQO-AP-6HG"; */
+"FQO-AP-6HG.text" = "0 / 75";
+
+/* Class = "UITextField"; placeholder = "Available Quantity*"; ObjectID = "FWD-6X-MKc"; */
+"FWD-6X-MKc.placeholder" = "Доступное количество*";
+
+/* Class = "UILabel"; text = "Near saket nagar, hoshangabad road, Bhopal, 462024, India"; ObjectID = "Fg3-5r-4sD"; */
+"Fg3-5r-4sD.text" = "Рядом с Сакет Нагар, Хошангабад Роуд, Бхопал, 462024, Индия";
+
+/* Class = "UILabel"; text = "Tell event-goers when your event starts and ends so they can make plans to attend."; ObjectID = "G18-PB-9rW"; */
+"G18-PB-9rW.text" = "Сообщите посетителям мероприятия, когда оно начнется и закончится, чтобы они могли спланировать посещение.";
+
+/* Class = "UIButton"; normalTitle = "Add More Images"; ObjectID = "G5e-es-fiz"; */
+"G5e-es-fiz.normalTitle" = "Добавить больше изображений";
+
+/* Class = "UIButton"; normalTitle = "Publish Event"; ObjectID = "GL7-VC-6QG"; */
+"GL7-VC-6QG.normalTitle" = "Опубликовать мероприятие";
+
+/* Class = "UISegmentedControl"; HKC-2S-a8e.segmentTitles[0] = "Upcoming"; ObjectID = "HKC-2S-a8e"; */
+"HKC-2S-a8e.segmentTitles[0]" = "Предстоящие";
+
+/* Class = "UISegmentedControl"; HKC-2S-a8e.segmentTitles[1] = "Past"; ObjectID = "HKC-2S-a8e"; */
+"HKC-2S-a8e.segmentTitles[1]" = "Прошедшие";
+
+/* Class = "UITextField"; placeholder = "Address*"; ObjectID = "IDE-19-330"; */
+"IDE-19-330.placeholder" = "Адрес*";
+
+/* Class = "UILabel"; text = "Update Event"; ObjectID = "Iac-Lw-RL4"; */
+"Iac-Lw-RL4.text" = "Обновить мероприятие";
+
+/* Class = "UILabel"; text = "Add to calendar"; ObjectID = "IbL-ST-Aqi"; */
+"IbL-ST-Aqi.text" = "Добавить в календарь";
+
+/* Class = "UILabel"; text = "Tags"; ObjectID = "IeY-pv-N2J"; */
+"IeY-pv-N2J.text" = "Теги";
+
+/* Class = "UILabel"; text = "DB Mall Bhopal"; ObjectID = "Iv3-no-eMP"; */
+"Iv3-no-eMP.text" = "DB Mall Bhopal";
+
+/* Class = "UILabel"; text = "Tags"; ObjectID = "JJj-dd-Zci"; */
+"JJj-dd-Zci.text" = "Теги";
+
+/* Class = "UILabel"; text = "Astoria, OR, USA"; ObjectID = "LCx-8k-bJ9"; */
+"LCx-8k-bJ9.text" = "Астория, Орегон, США";
+
+/* Class = "UITextField"; placeholder = "Search..."; ObjectID = "Lba-jO-fUR"; */
+"Lba-jO-fUR.placeholder" = "Поиск...";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "LjF-5b-4ad"; */
+"LjF-5b-4ad.text" = "JPEG или PNG, не более 10 МБ.";
+
+/* Class = "UITextField"; placeholder = "End Time*"; ObjectID = "MRz-kJ-7gt"; */
+"MRz-kJ-7gt.placeholder" = "Время окончания*";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "MVJ-i2-UfR"; */
+"MVJ-i2-UfR.text" = "Нажмите, чтобы добавить изображение мероприятия";
+
+/* Class = "UILabel"; text = "Improve discoverability of your event by adding tags relevant to the subject matter."; ObjectID = "Mu5-XL-U8c"; */
+"Mu5-XL-U8c.text" = "Улучшите доступность вашего мероприятия, добавив релевантные теги.";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "P7C-be-mJJ"; */
+"P7C-be-mJJ.text" = "Место";
+
+/* Class = "UITextField"; placeholder = "Start Date*"; ObjectID = "PLz-Le-E9e"; */
+"PLz-Le-E9e.placeholder" = "Дата начала*";
+
+/* Class = "UITextField"; placeholder = "Start Time*"; ObjectID = "QFe-fk-Y60"; */
+"QFe-fk-Y60.placeholder" = "Время начала*";
+
+/* Class = "UILabel"; text = "No Upcoming Events Available"; ObjectID = "QHm-zc-OdN"; */
+"QHm-zc-OdN.text" = "Нет предстоящих мероприятий";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "R2V-KS-Fuo"; */
+"R2V-KS-Fuo.normalTitle" = "Продолжить";
+
+/* Class = "UILabel"; text = "Movin Presents : Suaturday Night DJ Party Suaturday Night DJ Party"; ObjectID = "RWi-nT-P7t"; */
+"RWi-nT-P7t.text" = "Movin представляет: субботняя вечеринка DJ Party";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "Rd9-jf-7QO"; */
+"Rd9-jf-7QO.text" = "Описание";
+
+/* Class = "UIButton"; normalTitle = "Paid"; ObjectID = "ReQ-fA-Vuf"; */
+"ReQ-fA-Vuf.normalTitle" = "Платно";
+
+/* Class = "UITextField"; placeholder = "Start Date*"; ObjectID = "Rkr-wJ-Iwi"; */
+"Rkr-wJ-Iwi.placeholder" = "Дата начала*";
+
+/* Class = "UILabel"; text = "Basic Info"; ObjectID = "Rxe-Cd-5GO"; */
+"Rxe-Cd-5GO.text" = "Основная информация";
+
+/* Class = "UILabel"; text = "Update Event"; ObjectID = "Sh2-Dp-RUZ"; */
+"Sh2-Dp-RUZ.text" = "Обновить мероприятие";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "Srk-1I-ADu"; */
+"Srk-1I-ADu.text" = "Место";
+
+/* Class = "UILabel"; text = "Enter tags separated by comma. \nExample - fun, holiday, party"; ObjectID = "Sy5-Af-Kre"; */
+"Sy5-Af-Kre.text" = "Введите теги, разделенные запятыми. Пример - веселье, праздник, вечеринка";
+
+/* Class = "UILabel"; text = "Sat, Jul 24 • 11:00 AM "; ObjectID = "TA8-jj-BPI"; */
+"TA8-jj-BPI.text" = "Сб, 24 июля • 11:00";
+
+/* Class = "UILabel"; text = "Add more details to your event like your schedule, sponsors, or featured guests."; ObjectID = "UkI-k4-5di"; */
+"UkI-k4-5di.text" = "Добавьте больше информации о мероприятии, такие как расписание, спонсоры или приглашенные гости.";
+
+/* Class = "UILabel"; text = "Fri, 23 Jul 2021"; ObjectID = "VRT-fH-lFP"; */
+"VRT-fH-lFP.text" = "Пт, 23 июля 2021";
+
+/* Class = "UIButton"; normalTitle = "Update Event"; ObjectID = "WG1-iq-J9q"; */
+"WG1-iq-J9q.normalTitle" = "Обновить мероприятие";
+
+/* Class = "UITextField"; placeholder = "Tag*"; ObjectID = "Wkw-Ga-Os3"; */
+"Wkw-Ga-Os3.placeholder" = "Тег*";
+
+/* Class = "UILabel"; text = "Help peoples in the area discover your event and let attendees know where to show up."; ObjectID = "Wzs-Kh-Xr2"; */
+"Wzs-Kh-Xr2.text" = "Помогите людям в вашем районе узнать о мероприятии и сообщите им, куда им приходить.";
+
+/* Class = "UILabel"; text = "Basic Info"; ObjectID = "XUm-cl-a9h"; */
+"XUm-cl-a9h.text" = "Основная информация";
+
+/* Class = "UITextField"; placeholder = "City*"; ObjectID = "XZo-lm-0XX"; */
+"XZo-lm-0XX.placeholder" = "Город*";
+
+/* Class = "UIButton"; normalTitle = "Create Event"; ObjectID = "Yik-5H-x6v"; */
+"Yik-5H-x6v.normalTitle" = "Создать мероприятие";
+
+/* Class = "UILabel"; text = "Hi, Vijay Rathore"; ObjectID = "Ymg-pl-yL8"; */
+"Ymg-pl-yL8.text" = "Привет, Vijay Rathore";
+
+/* Class = "UITextField"; placeholder = "Country*"; ObjectID = "YzN-I3-TSV"; */
+"YzN-I3-TSV.placeholder" = "Страна*";
+
+/* Class = "UITextField"; placeholder = "Ticket Name*"; ObjectID = "a0E-8h-yz2"; */
+"a0E-8h-yz2.placeholder" = "Название билета*";
+
+/* Class = "UITextField"; placeholder = "State/Province*"; ObjectID = "bOP-vK-YKi"; */
+"bOP-vK-YKi.placeholder" = "Штат/провинция*";
+
+/* Class = "UIButton"; normalTitle = "Free"; ObjectID = "bTb-V3-ddb"; */
+"bTb-V3-ddb.normalTitle" = "Бесплатно";
+
+/* Class = "UILabel"; text = "Create Event"; ObjectID = "c6F-97-1bc"; */
+"c6F-97-1bc.text" = "Создать мероприятие";
+
+/* Class = "UILabel"; text = "@Leo"; ObjectID = "cL4-Lp-uMO"; */
+"cL4-Lp-uMO.text" = "@Лев";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "cTa-cK-TSC"; */
+"cTa-cK-TSC.text" = "JPEG или PNG, не более 10 МБ.";
+
+/* Class = "UITextField"; placeholder = "Search for a venue or address."; ObjectID = "cz2-eo-WQa"; */
+"cz2-eo-WQa.placeholder" = "Искать место или адрес";
+
+/* Class = "UITextField"; placeholder = "Ticket Name*"; ObjectID = "dwT-dj-sdz"; */
+"dwT-dj-sdz.placeholder" = "Название билета*";
+
+/* Class = "UILabel"; text = "Online"; ObjectID = "dzc-Rn-3iB"; */
+"dzc-Rn-3iB.text" = "Онлайн";
+
+/* Class = "UILabel"; text = "AIIMS Hospital"; ObjectID = "eVP-yl-T7J"; */
+"eVP-yl-T7J.text" = "AIIMS Hospital";
+
+/* Class = "UIButton"; normalTitle = "Send Invite"; ObjectID = "ehw-LT-APp"; */
+"ehw-LT-APp.normalTitle" = "Отправить приглашение";
+
+/* Class = "UILabel"; text = "Date and time"; ObjectID = "f6d-sa-epZ"; */
+"f6d-sa-epZ.text" = "Дата и время";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "fEa-Uf-iDH"; */
+"fEa-Uf-iDH.text" = "Нажмите, чтобы добавить изображение мероприятия";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "fpt-iB-Ur1"; */
+"fpt-iB-Ur1.text" = "Место";
+
+/* Class = "UILabel"; text = "Tell event-goers when your event starts and ends so they can make plans to attend."; ObjectID = "gQr-s5-0zg"; */
+"gQr-s5-0zg.text" = "Сообщите посетителям мероприятия, когда оно начнется и закончится, чтобы они могли спланировать посещение.";
+
+/* Class = "UITextField"; placeholder = "City*"; ObjectID = "gkJ-ge-zuu"; */
+"gkJ-ge-zuu.placeholder" = "Город*";
+
+/* Class = "UILabel"; text = "No Past Events Available"; ObjectID = "gqC-8g-rZQ"; */
+"gqC-8g-rZQ.text" = "Прошедших мероприятий нет";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "hVx-3k-NyX"; */
+"hVx-3k-NyX.normalTitle" = "Продолжить";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "hXY-cY-Z5n"; */
+"hXY-cY-Z5n.text" = "JPEG или PNG, не более 10 МБ.";
+
+/* Class = "UILabel"; text = "Discard"; ObjectID = "hpt-bu-CcQ"; */
+"hpt-bu-CcQ.text" = "Отменить";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "hxE-fu-tpX"; */
+"hxE-fu-tpX.text" = "Нажмите, чтобы добавить изображение мероприятия";
+
+/* Class = "UITextField"; placeholder = "Available Quantity*"; ObjectID = "hzc-t7-EJA"; */
+"hzc-t7-EJA.placeholder" = "Доступное количество*";
+
+/* Class = "UILabel"; text = "0 / 50"; ObjectID = "iPb-pK-Zbf"; */
+"iPb-pK-Zbf.text" = "0 / 50";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "idc-6O-Rr3"; */
+"idc-6O-Rr3.text" = "Нажмите, чтобы добавить изображение мероприятия";
+
+/* Class = "UILabel"; text = "How to prepare and deliver a TED Talk"; ObjectID = "jBv-gK-1PH"; */
+"jBv-gK-1PH.text" = "Как подготовить и провести TED Talk";
+
+/* Class = "UIButton"; normalTitle = "Switch to user"; ObjectID = "jVn-p1-FZk"; */
+"jVn-p1-FZk.normalTitle" = "Переключиться на пользователя";
+
+/* Class = "UILabel"; text = "Use a high quality images: (9: 5 ratio)."; ObjectID = "l2f-qT-t98"; */
+"l2f-qT-t98.text" = "Используйте изображения высокого качества (соотношение 9: 5).";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "lAa-Ic-8hl"; */
+"lAa-Ic-8hl.text" = "JPEG или PNG, не более 10 МБ.";
+
+/* Class = "UILabel"; text = "Event Image"; ObjectID = "mGa-VQ-cKB"; */
+"mGa-VQ-cKB.text" = "Изображение мероприятия";
+
+/* Class = "UILabel"; text = "Street Address"; ObjectID = "n7h-zT-hjP"; */
+"n7h-zT-hjP.text" = "Улица";
+
+/* Class = "UILabel"; text = "Events"; ObjectID = "nOG-BR-nZe"; */
+"nOG-BR-nZe.text" = "Мероприятия";
+
+/* Class = "UILabel"; text = "Name your event and tell event - goers why they should come. Add details that highlight what makes it unique"; ObjectID = "nWx-ke-EMG"; */
+"nWx-ke-EMG.text" = "Назовите свое мероприятие и расскажите посетителям, почему им стоит прийти. Добавьте детали, подчеркивающие его уникальность.";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "o74-5k-gKV"; */
+"o74-5k-gKV.text" = "Нажмите, чтобы добавить изображение мероприятия";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "oTd-ag-4Jl"; */
+"oTd-ag-4Jl.text" = "Нажмите, чтобы добавить изображение мероприятия";
+
+/* Class = "UILabel"; text = "View Profile"; ObjectID = "oWM-GD-nn0"; */
+"oWM-GD-nn0.text" = "Просмотр профиля";
+
+/* Class = "UILabel"; text = "Sat, Jul 24 • 11:00 AM "; ObjectID = "olx-Ho-Gtb"; */
+"olx-Ho-Gtb.text" = "Сб, 24 июля • 11:00";
+
+/* Class = "UILabel"; text = "Flipkart, 'India ka Fashion Capital', is your one-stop fashion destination for anything and everything you need to look good."; ObjectID = "q7d-dE-eS8"; */
+"q7d-dE-eS8.text" = "Flipkart, 'India ka Fashion Capital', — это ваш универсальный магазин для всего, что нужно, чтобы выглядеть хорошо.";
+
+/* Class = "UILabel"; text = "Venue Location"; ObjectID = "qJy-7q-2xe"; */
+"qJy-7q-2xe.text" = "Местоположение";
+
+/* Class = "UIButton"; normalTitle = "Party"; ObjectID = "qcq-Ol-T60"; */
+"qcq-Ol-T60.normalTitle" = "Вечеринка";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "qx4-1C-aQM"; */
+"qx4-1C-aQM.text" = "JPEG или PNG, не больше 10 МБ.";
+
+/* Class = "UILabel"; text = "JPEG or PNG, no larger than 10MB."; ObjectID = "r4O-Nr-DTh"; */
+"r4O-Nr-DTh.text" = "JPEG или PNG, не больше 10 МБ.";
+
+/* Class = "UILabel"; text = "Movin Presents : Suaturday Night DJ Party Suaturday Night DJ Party"; ObjectID = "r4p-vq-ld5"; */
+"r4p-vq-ld5.text" = "Movin Presents: Субботняя ночная вечеринка DJ";
+
+/* Class = "UILabel"; text = "Name your event and tell event-goers why they should come. Add details that highlight what makes it unique"; ObjectID = "rQk-9f-ieA"; */
+"rQk-9f-ieA.text" = "Назовите ваше мероприятие и расскажите участникам, почему им стоит прийти. Добавьте детали, которые подчеркнут его уникальность.";
+
+/* Class = "UIButton"; normalTitle = "Paid"; ObjectID = "sVb-r9-arn"; */
+"sVb-r9-arn.normalTitle" = "Платно";
+
+/* Class = "UILabel"; text = "Create Event"; ObjectID = "snT-KV-pwu"; */
+"snT-KV-pwu.text" = "Создать мероприятие";
+
+/* Class = "UITextField"; placeholder = "Start Time*"; ObjectID = "sy6-u7-Bsf"; */
+"sy6-u7-Bsf.placeholder" = "Время начала*";
+
+/* Class = "UILabel"; text = "Astoria, OR, USA"; ObjectID = "tVF-yA-PPj"; */
+"tVF-yA-PPj.text" = "Астория, Орегон, США";
+
+/* Class = "UILabel"; text = "on myMINK"; ObjectID = "uUh-Ke-COA"; */
+"uUh-Ke-COA.text" = "на myMINK";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "utD-y5-9dQ"; */
+"utD-y5-9dQ.text" = "Описание";
+
+/* Class = "UILabel"; text = "Venue Location"; ObjectID = "vgJ-Az-vp5"; */
+"vgJ-Az-vp5.text" = "Место проведения";
+
+/* Class = "UITextField"; placeholder = "State/Province*"; ObjectID = "vz2-o8-QlO"; */
+"vz2-o8-QlO.placeholder" = "Штат/Провинция*";
+
+/* Class = "UILabel"; text = "Enter tags separated by comma. \nExample - fun, holiday, party"; ObjectID = "vzG-2Z-ZPb"; */
+"vzG-2Z-ZPb.text" = "Введите теги через запятую. \nПример - веселье, отпуск, вечеринка";
+
+/* Class = "UILabel"; text = "Help peoples in the area discover your event and let attendees know where to show up."; ObjectID = "wWl-jZ-1ZB"; */
+"wWl-jZ-1ZB.text" = "Помогите людям в этом районе узнать о вашем мероприятии и дайте участникам знать, где появиться.";
+
+/* Class = "UITextField"; placeholder = "Postal Code*"; ObjectID = "wl1-s1-5qm"; */
+"wl1-s1-5qm.placeholder" = "Почтовый индекс*";
+
+/* Class = "UILabel"; text = "Click to add event image"; ObjectID = "wn8-J8-MM6"; */
+"wn8-J8-MM6.text" = "Нажмите, чтобы добавить изображение мероприятия";
+
+/* Class = "UITextField"; placeholder = "End Time*"; ObjectID = "y7e-Ss-2O8"; */
+"y7e-Ss-2O8.placeholder" = "Время окончания*";
+
+/* Class = "UITextField"; placeholder = "End Date*"; ObjectID = "ybD-te-wBh"; */
+"ybD-te-wBh.placeholder" = "Дата окончания*";
+
+/* Class = "UITextField"; placeholder = "Price*"; ObjectID = "ynF-zz-ARW"; */
+"ynF-zz-ARW.placeholder" = "Цена*";
+
+/* Class = "UIButton"; normalTitle = "Switch to organiser"; ObjectID = "z03-Z3-NET"; */
+"z03-Z3-NET.normalTitle" = "Переключиться на организатора";
+
+/* Class = "UILabel"; text = "0 / 50"; ObjectID = "zBV-YY-UtP"; */
+"zBV-YY-UtP.text" = "0 / 50";
+
+/* Class = "UITextField"; placeholder = "End Date*"; ObjectID = "zbn-Bk-n0b"; */
+"zbn-Bk-n0b.placeholder" = "Дата окончания*";
+
+/* Class = "UILabel"; text = "Use a high quality images: (9: 5 ratio)."; ObjectID = "zuq-SB-bSC"; */
+"zuq-SB-bSC.text" = "Используйте изображения высокого качества: (соотношение сторон 9:5).";

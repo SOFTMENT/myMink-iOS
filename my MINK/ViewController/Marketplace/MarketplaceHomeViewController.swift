@@ -95,7 +95,7 @@ class MarketplaceHomeViewController: UIViewController {
     }
     
     private func searchProducts(searchText: String) {
-        ProgressHUDShow(text: "Searching...")
+        ProgressHUDShow(text: "Searching...".localized())
         let region = getCountryCode()
         algoliaSearch(searchText: searchText, indexName: .marketplace, filters: "isActive:true AND countryCode:\(region)") { models in
             DispatchQueue.main.async {

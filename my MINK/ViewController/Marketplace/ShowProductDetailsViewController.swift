@@ -77,8 +77,8 @@ class ShowProductDetailsViewController: UIViewController {
             }
         }
         
-        eventTitle.text = product.title ?? "Something Went Wrong"
-        navigationTitle.text = product.title ?? "Something Went Wrong"
+        eventTitle.text = product.title ?? "Something Went Wrong".localized()
+        navigationTitle.text = product.title ?? "Something Went Wrong".localized()
         eventDescritption.text = product.about ?? ""
         
         if let images = product.productImages {
@@ -88,7 +88,7 @@ class ShowProductDetailsViewController: UIViewController {
         headerCollectionView.reloadData()
         myPageView.numberOfPages = imgArr.count
         ticketPrice.text = "\(getCurrencyCode(forRegion: Locale.current.regionCode!) ?? "AU") \(String(format: "%.2f", Double(product.cost ?? "0")!))"
-        ticketBtn.setTitle("Contact", for: .normal)
+        ticketBtn.setTitle("Contact".localized(), for: .normal)
         
         share.isUserInteractionEnabled = true
         share.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(shareProduct)))
@@ -105,7 +105,7 @@ class ShowProductDetailsViewController: UIViewController {
             }
             self.present(activityViewController, animated: true)
         } else {
-            self.showSnack(messages: "Share URL not found.")
+            self.showSnack(messages: "Share URL not found.".localized())
         }
     }
     
@@ -115,9 +115,9 @@ class ShowProductDetailsViewController: UIViewController {
         } else if segue.identifier == "showChatSeg", let vc = segue.destination as? ShowChatViewController {
             guard let userModel = self.userModel else { return }
             let lastModel = LastMessageModel()
-            lastModel.senderName = userModel.fullName ?? "Full Name"
+            lastModel.senderName = userModel.fullName ?? "Full Name".localized()
             lastModel.senderUid = userModel.uid ?? "123"
-            lastModel.senderToken = userModel.notificationToken ?? "Token"
+            lastModel.senderToken = userModel.notificationToken ?? "Token".localized()
             lastModel.senderImage = userModel.profilePic ?? ""
             lastModel.senderDeviceToken = userModel.deviceToken ?? ""
             vc.lastMessage = lastModel

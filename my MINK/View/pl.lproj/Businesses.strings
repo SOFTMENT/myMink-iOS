@@ -1,0 +1,104 @@
+/* Class = "UILabel"; text = "Software Development,"; ObjectID = "4wT-g3-saX"; */
+"4wT-g3-saX.text" = "Rozwój Oprogramowania,";
+
+/* Class = "UILabel"; text = "0 Subscriber"; ObjectID = "7di-Lx-Ace"; */
+"7di-Lx-Ace.text" = "0 Subskrybent";
+
+/* Class = "UITextField"; placeholder = "Business Type"; ObjectID = "7ne-g8-Vxm"; */
+"7ne-g8-Vxm.placeholder" = "Rodzaj Firmy";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "7yn-fs-EtC"; */
+"7yn-fs-EtC.text" = "O nas";
+
+/* Class = "UILabel"; text = "Upload business picture"; ObjectID = "85p-hR-8IS"; */
+"85p-hR-8IS.text" = "Prześlij zdjęcie firmy";
+
+/* Class = "UILabel"; text = "0 Post"; ObjectID = "C0F-gE-Dxr"; */
+"C0F-gE-Dxr.text" = "0 Post";
+
+/* Class = "UILabel"; text = "Food & Drink"; ObjectID = "Crt-7Z-blV"; */
+"Crt-7Z-blV.text" = "Jedzenie i napoje";
+
+/* Class = "UIButton"; normalTitle = "My Business"; ObjectID = "IYS-bO-QGW"; */
+"IYS-bO-QGW.normalTitle" = "Moja Firma";
+
+/* Class = "UILabel"; text = "Upload business picture"; ObjectID = "Jvb-EN-Lig"; */
+"Jvb-EN-Lig.text" = "Prześlij zdjęcie firmy";
+
+/* Class = "UITextField"; placeholder = "Website URL"; ObjectID = "Mgg-Qc-72L"; */
+"Mgg-Qc-72L.placeholder" = "Adres URL strony internetowej";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "ND4-9f-p9P"; */
+"ND4-9f-p9P.text" = "Opis";
+
+/* Class = "UIButton"; normalTitle = "Subscribe"; ObjectID = "NXT-hB-jyb"; */
+"NXT-hB-jyb.normalTitle" = "Subskrybuj";
+
+/* Class = "UILabel"; text = "Add more details about your business"; ObjectID = "QJo-g2-CKD"; */
+"QJo-g2-CKD.text" = "Dodaj więcej szczegółów o swojej firmie";
+
+/* Class = "UITextField"; placeholder = "Website URL"; ObjectID = "QSE-ic-Ix5"; */
+"QSE-ic-Ix5.placeholder" = "Adres URL strony internetowej";
+
+/* Class = "UILabel"; text = "Businesses"; ObjectID = "RA4-om-R53"; */
+"RA4-om-R53.text" = "Firmy";
+
+/* Class = "UILabel"; text = "We are a leading software development company that offers top-rated Software Development Services due to our vast experience, team of skilled professionals, key business insights, and a dedicated working process."; ObjectID = "SCQ-AA-tKO"; */
+"SCQ-AA-tKO.text" = "Jesteśmy wiodącą firmą zajmującą się rozwojem oprogramowania, która oferuje wysoko oceniane usługi rozwoju oprogramowania dzięki naszemu ogromnemu doświadczeniu, zespołowi wykwalifikowanych specjalistów, kluczowym spostrzeżeniom biznesowym i dedykowanemu procesowi pracy.";
+
+/* Class = "UILabel"; text = "\"Roaming the world, one adventure at a time.\""; ObjectID = "Va5-Vz-3k9"; */
+"Va5-Vz-3k9.text" = "\"Wędrując po świecie, jedna przygoda na raz.\"";
+
+/* Class = "UILabel"; text = "www.softment.com"; ObjectID = "Wff-a4-yBa"; */
+"Wff-a4-yBa.text" = "www.softment.com";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "XBb-aa-VNI"; */
+"XBb-aa-VNI.text" = "Posty";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "ZZH-hT-lqG"; */
+"ZZH-hT-lqG.normalTitle" = "Dodaj";
+
+/* Class = "UILabel"; text = "Add more details about your business"; ObjectID = "a9t-Mp-BO8"; */
+"a9t-Mp-BO8.text" = "Dodaj więcej szczegółów o swojej firmie";
+
+/* Class = "UILabel"; text = "No posts available"; ObjectID = "avP-ew-FB5"; */
+"avP-ew-FB5.text" = "Brak dostępnych postów";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "b9F-fB-vlF"; */
+"b9F-fB-vlF.normalTitle" = "Prześlij";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "bBp-2Q-wwi"; */
+"bBp-2Q-wwi.normalTitle" = "Aktualizuj";
+
+/* Class = "UITextField"; placeholder = "Business Name"; ObjectID = "dDD-Tw-i5E"; */
+"dDD-Tw-i5E.placeholder" = "Nazwa Firmy";
+
+/* Class = "UIButton"; normalTitle = "Message"; ObjectID = "e9E-Fc-fww"; */
+"e9E-Fc-fww.normalTitle" = "Wiadomość";
+
+/* Class = "UILabel"; text = "No businesses available"; ObjectID = "fBw-mz-dgf"; */
+"fBw-mz-dgf.text" = "Brak dostępnych firm";
+
+/* Class = "UITextField"; placeholder = "Business Type"; ObjectID = "r5b-HP-gPH"; */
+"r5b-HP-gPH.placeholder" = "Rodzaj Firmy";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "tQW-dc-jcp"; */
+"tQW-dc-jcp.normalTitle" = "Prześlij";
+
+/* Class = "UILabel"; text = "www.softment.com"; ObjectID = "tkL-zg-SbP"; */
+"tkL-zg-SbP.text" = "www.softment.com";
+
+/* Class = "UILabel"; text = "SOFTMENT SOLUTIONS PVT LTD"; ObjectID = "umM-0f-QI1"; */
+"umM-0f-QI1.text" = "SOFTMENT SOLUTIONS PVT LTD";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "xLL-yW-agT"; */
+"xLL-yW-agT.text" = "Opis";
+
+/* Class = "UITextField"; placeholder = "Search..."; ObjectID = "yGa-0g-8EX"; */
+"yGa-0g-8EX.placeholder" = "Szukaj...";
+
+/* Class = "UILabel"; text = "SOFTMENT SOLUTIONS"; ObjectID = "zff-m5-FEJ"; */
+"zff-m5-FEJ.text" = "SOFTMENT SOLUTIONS";
+
+/* Class = "UITextField"; placeholder = "Business Name"; ObjectID = "zqF-ol-sP0"; */
+"zqF-ol-sP0.placeholder" = "Nazwa Firmy";

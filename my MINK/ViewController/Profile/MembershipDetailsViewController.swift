@@ -38,7 +38,7 @@ class MembershipDetailsViewController: UIViewController {
     private func configureMembershipDetails() {
         guard let userModel = UserModel.data else { return }
 
-        switch userModel.planID {
+        switch userModel.activeEntitlement {
         case PriceID.month.rawValue:
             membershipPrice.text = "$14.99/month"
         case PriceID.year.rawValue:
@@ -47,14 +47,14 @@ class MembershipDetailsViewController: UIViewController {
             membershipPrice.text = ""
         }
 
-        status.text = userModel.status?.capitalized
+        status.text = userModel.entitlementStatus?.capitalized ?? "INACTIVE"
 
-        if userModel.status == "active" {
+        if userModel.entitlementStatus == "active" ||  userModel.entitlementStatus == "trialing"{
             status.textColor = UIColor(red: 92 / 255, green: 184 / 255, blue: 92 / 255, alpha: 1)
-            unsubscribeBtn.isHidden = false
+          
         } else {
             status.textColor = .red
-            unsubscribeBtn.isHidden = true
+           
         }
     }
 
@@ -63,31 +63,38 @@ class MembershipDetailsViewController: UIViewController {
     }
 
     @IBAction private func unsubscribeBtnClicked(_: Any) {
-        guard let sub_id = UserModel.data?.subscriptionId else { return }
+        
+        self.showCancelSubscriptionAlert()
+      
+    }
+    
+    
+    func showCancelSubscriptionAlert() {
+        let alertController = UIAlertController(title: "Manage Subscription", message: "You will be redirected to the App Store where you can manage or cancel your subscription.", preferredStyle: .alert)
 
-        let alert = UIAlertController(
-            title: "UNSUBSCRIBE",
-            message: "Are you sure you want to unsubscribe my MINK membership?",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "Unsubscribe", style: .destructive, handler: { _ in
-            self.ProgressHUDShow(text: "")
-            self.callCancelSubscriptionFunction(subId: sub_id) { success, error in
-                DispatchQueue.main.async {
-                    self.ProgressHUDHide()
-                    if let success = success, success {
-                        self.unsubscribeBtn.isHidden = true
-                        self.status.textColor = .red
-                        self.status.text = "Cancelled"
-                        UserModel.data?.status = "Cancelled"
-                    } else {
-                        self.showError("Something went wrong. Please contact us.")
-                    }
-                }
+        // Add the action to open the App Store subscription page
+        let manageAction = UIAlertAction(title: "Continue", style: .default) { _ in
+            self.openAppStoreSubscriptionManagement()
+        }
+        
+        // Add a cancel action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        // Add the actions to the alert controller
+        alertController.addAction(manageAction)
+        alertController.addAction(cancelAction)
+        
+        // Present the alert to the user
+        self.present(alertController, animated: true)
+    }
+
+    func openAppStoreSubscriptionManagement() {
+        if let url = URL(string: "https://apps.apple.com/account/subscriptions") {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                print("Can't open App Store subscriptions page.")
             }
-        }))
-
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        present(alert, animated: true)
+        }
     }
 }

@@ -51,7 +51,7 @@ class ShowChatViewController: UIViewController, UITableViewDelegate, UITableView
             shouldShowAnimationPlaceholder: true
         )
 
-        self.mName.text = lastMessage.senderName ?? "Error"
+        self.mName.text = lastMessage.senderName ?? "Error".localized()
 
         self.videoCallBtn.layer.cornerRadius = 8
         self.videoCallBtn.dropShadow()
@@ -189,17 +189,17 @@ class ShowChatViewController: UIViewController, UITableViewDelegate, UITableView
         var alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         if UIDevice.current.userInterfaceIdiom == .pad {
             alert = UIAlertController(
-                title: "Do you want to report & block this user?",
+                title: "Do you want to report & block this user?".localized(),
                 message: nil,
                 preferredStyle: .alert
             )
         }
 
-        alert.addAction(UIAlertAction(title: "Block this user", style: .default, handler: { _ in
-            self.showSnack(messages: "User has been blocked.")
+        alert.addAction(UIAlertAction(title: "Block this user".localized(), style: .default, handler: { _ in
+            self.showSnack(messages: "User has been blocked.".localized())
         }))
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil))
 
         present(alert, animated: true, completion: nil)
     }
@@ -259,11 +259,13 @@ class ShowChatViewController: UIViewController, UITableViewDelegate, UITableView
                             "senderDeviceToken": self.mInfo["deviceToken"] ?? ""
                         ])
 
-                    PushNotificationSender().sendPushNotification(
-                        title:self.mInfo["fullName"] ?? "Error",
-                        body: sMessage,
-                        topic: self.lastMessage!.senderToken ?? ""
-                    )
+                    if !sMessage.contains("📞 VIDEO CALL") {
+                        PushNotificationSender().sendPushNotification(
+                            title:self.mInfo["fullName"] ?? "Error",
+                            body: sMessage,
+                            topic: self.lastMessage!.senderToken ?? ""
+                        )
+                    }
                 }
             }
     }
@@ -339,7 +341,7 @@ class ShowChatViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func loadData() {
-        ProgressHUDShow(text: "Loading...")
+        ProgressHUDShow(text: "Loading...".localized())
         guard let friendUid = lastMessage!.senderUid else {
             dismiss(animated: true, completion: nil)
             return

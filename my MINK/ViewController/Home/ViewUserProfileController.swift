@@ -105,7 +105,7 @@ class ViewUserProfileController: UIViewController {
     @IBOutlet weak var whatsAppNumber: UILabel!
     var socialMediaModels = [SocialMediaModel]()
     var amIFollowing: Bool = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUser()
@@ -127,6 +127,7 @@ class ViewUserProfileController: UIViewController {
         if UserModel.data?.uid == user.uid {
             chatFollowStack.isHidden = true
             shouldHideUserPersonalInfo(isHidden: false)
+            dotsView.isHidden = true
         }
     }
 
@@ -162,6 +163,9 @@ class ViewUserProfileController: UIViewController {
         searchTF.setRightPaddingPoints(10)
         searchTF.setLeftIcons(icon: UIImage(systemName: "magnifyingglass")!)
         searchTF.delegate = self
+        
+        dotsView.isUserInteractionEnabled = true
+        dotsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuClicked)))
 
         if let path = user?.profilePic, !path.isEmpty {
             userProfile.setImage(
@@ -172,8 +176,8 @@ class ViewUserProfileController: UIViewController {
                 shouldShowAnimationPlaceholder: true
             )
         }
-        fullName.text = user?.fullName ?? "my MINK"
-        username.text = "@\(user?.username ?? "username")"
+        fullName.text = user?.fullName ?? "my MINK".localized()
+        username.text = "@\(user?.username ?? "username".localized())"
 
         if let swebsite = user?.website, !swebsite.isEmpty {
             websiteView.isHidden = false
@@ -203,9 +207,66 @@ class ViewUserProfileController: UIViewController {
         flowLayout.minimumInteritemSpacing = 0
         collectionView.collectionViewLayout = flowLayout
 
-        joiningDate.text = "Joined on \(convertDateFormaterWithoutDash(user?.registredAt ?? Date()))"
+        joiningDate.text = String(format: "Joined on %@".localized(), convertDateFormaterWithoutDash(user?.registredAt ?? Date()))
+
     }
 
+    
+    @objc func menuClicked() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        ProgressHUDShow(text: "")
+        
+        isUserBlock(userId: user!.uid ?? "") { isUserBlock in
+            self.ProgressHUDHide()
+            
+        
+            alert.addAction(UIAlertAction(title: isUserBlock ? "Unblock \(self.user!.fullName ?? "")" : "Block \(self.user!.fullName ?? "")", style: .default, handler: { action in
+             
+                if isUserBlock {
+                    self.ProgressHUDShow(text: "Unblocking...")
+                    self.unBlockUser(blockedUserID: self.user!.uid ?? "") { error in
+                        self.ProgressHUDHide()
+                        if let error = error {
+                            self.showError(error)
+                        }
+                        else {
+                            self.showSnack(messages: "Unblocked successfully")
+                        }
+                        
+                    }
+                }
+                else {
+                    self.ProgressHUDShow(text: "Blocking...")
+                    self.blockUser(blockedUserID: self.user!.uid ?? "") { error in
+                        self.ProgressHUDHide()
+                        if let error = error {
+                            self.showError(error)
+                        }
+                        else {
+                            self.followBtn.backgroundColor = UIColor(red: 210 / 255, green: 0, blue: 1 / 255, alpha: 1)
+                            self.followBtn.isSelected = false
+                            self.followBtn.setTitleColor(.white, for: .normal)
+                            self.followBtn.setTitle("Follow".localized(), for: .normal)
+                            self.deleteFollow(mainUserId: FirebaseStoreManager.auth.currentUser!.uid, followerUserId: self.user!.uid!) { _ in
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                    self.updateFollowersAndFollowingCount()
+                                }
+                            }
+                            self.showSnack(messages: "Blocked successfully")
+                        }
+                        
+                    }
+                }
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(alert, animated: true)
+            
+        }
+        
+       
+        
+    }
     private func setupFollowersView() {
         followersView.isUserInteractionEnabled = true
         followersView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(followersViewClicked)))
@@ -245,7 +306,7 @@ class ViewUserProfileController: UIViewController {
         followBtn.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
         followBtn.isSelected = true
         followBtn.setTitleColor(.black, for: .selected)
-        followBtn.setTitle("Following", for: .normal)
+        followBtn.setTitle("Following".localized(), for: .normal)
         amIFollowing = true
         shouldHideUserPersonalInfo(isHidden: false)
     }
@@ -321,7 +382,7 @@ class ViewUserProfileController: UIViewController {
         postsLoading.isHidden = true
 
         let count = postModels.count
-        topPostsLbl.text = count > 1 ? "Posts" : "Post"
+        topPostsLbl.text = count > 1 ? "Posts".localized() : "Post".localized()
         topPostCount.text = "\(count)"
         collectionView.reloadData()
     }
@@ -329,7 +390,7 @@ class ViewUserProfileController: UIViewController {
     private func handleProfileViewsCount(count: Int?) {
         viewsLoading.isHidden = true
         viewCount.isHidden = false
-        topViewsLbl.text = (count ?? 0) > 1 ? "Views" : "View"
+        topViewsLbl.text = (count ?? 0) > 1 ? "Views".localized() : "View".localized()
         viewCount.text = "\(count ?? 0)"
     }
 
@@ -406,20 +467,36 @@ class ViewUserProfileController: UIViewController {
         if models.count > 1 {
             showAlertForOpen(models: models)
         } else if let link = models.first?.link, let url = URL(string: makeValidURL(urlString: link)) {
-            UIApplication.shared.open(url)
+            self.openURL(link)
         }
+    }
+    
+    private func openURL(_ urlString: String) {
+        dismiss(animated: true)
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        // Use the updated open method with options and completion handler
+        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+            if success {
+                print("URL was opened successfully.")
+            } else {
+                print("Failed to open the URL.")
+            }
+        })
     }
 
     func showAlertForOpen(models: [SocialMediaModel]) {
-        let alert = UIAlertController(title: nil, message: "Select Account", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: "Select Account".localized(), preferredStyle: .actionSheet)
         for model in models {
             alert.addAction(UIAlertAction(title: model.link ?? "NIL", style: .default) { _ in
                 if let link = model.link, let url = URL(string: self.makeValidURL(urlString: link)) {
-                    UIApplication.shared.open(url)
+                    self.openURL(link)
                 }
             })
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         present(alert, animated: true)
     }
 
@@ -461,13 +538,13 @@ class ViewUserProfileController: UIViewController {
         followersCount.isHidden = false
 
         let count = count ?? 0
-        topFollowersLbl.text = count > 1 ? "Followers" : "Follower"
+        topFollowersLbl.text = count > 1 ? "Followers".localized() : "Follower".localized()
         followersCount.text = "\(count)"
 
-        if haveBlueTick() {
+        if haveBlueTick(userModel: user) {
             verificationBadge.isHidden = false
             verificationBadge.image = UIImage(named: "verified")
-        } else if haveBlackTick() {
+        } else if haveBlackTick(userModel: user) {
             verificationBadge.isHidden = false
             verificationBadge.image = UIImage(named: "verification")
         } else {
@@ -482,7 +559,7 @@ class ViewUserProfileController: UIViewController {
     }
 
     func searchBtnClicked(searchText: String) {
-        ProgressHUDShow(text: "Searching...")
+        ProgressHUDShow(text: "Searching...".localized())
         guard let userID = self.user?.uid else { return }
 
         algoliaSearch(searchText: searchText, indexName: .posts, filters: "uid:\(userID)") { models in
@@ -500,15 +577,15 @@ class ViewUserProfileController: UIViewController {
         filterBtn.isUserInteractionEnabled = true
         filterBtn.showsMenuAsPrimaryAction = true
 
-        let image = UIAction(title: "Image", image: UIImage(systemName: "photo.circle.fill")) { _ in
+        let image = UIAction(title: "Image".localized(), image: UIImage(systemName: "photo.circle.fill")) { _ in
             self.performSegue(withIdentifier: "viewprofilePostViewSeg", sender: "image")
         }
 
-        let video = UIAction(title: "Video", image: UIImage(systemName: "video.circle.fill")) { _ in
+        let video = UIAction(title: "Video".localized(), image: UIImage(systemName: "video.circle.fill")) { _ in
             self.performSegue(withIdentifier: "viewprofilePostViewSeg", sender: "video")
         }
 
-        let text = UIAction(title: "Text", image: UIImage(systemName: "text.quote")) { _ in
+        let text = UIAction(title: "Text".localized(), image: UIImage(systemName: "text.quote")) { _ in
             self.performSegue(withIdentifier: "viewprofilePostViewSeg", sender: "text")
         }
 
@@ -528,7 +605,7 @@ class ViewUserProfileController: UIViewController {
         guard let user = user else { return }
 
         if let isPrivate = user.isAccountPrivate, isPrivate, !amIFollowing {
-            showMessage(title: "Private Account", message: "This account is private. Follow to see their followers, following & posts.")
+            showMessage(title: "Private Account".localized(), message: "This account is private. Follow to see their followers, following & posts.".localized())
         } else {
             ProgressHUDShow(text: "")
             getFollowersByUid(uid: user.uid ?? "") { followModels in
@@ -544,7 +621,7 @@ class ViewUserProfileController: UIViewController {
         guard let user = user else { return }
 
         if let isPrivate = user.isAccountPrivate, isPrivate, !amIFollowing {
-            showMessage(title: "Private Account", message: "This account is private. Follow to see their followers, following & posts.")
+            showMessage(title: "Private Account".localized(), message: "This account is private. Follow to see their followers, following & posts.".localized())
         } else {
             ProgressHUDShow(text: "")
             getFollowingByUid(uid: user.uid ?? "") { followModels in
@@ -569,8 +646,10 @@ class ViewUserProfileController: UIViewController {
             followBtn.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
             followBtn.isSelected = true
             followBtn.setTitleColor(.black, for: .selected)
-            followBtn.setTitle("Following", for: .normal)
+            followBtn.setTitle("Following".localized(), for: .normal)
             addFollow(mUser: UserModel.data!, fUser: user)
+            
+            self.addNotification(to: "", userId: user.uid!, type: Notifications.following.rawValue)
 
             PushNotificationSender().sendPushNotification(
                 title: "Good News",
@@ -581,7 +660,7 @@ class ViewUserProfileController: UIViewController {
             followBtn.backgroundColor = UIColor(red: 210 / 255, green: 0, blue: 1 / 255, alpha: 1)
             followBtn.isSelected = false
             followBtn.setTitleColor(.white, for: .normal)
-            followBtn.setTitle("Follow", for: .normal)
+            followBtn.setTitle("Follow".localized(), for: .normal)
 
             deleteFollow(mainUserId: currentUserID, followerUserId: userID) { error in
                 if error != nil {
@@ -645,9 +724,9 @@ class ViewUserProfileController: UIViewController {
         } else if segue.identifier == "viewProfileChatSeg" {
             if let vc = segue.destination as? ShowChatViewController {
                 let lastModel = LastMessageModel()
-                lastModel.senderName = user?.fullName ?? "Full Name"
+                lastModel.senderName = user?.fullName ?? "Full Name".localized()
                 lastModel.senderUid = user?.uid ?? ""
-                lastModel.senderToken = user?.notificationToken ?? "Token"
+                lastModel.senderToken = user?.notificationToken ?? "Token".localized()
                 lastModel.senderImage = user?.profilePic ?? ""
                 lastModel.senderDeviceToken = user?.deviceToken ?? ""
                 vc.lastMessage = lastModel
@@ -700,7 +779,10 @@ extension ViewUserProfileController: UICollectionViewDelegate, UICollectionViewD
 
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         self.noPostsAvailable.isHidden = self.usePostModels.count > 0 ? true : false
-        self.postCount.text = self.usePostModels.count > 1 ? "\(self.usePostModels.count) Posts" : "\(self.usePostModels.count) Post"
+        self.postCount.text = self.usePostModels.count > 1
+            ? String(format: "%d Posts".localized(), self.usePostModels.count)
+            : String(format: "%d Post".localized(), self.usePostModels.count)
+
         return self.usePostModels.count
     }
 

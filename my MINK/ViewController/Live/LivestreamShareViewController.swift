@@ -88,11 +88,11 @@ class LivestreamShareViewController: UIViewController {
     private func showAlertForShortStream() {
         
         let alert = UIAlertController(
-            title: "Can't post this stream",
-            message: "Your livestream must be at least 10 seconds long.",
+            title: "Can't post this stream".localized(),
+            message: "Your livestream must be at least 10 seconds long.".localized(),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "Dashboard", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Dashboard".localized(), style: .default, handler: { _ in
             self.beRootScreen(storyBoardName: StoryBoard.tabBar, mIdentifier: Identifier.tabBarViewController)
         }))
         present(alert, animated: true)

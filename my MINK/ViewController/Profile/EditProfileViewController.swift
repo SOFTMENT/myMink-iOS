@@ -3,6 +3,7 @@
 import CropViewController
 import Firebase
 import UIKit
+import SDWebImage
 
 // MARK: - EditProfileDelegate
 
@@ -19,7 +20,8 @@ class EditProfileViewController: UIViewController {
     @IBOutlet var tableViewHeight: NSLayoutConstraint!
     let selectGenderPicker = UIPickerView()
     @IBOutlet var backView: UIView!
-    @IBOutlet var mProfile: UIImageView!
+    @IBOutlet weak var mProfile: SDAnimatedImageView!
+    
     @IBOutlet var uploadProfileBtn: UIButton!
     @IBOutlet var website: UITextField!
     @IBOutlet var bioGraphyTV: UITextView!
@@ -104,7 +106,7 @@ class EditProfileViewController: UIViewController {
 
     private func setupUI(user: UserModel) {
         if let profilePath = user.profilePic, !profilePath.isEmpty {
-            self.mProfile.setImage(imageKey: profilePath, placeholder: "profile-placeholder", width: 400, height: 400)
+            self.mProfile.setImage(imageKey: profilePath, placeholder: "profile-placeholder", width: 400, height: 400, shouldShowAnimationPlaceholder: true)
         }
 
         self.fullName.text = user.fullName ?? ""
@@ -216,13 +218,13 @@ class EditProfileViewController: UIViewController {
     }
 
     func showAlertForEdit(models: [SocialMediaModel]) {
-        let alert = UIAlertController(title: nil, message: "Select Account", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: "Select Account".localized(), preferredStyle: .actionSheet)
         for model in models {
-            alert.addAction(UIAlertAction(title: model.link ?? "NIL", style: .default, handler: { _ in
+            alert.addAction(UIAlertAction(title: model.link ?? "NIL".localized(), style: .default, handler: { _ in
                 self.performSegue(withIdentifier: "editSocialMediaSeg", sender: model)
             }))
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         present(alert, animated: true)
     }
 
@@ -313,7 +315,7 @@ class EditProfileViewController: UIViewController {
             let sConfirmPassword = self.confirmPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines),
             !sOldPassword.isEmpty, !sNewPassword.isEmpty, !sConfirmPassword.isEmpty
         else {
-            self.showSnack(messages: "Please fill in all password fields")
+            self.showSnack(messages: "Please fill in all password fields".localized())
             return
         }
 
@@ -326,23 +328,23 @@ class EditProfileViewController: UIViewController {
             )
 
             guard originalPassword == sOldPassword else {
-                self.showSnack(messages: "Current password is incorrect")
+                self.showSnack(messages: "Current password is incorrect".localized())
                 return
             }
 
             guard sNewPassword == sConfirmPassword else {
-                self.showSnack(messages: "New and confirm password mismatch")
+                self.showSnack(messages: "New and confirm password mismatch".localized())
                 return
             }
 
             guard sOldPassword != sNewPassword else {
-                self.showError("Current password and new password must be different.")
+                self.showError("Current password and new password must be different.".localized())
                 return
             }
 
             updatePassword(originalPassword: originalPassword, newPassword: sNewPassword)
         } catch {
-            self.showError("Error decrypting password.")
+            self.showError("Error decrypting password.".localized())
         }
     }
 
@@ -383,11 +385,11 @@ class EditProfileViewController: UIViewController {
                     self.showError(error.localizedDescription)
                 } else {
                     self.clearPasswordFields()
-                    self.showSnack(messages: "Password has been changed")
+                    self.showSnack(messages: "Password has been changed".localized())
                 }
             }
         } catch {
-            self.showError("Error encrypting password.")
+            self.showError("Error encrypting password.".localized())
         }
     }
 
@@ -398,18 +400,18 @@ class EditProfileViewController: UIViewController {
     }
 
     @objc func passwordEyeClicked() {
-        togglePasswordVisibility(for: self.newPassword)
+        togglePasswordVisibility(for: self.newPassword, action: #selector(passwordEyeClicked))
     }
 
     @objc func oldpasswordEyeClicked() {
-        togglePasswordVisibility(for: self.oldPassword)
+        togglePasswordVisibility(for: self.oldPassword,action: #selector(oldpasswordEyeClicked))
     }
 
     @objc func confirmpasswordEyeClicked() {
-        togglePasswordVisibility(for: self.confirmPassword)
+        togglePasswordVisibility(for: self.confirmPassword,action: #selector(confirmpasswordEyeClicked))
     }
 
-    private func togglePasswordVisibility(for passwordField: UITextField) {
+    private func togglePasswordVisibility(for passwordField: UITextField, action: Selector) {
         passwordField.isSecureTextEntry.toggle()
         let imageName = passwordField.isSecureTextEntry ? "hide" : "view"
         let imageView = UIImageView(frame: CGRect(x: 0, y: 13, width: 20, height: 20))
@@ -418,7 +420,7 @@ class EditProfileViewController: UIViewController {
         iconContainerView.addSubview(imageView)
         passwordField.rightView = iconContainerView
         passwordField.rightView?.isUserInteractionEnabled = true
-        passwordField.rightView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(passwordEyeClicked)))
+        passwordField.rightView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: action))
     }
 
     @objc func textFieldDidChange(textField: UITextField) {
@@ -454,7 +456,7 @@ class EditProfileViewController: UIViewController {
             let sFullname = self.fullName.text, !sFullname.isEmpty,
             let sAddress = self.address.text, !sAddress.isEmpty
         else {
-            showSnack(messages: "Please fill in all fields")
+            showSnack(messages: "Please fill in all fields".localized())
             return
         }
 
@@ -482,7 +484,7 @@ class EditProfileViewController: UIViewController {
                 self.showError(error.localizedDescription)
             } else {
                 self.delegate!.refreshUI()
-                self.showSnack(messages: "Profile Updated")
+                self.showSnack(messages: "Profile Updated".localized())
             }
         }
     }
@@ -510,14 +512,14 @@ class EditProfileViewController: UIViewController {
     }
 
     @IBAction func uploadProfileClick(_: Any) {
-        let alert = UIAlertController(title: "Upload Profile Picture", message: "", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Using Camera", style: .default) { _ in
+        let alert = UIAlertController(title: "Upload Profile Picture".localized(), message: "", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Using Camera".localized(), style: .default) { _ in
             self.showImagePicker(sourceType: .camera)
         }
-        let action2 = UIAlertAction(title: "From Photo Library", style: .default) { _ in
+        let action2 = UIAlertAction(title: "From Photo Library".localized(), style: .default) { _ in
             self.showImagePicker(sourceType: .photoLibrary)
         }
-        let action3 = UIAlertAction(title: "Cancel", style: .cancel)
+        let action3 = UIAlertAction(title: "Cancel".localized(), style: .cancel)
 
         alert.addAction(action1)
         alert.addAction(action2)

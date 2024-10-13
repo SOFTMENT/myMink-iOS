@@ -75,7 +75,7 @@ class PostViewController: UIViewController {
         }
         else {
             self.topUsername.isHidden = true
-            self.topPostLbl.text = "Explore"
+            self.topPostLbl.text = "Explore".localized()
             if postModels.count > 0 {
                 self.loadUserData()
             }
@@ -136,17 +136,13 @@ class PostViewController: UIViewController {
         for postModel in self.postModels {
             self.checkCurrentUserLikedPost(postID: postModel.postID ?? "") { isLike in
              
-                if isLike {
-                    FavoritesManager.shared.toggleFavorite(for: postModel.postID ?? "", isLiked: isLike)
-                }
+
                
                 FavoritesManager.shared.setFavorites(with: postModel.postID ?? "", isLiked: isLike)
                 
             }
             self.checkCurrentUserSavePost(postID: postModel.postID ?? "") { isSave in
-                if isSave {
-                    SavedManager.shared.toggleSave(for: postModel.postID ?? "", isSave: isSave)
-                }
+
              
                 SavedManager.shared.setSave(with: postModel.postID ?? "", isSave: isSave)
             }
@@ -159,11 +155,11 @@ class PostViewController: UIViewController {
         for postModel in self.postModels {
             self.checkCurrentUserLikedPost(postID: postModel.postID ?? "123") { isLike in
                
-                FavoritesManager.shared.toggleFavorite(for: postModel.postID ?? "", isLiked: isLike)
+              
                 FavoritesManager.shared.setFavorites(with: postModel.postID ?? "123", isLiked: isLike)
             }
             self.checkCurrentUserSavePost(postID: postModel.postID ?? "") { isLike in
-                SavedManager.shared.toggleSave(for: postModel.postID ?? "", isSave: isLike)
+              
                 SavedManager.shared.setSave(with: postModel.postID ?? "", isSave: isLike)
             }
              
@@ -177,7 +173,7 @@ class PostViewController: UIViewController {
                        
                     } else {
                         
-                        self.businessPostdeletedErrorFirebase(error: "Post Deleted PostViewController Business")
+                        self.businessPostdeletedErrorFirebase(error: "Post Deleted PostViewController Business".localized())
                     
                         self.deletePostClicked(postModel: postModel) { _ in
                             
@@ -195,7 +191,7 @@ class PostViewController: UIViewController {
                         postModel.userModel = userModel
                     } else {
                       
-                        self.businessPostdeletedErrorFirebase(error: "Post Deleted PostViewController User")
+                        self.businessPostdeletedErrorFirebase(error: "Post Deleted PostViewController User".localized())
                         self.deletePostClicked(postModel: postModel) { _ in
                             
                         }
@@ -223,11 +219,14 @@ class PostViewController: UIViewController {
 
     @objc func backBtnClicked() {
         dismiss(animated: false)
+        pauseAllPlayers()
     }
 
     override func viewWillDisappear(_: Bool) {
         self.pauseAllPlayers()
     }
+    
+  
     
     @objc func likeViewClicked(value : MyGesture){
         self.ProgressHUDShow(text: "")
@@ -248,7 +247,7 @@ class PostViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        handleScroll()
+         handleScroll()
     }
 
     @objc func shareBtnClicked(value: MyGesture) {
@@ -259,7 +258,7 @@ class PostViewController: UIViewController {
                 if let shareURL = postModel.shareURL, !shareURL.isEmpty {
                     self.shareImageAndVideo(postCell: value.postCell, link: shareURL, postId: postModel.postID!)
                 } else {
-                    self.showSnack(messages: "Share URL not found.")
+                    self.showSnack(messages: "Share URL not found.".localized())
                 }
             } else {
                 if let image = preparePostScreenshot(view: value.postCell.mView) {
@@ -284,12 +283,12 @@ class PostViewController: UIViewController {
     }
 
     @objc func likeBtnClicked(gest: MyGesture) {
-        onPressLikeButton( postId: self.postModels[gest.index].postID ?? "123", gest: gest)
+        onPressLikeButton( postModel: self.postModels[gest.index], gest: gest)
     }
 
     func alertWithTF(postID: String) {
         let alertController = UIAlertController(
-            title: "Report",
+            title: "Report".localized(),
             message: "\n\n\n\n\n",
             preferredStyle: .alert
         ) // Added extra newlines for textView space
@@ -301,10 +300,10 @@ class PostViewController: UIViewController {
 
         alertController.view.addSubview(textView)
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .default, handler: nil)
         alertController.addAction(cancelAction)
 
-        let saveAction = UIAlertAction(title: "Submit", style: .default) { _ in
+        let saveAction = UIAlertAction(title: "Submit".localized(), style: .default) { _ in
             let enteredText = textView.text
             if enteredText != "" {
                 self.reportPost(reason: enteredText ?? "", postID: postID) { message in
@@ -451,7 +450,7 @@ class PostViewController: UIViewController {
         UIPasteboard.general.string = caption
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
-        showSnack(messages: "Caption has copied.")
+        showSnack(messages: "Caption has copied.".localized())
     }
 }
 
@@ -465,7 +464,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func scrollViewDidScroll(_: UIScrollView) {
-        self.handleScroll()
+     self.handleScroll()
     }
 
     func handleScroll() {
@@ -536,7 +535,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
            
             else {
              
-                self.businessPostdeletedErrorFirebase(error: "Post Deleted PostViewController CELL")
+                self.businessPostdeletedErrorFirebase(error: "Post Deleted PostViewController CELL".localized())
                 self.deletePostClicked(postModel: postModel) { _ in
                     
                 }
@@ -589,18 +588,18 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
             if businessModel != nil {
                 if canBusinessesUploadPost(lastPostDate: businessModel!.lastPostDate) && (postModel.isPromoted == nil || postModel.isPromoted! == false) {
                     let promote = UIAction(
-                        title: "Promote",
+                        title: "Promote".localized(),
                         image: UIImage(systemName: "square.and.arrow.up.fill")
                     ) { _ in
                         
-                        self.ProgressHUDShow(text: "Promoting...")
+                        self.ProgressHUDShow(text: "Promoting...".localized())
                       
                         FirebaseStoreManager.db.collection(Collections.posts.rawValue).document(postModel.postID!).setData(["isPromoted" : true], merge: true) { error in
                             self.ProgressHUDHide()
                             businessModel!.lastPostDate = Date()
                             self.updateBusinessLastPostDate(id: self.businessModel!.businessId ?? "123")
                             self.tableView.reloadData()
-                            self.showSnack(messages: "Promoted")
+                            self.showSnack(messages: "Promoted".localized())
                             postModel.isPromoted = true
                         }
                         
@@ -614,18 +613,18 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             let edit = UIAction(
-                title: "Edit",
+                title: "Edit".localized(),
                 image: UIImage(systemName: "pencil.circle.fill")
             ) { _ in
 
                 self.performSegue(withIdentifier: "profileEditPostSeg", sender: postModel)
             }
             let delete = UIAction(
-                title: "Delete",
+                title: "Delete".localized(),
                 image: UIImage(systemName: "trash.fill")
             ) { _ in
 
-                self.ProgressHUDShow(text: "Deleting...")
+                self.ProgressHUDShow(text: "Deleting...".localized())
                 self.deletePostClicked(postModel: postModel) { error in
                     
                     DispatchQueue.main.async {
@@ -643,7 +642,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
             let report = UIAction(
-                title: "Report",
+                title: "Report".localized(),
                 image: UIImage(systemName: "exclamationmark.triangle.fill")
             ) { _ in
 
@@ -653,8 +652,8 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
             uiMenuElements.append(report)
             
             if let caption = postModel.caption, !caption.isEmpty {
-                let transalte = UIAction(title: "Translate", image: UIImage(systemName: "translate")) { _ in
-                    self.ProgressHUDShow(text: "Translating...")
+                let transalte = UIAction(title: "Translate".localized(), image: UIImage(systemName: "translate")) { _ in
+                    self.ProgressHUDShow(text: "Translating...".localized())
                     TranslationService.shared.translateText(text: caption) { translate in
                         DispatchQueue.main.async {
                             self.ProgressHUDHide()
@@ -981,14 +980,7 @@ extension PostViewController: MediaBrowserViewControllerDataSource {
     }
 }
 
-// MARK: ReloadTableViewDelegate
 
-extension PostViewController: ReloadTableViewDelegate {
-    func reloadTableView() {
-        self.tableView.reloadData()
-        self.handleScroll()
-    }
-}
 
 // MARK: ReturnPlayerDelegate
 

@@ -66,7 +66,7 @@ class CryptocurrencyViewController: UIViewController {
             self.priceName.text = "USD"
             self.fetchCrypto(currency: "usd")
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
         present(alert, animated: true)
     }
 

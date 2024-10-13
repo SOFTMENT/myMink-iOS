@@ -1,0 +1,255 @@
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "0b8-WI-ohd"; */
+"0b8-WI-ohd.placeholder" = "Adgangskode";
+
+/* Class = "UILabel"; text = "Enter your details to create a new account"; ObjectID = "1fm-KV-g8f"; */
+"1fm-KV-g8f.text" = "Indtast dine oplysninger for at oprette en ny konto";
+
+/* Class = "UIButton"; normalTitle = "Go to Login Screen"; ObjectID = "1jG-Bz-y8Y"; */
+"1jG-Bz-y8Y.normalTitle" = "Gå til loginskærm";
+
+/* Class = "UILabel"; text = "Don't have an account?"; ObjectID = "2Zv-NV-eUZ"; */
+"2Zv-NV-eUZ.text" = "Har du ikke en konto?";
+
+/* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "3I3-C8-52N"; */
+"3I3-C8-52N.placeholder" = "E-mail adresse";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "3xR-fE-zsb"; */
+"3xR-fE-zsb.text" = "Tilmeld";
+
+/* Class = "UITextField"; placeholder = "Code"; ObjectID = "5HW-Pl-mIB"; */
+"5HW-Pl-mIB.placeholder" = "Kode";
+
+/* Class = "UILabel"; text = "Enter Code"; ObjectID = "5Ix-sf-BtG"; */
+"5Ix-sf-BtG.text" = "Indtast kode";
+
+/* Class = "UILabel"; text = "Resend Code"; ObjectID = "5do-Zb-4wW"; */
+"5do-Zb-4wW.text" = "Gensend kode";
+
+/* Class = "UILabel"; text = "Enter your email address to get verification code"; ObjectID = "5lz-ok-5g6"; */
+"5lz-ok-5g6.text" = "Indtast din e-mail adresse for at få en bekræftelseskode";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "7Yp-9H-hqp"; */
+"7Yp-9H-hqp.normalTitle" = "Tilmeld";
+
+/* Class = "UIButton"; normalTitle = "Create an account"; ObjectID = "7qc-te-agu"; */
+"7qc-te-agu.normalTitle" = "Opret en konto";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "88U-ET-d39"; */
+"88U-ET-d39.normalTitle" = "Log ind";
+
+/* Class = "UIButton"; normalTitle = "Start Free Trial"; ObjectID = "8j3-JS-g2E"; */
+"8j3-JS-g2E.normalTitle" = "Start gratis prøveperiode";
+
+/* Class = "UILabel"; text = "Yearly"; ObjectID = "9QT-Sp-Vvh"; */
+"9QT-Sp-Vvh.text" = "Årligt";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "BVa-JZ-UIL"; */
+"BVa-JZ-UIL.placeholder" = "Adgangskode";
+
+/* Class = "UILabel"; text = "Terms Of Use"; ObjectID = "CEF-Tf-gu3"; */
+"CEF-Tf-gu3.text" = "Brugsbetingelser";
+
+/* Class = "UILabel"; text = "Lifetime"; ObjectID = "CaC-nj-0OM"; */
+"CaC-nj-0OM.text" = "Livstid";
+
+/* Class = "UIButton"; normalTitle = "RECOMMEND"; ObjectID = "Ctt-R4-Y7D"; */
+"Ctt-R4-Y7D.normalTitle" = "ANBEFAL";
+
+/* Class = "UITextField"; placeholder = "VIP Code"; ObjectID = "CzU-RZ-qwx"; */
+"CzU-RZ-qwx.placeholder" = "VIP-kode";
+
+/* Class = "UITextField"; placeholder = "First Name"; ObjectID = "FaG-jD-NxL"; */
+"FaG-jD-NxL.placeholder" = "Fornavn";
+
+/* Class = "UILabel"; text = "85% OFF"; ObjectID = "Fxr-l0-tRg"; */
+"Fxr-l0-tRg.text" = "85% RABAT";
+
+/* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "GH7-Z1-tdw"; */
+"GH7-Z1-tdw.placeholder" = "E-mail adresse";
+
+/* Class = "UILabel"; text = "VIP Code"; ObjectID = "Gnb-2G-7A9"; */
+"Gnb-2G-7A9.text" = "VIP-kode";
+
+/* Class = "UILabel"; text = "Astoria, OR, USA"; ObjectID = "Iwu-hi-Cyq"; */
+"Iwu-hi-Cyq.text" = "Astoria, OR, USA";
+
+/* Class = "UILabel"; text = "Enter one time password sent to your email address"; ObjectID = "JcF-6F-M6z"; */
+"JcF-6F-M6z.text" = "Indtast engangskode sendt til din e-mail adresse";
+
+/* Class = "UILabel"; text = "Biography"; ObjectID = "Jtg-iH-sXr"; */
+"Jtg-iH-sXr.text" = "Biografi";
+
+/* Class = "UILabel"; text = "Enter your email address & password below"; ObjectID = "K4S-bz-RMy"; */
+"K4S-bz-RMy.text" = "Indtast din e-mail adresse og adgangskode nedenfor";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "KN4-MK-fZl"; */
+"KN4-MK-fZl.normalTitle" = "Log ind";
+
+/* Class = "UILabel"; text = "Enter your VIP code here"; ObjectID = "Ko0-Xi-rHP"; */
+"Ko0-Xi-rHP.text" = "Indtast din VIP-kode her";
+
+/* Class = "UILabel"; text = "Start 3 days free trial"; ObjectID = "LDx-Y9-EOO"; */
+"LDx-Y9-EOO.text" = "Start 3 dages gratis prøveperiode";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "M85-AK-9Z0"; */
+"M85-AK-9Z0.normalTitle" = "Tilmeld";
+
+/* Class = "UILabel"; text = "my MINK"; ObjectID = "MMO-PY-SUi"; */
+"MMO-PY-SUi.text" = "min MINK";
+
+/* Class = "UILabel"; text = "Login"; ObjectID = "McP-re-x07"; */
+"McP-re-x07.text" = "Log ind";
+
+/* Class = "UILabel"; text = "Enter Code"; ObjectID = "NAp-ya-tuv"; */
+"NAp-ya-tuv.text" = "Indtast kode";
+
+/* Class = "UILabel"; text = "Retrieve Password"; ObjectID = "Nh0-LN-KU7"; */
+"Nh0-LN-KU7.text" = "Hent adgangskode";
+
+/* Class = "UILabel"; text = "Or Login with"; ObjectID = "Pxl-Ub-Ji8"; */
+"Pxl-Ub-Ji8.text" = "Eller log ind med";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "Q4I-GW-3wp"; */
+"Q4I-GW-3wp.normalTitle" = "Log ind";
+
+/* Class = "UITextField"; placeholder = "Code"; ObjectID = "RLZ-sl-BBx"; */
+"RLZ-sl-BBx.placeholder" = "Kode";
+
+/* Class = "UILabel"; text = "Great!, here is your password"; ObjectID = "RtB-ib-eLJ"; */
+"RtB-ib-eLJ.text" = "Fantastisk! Her er din adgangskode";
+
+/* Class = "UITextField"; placeholder = "Code"; ObjectID = "SUy-ib-U0f"; */
+"SUy-ib-U0f.placeholder" = "Kode";
+
+/* Class = "UILabel"; text = "SUCCESSFUL"; ObjectID = "UvA-LL-upB"; */
+"UvA-LL-upB.text" = "VELLYKKET";
+
+/* Class = "UILabel"; text = "Sign In"; ObjectID = "VPB-HK-bIn"; */
+"VPB-HK-bIn.text" = "Log ind";
+
+/* Class = "UITextField"; placeholder = "First Name"; ObjectID = "YnH-6i-5UV"; */
+"YnH-6i-5UV.placeholder" = "Fornavn";
+
+/* Class = "UILabel"; text = "Unlock all features and functionalities, advance and utilise the app. Enjoy the bundle. Get access to create your own profile, apply camera and filters. Harness an overview of the crypto market, explore my MINK Chatbot. Watch reels, listen to music and engage in live streams with text, chat and more.."; ObjectID = "ZPO-wB-Qgk"; */
+"ZPO-wB-Qgk.text" = "Lås op for alle funktioner og funktionaliteter, avancer og udnyt appen. Nyd pakken. Få adgang til at oprette din egen profil, anvende kamera og filtre. Få et overblik over kryptomarkedet, udforsk min MINK Chatbot. Se reels, lyt til musik og deltag i live streams med tekst, chat og mere.";
+
+/* Class = "UITextField"; placeholder = "Phone Number"; ObjectID = "aA9-9H-Ty6"; */
+"aA9-9H-Ty6.placeholder" = "Telefonnummer";
+
+/* Class = "UILabel"; text = "Monthly"; ObjectID = "bcj-1L-UQ9"; */
+"bcj-1L-UQ9.text" = "Månedligt";
+
+/* Class = "UILabel"; text = "$26.99 per year"; ObjectID = "c36-g6-zcS"; */
+"c36-g6-zcS.text" = "$26.99 om året";
+
+/* Class = "UILabel"; text = "Resend Code"; ObjectID = "cEQ-un-HD1"; */
+"cEQ-un-HD1.text" = "Gensend kode";
+
+/* Class = "UITextField"; placeholder = "Last Name"; ObjectID = "cdi-YT-bHo"; */
+"cdi-YT-bHo.placeholder" = "Efternavn";
+
+/* Class = "UILabel"; text = "Enter your country code  & phone number below"; ObjectID = "daI-la-2sc"; */
+"daI-la-2sc.text" = "Indtast din landekode og telefonnummer nedenfor";
+
+/* Class = "UILabel"; text = "Login"; ObjectID = "dea-ND-EGS"; */
+"dea-ND-EGS.text" = "Log ind";
+
+/* Class = "UILabel"; text = "Forgot Password?"; ObjectID = "e9C-sg-yL1"; */
+"e9C-sg-yL1.text" = "Glemt adgangskode?";
+
+/* Class = "UIButton"; normalTitle = "Get Code"; ObjectID = "ea8-DQ-oGo"; */
+"ea8-DQ-oGo.normalTitle" = "Få kode";
+
+/* Class = "UIButton"; normalTitle = "Verify"; ObjectID = "eeJ-qI-wEm"; */
+"eeJ-qI-wEm.normalTitle" = "Bekræft";
+
+/* Class = "UILabel"; text = "support@softment.in"; ObjectID = "fGH-Jd-xls"; */
+"fGH-Jd-xls.text" = "support@softment.in";
+
+/* Class = "UILabel"; text = "Password@2020"; ObjectID = "g6a-tG-Yd4"; */
+"g6a-tG-Yd4.text" = "Adgangskode@2020";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "gfu-cP-N2G"; */
+"gfu-cP-N2G.normalTitle" = "Fortsæt";
+
+/* Class = "UITextField"; placeholder = "Last Name"; ObjectID = "ggh-gb-X9P"; */
+"ggh-gb-X9P.placeholder" = "Efternavn";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "h5q-27-WKO"; */
+"h5q-27-WKO.text" = "Tilmeld";
+
+/* Class = "UILabel"; text = "Or resend"; ObjectID = "hcz-Cn-udr"; */
+"hcz-Cn-udr.text" = "Eller gensend";
+
+/* Class = "UILabel"; text = "Already have an account?"; ObjectID = "j0H-P0-fNt"; */
+"j0H-P0-fNt.text" = "Har du allerede en konto?";
+
+/* Class = "UILabel"; text = "Let’s get started with a login or create your new my MINK account."; ObjectID = "jcl-nl-n8K"; */
+"jcl-nl-n8K.text" = "Lad os komme i gang med at logge ind eller oprette din nye my MINK-konto.";
+
+/* Class = "UILabel"; text = "Unroll the world with"; ObjectID = "jgL-EJ-tvj"; */
+"jgL-EJ-tvj.text" = "Rul verden ud med";
+
+/* Class = "UILabel"; text = "Cancel at anytime from Settings"; ObjectID = "kP6-hl-FhI"; */
+"kP6-hl-FhI.text" = "Annuller når som helst fra Indstillinger";
+
+/* Class = "UIButton"; normalTitle = "Verify"; ObjectID = "mMS-FA-cEY"; */
+"mMS-FA-cEY.normalTitle" = "Bekræft";
+
+/* Class = "UITextField"; placeholder = "Website (Optional)"; ObjectID = "nAY-H4-C1O"; */
+"nAY-H4-C1O.placeholder" = "Websted (valgfrit)";
+
+/* Class = "UILabel"; text = "$14.99 per month"; ObjectID = "nRU-Kw-kCU"; */
+"nRU-Kw-kCU.text" = "$14.99 pr. måned";
+
+/* Class = "UILabel"; text = "Or Sign Up with"; ObjectID = "oIY-7T-fdC"; */
+"oIY-7T-fdC.text" = "Eller tilmeld dig med";
+
+/* Class = "UITextField"; placeholder = "Phone Number"; ObjectID = "oP0-eC-sFc"; */
+"oP0-eC-sFc.placeholder" = "Telefonnummer";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "okM-CW-Q6q"; */
+"okM-CW-Q6q.placeholder" = "Brugernavn";
+
+/* Class = "UILabel"; text = "$99.99"; ObjectID = "osH-Hn-waO"; */
+"osH-Hn-waO.text" = "$99.99";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "pKJ-os-yq1"; */
+"pKJ-os-yq1.text" = "Tilmeld";
+
+/* Class = "UILabel"; text = "Upload your picture"; ObjectID = "pbD-sO-9gb"; */
+"pbD-sO-9gb.text" = "Upload dit billede";
+
+/* Class = "UILabel"; text = "Enter your details to create a new account"; ObjectID = "rFR-SO-3wS"; */
+"rFR-SO-3wS.text" = "Indtast dine oplysninger for at oprette en ny konto";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "rZ2-AU-3CA"; */
+"rZ2-AU-3CA.normalTitle" = "Upload";
+
+/* Class = "UIButton"; normalTitle = "Apply"; ObjectID = "s7o-i2-Rsr"; */
+"s7o-i2-Rsr.normalTitle" = "Anvend";
+
+/* Class = "UILabel"; text = "Enter one time password sent to your phone number"; ObjectID = "t5b-nd-wZT"; */
+"t5b-nd-wZT.text" = "Indtast engangskode sendt til dit telefonnummer";
+
+/* Class = "UILabel"; text = "&"; ObjectID = "tNx-OQ-krh"; */
+"tNx-OQ-krh.text" = "&";
+
+/* Class = "UILabel"; text = "Or resend"; ObjectID = "vDA-SG-6Hl"; */
+"vDA-SG-6Hl.text" = "Eller gensend";
+
+/* Class = "UILabel"; text = "Remember Me"; ObjectID = "w4Q-XT-7ym"; */
+"w4Q-XT-7ym.text" = "Husk mig";
+
+/* Class = "UITextField"; placeholder = "Location"; ObjectID = "xUO-jf-M6h"; */
+"xUO-jf-M6h.placeholder" = "Placering";
+
+/* Class = "UITextField"; placeholder = "Code"; ObjectID = "xxR-vu-zdU"; */
+"xxR-vu-zdU.placeholder" = "Kode";
+
+/* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "xxb-qk-QkT"; */
+"xxb-qk-QkT.placeholder" = "E-mail adresse";
+
+/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "ylU-5L-ddS"; */
+"ylU-5L-ddS.text" = "Fortrolighedspolitik";
+

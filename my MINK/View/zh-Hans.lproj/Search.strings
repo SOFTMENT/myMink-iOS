@@ -1,0 +1,26 @@
+/* Class = "UISegmentedControl"; OHB-R9-wTb.segmentTitles[0] = "帖子"; ObjectID = "OHB-R9-wTb"; */
+"OHB-R9-wTb.segmentTitles[0]" = "帖子";
+
+/* Class = "UISegmentedControl"; OHB-R9-wTb.segmentTitles[1] = "用户"; ObjectID = "OHB-R9-wTb"; */
+"OHB-R9-wTb.segmentTitles[1]" = "用户";
+
+/* Class = "UITextField"; placeholder = "搜索用户和帖子"; ObjectID = "SVy-IS-fPr"; */
+"SVy-IS-fPr.placeholder" = "搜索用户和帖子";
+
+/* Class = "UILabel"; text = "@用户名"; ObjectID = "XaX-Yi-knk"; */
+"XaX-Yi-knk.text" = "@用户名";
+
+/* Class = "UILabel"; text = "全名"; ObjectID = "d5S-Sn-JUw"; */
+"d5S-Sn-JUw.text" = "全名";
+
+/* Class = "UILabel"; text = "未找到结果"; ObjectID = "jaG-7c-OJN"; */
+"jaG-7c-OJN.text" = "未找到结果";
+
+/* Class = "UILabel"; text = "搜索"; ObjectID = "opQ-7M-XlJ"; */
+"opQ-7M-XlJ.text" = "搜索";
+
+/* Class = "UILabel"; text = "未找到结果"; ObjectID = "vdw-5D-3EO"; */
+"vdw-5D-3EO.text" = "未找到结果";
+
+/* Class = "UILabel"; text = "显示全部"; ObjectID = "z43-9o-lLB"; */
+"z43-9o-lLB.text" = "显示全部";

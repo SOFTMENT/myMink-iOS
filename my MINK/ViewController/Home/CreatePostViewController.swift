@@ -5,7 +5,7 @@ import Combine
 import CropViewController
 import MobileCoreServices
 import UIKit
-
+import DSPhotoEditorSDK
 // MARK: - CreatePostViewController
 
 class CreatePostViewController: UIViewController {
@@ -54,7 +54,7 @@ class CreatePostViewController: UIViewController {
         captionTV.layer.borderWidth = 1
         captionTV.layer.borderColor = UIColor(red: 221 / 255, green: 221 / 255, blue: 221 / 255, alpha: 1).cgColor
         captionTV.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        captionTV.text = "Write a caption here"
+        captionTV.text = "Write a caption here".localized()
         captionTV.textColor = .lightGray
         captionTV.delegate = self
 
@@ -65,12 +65,13 @@ class CreatePostViewController: UIViewController {
         [edit1, edit2, edit3, edit4].forEach {
             $0?.layer.cornerRadius = 6
         }
-
+        
         editThumbnailBtn.layer.cornerRadius = 6
         addPostBtn.layer.cornerRadius = 8
         videoMainView.layer.cornerRadius = 8
         backView.layer.cornerRadius = 8
         backView.dropShadow()
+        
     }
 
     private func configurePostType() {
@@ -159,6 +160,29 @@ class CreatePostViewController: UIViewController {
         cropViewController.customAspectRatio = CGSize(width: 1, height: 1)
         present(cropViewController, animated: true)
     }
+    func presentDSPhotoEditor(i: Int) {
+        let dsPhotoEditorViewController = DSPhotoEditorViewController(image: images![i], toolsToHide: nil)
+        dsPhotoEditorViewController!.delegate = self
+        dsPhotoEditorViewController?.title = String(i)
+        dsPhotoEditorViewController?.modalPresentationStyle = .fullScreen
+        present(dsPhotoEditorViewController!, animated: true, completion: nil)
+    }
+    @IBAction func edit1Clicked(_: Any) {
+        self.presentDSPhotoEditor(i: 0)
+    }
+
+    @IBAction func edit2Clicked(_: Any) {
+        self.presentDSPhotoEditor(i: 1)
+    }
+
+    @IBAction func edit3Clicked(_: Any) {
+        self.presentDSPhotoEditor(i: 2)
+    }
+
+    @IBAction func edit4Clicked(_: Any) {
+        self.presentDSPhotoEditor(i: 3)
+    }
+
 
     @IBAction func addPostBtn(_: Any) {
         createPost()
@@ -216,7 +240,7 @@ class CreatePostViewController: UIViewController {
             uploadVideo(for: postModel)
         case .text:
             guard !sCaption.isEmpty else {
-                showSnack(messages: "Enter Caption")
+                showSnack(messages: "Enter Caption".localized())
                 return
             }
             ProgressHUDShow(text: "")
@@ -230,14 +254,15 @@ class CreatePostViewController: UIViewController {
         photoURL.removeAll()
         let fetchGroup = DispatchGroup()
         var i = 1
-        let loading = DownloadProgressHUDShow(text: "Image 1 Uploading...")
+        let loading = DownloadProgressHUDShow(text: "Image 1 Uploading...".localized())
 
         images?.forEach { photo in
             fetchGroup.enter()
             uploadFilesOnAWS(photo: photo, folderName: "PostImages", postType: .image, shouldHideProgress: true) { downloadURL in
                 if let downloadURL = downloadURL {
                     self.photoURL.append(downloadURL)
-                    self.DownloadProgressHUDUpdate(loading: loading, text: "Image \(i) Uploading...")
+                    self.DownloadProgressHUDUpdate(loading: loading, text: String(format: "Image %d Uploading...".localized(), i))
+
                     i += 1
                     loading.label.layoutIfNeeded()
                 }
@@ -262,7 +287,7 @@ class CreatePostViewController: UIViewController {
     private func uploadVideo(for postModel: PostModel) {
         ProgressHUDShow(text: "")
         guard let postID = postModel.postID else {
-            self.showSnack(messages: "PostID is null")
+            self.showSnack(messages: "PostID is null".localized())
             return
         }
         resizeVideo(id: postID , url: videoPath!) { url in
@@ -293,7 +318,7 @@ class CreatePostViewController: UIViewController {
                 self.showError(error)
             } else {
                 if self.businessId != nil {
-                    self.showSnack(messages: "Post Added")
+                    self.showSnack(messages: "Post Added".localized())
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                         self.dismiss(animated: true)
                     }
@@ -362,7 +387,7 @@ extension CreatePostViewController: UITextViewDelegate {
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Write a caption here"
+            textView.text = "Write a caption here".localized()
             textView.textColor = .lightGray
         }
     }
@@ -403,5 +428,30 @@ extension CreatePostViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
+    }
+}
+
+// MARK: DSPhotoEditorViewControllerDelegate
+extension CreatePostViewController: DSPhotoEditorViewControllerDelegate {
+    func dsPhotoEditor(_ editor: DSPhotoEditorViewController!, finishedWith image: UIImage!) {
+        dismiss(animated: true) {
+            if editor.title == "0" {
+                self.images![0] = image
+                self.image1.image = image
+            } else if editor.title == "1" {
+                self.images![1] = image
+                self.image2.image = image
+            } else if editor.title == "2" {
+                self.images![2] = image
+                self.image3.image = image
+            } else if editor.title == "3" {
+                self.images![3] = image
+                self.image4.image = image
+            }
+        }
+    }
+
+    func dsPhotoEditorCanceled(_: DSPhotoEditorViewController!) {
+        dismiss(animated: true, completion: nil)
     }
 }

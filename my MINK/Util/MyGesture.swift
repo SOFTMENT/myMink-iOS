@@ -18,4 +18,5 @@ class MyGesture: UITapGestureRecognizer {
     var ticket : TicketModel?
     var mView : UIView?
     var socialType : SocialMedia?
+    
 }

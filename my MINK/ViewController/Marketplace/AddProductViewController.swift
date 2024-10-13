@@ -48,7 +48,7 @@ class AddProductViewController: UIViewController {
     let categoryPicker = UIPickerView()
     var photoURL = [String]()
     var images: [UIImage]?
-    var delegate: ProductDelegate?
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +111,7 @@ class AddProductViewController: UIViewController {
         productDescriptionTV.layer.borderWidth = 1
         productDescriptionTV.layer.borderColor = UIColor(red: 221 / 255, green: 221 / 255, blue: 221 / 255, alpha: 1).cgColor
         productDescriptionTV.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        productDescriptionTV.text = "Write a product description"
+        productDescriptionTV.text = "Write a product description".localized()
         productDescriptionTV.textColor = .lightGray
         productDescriptionTV.delegate = self
         
@@ -154,9 +154,9 @@ class AddProductViewController: UIViewController {
         selectCategoryBar.tintColor = .link
         selectCategoryBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(categoryPickerDoneClicked))
+        let doneButton = UIBarButtonItem(title: "Done".localized(), style: .plain, target: self, action: #selector(categoryPickerDoneClicked))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(categoryPickerCancelClicked))
+        let cancelButton = UIBarButtonItem(title: "Cancel".localized(), style: .plain, target: self, action: #selector(categoryPickerCancelClicked))
         selectCategoryBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         selectCategoryBar.isUserInteractionEnabled = true
         selectCategoryTV.inputAccessoryView = selectCategoryBar
@@ -186,24 +186,24 @@ class AddProductViewController: UIViewController {
         
         
         guard let  downloadURL = self.downloadURL1,  !downloadURL.isEmpty else {
-            self.showSnack(messages: "Upload Product Image")
+            self.showSnack(messages: "Upload Product Image".localized())
             return
         }
         
         if title == "" {
-            self.showSnack(messages: "Enter Title")
+            self.showSnack(messages: "Enter Title".localized())
             return
         }
         else if category == "" {
-            self.showSnack(messages: "Select Category")
+            self.showSnack(messages: "Select Category".localized())
             return
         }
         else if price == "" {
-            self.showSnack(messages: "Enter Price")
+            self.showSnack(messages: "Enter Price".localized())
             return
         }
         else if description == "" {
-            self.showSnack(messages: "Enter Description")
+            self.showSnack(messages: "Enter Description".localized())
             return
         }
         
@@ -219,33 +219,41 @@ class AddProductViewController: UIViewController {
         marketModel.dateCreated = Date()
         marketModel.isActive = true
         marketModel.countryCode = getCountryCode()
-        marketModel.productImages?.append(downloadURL)
+        marketModel.productImages = Array()
+        marketModel.productImages!.append(downloadURL)
+        
         
         if let downloadURL2 = downloadURL2, !downloadURL2.isEmpty {
-            marketModel.productImages?.append(downloadURL2)
+            marketModel.productImages!.append(downloadURL2)
         }
-        if let downloadURL3 = downloadURL2, !downloadURL3.isEmpty {
-            marketModel.productImages?.append(downloadURL3)
+        if let downloadURL3 = downloadURL3, !downloadURL3.isEmpty {
+            marketModel.productImages!.append(downloadURL3)
         }
-        if let downloadURL4 = downloadURL2, !downloadURL4.isEmpty {
-            marketModel.productImages?.append(downloadURL4)
+        if let downloadURL4 = downloadURL4, !downloadURL4.isEmpty {
+            marketModel.productImages!.append(downloadURL4)
         }
         
-        productAdd(productModel: marketModel)
+        self.ProgressHUDShow(text: "")
+        createDeepLinkForProduct(productModel: marketModel) { url, error in
+            if let url = url {
+                marketModel.productUrl = url
+            }
+            self.productAdd(productModel: marketModel)
+        }
         
     }
     
-
     
     private func productAdd(productModel: MarketplaceModel) {
+     
         addProduct(marketModel: productModel) { error in
             self.ProgressHUDHide()
             if let error = error {
                 self.showError(error)
             } else {
-                self.showSnack(messages: "Product Added")
+                self.showSnack(messages: "Product Added".localized())
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                    self.delegate?.addProduct(productModel: productModel)
+                  
                     self.dismiss(animated: true)
                 }
             }
@@ -274,7 +282,7 @@ extension AddProductViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Write a product description"
+            textView.text = "Write a product description".localized()
             textView.textColor = .lightGray
         }
     }
@@ -297,7 +305,7 @@ extension AddProductViewController : UIImagePickerControllerDelegate, UINavigati
     }
     
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-        self.ProgressHUDShow(text: "Uploading...")
+        self.ProgressHUDShow(text: "Uploading...".localized())
         let title = cropViewController.title!
         
         if title == "Image 1" {

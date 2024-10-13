@@ -1,0 +1,98 @@
+/* Class = "UILabel"; text = "0"; ObjectID = "01Z-DA-FcC"; */
+"01Z-DA-FcC.text" = "0";
+
+/* Class = "UILabel"; text = "QR Code"; ObjectID = "09Q-JI-8Kh"; */
+"09Q-JI-8Kh.text" = "คิวอาร์โค้ด";
+
+/* Class = "UILabel"; text = "Following"; ObjectID = "0Lt-je-c5W"; */
+"0Lt-je-c5W.text" = "กำลังติดตาม";
+
+/* Class = "UILabel"; text = "Joined on 26 Jun 2023"; ObjectID = "0Nw-bu-ELF"; */
+"0Nw-bu-ELF.text" = "เข้าร่วมเมื่อ 26 มิ.ย. 2023";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "0Xg-aV-Xoo"; */
+"0Xg-aV-Xoo.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Follow"; ObjectID = "0om-0c-qbB"; */
+"0om-0c-qbB.normalTitle" = "ติดตาม";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "1M8-a3-WEH"; */
+"1M8-a3-WEH.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "3Im-oC-x0v"; */
+"3Im-oC-x0v.text" = "0";
+
+/* Class = "UILabel"; text = "Andrew Smith"; ObjectID = "49B-zY-0tU"; */
+"49B-zY-0tU.text" = "แอนดรูว์ สมิธ";
+
+/* Class = "UILabel"; text = "Welcome"; ObjectID = "4An-af-Mgr"; */
+"4An-af-Mgr.text" = "ยินดีต้อนรับ";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "4Y2-vZ-if5"; */
+"4Y2-vZ-if5.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Share Profile"; ObjectID = "5Hb-cx-iz0"; */
+"5Hb-cx-iz0.normalTitle" = "แชร์โปรไฟล์";
+
+/* Class = "UIButton"; normalTitle = "Follow"; ObjectID = "6LN-Fq-lrZ"; */
+"6LN-Fq-lrZ.normalTitle" = "ติดตาม";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "7Gu-JR-LYN"; */
+"7Gu-JR-LYN.text" = "0";
+
+/* Class = "UILabel"; text = "4 0f 11"; ObjectID = "8Aa-cQ-wn6"; */
+"8Aa-cQ-wn6.text" = "4 จาก 11";
+
+/* Class = "UILabel"; text = "UserName"; ObjectID = "909-Bd-Hxl"; */
+"909-Bd-Hxl.text" = "ชื่อผู้ใช้";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "9aA-RD-6jF"; */
+"9aA-RD-6jF.text" = "0";
+
+/* Class = "UILabel"; text = "Sponsored"; ObjectID = "ARl-oE-q79"; */
+"ARl-oE-q79.text" = "ผู้สนับสนุน";
+
+/* Class = "UILabel"; text = "Developer"; ObjectID = "AYr-uM-BwM"; */
+"AYr-uM-BwM.text" = "นักพัฒนา";
+
+/* Class = "UILabel"; text = "Image"; ObjectID = "Aiz-uH-KZa"; */
+"Aiz-uH-KZa.text" = "รูปภาพ";
+
+/* Class = "UILabel"; text = "No messages available"; ObjectID = "Bly-E3-PNa"; */
+"Bly-E3-PNa.text" = "ไม่มีข้อความที่พร้อมใช้งาน";
+
+/* Class = "UILabel"; text = "my MINK"; ObjectID = "CSQ-4O-w0x"; */
+"CSQ-4O-w0x.text" = "มาย มิงค์";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Dy5-Eg-HmE"; */
+"Dy5-Eg-HmE.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "EY9-bX-uU5"; */
+"EY9-bX-uU5.text" = "0";
+
+/* Class = "UILabel"; text = "Pressure"; ObjectID = "Eu7-m5-vTA"; */
+"Eu7-m5-vTA.text" = "ความกดดัน";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "FSP-Ih-JHf"; */
+"FSP-Ih-JHf.text" = "0";
+
+/* Class = "UITextField"; placeholder = "Search "; ObjectID = "G6K-JM-nED"; */
+"G6K-JM-nED.placeholder" = "ค้นหา";
+
+/* Class = "UILabel"; text = "Vijay Rathore"; ObjectID = "G6e-ZT-rKV"; */
+"G6e-ZT-rKV.text" = "วิชัย ราโถเร่";
+
+/* Class = "UIButton"; normalTitle = "Scan QR"; ObjectID = "Ico-7D-ogF"; */
+"Ico-7D-ogF.normalTitle" = "สแกนคิวอาร์";
+
+/* Class = "UILabel"; text = "28.8°C"; ObjectID = "IuQ-n3-aaF"; */
+"IuQ-n3-aaF.text" = "28.8°C";
+
+/* Class = "UILabel"; text = "No comments available"; ObjectID = "VvE-WC-u7d"; */
+"VvE-WC-u7d.text" = "ไม่มีความคิดเห็นที่พร้อมใช้งาน";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "a2k-td-MaC"; */
+"a2k-td-MaC.text" = "โพสต์";
+
+/* Class = "UILabel"; text = "Hello, How are you?"; ObjectID = "oiT-R3-r0f"; */
+"oiT-R3-r0f.text" = "สวัสดี, คุณเป็นอย่างไรบ้าง";

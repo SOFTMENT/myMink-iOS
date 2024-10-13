@@ -8,10 +8,23 @@ import CountryPicker
 
 /// Enumeration to represent different pricing options.
 enum PriceID: String {
-    case month = "ID_MONTHLY"
-    case year = "ID_YEARLY"
-    case lifetime = "ID_LIFETIME"
+    case month = "in.softment.monthly"
+    case year = "in.softment.yearly"
+    case lifetime = "in.softment.lifetime"
 }
+// MARK: - Notifications
+
+/// Enumeration to represent different pricing options.
+enum Notifications : String {
+  
+    case like = "Like"
+    case comment = "Comment"
+    case following = "Following"
+    case event = "Event"
+    
+}
+
+
 
 // MARK: - SocialMedia
 
@@ -64,6 +77,7 @@ enum Collections: String {
     case feeds = "Feeds"
     case comments = "Comments"
     case socialMedia = "SocialMedia"
+    case notifications = "Notifications"
 }
 
 // MARK: - PostType
@@ -83,6 +97,7 @@ enum SearchIndex: String {
     case users = "Users"
     case events = "Events"
     case marketplace = "Marketplace"
+    case businesses = "Businesses"
 }
 
 // MARK: - BranchIOFeature
@@ -143,6 +158,7 @@ enum AccountType: String {
 
 /// Structure to hold constant values used across the application.
 struct Constants {
+
     static var imageIndex = 0
     static var selectedTabBarPosition = 0
     static var currentDate = Date()
@@ -322,7 +338,101 @@ struct Constants {
     {"name": "Montserrat", "dial_code": "+1664", "code": "MS", "currency": "XCD"},
     {"name": "Morocco", "dial_code": "+212", "code": "MA", "currency": "MAD"},
     {"name": "Mozambique", "dial_code": "+258", "code": "MZ", "currency": "MZN"},
-    {"name": "Myanmar", "dial_code": "+95", "code": "MM", "currency": "MMK"}
+    {"name": "Myanmar", "dial_code": "+95", "code": "MM", "currency": "MMK"},
+    {"name": "Namibia", "dial_code": "+264", "code": "NA", "currency": "NAD"},
+    {"name": "Nauru", "dial_code": "+674", "code": "NR", "currency": "AUD"},
+    {"name": "Nepal", "dial_code": "+977", "code": "NP", "currency": "NPR"},
+    {"name": "Netherlands", "dial_code": "+31", "code": "NL", "currency": "EUR"},
+    {"name": "New Caledonia", "dial_code": "+687", "code": "NC", "currency": "XPF"},
+    {"name": "New Zealand", "dial_code": "+64", "code": "NZ", "currency": "NZD"},
+    {"name": "Nicaragua", "dial_code": "+505", "code": "NI", "currency": "NIO"},
+    {"name": "Niger", "dial_code": "+227", "code": "NE", "currency": "XOF"},
+    {"name": "Nigeria", "dial_code": "+234", "code": "NG", "currency": "NGN"},
+    {"name": "Niue", "dial_code": "+683", "code": "NU", "currency": "NZD"},
+    {"name": "Norfolk Island", "dial_code": "+672", "code": "NF", "currency": "AUD"},
+    {"name": "North Korea", "dial_code": "+850", "code": "KP", "currency": "KPW"},
+    {"name": "Northern Mariana Islands", "dial_code": "+1670", "code": "MP", "currency": "USD"},
+    {"name": "Norway", "dial_code": "+47", "code": "NO", "currency": "NOK"},
+    {"name": "Oman", "dial_code": "+968", "code": "OM", "currency": "OMR"},
+    {"name": "Pakistan", "dial_code": "+92", "code": "PK", "currency": "PKR"},
+    {"name": "Palau", "dial_code": "+680", "code": "PW", "currency": "USD"},
+    {"name": "Palestine", "dial_code": "+970", "code": "PS", "currency": "ILS"},
+    {"name": "Panama", "dial_code": "+507", "code": "PA", "currency": "PAB"},
+    {"name": "Papua New Guinea", "dial_code": "+675", "code": "PG", "currency": "PGK"},
+    {"name": "Paraguay", "dial_code": "+595", "code": "PY", "currency": "PYG"},
+    {"name": "Peru", "dial_code": "+51", "code": "PE", "currency": "PEN"},
+    {"name": "Philippines", "dial_code": "+63", "code": "PH", "currency": "PHP"},
+    {"name": "Pitcairn", "dial_code": "+64", "code": "PN", "currency": "NZD"},
+    {"name": "Poland", "dial_code": "+48", "code": "PL", "currency": "PLN"},
+    {"name": "Portugal", "dial_code": "+351", "code": "PT", "currency": "EUR"},
+    {"name": "Puerto Rico", "dial_code": "+1", "code": "PR", "currency": "USD"},
+    {"name": "Qatar", "dial_code": "+974", "code": "QA", "currency": "QAR"},
+    {"name": "Reunion", "dial_code": "+262", "code": "RE", "currency": "EUR"},
+    {"name": "Romania", "dial_code": "+40", "code": "RO", "currency": "RON"},
+    {"name": "Russia", "dial_code": "+7", "code": "RU", "currency": "RUB"},
+    {"name": "Rwanda", "dial_code": "+250", "code": "RW", "currency": "RWF"},
+    {"name": "Saint Barthelemy", "dial_code": "+590", "code": "BL", "currency": "EUR"},
+    {"name": "Saint Helena, Ascension and Tristan Da Cunha", "dial_code": "+290", "code": "SH", "currency": "SHP"},
+    {"name": "Saint Kitts and Nevis", "dial_code": "+1869", "code": "KN", "currency": "XCD"},
+    {"name": "Saint Lucia", "dial_code": "+1758", "code": "LC", "currency": "XCD"},
+    {"name": "Saint Martin", "dial_code": "+590", "code": "MF", "currency": "EUR"},
+    {"name": "Saint Pierre and Miquelon", "dial_code": "+508", "code": "PM", "currency": "EUR"},
+    {"name": "Saint Vincent and the Grenadines", "dial_code": "+1784", "code": "VC", "currency": "XCD"},
+    {"name": "Samoa", "dial_code": "+685", "code": "WS", "currency": "WST"},
+    {"name": "San Marino", "dial_code": "+378", "code": "SM", "currency": "EUR"},
+    {"name": "Sao Tome and Principe", "dial_code": "+239", "code": "ST", "currency": "STN"},
+    {"name": "Saudi Arabia", "dial_code": "+966", "code": "SA", "currency": "SAR"},
+    {"name": "Senegal", "dial_code": "+221", "code": "SN", "currency": "XOF"},
+    {"name": "Serbia", "dial_code": "+381", "code": "RS", "currency": "RSD"},
+    {"name": "Seychelles", "dial_code": "+248", "code": "SC", "currency": "SCR"},
+    {"name": "Sierra Leone", "dial_code": "+232", "code": "SL", "currency": "SLL"},
+    {"name": "Singapore", "dial_code": "+65", "code": "SG", "currency": "SGD"},
+    {"name": "Sint Maarten", "dial_code": "+1721", "code": "SX", "currency": "ANG"},
+    {"name": "Slovakia", "dial_code": "+421", "code": "SK", "currency": "EUR"},
+    {"name": "Slovenia", "dial_code": "+386", "code": "SI", "currency": "EUR"},
+    {"name": "Solomon Islands", "dial_code": "+677", "code": "SB", "currency": "SBD"},
+    {"name": "Somalia", "dial_code": "+252", "code": "SO", "currency": "SOS"},
+    {"name": "South Africa", "dial_code": "+27", "code": "ZA", "currency": "ZAR"},
+    {"name": "South Korea", "dial_code": "+82", "code": "KR", "currency": "KRW"},
+    {"name": "South Sudan", "dial_code": "+211", "code": "SS", "currency": "SSP"},
+    {"name": "Spain", "dial_code": "+34", "code": "ES", "currency": "EUR"},
+    {"name": "Sri Lanka", "dial_code": "+94", "code": "LK", "currency": "LKR"},
+    {"name": "Sudan", "dial_code": "+249", "code": "SD", "currency": "SDG"},
+    {"name": "Suriname", "dial_code": "+597", "code": "SR", "currency": "SRD"},
+    {"name": "Svalbard and Jan Mayen", "dial_code": "+47", "code": "SJ", "currency": "NOK"},
+    {"name": "Swaziland", "dial_code": "+268", "code": "SZ", "currency": "SZL"},
+    {"name": "Sweden", "dial_code": "+46", "code": "SE", "currency": "SEK"},
+    {"name": "Switzerland", "dial_code": "+41", "code": "CH", "currency": "CHF"},
+    {"name": "Syrian Arab Republic", "dial_code": "+963", "code": "SY", "currency": "SYP"},
+    {"name": "Taiwan", "dial_code": "+886", "code": "TW", "currency": "TWD"},
+    {"name": "Tajikistan", "dial_code": "+992", "code": "TJ", "currency": "TJS"},
+    {"name": "Tanzania", "dial_code": "+255", "code": "TZ", "currency": "TZS"},
+    {"name": "Thailand", "dial_code": "+66", "code": "TH", "currency": "THB"},
+    {"name": "Timor-Leste", "dial_code": "+670", "code": "TL", "currency": "USD"},
+    {"name": "Togo", "dial_code": "+228", "code": "TG", "currency": "XOF"},
+    {"name": "Tokelau", "dial_code": "+690", "code": "TK", "currency": "NZD"},
+    {"name": "Tonga", "dial_code": "+676", "code": "TO", "currency": "TOP"},
+    {"name": "Trinidad and Tobago", "dial_code": "+1868", "code": "TT", "currency": "TTD"},
+    {"name": "Tunisia", "dial_code": "+216", "code": "TN", "currency": "TND"},
+    {"name": "Turkey", "dial_code": "+90", "code": "TR", "currency": "TRY"},
+    {"name": "Turkmenistan", "dial_code": "+993", "code": "TM", "currency": "TMT"},
+    {"name": "Turks and Caicos Islands", "dial_code": "+1649", "code": "TC", "currency": "USD"},
+    {"name": "Tuvalu", "dial_code": "+688", "code": "TV", "currency": "AUD"},
+    {"name": "Uganda", "dial_code": "+256", "code": "UG", "currency": "UGX"},
+    {"name": "Ukraine", "dial_code": "+380", "code": "UA", "currency": "UAH"},
+    {"name": "United Arab Emirates", "dial_code": "+971", "code": "AE", "currency": "AED"},
+    {"name": "United Kingdom", "dial_code": "+44", "code": "GB", "currency": "GBP"},
+    {"name": "United States", "dial_code": "+1", "code": "US", "currency": "USD"},
+    {"name": "Uruguay", "dial_code": "+598", "code": "UY", "currency": "UYU"},
+    {"name": "Uzbekistan", "dial_code": "+998", "code": "UZ", "currency": "UZS"},
+    {"name": "Vanuatu", "dial_code": "+678", "code": "VU", "currency": "VUV"},
+    {"name": "Venezuela", "dial_code": "+58", "code": "VE", "currency": "VES"},
+    {"name": "Vietnam", "dial_code": "+84", "code": "VN", "currency": "VND"},
+    {"name": "Wallis and Futuna", "dial_code": "+681", "code": "WF", "currency": "XPF"},
+    {"name": "Western Sahara", "dial_code": "+212", "code": "EH", "currency": "MAD"},
+    {"name": "Yemen", "dial_code": "+967", "code": "YE", "currency": "YER"},
+    {"name": "Zambia", "dial_code": "+260", "code": "ZM", "currency": "ZMW"},
+    {"name": "Zimbabwe", "dial_code": "+263", "code": "ZW", "currency": "ZWL"}
 ]
 """
     static let businessTypes = [

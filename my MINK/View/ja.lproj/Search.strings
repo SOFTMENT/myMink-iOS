@@ -1,0 +1,26 @@
+/* Class = "UISegmentedControl"; OHB-R9-wTb.segmentTitles[0] = "Posts"; ObjectID = "OHB-R9-wTb"; */
+"OHB-R9-wTb.segmentTitles[0]" = "投稿";
+
+/* Class = "UISegmentedControl"; OHB-R9-wTb.segmentTitles[1] = "Users"; ObjectID = "OHB-R9-wTb"; */
+"OHB-R9-wTb.segmentTitles[1]" = "ユーザー";
+
+/* Class = "UITextField"; placeholder = "Search Users and Posts"; ObjectID = "SVy-IS-fPr"; */
+"SVy-IS-fPr.placeholder" = "ユーザーと投稿を検索";
+
+/* Class = "UILabel"; text = "@Username"; ObjectID = "XaX-Yi-knk"; */
+"XaX-Yi-knk.text" = "@ユーザー名";
+
+/* Class = "UILabel"; text = "Full Name"; ObjectID = "d5S-Sn-JUw"; */
+"d5S-Sn-JUw.text" = "フルネーム";
+
+/* Class = "UILabel"; text = "No results found"; ObjectID = "jaG-7c-OJN"; */
+"jaG-7c-OJN.text" = "結果が見つかりません";
+
+/* Class = "UILabel"; text = "Search"; ObjectID = "opQ-7M-XlJ"; */
+"opQ-7M-XlJ.text" = "検索";
+
+/* Class = "UILabel"; text = "No results found"; ObjectID = "vdw-5D-3EO"; */
+"vdw-5D-3EO.text" = "結果が見つかりません";
+
+/* Class = "UILabel"; text = "Show All"; ObjectID = "z43-9o-lLB"; */
+"z43-9o-lLB.text" = "すべて表示";

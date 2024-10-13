@@ -52,7 +52,8 @@ class OrganisorDashboardViewController: UIViewController {
             return
         }
         mUser = user
-        name.text = "Hi, \(organizer.fullName ?? "User")"
+        name.text = String(format: "Hi, %@".localized(), organizer.fullName ?? "User")
+
         dateAndTime.text = convertDateForHomePage(Date())
     }
 

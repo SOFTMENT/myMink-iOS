@@ -110,19 +110,19 @@ class CompleteProfileViewController: UIViewController {
 
     @IBAction private func continueBtnClicked(_: Any) {
         guard isImageSelected else {
-            showSnack(messages: "Upload Profile Picture")
+            showSnack(messages: "Upload Profile Picture".localized())
             return
         }
         guard let sUsername = usernameTF.text, !sUsername.isEmpty else {
-            showSnack(messages: "Enter Username")
+            showSnack(messages: "Enter Username".localized())
             return
         }
         guard isLocationSelected else {
-            showSnack(messages: "Enter Location")
+            showSnack(messages: "Enter Location".localized())
             return
         }
         guard let sBio = bioGraphyTV.text, !sBio.isEmpty else {
-            showSnack(messages: "Enter Biography")
+            showSnack(messages: "Enter Biography".localized())
             return
         }
 
@@ -140,7 +140,7 @@ class CompleteProfileViewController: UIViewController {
                 } else if let snapshot = snapshot, snapshot.isEmpty {
                     self.updateUserProfile(username: sUsername)
                 } else {
-                    self.showSnack(messages: "Username is not available")
+                    self.showSnack(messages: "Username is not available".localized())
                 }
             }
     }
@@ -193,14 +193,14 @@ class CompleteProfileViewController: UIViewController {
     }
 
     @IBAction private func uploadProfileClick(_: Any) {
-        let alert = UIAlertController(title: "Upload Profile Picture", message: "", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Using Camera", style: .default) { _ in
+        let alert = UIAlertController(title: "Upload Profile Picture".localized(), message: "", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Using Camera".localized(), style: .default) { _ in
             self.presentImagePicker(sourceType: .camera)
         }
-        let action2 = UIAlertAction(title: "From Photo Library", style: .default) { _ in
+        let action2 = UIAlertAction(title: "From Photo Library".localized(), style: .default) { _ in
             self.presentImagePicker(sourceType: .photoLibrary)
         }
-        let action3 = UIAlertAction(title: "Cancel", style: .cancel)
+        let action3 = UIAlertAction(title: "Cancel".localized(), style: .cancel)
 
         alert.addAction(action1)
         alert.addAction(action2)

@@ -1,0 +1,488 @@
+/* Class = "UILabel"; text = "Account Privacy"; ObjectID = "0XM-Ky-H6u"; */
+"0XM-Ky-H6u.text" = "アカウントのプライバシー";
+
+/* Class = "UIButton"; normalTitle = "Update Task"; ObjectID = "1gG-qR-CB3"; */
+"1gG-qR-CB3.normalTitle" = "タスクを更新";
+
+/* Class = "UILabel"; text = "UserName"; ObjectID = "3Kh-al-hMS"; */
+"3Kh-al-hMS.text" = "ユーザー名";
+
+/* Class = "UILabel"; text = "24H"; ObjectID = "3eQ-r7-V5T"; */
+"3eQ-r7-V5T.text" = "24時間";
+
+/* Class = "UITextField"; placeholder = "Website (Optional)"; ObjectID = "3rK-1x-kb7"; */
+"3rK-1x-kb7.placeholder" = "ウェブサイト（オプション）";
+
+/* Class = "UILabel"; text = "PISCES"; ObjectID = "3rw-VT-rdN"; */
+"3rw-VT-rdN.text" = "魚座";
+
+/* Class = "UILabel"; text = "ARIES"; ObjectID = "3y7-Pq-Rv2"; */
+"3y7-Pq-Rv2.text" = "牡羊座";
+
+/* Class = "UILabel"; text = "AQUARIUS"; ObjectID = "4Fc-DG-AjK"; */
+"4Fc-DG-AjK.text" = "水瓶座";
+
+/* Class = "UILabel"; text = "Top 50 - Global "; ObjectID = "4iS-rk-PXd"; */
+"4iS-rk-PXd.text" = "トップ50 - グローバル";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "4yE-F3-sUJ"; */
+"4yE-F3-sUJ.text" = "0";
+
+/* Class = "UILabel"; text = "Legal Agreements"; ObjectID = "57M-Q1-Qtg"; */
+"57M-Q1-Qtg.text" = "法的合意";
+
+/* Class = "UITextField"; placeholder = "Search "; ObjectID = "5lG-wD-cid"; */
+"5lG-wD-cid.placeholder" = "検索";
+
+/* Class = "UILabel"; text = "a moment ago"; ObjectID = "5ry-SJ-5OT"; */
+"5ry-SJ-5OT.text" = "少し前";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "6AV-Ph-g2J"; */
+"6AV-Ph-g2J.text" = "0";
+
+/* Class = "UILabel"; text = "Media Name"; ObjectID = "6pg-sI-lzH"; */
+"6pg-sI-lzH.text" = "メディア名";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "6t1-N9-Xc5"; */
+"6t1-N9-Xc5.text" = "0";
+
+/* Class = "UILabel"; text = "16 Jun 2023"; ObjectID = "7Vu-zN-Ct5"; */
+"7Vu-zN-Ct5.text" = "2023年6月16日";
+
+/* Class = "UILabel"; text = "Arijit Singh"; ObjectID = "7bt-c0-9wS"; */
+"7bt-c0-9wS.text" = "アリジット・シン";
+
+/* Class = "UILabel"; text = "$49.99/month"; ObjectID = "8fL-zl-qkY"; */
+"8fL-zl-qkY.text" = "$49.99/月";
+
+/* Class = "UILabel"; text = "my MINK Premium"; ObjectID = "8lQ-Qy-zIm"; */
+"8lQ-Qy-zIm.text" = "my MINK プレミアム";
+
+/* Class = "UILabel"; text = "No posts available"; ObjectID = "9Lk-c2-iAh"; */
+"9Lk-c2-iAh.text" = "利用可能な投稿はありません";
+
+/* Class = "UILabel"; text = "Active"; ObjectID = "9Pu-x1-cXV"; */
+"9Pu-x1-cXV.text" = "アクティブ";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "9SI-EP-oQa"; */
+"9SI-EP-oQa.text" = "投稿";
+
+/* Class = "UILabel"; text = "Add Social Media"; ObjectID = "A2A-Ur-fh0"; */
+"A2A-Ur-fh0.text" = "ソーシャルメディアを追加";
+
+/* Class = "UILabel"; text = "Delete Account"; ObjectID = "A6f-wz-R84"; */
+"A6f-wz-R84.text" = "アカウントを削除";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Akd-lR-eQr"; */
+"Akd-lR-eQr.text" = "0";
+
+/* Class = "UILabel"; text = "Edit Task"; ObjectID = "Al0-M4-YuU"; */
+"Al0-M4-YuU.text" = "タスクを編集";
+
+/* Class = "UITextField"; placeholder = "Enter task title"; ObjectID = "Ath-vJ-t7u"; */
+"Ath-vJ-t7u.placeholder" = "タスクタイトルを入力";
+
+/* Class = "UILabel"; text = "my MINK Chatbot"; ObjectID = "BRf-kh-Uab"; */
+"BRf-kh-Uab.text" = "my MINK チャットボット";
+
+/* Class = "UILabel"; text = "When your account is in public mode. All users can see your contents. When it is private, only the people that you are following or your followers can see your contents."; ObjectID = "Bgf-py-gg4"; */
+"Bgf-py-gg4.text" = "アカウントが公開モードの場合、すべてのユーザーがあなたのコンテンツを閲覧できます。プライベートモードの場合は、フォローしている人やフォロワーだけがコンテンツを閲覧できます。";
+
+/* Class = "UILabel"; text = "| 02:39 PM"; ObjectID = "Bid-tW-gJI"; */
+"Bid-tW-gJI.text" = "| 02:39 PM";
+
+/* Class = "UILabel"; text = "You are charged and socially active and spend most of your evenings outside. You may get into the habit of dining from outside regularly, which may take a toll on your health. You may consume a lot alcohol with your friends, and you will regret it later. Focus on your health, now more than ever."; ObjectID = "C46-pc-igD"; */
+"C46-pc-igD.text" = "あなたは活発で社交的であり、夜の大半を外で過ごしています。外食が習慣になるかもしれませんが、これは健康に悪影響を与える可能性があります。友人と一緒にたくさんのアルコールを摂取するかもしれませんが、後で後悔するでしょう。今こそ健康に集中する時です。";
+
+/* Class = "UILabel"; text = "LEO"; ObjectID = "C5g-sk-tHA"; */
+"C5g-sk-tHA.text" = "獅子座";
+
+/* Class = "UILabel"; text = "CANCER"; ObjectID = "CHV-Dt-hVI"; */
+"CHV-Dt-hVI.text" = "蟹座";
+
+/* Class = "UILabel"; text = "$2343"; ObjectID = "CSF-cs-wgr"; */
+"CSF-cs-wgr.text" = "$2343";
+
+/* Class = "UITextView"; text = "📞 VIDEO CALL"; ObjectID = "Cfm-a7-F6I"; */
+"Cfm-a7-F6I.text" = "📞 ビデオ通話";
+
+/* Class = "UILabel"; text = "Media Name"; ObjectID = "D8d-Xt-8sv"; */
+"D8d-Xt-8sv.text" = "メディア名";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "DUN-y8-LfF"; */
+"DUN-y8-LfF.text" = "価格";
+
+/* Class = "UILabel"; text = "Market"; ObjectID = "Dvv-ga-EGz"; */
+"Dvv-ga-EGz.text" = "市場";
+
+/* Class = "UIButton"; normalTitle = "Add Autograph"; ObjectID = "EXr-Yn-RpY"; */
+"EXr-Yn-RpY.normalTitle" = "サインを追加";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Eg0-79-sn5"; */
+"Eg0-79-sn5.text" = "0";
+
+/* Class = "UILabel"; text = "Me"; ObjectID = "EpA-BG-ilv"; */
+"EpA-BG-ilv.text" = "私";
+
+/* Class = "UILabel"; text = "\"Roaming the world, one adventure at a time.\""; ObjectID = "FEJ-Q3-t5y"; */
+"FEJ-Q3-t5y.text" = "「世界を巡り、一度にひとつの冒険」";
+
+/* Class = "UILabel"; text = "GEMINI"; ObjectID = "FWi-OA-vTe"; */
+"FWi-OA-vTe.text" = "双子座";
+
+/* Class = "UILabel"; text = "Library"; ObjectID = "FZW-qL-Z5M"; */
+"FZW-qL-Z5M.text" = "ライブラリ";
+
+/* Class = "UILabel"; text = "Market Cap"; ObjectID = "GTo-cX-JBL"; */
+"GTo-cX-JBL.text" = "時価総額";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Gk4-VS-lOP"; */
+"Gk4-VS-lOP.text" = "0";
+
+/* Class = "UILabel"; text = "Sponsored"; ObjectID = "IQv-M4-0OS"; */
+"IQv-M4-0OS.text" = "スポンサー提供";
+
+/* Class = "UILabel"; text = "Song Name"; ObjectID = "Ias-9i-0y4"; */
+"Ias-9i-0y4.text" = "曲名";
+
+/* Class = "UITextField"; placeholder = "Enter Current Password"; ObjectID = "Jgt-QW-kIp"; */
+"Jgt-QW-kIp.placeholder" = "現在のパスワードを入力";
+
+/* Class = "UILabel"; text = "Post"; ObjectID = "Joa-QW-PnX"; */
+"Joa-QW-PnX.text" = "投稿";
+
+/* Class = "UILabel"; text = "support@mymink.com.au"; ObjectID = "LXK-5Y-Yp8"; */
+"LXK-5Y-Yp8.text" = "support@mymink.com.au";
+
+/* Class = "UILabel"; text = "Followers"; ObjectID = "LeL-cO-lNo"; */
+"LeL-cO-lNo.text" = "フォロワー";
+
+/* Class = "UILabel"; text = "3:16"; ObjectID = "Lnb-sA-vbN"; */
+"Lnb-sA-vbN.text" = "3:16";
+
+/* Class = "UILabel"; text = "LIBRA"; ObjectID = "LvL-rP-zyj"; */
+"LvL-rP-zyj.text" = "天秤座";
+
+/* Class = "UILabel"; text = "Enable 2FA"; ObjectID = "MFg-4M-3M9"; */
+"MFg-4M-3M9.text" = "2FAを有効化";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "Mo3-dc-HNx"; */
+"Mo3-dc-HNx.text" = "|";
+
+/* Class = "UILabel"; text = "VIRGO"; ObjectID = "N1L-ko-OI0"; */
+"N1L-ko-OI0.text" = "乙女座";
+
+/* Class = "UILabel"; text = "AUD"; ObjectID = "NC0-Rg-Xbt"; */
+"NC0-Rg-Xbt.text" = "AUD";
+
+/* Class = "UILabel"; text = "2.8%"; ObjectID = "NEM-Kr-X5U"; */
+"NEM-Kr-X5U.text" = "2.8%";
+
+/* Class = "UITextField"; placeholder = "Search "; ObjectID = "NvM-cB-ZhO"; */
+"NvM-cB-ZhO.placeholder" = "検索";
+
+/* Class = "UIButton"; normalTitle = "Change Password"; ObjectID = "Nyv-2q-44T"; */
+"Nyv-2q-44T.normalTitle" = "パスワードを変更";
+
+/* Class = "UITextField"; placeholder = "Confirm New Password"; ObjectID = "OBs-wH-0dz"; */
+"OBs-wH-0dz.placeholder" = "新しいパスワードを確認";
+
+/* Class = "UITextField"; placeholder = "Enter New Password"; ObjectID = "P1B-v4-rXL"; */
+"P1B-v4-rXL.placeholder" = "新しいパスワードを入力";
+
+/* Class = "UILabel"; text = "LEO"; ObjectID = "PNG-q8-v2G"; */
+"PNG-q8-v2G.text" = "獅子座";
+
+/* Class = "UILabel"; text = "Edit Social Media"; ObjectID = "PVw-dg-lmn"; */
+"PVw-dg-lmn.text" = "ソーシャルメディアを編集";
+
+/* Class = "UILabel"; text = "Change Password"; ObjectID = "PYb-S1-lGE"; */
+"PYb-S1-lGE.text" = "パスワードを変更";
+
+/* Class = "UILabel"; text = "Who can see your contents"; ObjectID = "QN2-OP-QdX"; */
+"QN2-OP-QdX.text" = "あなたのコンテンツを誰が見ることができるか";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Qlx-LU-GFS"; */
+"Qlx-LU-GFS.text" = "0";
+
+/* Class = "UILabel"; text = "Bitcoin"; ObjectID = "QtW-PL-cug"; */
+"QtW-PL-cug.text" = "ビットコイン";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "R8t-rz-0oh"; */
+"R8t-rz-0oh.normalTitle" = "更新";
+
+/* Class = "UILabel"; text = "Views"; ObjectID = "RTL-kG-iF9"; */
+"RTL-kG-iF9.text" = "ビュー";
+
+/* Class = "UILabel"; text = "a moment ago"; ObjectID = "Rto-Em-rut"; */
+"Rto-Em-rut.text" = "少し前";
+
+/* Class = "UILabel"; text = "Social Media"; ObjectID = "RyB-6W-YO4"; */
+"RyB-6W-YO4.text" = "ソーシャルメディア";
+
+/* Class = "UILabel"; text = "Full Name"; ObjectID = "S8b-zo-9V8"; */
+"S8b-zo-9V8.text" = "フルネーム";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "SGD-V4-jWf"; */
+"SGD-V4-jWf.text" = "投稿";
+
+/* Class = "UILabel"; text = "TAURUS"; ObjectID = "SI9-Ry-1bZ"; */
+"SI9-Ry-1bZ.text" = "牡牛座";
+
+/* Class = "UILabel"; text = "Daily Horoscopes"; ObjectID = "T9X-O2-4Vs"; */
+"T9X-O2-4Vs.text" = "毎日の占い";
+
+/* Class = "UILabel"; text = "$2343"; ObjectID = "TBN-Ox-Z1h"; */
+"TBN-Ox-Z1h.text" = "$2343";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "TS9-Xl-Yqu"; */
+"TS9-Xl-Yqu.text" = "0";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "Ubb-tL-C63"; */
+"Ubb-tL-C63.text" = "|";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "UgT-Y5-tTm"; */
+"UgT-Y5-tTm.normalTitle" = "追加";
+
+/* Class = "UILabel"; text = "ARIES"; ObjectID = "UxY-Gc-ebw"; */
+"UxY-Gc-ebw.text" = "牡羊座";
+
+/* Class = "UILabel"; text = "my MINK Chatbot"; ObjectID = "VIU-33-GGN"; */
+"VIU-33-GGN.text" = "my MINK チャットボット";
+
+/* Class = "UILabel"; text = "Upload your picture"; ObjectID = "VQy-fc-b7U"; */
+"VQy-fc-b7U.text" = "あなたの写真をアップロード";
+
+/* Class = "UILabel"; text = "Coin"; ObjectID = "Vqu-OF-9Kb"; */
+"Vqu-OF-9Kb.text" = "コイン";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "WXG-46-W1N"; */
+"WXG-46-W1N.text" = "0";
+
+/* Class = "UILabel"; text = "Artist"; ObjectID = "Xk2-wf-BRb"; */
+"Xk2-wf-BRb.text" = "アーティスト";
+
+/* Class = "UIButton"; normalTitle = "Update Profile"; ObjectID = "YCh-xe-d14"; */
+"YCh-xe-d14.normalTitle" = "プロフィールを更新";
+
+/* Class = "UITextField"; placeholder = "Location"; ObjectID = "YKu-jY-HHy"; */
+"YKu-jY-HHy.placeholder" = "場所";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "Z10-dP-cIC"; */
+"Z10-dP-cIC.text" = "投稿";
+
+/* Class = "UILabel"; text = "Kesariya Bharmaastra"; ObjectID = "ZR2-Ak-Rjm"; */
+"ZR2-Ak-Rjm.text" = "ケサリヤ・バルマアストラ";
+
+/* Class = "UILabel"; text = "45/23, near shiv shree cinema, totalaa marg tarana"; ObjectID = "ajx-zq-Wat"; */
+"ajx-zq-Wat.text" = "45/23、シブ・シュリーシネマの近く、トタラマグ・タラナ";
+
+/* Class = "UILabel"; text = "No tasks available"; ObjectID = "anE-1v-hKf"; */
+"anE-1v-hKf.text" = "利用可能なタスクはありません";
+
+/* Class = "UILabel"; text = "Deactivate Account"; ObjectID = "azm-j7-EmT"; */
+"azm-j7-EmT.text" = "アカウントを無効化";
+
+/* Class = "UILabel"; text = "Vijay Rathore"; ObjectID = "bEg-7s-ol9"; */
+"bEg-7s-ol9.text" = "ヴィジェイ・ラトーレ";
+
+/* Class = "UILabel"; text = "www.mymink.com.au"; ObjectID = "bJj-db-zcm"; */
+"bJj-db-zcm.text" = "www.mymink.com.au";
+
+/* Class = "UILabel"; text = "Profile Link"; ObjectID = "bK2-gA-w0E"; */
+"bK2-gA-w0E.text" = "プロフィールリンク";
+
+/* Class = "UILabel"; text = "Business Promotion"; ObjectID = "cBE-9E-rKm"; */
+"cBE-9E-rKm.text" = "ビジネスプロモーション";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "cDI-Cy-hAq"; */
+"cDI-Cy-hAq.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "cRr-EM-D0Z"; */
+"cRr-EM-D0Z.text" = "0";
+
+/* Class = "UILabel"; text = "No posts available"; ObjectID = "cXL-yd-eul"; */
+"cXL-yd-eul.text" = "利用可能な投稿はありません";
+
+/* Class = "UILabel"; text = "Today's Horoscope"; ObjectID = "chb-m0-YGD"; */
+"chb-m0-YGD.text" = "今日の運勢";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "dKS-8e-HT2"; */
+"dKS-8e-HT2.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "dOC-Wq-yhi"; */
+"dOC-Wq-yhi.text" = "0";
+
+/* Class = "UITextView"; text = "📞 VIDEO CALL"; ObjectID = "dVf-Oy-ii9"; */
+"dVf-Oy-ii9.text" = "📞 ビデオ通話";
+
+/* Class = "UITextField"; placeholder = "Full Name"; ObjectID = "dko-D0-GfB"; */
+"dko-D0-GfB.placeholder" = "フルネーム";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "e6a-kG-6ND"; */
+"e6a-kG-6ND.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "eGG-RN-BbX"; */
+"eGG-RN-BbX.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "eWu-Vb-vrr"; */
+"eWu-Vb-vrr.text" = "0";
+
+/* Class = "UILabel"; text = "Friends or Events"; ObjectID = "enP-FY-LhB"; */
+"enP-FY-LhB.text" = "友達またはイベント";
+
+/* Class = "UILabel"; text = "Biography"; ObjectID = "f2c-hV-Cwa"; */
+"f2c-hV-Cwa.text" = "バイオグラフィー";
+
+/* Class = "UITextField"; placeholder = "Enter task title"; ObjectID = "fHn-ER-eEo"; */
+"fHn-ER-eEo.placeholder" = "タスクタイトルを入力";
+
+/* Class = "UITextField"; placeholder = "Search "; ObjectID = "fHv-Ma-psJ"; */
+"fHv-Ma-psJ.placeholder" = "検索";
+
+/* Class = "UILabel"; text = "No songs available"; ObjectID = "fZq-LX-A7k"; */
+"fZq-LX-A7k.text" = "利用可能な曲はありません";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "fhh-Tc-3Tz"; */
+"fhh-Tc-3Tz.text" = "0";
+
+/* Class = "UILabel"; text = "Salaar Night Show  "; ObjectID = "fiq-vH-OSz"; */
+"fiq-vH-OSz.text" = "サラー・ナイトショー";
+
+/* Class = "UILabel"; text = "+917869992340"; ObjectID = "gk3-R1-joO"; */
+"gk3-R1-joO.text" = "+917869992340";
+
+/* Class = "UILabel"; text = "Developer"; ObjectID = "h2r-6T-R3M"; */
+"h2r-6T-R3M.text" = "開発者";
+
+/* Class = "UILabel"; text = "To Do"; ObjectID = "hUX-RF-fB0"; */
+"hUX-RF-fB0.text" = "やるべきこと";
+
+/* Class = "UILabel"; text = "Music "; ObjectID = "hj4-D5-cby"; */
+"hj4-D5-cby.text" = "音楽";
+
+/* Class = "UILabel"; text = "SAGITTARIUS"; ObjectID = "iIR-3o-3ho"; */
+"iIR-3o-3ho.text" = "射手座";
+
+/* Class = "UILabel"; text = "Membership"; ObjectID = "iln-Hh-Sa7"; */
+"iln-Hh-Sa7.text" = "メンバーシップ";
+
+/* Class = "UILabel"; text = "A To do is a digital task manager that allows user to organise, track and prioritise their daily tasks and reminders in a simple, user-friendly interface. It helps users stay focused and efficient by managing their personal and professional responsibilities in one accessible location"; ObjectID = "kI0-e0-QNb"; */
+"kI0-e0-QNb.text" = "To do は、ユーザーが日々のタスクやリマインダーをシンプルで使いやすいインターフェースで整理、追跡、優先順位を付けることができるデジタルタスクマネージャーです。ユーザーが集中力を維持し、効率的に作業を進めるために、個人的および専門的な責任を一元的に管理するのに役立ちます。";
+
+/* Class = "UILabel"; text = "Vijay Rathore"; ObjectID = "kKk-hj-aZe"; */
+"kKk-hj-aZe.text" = "ヴィジェイ・ラトーレ";
+
+/* Class = "UILabel"; text = "Licence Agreement"; ObjectID = "kSu-q0-exJ"; */
+"kSu-q0-exJ.text" = "ライセンス契約";
+
+/* Class = "UILabel"; text = "00 : 00"; ObjectID = "kqz-J0-fx8"; */
+"kqz-J0-fx8.text" = "00 : 00";
+
+/* Class = "UILabel"; text = "To-Do"; ObjectID = "kvt-jC-FyZ"; */
+"kvt-jC-FyZ.text" = "To-Do";
+
+/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "lAe-Q7-gnQ"; */
+"lAe-Q7-gnQ.text" = "プライバシーポリシー";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "lG9-Na-GxN"; */
+"lG9-Na-GxN.normalTitle" = "アップロード";
+
+/* Class = "UILabel"; text = "Private Account"; ObjectID = "mCt-3x-9Tl"; */
+"mCt-3x-9Tl.text" = "プライベートアカウント";
+
+/* Class = "UILabel"; text = "BTC"; ObjectID = "mXw-za-WFq"; */
+"mXw-za-WFq.text" = "BTC";
+
+/* Class = "UILabel"; text = "18 Feb 2024"; ObjectID = "mYn-UN-068"; */
+"mYn-UN-068.text" = "2024年2月18日";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "miY-pb-OqT"; */
+"miY-pb-OqT.text" = "0";
+
+/* Class = "UILabel"; text = "Joined on 26 Jun 2023"; ObjectID = "mif-5e-pew"; */
+"mif-5e-pew.text" = "2023年6月26日に参加";
+
+/* Class = "UIButton"; normalTitle = "Unsubscribe"; ObjectID = "o3B-EQ-Hhw"; */
+"o3B-EQ-Hhw.normalTitle" = "購読解除";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "oMW-JM-ZK1"; */
+"oMW-JM-ZK1.text" = "|";
+
+/* Class = "UILabel"; text = "Daily Horoscopes"; ObjectID = "oSn-ay-OwU"; */
+"oSn-ay-OwU.text" = "毎日の占い";
+
+/* Class = "UILabel"; text = "Cryptocurrency"; ObjectID = "ooB-Xe-7sp"; */
+"ooB-Xe-7sp.text" = "暗号通貨";
+
+/* Class = "UIButton"; normalTitle = "Get Started"; ObjectID = "pUx-7D-l8G"; */
+"pUx-7D-l8G.normalTitle" = "始める";
+
+/* Class = "UILabel"; text = "CAPRICORNUS"; ObjectID = "pkV-gi-Oze"; */
+"pkV-gi-Oze.text" = "山羊座";
+
+/* Class = "UILabel"; text = "Music Player"; ObjectID = "ppz-ia-UrQ"; */
+"ppz-ia-UrQ.text" = "音楽プレーヤー";
+
+/* Class = "UILabel"; text = "Disclaimer"; ObjectID = "qZJ-KQ-69C"; */
+"qZJ-KQ-69C.text" = "免責事項";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "rJG-Fo-zly"; */
+"rJG-Fo-zly.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "rKX-yl-2ZI"; */
+"rKX-yl-2ZI.text" = "0";
+
+/* Class = "UILabel"; text = "03:20 PM"; ObjectID = "rh2-bY-ubz"; */
+"rh2-bY-ubz.text" = "03:20 PM";
+
+/* Class = "UILabel"; text = "Following"; ObjectID = "sFu-d8-7Kb"; */
+"sFu-d8-7Kb.text" = "フォロー中";
+
+/* Class = "UILabel"; text = "Cryptocurrency"; ObjectID = "tHs-0V-dJc"; */
+"tHs-0V-dJc.text" = "暗号通貨";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "tct-aX-g2u"; */
+"tct-aX-g2u.text" = "0";
+
+/* Class = "UILabel"; text = "Profile Link"; ObjectID = "tyP-hx-UqZ"; */
+"tyP-hx-UqZ.text" = "プロフィールリンク";
+
+/* Class = "UILabel"; text = "SCORPIO"; ObjectID = "u3Z-gX-xJE"; */
+"u3Z-gX-xJE.text" = "蠍座";
+
+/* Class = "UILabel"; text = "@softment"; ObjectID = "uUW-YH-tPK"; */
+"uUW-YH-tPK.text" = "@softment";
+
+/* Class = "UILabel"; text = "Astoria, OR, USA"; ObjectID = "uat-TB-o1J"; */
+"uat-TB-o1J.text" = "オレゴン州アストリア、アメリカ合衆国";
+
+/* Class = "UILabel"; text = "Terms Of Use"; ObjectID = "uro-k6-Fcp"; */
+"uro-k6-Fcp.text" = "利用規約";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "uz3-hA-QZP"; */
+"uz3-hA-QZP.text" = "0";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "w65-oQ-cfX"; */
+"w65-oQ-cfX.text" = "1";
+
+/* Class = "UILabel"; text = "Due today"; ObjectID = "wLR-sH-o0n"; */
+"wLR-sH-o0n.text" = "今日の締め切り";
+
+/* Class = "UILabel"; text = "VIJAY_RATHORE"; ObjectID = "wYT-f9-qEw"; */
+"wYT-f9-qEw.text" = "VIJAY_RATHORE";
+
+/* Class = "UILabel"; text = "Who can see your contents"; ObjectID = "wxe-U7-T8F"; */
+"wxe-U7-T8F.text" = "あなたのコンテンツを誰が見ることができるか";
+
+/* Class = "UIButton"; normalTitle = "Add Task"; ObjectID = "ylN-w7-aXy"; */
+"ylN-w7-aXy.normalTitle" = "タスクを追加";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "yu8-9v-Zs9"; */
+"yu8-9v-Zs9.text" = "0";
+
+/* Class = "UILabel"; text = "Add Task"; ObjectID = "zOZ-81-9Bm"; */
+"zOZ-81-9Bm.text" = "タスクを追加";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "zYV-0n-itF"; */
+"zYV-0n-itF.normalTitle" = "追加";

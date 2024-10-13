@@ -21,11 +21,15 @@ class PlayerPool {
     }
 
     func getPlayer() -> AVPlayer? {
-        self.availablePlayers.popLast()
+        let avplayer = self.availablePlayers.popLast()
+        avplayer?.pause()
+        return avplayer
+        
     }
 
     func returnPlayer(_ player: AVPlayer?) {
         if let player = player {
+            NotificationCenter.default.removeObserver(player, name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
             self.availablePlayers.append(player)
         }
     }

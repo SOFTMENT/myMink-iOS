@@ -1,0 +1,254 @@
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "0b8-WI-ohd"; */
+"0b8-WI-ohd.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Enter your details to create a new account"; ObjectID = "1fm-KV-g8f"; */
+"1fm-KV-g8f.text" = "Ilagay ang iyong mga detalye upang lumikha ng bagong account";
+
+/* Class = "UIButton"; normalTitle = "Go to Login Screen"; ObjectID = "1jG-Bz-y8Y"; */
+"1jG-Bz-y8Y.normalTitle" = "Pumunta sa Screen ng Pag-login";
+
+/* Class = "UILabel"; text = "Don't have an account?"; ObjectID = "2Zv-NV-eUZ"; */
+"2Zv-NV-eUZ.text" = "Wala ka pang account?";
+
+/* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "3I3-C8-52N"; */
+"3I3-C8-52N.placeholder" = "Email Address";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "3xR-fE-zsb"; */
+"3xR-fE-zsb.text" = "Mag-sign Up";
+
+/* Class = "UITextField"; placeholder = "Code"; ObjectID = "5HW-Pl-mIB"; */
+"5HW-Pl-mIB.placeholder" = "Code";
+
+/* Class = "UILabel"; text = "Enter Code"; ObjectID = "5Ix-sf-BtG"; */
+"5Ix-sf-BtG.text" = "Ilagay ang Code";
+
+/* Class = "UILabel"; text = "Resend Code"; ObjectID = "5do-Zb-4wW"; */
+"5do-Zb-4wW.text" = "Ipadala muli ang Code";
+
+/* Class = "UILabel"; text = "Enter your email address to get verification code"; ObjectID = "5lz-ok-5g6"; */
+"5lz-ok-5g6.text" = "Ilagay ang iyong email address upang makuha ang verification code";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "7Yp-9H-hqp"; */
+"7Yp-9H-hqp.normalTitle" = "Mag-sign Up";
+
+/* Class = "UIButton"; normalTitle = "Create an account"; ObjectID = "7qc-te-agu"; */
+"7qc-te-agu.normalTitle" = "Lumikha ng account";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "88U-ET-d39"; */
+"88U-ET-d39.normalTitle" = "Mag-login";
+
+/* Class = "UIButton"; normalTitle = "Start Free Trial"; ObjectID = "8j3-JS-g2E"; */
+"8j3-JS-g2E.normalTitle" = "Simulan ang Libreng Pagsubok";
+
+/* Class = "UILabel"; text = "Yearly"; ObjectID = "9QT-Sp-Vvh"; */
+"9QT-Sp-Vvh.text" = "Taunan";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "BVa-JZ-UIL"; */
+"BVa-JZ-UIL.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Terms Of Use"; ObjectID = "CEF-Tf-gu3"; */
+"CEF-Tf-gu3.text" = "Mga Tuntunin ng Paggamit";
+
+/* Class = "UILabel"; text = "Lifetime"; ObjectID = "CaC-nj-0OM"; */
+"CaC-nj-0OM.text" = "Habambuhay";
+
+/* Class = "UIButton"; normalTitle = "RECOMMEND"; ObjectID = "Ctt-R4-Y7D"; */
+"Ctt-R4-Y7D.normalTitle" = "IREKOMENDA";
+
+/* Class = "UITextField"; placeholder = "VIP Code"; ObjectID = "CzU-RZ-qwx"; */
+"CzU-RZ-qwx.placeholder" = "VIP Code";
+
+/* Class = "UITextField"; placeholder = "First Name"; ObjectID = "FaG-jD-NxL"; */
+"FaG-jD-NxL.placeholder" = "Unang Pangalan";
+
+/* Class = "UILabel"; text = "85% OFF"; ObjectID = "Fxr-l0-tRg"; */
+"Fxr-l0-tRg.text" = "85% OFF";
+
+/* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "GH7-Z1-tdw"; */
+"GH7-Z1-tdw.placeholder" = "Email Address";
+
+/* Class = "UILabel"; text = "VIP Code"; ObjectID = "Gnb-2G-7A9"; */
+"Gnb-2G-7A9.text" = "VIP Code";
+
+/* Class = "UILabel"; text = "Astoria, OR, USA"; ObjectID = "Iwu-hi-Cyq"; */
+"Iwu-hi-Cyq.text" = "Astoria, OR, USA";
+
+/* Class = "UILabel"; text = "Enter one time password sent to your email address"; ObjectID = "JcF-6F-M6z"; */
+"JcF-6F-M6z.text" = "Ilagay ang isang beses na password na ipinadala sa iyong email address";
+
+/* Class = "UILabel"; text = "Biography"; ObjectID = "Jtg-iH-sXr"; */
+"Jtg-iH-sXr.text" = "Talambuhay";
+
+/* Class = "UILabel"; text = "Enter your email address & password below"; ObjectID = "K4S-bz-RMy"; */
+"K4S-bz-RMy.text" = "Ilagay ang iyong email address at password sa ibaba";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "KN4-MK-fZl"; */
+"KN4-MK-fZl.normalTitle" = "Mag-login";
+
+/* Class = "UILabel"; text = "Enter your VIP code here"; ObjectID = "Ko0-Xi-rHP"; */
+"Ko0-Xi-rHP.text" = "Ilagay ang iyong VIP code dito";
+
+/* Class = "UILabel"; text = "Start 3 days free trial"; ObjectID = "LDx-Y9-EOO"; */
+"LDx-Y9-EOO.text" = "Simulan ang libreng pagsubok ng 3 araw";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "M85-AK-9Z0"; */
+"M85-AK-9Z0.normalTitle" = "Mag-sign Up";
+
+/* Class = "UILabel"; text = "my MINK"; ObjectID = "MMO-PY-SUi"; */
+"MMO-PY-SUi.text" = "my MINK";
+
+/* Class = "UILabel"; text = "Login"; ObjectID = "McP-re-x07"; */
+"McP-re-x07.text" = "Mag-login";
+
+/* Class = "UILabel"; text = "Enter Code"; ObjectID = "NAp-ya-tuv"; */
+"NAp-ya-tuv.text" = "Ilagay ang Code";
+
+/* Class = "UILabel"; text = "Retrieve Password"; ObjectID = "Nh0-LN-KU7"; */
+"Nh0-LN-KU7.text" = "I-retrieve ang Password";
+
+/* Class = "UILabel"; text = "Or Login with"; ObjectID = "Pxl-Ub-Ji8"; */
+"Pxl-Ub-Ji8.text" = "O Mag-login gamit ang";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "Q4I-GW-3wp"; */
+"Q4I-GW-3wp.normalTitle" = "Mag-login";
+
+/* Class = "UITextField"; placeholder = "Code"; ObjectID = "RLZ-sl-BBx"; */
+"RLZ-sl-BBx.placeholder" = "Code";
+
+/* Class = "UILabel"; text = "Great!, here is your password"; ObjectID = "RtB-ib-eLJ"; */
+"RtB-ib-eLJ.text" = "Magaling!, ito ang iyong password";
+
+/* Class = "UITextField"; placeholder = "Code"; ObjectID = "SUy-ib-U0f"; */
+"SUy-ib-U0f.placeholder" = "Code";
+
+/* Class = "UILabel"; text = "SUCCESSFUL"; ObjectID = "UvA-LL-upB"; */
+"UvA-LL-upB.text" = "MATAGUMPAY";
+
+/* Class = "UILabel"; text = "Sign In"; ObjectID = "VPB-HK-bIn"; */
+"VPB-HK-bIn.text" = "Mag-sign In";
+
+/* Class = "UITextField"; placeholder = "First Name"; ObjectID = "YnH-6i-5UV"; */
+"YnH-6i-5UV.placeholder" = "Unang Pangalan";
+
+/* Class = "UILabel"; text = "Unlock all features and functionalities, advance and utilise the app. Enjoy the bundle. Get access to create your own profile, apply camera and filters. Harness an overview of the crypto market, explore my MINK Chatbot. Watch reels, listen to music and engage in live streams with text, chat and more.."; ObjectID = "ZPO-wB-Qgk"; */
+"ZPO-wB-Qgk.text" = "I-unlock ang lahat ng mga tampok at pag-andar, gamitin ang app. Masiyahan sa bundle. Makakuha ng access upang lumikha ng iyong sariling profile, gumamit ng camera at mga filter. Tingnan ang merkado ng crypto, tuklasin ang my MINK Chatbot. Manood ng mga reels, makinig ng musika, at makisali sa mga live stream na may text, chat, at iba pa..";
+
+/* Class = "UITextField"; placeholder = "Phone Number"; ObjectID = "aA9-9H-Ty6"; */
+"aA9-9H-Ty6.placeholder" = "Numero ng Telepono";
+
+/* Class = "UILabel"; text = "Monthly"; ObjectID = "bcj-1L-UQ9"; */
+"bcj-1L-UQ9.text" = "Buwan-buwan";
+
+/* Class = "UILabel"; text = "$26.99 per year"; ObjectID = "c36-g6-zcS"; */
+"c36-g6-zcS.text" = "$26.99 bawat taon";
+
+/* Class = "UILabel"; text = "Resend Code"; ObjectID = "cEQ-un-HD1"; */
+"cEQ-un-HD1.text" = "Ipadala muli ang Code";
+
+/* Class = "UITextField"; placeholder = "Last Name"; ObjectID = "cdi-YT-bHo"; */
+"cdi-YT-bHo.placeholder" = "Apelyido";
+
+/* Class = "UILabel"; text = "Enter your country code & phone number below"; ObjectID = "daI-la-2sc"; */
+"daI-la-2sc.text" = "Ilagay ang iyong country code at numero ng telepono sa ibaba";
+
+/* Class = "UILabel"; text = "Login"; ObjectID = "dea-ND-EGS"; */
+"dea-ND-EGS.text" = "Mag-login";
+
+/* Class = "UILabel"; text = "Forgot Password?"; ObjectID = "e9C-sg-yL1"; */
+"e9C-sg-yL1.text" = "Nakalimutan ang Password?";
+
+/* Class = "UIButton"; normalTitle = "Get Code"; ObjectID = "ea8-DQ-oGo"; */
+"ea8-DQ-oGo.normalTitle" = "Kunin ang Code";
+
+/* Class = "UIButton"; normalTitle = "Verify"; ObjectID = "eeJ-qI-wEm"; */
+"eeJ-qI-wEm.normalTitle" = "I-verify";
+
+/* Class = "UILabel"; text = "support@softment.in"; ObjectID = "fGH-Jd-xls"; */
+"fGH-Jd-xls.text" = "support@softment.in";
+
+/* Class = "UILabel"; text = "Password@2020"; ObjectID = "g6a-tG-Yd4"; */
+"g6a-tG-Yd4.text" = "Password@2020";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "gfu-cP-N2G"; */
+"gfu-cP-N2G.normalTitle" = "Magpatuloy";
+
+/* Class = "UITextField"; placeholder = "Last Name"; ObjectID = "ggh-gb-X9P"; */
+"ggh-gb-X9P.placeholder" = "Apelyido";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "h5q-27-WKO"; */
+"h5q-27-WKO.text" = "Mag-sign Up";
+
+/* Class = "UILabel"; text = "Or resend"; ObjectID = "hcz-Cn-udr"; */
+"hcz-Cn-udr.text" = "O ipadala muli";
+
+/* Class = "UILabel"; text = "Already have an account?"; ObjectID = "j0H-P0-fNt"; */
+"j0H-P0-fNt.text" = "May account ka na?";
+
+/* Class = "UILabel"; text = "Let’s get started with a login or create your new my MINK account."; ObjectID = "jcl-nl-n8K"; */
+"jcl-nl-n8K.text" = "Magsimula tayo sa pag-login o lumikha ng iyong bagong my MINK account.";
+
+/* Class = "UILabel"; text = "Unroll the world with"; ObjectID = "jgL-EJ-tvj"; */
+"jgL-EJ-tvj.text" = "I-unroll ang mundo gamit ang";
+
+/* Class = "UILabel"; text = "Cancel at anytime from Settings"; ObjectID = "kP6-hl-FhI"; */
+"kP6-hl-FhI.text" = "Kanselahin anumang oras mula sa Mga Setting";
+
+/* Class = "UIButton"; normalTitle = "Verify"; ObjectID = "mMS-FA-cEY"; */
+"mMS-FA-cEY.normalTitle" = "I-verify";
+
+/* Class = "UITextField"; placeholder = "Website (Optional)"; ObjectID = "nAY-H4-C1O"; */
+"nAY-H4-C1O.placeholder" = "Website (Opsyonal)";
+
+/* Class = "UILabel"; text = "$14.99 per month"; ObjectID = "nRU-Kw-kCU"; */
+"nRU-Kw-kCU.text" = "$14.99 bawat buwan";
+
+/* Class = "UILabel"; text = "Or Sign Up with"; ObjectID = "oIY-7T-fdC"; */
+"oIY-7T-fdC.text" = "O Mag-sign Up gamit ang";
+
+/* Class = "UITextField"; placeholder = "Phone Number"; ObjectID = "oP0-eC-sFc"; */
+"oP0-eC-sFc.placeholder" = "Numero ng Telepono";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "okM-CW-Q6q"; */
+"okM-CW-Q6q.placeholder" = "Username";
+
+/* Class = "UILabel"; text = "$99.99"; ObjectID = "osH-Hn-waO"; */
+"osH-Hn-waO.text" = "$99.99";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "pKJ-os-yq1"; */
+"pKJ-os-yq1.text" = "Mag-sign Up";
+
+/* Class = "UILabel"; text = "Upload your picture"; ObjectID = "pbD-sO-9gb"; */
+"pbD-sO-9gb.text" = "I-upload ang iyong larawan";
+
+/* Class = "UILabel"; text = "Enter your details to create a new account"; ObjectID = "rFR-SO-3wS"; */
+"rFR-SO-3wS.text" = "Ilagay ang iyong mga detalye upang lumikha ng bagong account";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "rZ2-AU-3CA"; */
+"rZ2-AU-3CA.normalTitle" = "I-upload";
+
+/* Class = "UIButton"; normalTitle = "Apply"; ObjectID = "s7o-i2-Rsr"; */
+"s7o-i2-Rsr.normalTitle" = "I-apply";
+
+/* Class = "UILabel"; text = "Enter one time password sent to your phone number"; ObjectID = "t5b-nd-wZT"; */
+"t5b-nd-wZT.text" = "Ilagay ang isang beses na password na ipinadala sa iyong numero ng telepono";
+
+/* Class = "UILabel"; text = "&"; ObjectID = "tNx-OQ-krh"; */
+"tNx-OQ-krh.text" = "&";
+
+/* Class = "UILabel"; text = "Or resend"; ObjectID = "vDA-SG-6Hl"; */
+"vDA-SG-6Hl.text" = "O ipadala muli";
+
+/* Class = "UILabel"; text = "Remeber Me"; ObjectID = "w4Q-XT-7ym"; */
+"w4Q-XT-7ym.text" = "Tandaan Ako";
+
+/* Class = "UITextField"; placeholder = "Location"; ObjectID = "xUO-jf-M6h"; */
+"xUO-jf-M6h.placeholder" = "Lokasyon";
+
+/* Class = "UITextField"; placeholder = "Code"; ObjectID = "xxR-vu-zdU"; */
+"xxR-vu-zdU.placeholder" = "Code";
+
+/* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "xxb-qk-QkT"; */
+"xxb-qk-QkT.placeholder" = "Email Address";
+
+/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "ylU-5L-ddS"; */
+"ylU-5L-ddS.text" = "Patakaran sa Privacy";

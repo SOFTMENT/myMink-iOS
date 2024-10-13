@@ -44,6 +44,7 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
+      # Set IPHONEOS_DEPLOYMENT_TARGET for all targets
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.2'
       
       # Handle xcconfig modifications
@@ -53,7 +54,7 @@ post_install do |installer|
       File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
       
       # Add Info.plist to specific frameworks
-      if ['BraintreeDropIn', 'DropDown','DSPhotoEditorSDK', 'FirebaseFunctions', 'ATGMediaBrowser', 'BSImagePicker', 'RevenueCat', 'RNCryptor', 'ALProgressView'].include? target.name
+      if ['BraintreeDropIn', 'DropDown', 'DSPhotoEditorSDK', 'FirebaseFunctions', 'ATGMediaBrowser', 'BSImagePicker', 'RevenueCat', 'RNCryptor', 'ALProgressView'].include? target.name
         info_plist_path = File.join(installer.sandbox.root, target.name, 'Info.plist')
 
         plist_content = <<-EOS
@@ -79,6 +80,17 @@ post_install do |installer|
 
         # Update the build settings to point to the new Info.plist
         config.build_settings['INFOPLIST_FILE'] = info_plist_path
+      end
+    end
+
+    # Additional settings specific to BoringSSL-GRPC
+    if target.name == 'BoringSSL-GRPC'
+      target.source_build_phase.files.each do |file|
+        if file.settings && file.settings['COMPILER_FLAGS']
+          flags = file.settings['COMPILER_FLAGS'].split
+          flags.reject! { |flag| flag == '-GCC_WARN_INHIBIT_ALL_WARNINGS' }
+          file.settings['COMPILER_FLAGS'] = flags.join(' ')
+        end
       end
     end
   end

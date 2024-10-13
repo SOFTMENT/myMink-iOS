@@ -32,7 +32,8 @@ class UsersListViewController: UIViewController {
     
     private func setupViews(title: String) {
         topHeadingLbl.text = title
-        no_likes_available.text = "No \(title.lowercased()) available"
+        no_likes_available.text = String(format: "No %@ available".localized(), title.lowercased())
+
         
         tableView.delegate = self
         tableView.dataSource = self

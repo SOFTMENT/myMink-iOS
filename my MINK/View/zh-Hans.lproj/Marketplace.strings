@@ -1,0 +1,143 @@
+/* Class = "UILabel"; text = "TEDxMileHigh"; ObjectID = "01v-VG-P8e"; */
+"01v-VG-P8e.text" = "TEDxMileHigh";
+
+/* Class = "UILabel"; text = "点击添加产品图片"; ObjectID = "2NF-Lp-WEU"; */
+"2NF-Lp-WEU.text" = "点击添加产品图片";
+
+/* Class = "UIButton"; normalTitle = "我的商店"; ObjectID = "3CM-4O-gIh"; */
+"3CM-4O-gIh.normalTitle" = "我的商店";
+
+/* Class = "UILabel"; text = "在 myMINK"; ObjectID = "4P6-9a-cre"; */
+"4P6-9a-cre.text" = "在 myMINK";
+
+/* Class = "UITextView"; text = " "; ObjectID = "8Us-dB-JrW"; */
+"8Us-dB-JrW.text" = " ";
+
+/* Class = "UILabel"; text = "点击添加产品图片"; ObjectID = "9fG-6e-ao3"; */
+"9fG-6e-ao3.text" = "点击添加产品图片";
+
+/* Class = "UILabel"; text = "JPEG 或 PNG，大小不超过 10MB。"; ObjectID = "BfQ-cY-jgi"; */
+"BfQ-cY-jgi.text" = "JPEG 或 PNG，大小不超过 10MB。";
+
+/* Class = "UILabel"; text = "JPEG 或 PNG，大小不超过 10MB。"; ObjectID = "Eyu-M5-BLx"; */
+"Eyu-M5-BLx.text" = "JPEG 或 PNG，大小不超过 10MB。";
+
+/* Class = "UILabel"; text = "JPEG 或 PNG，大小不超过 10MB。"; ObjectID = "H0A-AH-yfk"; */
+"H0A-AH-yfk.text" = "JPEG 或 PNG，大小不超过 10MB。";
+
+/* Class = "UIButton"; normalTitle = "更新"; ObjectID = "JX8-5C-6R2"; */
+"JX8-5C-6R2.normalTitle" = "更新";
+
+/* Class = "UITextField"; placeholder = "选择类别"; ObjectID = "LVs-gh-DgT"; */
+"LVs-gh-DgT.placeholder" = "选择类别";
+
+/* Class = "UILabel"; text = "50 澳元"; ObjectID = "MXZ-c3-idu"; */
+"MXZ-c3-idu.text" = "50 澳元";
+
+/* Class = "UILabel"; text = "关于"; ObjectID = "Prk-9c-Kbz"; */
+"Prk-9c-Kbz.text" = "关于";
+
+/* Class = "UIButton"; normalTitle = "添加"; ObjectID = "T0Z-Xw-6PE"; */
+"T0Z-Xw-6PE.normalTitle" = "添加";
+
+/* Class = "UILabel"; text = "如何准备和进行 TED 演讲"; ObjectID = "TOS-KZ-j2z"; */
+"TOS-KZ-j2z.text" = "如何准备和进行 TED 演讲";
+
+/* Class = "UIButton"; normalTitle = "全部"; ObjectID = "UOX-5Z-N5k"; */
+"UOX-5Z-N5k.normalTitle" = "全部";
+
+/* Class = "UITextField"; placeholder = "价格"; ObjectID = "UWb-sd-ebV"; */
+"UWb-sd-ebV.placeholder" = "价格";
+
+/* Class = "UITextView"; text = " "; ObjectID = "Vsv-eO-bjX"; */
+"Vsv-eO-bjX.text" = " ";
+
+/* Class = "UILabel"; text = "产品描述"; ObjectID = "WaA-QN-zpQ"; */
+"WaA-QN-zpQ.text" = "产品描述";
+
+/* Class = "UILabel"; text = "食品和饮料"; ObjectID = "Y2b-md-1CL"; */
+"Y2b-md-1CL.text" = "食品和饮料";
+
+/* Class = "UILabel"; text = "编辑产品"; ObjectID = "Zn8-m3-YbE"; */
+"Zn8-m3-YbE.text" = "编辑产品";
+
+/* Class = "UILabel"; text = "产品图片"; ObjectID = "aR0-xX-Enq"; */
+"aR0-xX-Enq.text" = "产品图片";
+
+/* Class = "UITextField"; placeholder = "标题"; ObjectID = "cAN-Eh-A4O"; */
+"cAN-Eh-A4O.placeholder" = "标题";
+
+/* Class = "UILabel"; text = "Flipkart，“印度的时尚之都”，是您的一站式时尚目的地，为了让你看起来更好，提供一切。"; ObjectID = "d7p-7E-yEt"; */
+"d7p-7E-yEt.text" = "Flipkart，“印度的时尚之都”，是您的一站式时尚目的地，为了让你看起来更好，提供一切。";
+
+/* Class = "UILabel"; text = "添加产品"; ObjectID = "dKx-3y-Wkk"; */
+"dKx-3y-Wkk.text" = "添加产品";
+
+/* Class = "UILabel"; text = "如何准备和进行 TED 演讲"; ObjectID = "dq2-ma-OrN"; */
+"dq2-ma-OrN.text" = "如何准备和进行 TED 演讲";
+
+/* Class = "UILabel"; text = "50 澳元"; ObjectID = "ehE-Mz-TY9"; */
+"ehE-Mz-TY9.text" = "50 澳元";
+
+/* Class = "UILabel"; text = "没有可用的产品"; ObjectID = "fP0-qy-qF8"; */
+"fP0-qy-qF8.text" = "没有可用的产品";
+
+/* Class = "UILabel"; text = "食品和饮料"; ObjectID = "hBe-bT-uCE"; */
+"hBe-bT-uCE.text" = "食品和饮料";
+
+/* Class = "UITextField"; placeholder = "选择类别"; ObjectID = "ht4-Je-3C9"; */
+"ht4-Je-3C9.placeholder" = "选择类别";
+
+/* Class = "UITextField"; placeholder = "搜索"; ObjectID = "i2E-us-W4o"; */
+"i2E-us-W4o.placeholder" = "搜索";
+
+/* Class = "UILabel"; text = "产品描述"; ObjectID = "iJB-Cn-gVs"; */
+"iJB-Cn-gVs.text" = "产品描述";
+
+/* Class = "UIButton"; normalTitle = "联系"; ObjectID = "iN0-Kz-QRU"; */
+"iN0-Kz-QRU.normalTitle" = "联系";
+
+/* Class = "UILabel"; text = "Gooney"; ObjectID = "l7S-w7-5I3"; */
+"l7S-w7-5I3.text" = "Gooney";
+
+/* Class = "UILabel"; text = "我的商店"; ObjectID = "lYE-Pi-DZi"; */
+"lYE-Pi-DZi.text" = "我的商店";
+
+/* Class = "UILabel"; text = "@狮子座"; ObjectID = "lvs-ig-kXq"; */
+"lvs-ig-kXq.text" = "@狮子座";
+
+/* Class = "UILabel"; text = "没有可用的产品"; ObjectID = "oaz-XL-7up"; */
+"oaz-XL-7up.text" = "没有可用的产品";
+
+/* Class = "UILabel"; text = "Gooney"; ObjectID = "pqA-PC-IYm"; */
+"pqA-PC-IYm.text" = "Gooney";
+
+/* Class = "UIButton"; normalTitle = "添加更多图片"; ObjectID = "qQq-3i-I6O"; */
+"qQq-3i-I6O.normalTitle" = "添加更多图片";
+
+/* Class = "UILabel"; text = "食品和饮料"; ObjectID = "s95-Df-Pei"; */
+"s95-Df-Pei.text" = "食品和饮料";
+
+/* Class = "UITextField"; placeholder = "标题"; ObjectID = "sUo-nt-IbJ"; */
+"sUo-nt-IbJ.placeholder" = "标题";
+
+/* Class = "UITextField"; placeholder = "价格"; ObjectID = "tqh-ID-Vd8"; */
+"tqh-ID-Vd8.placeholder" = "价格";
+
+/* Class = "UILabel"; text = "使用高质量图片: (9:5 比例)。"; ObjectID = "uIF-rm-vno"; */
+"uIF-rm-vno.text" = "使用高质量图片: (9:5 比例)。";
+
+/* Class = "UILabel"; text = "点击添加产品图片"; ObjectID = "uiI-I9-U6N"; */
+"uiI-I9-U6N.text" = "点击添加产品图片";
+
+/* Class = "UILabel"; text = "点击添加产品图片"; ObjectID = "vdw-hI-b4o"; */
+"vdw-hI-b4o.text" = "点击添加产品图片";
+
+/* Class = "UILabel"; text = "JPEG 或 PNG，大小不超过 10MB。"; ObjectID = "wGe-PJ-VEl"; */
+"wGe-PJ-VEl.text" = "JPEG 或 PNG，大小不超过 10MB。";
+
+/* Class = "UILabel"; text = "市场"; ObjectID = "y6X-Hw-k7A"; */
+"y6X-Hw-k7A.text" = "市场";
+
+/* Class = "UILabel"; text = "20 美元"; ObjectID = "yJs-Bc-pWi"; */
+"yJs-Bc-pWi.text" = "20 美元";

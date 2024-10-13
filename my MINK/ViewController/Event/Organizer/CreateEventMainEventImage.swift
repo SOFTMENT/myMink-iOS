@@ -138,32 +138,32 @@ class CreateEventMainEventImage: UIViewController {
     
     private func validateInputs(sName: String, sQuantity: String, sPrice: String, sDescription: String) -> Bool {
         if !isImage1Selected {
-            showSnack(messages: "Select at least 1 event image")
+            showSnack(messages: "Select at least 1 event image".localized())
             return false
         } else if sDescription.isEmpty {
-            showSnack(messages: "Enter Description")
+            showSnack(messages: "Enter Description".localized())
             return false
         } else if sName.isEmpty {
-            showSnack(messages: "Enter Name")
+            showSnack(messages: "Enter Name".localized())
             return false
         } else if sQuantity.isEmpty {
-            showSnack(messages: "Enter Available Quantity")
+            showSnack(messages: "Enter Available Quantity".localized())
             return false
         } else if !isFree && sPrice.isEmpty {
-            showSnack(messages: "Enter Price")
+            showSnack(messages: "Enter Price".localized())
             return false
         } else if Int(sQuantity) ?? 0 <= 0 {
-            showSnack(messages: "Enter Quantity more than 0")
+            showSnack(messages: "Enter Quantity more than 0".localized())
             return false
         } else if !isFree && Int(sPrice) ?? 0 <= 0 {
-            showSnack(messages: "Enter price more than US$ 0")
+            showSnack(messages: "Enter price more than US$ 0".localized())
             return false
         }
         return true
     }
     
     private func saveEvent() {
-        ProgressHUDShow(text: "Publishing...")
+        ProgressHUDShow(text: "Publishing...".localized())
         let batch = FirebaseStoreManager.db.batch()
         let documentRef = FirebaseStoreManager.db.collection(Collections.events.rawValue).document()
         event!.eventId = documentRef.documentID
@@ -178,8 +178,8 @@ class CreateEventMainEventImage: UIViewController {
                     batch.commit { error in
                         self.ProgressHUDHide()
                         if error == nil {
-                            let alert = UIAlertController(title: "Published", message: "Congrats! Your event has been published", preferredStyle: .alert)
-                            let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+                            let alert = UIAlertController(title: "Published".localized(), message: "Congrats! Your event has been published".localized(), preferredStyle: .alert)
+                            let okAction = UIAlertAction(title: "Ok".localized(), style: .default) { _ in
                                 self.beRootScreen(storyBoardName: StoryBoard.event, mIdentifier: Identifier.organizerDashboardController)
                             }
                             alert.addAction(okAction)
@@ -229,7 +229,7 @@ class CreateEventMainEventImage: UIViewController {
         
         setEventType(isFree: false)
         
-        eventDescription.text = "Summary*"
+        eventDescription.text = "Summary*".localized()
         eventDescription.textColor = .lightGray
     }
     
@@ -258,7 +258,7 @@ class CreateEventMainEventImage: UIViewController {
     private func setEventType(isFree: Bool) {
         self.isFree = isFree
         if isFree {
-            price.text = "Free"
+            price.text = "Free".localized()
             price.isEnabled = false
             setButtonStyle(button: free, isSelected: true)
             setButtonStyle(button: paid, isSelected: false)
@@ -301,7 +301,7 @@ extension CreateEventMainEventImage: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Summary*"
+            textView.text = "Summary*".localized()
             textView.textColor = UIColor.lightGray
         }
     }
@@ -323,7 +323,7 @@ extension CreateEventMainEventImage: UIImagePickerControllerDelegate, UINavigati
     }
     
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-        self.ProgressHUDShow(text: "Uploading...")
+        self.ProgressHUDShow(text: "Uploading...".localized())
         let title = cropViewController.title!
         
         if title == "Event Image 1" {

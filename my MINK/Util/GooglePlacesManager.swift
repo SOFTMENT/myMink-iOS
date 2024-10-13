@@ -15,6 +15,7 @@ struct Place {
 final class GooglePlacesManager {
     // MARK: Lifecycle
 
+    
     private init() {}
 
     // MARK: Internal
@@ -66,8 +67,9 @@ final class GooglePlacesManager {
                 completion(.success(coordinate))
             }
     }
-
+    
     // MARK: Private
 
     private let client = GMSPlacesClient.shared()
 }
+

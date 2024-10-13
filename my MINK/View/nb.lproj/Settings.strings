@@ -1,0 +1,491 @@
+/* Class = "UILabel"; text = "Account Privacy"; ObjectID = "0XM-Ky-H6u"; */
+"0XM-Ky-H6u.text" = "Kontoprivatisering";
+
+/* Class = "UIButton"; normalTitle = "Update Task"; ObjectID = "1gG-qR-CB3"; */
+"1gG-qR-CB3.normalTitle" = "Oppdater oppgave";
+
+/* Class = "UILabel"; text = "UserName"; ObjectID = "3Kh-al-hMS"; */
+"3Kh-al-hMS.text" = "Brukernavn";
+
+/* Class = "UILabel"; text = "24H"; ObjectID = "3eQ-r7-V5T"; */
+"3eQ-r7-V5T.text" = "24T";
+
+/* Class = "UITextField"; placeholder = "Website (Optional)"; ObjectID = "3rK-1x-kb7"; */
+"3rK-1x-kb7.placeholder" = "Nettside (valgfritt)";
+
+/* Class = "UILabel"; text = "PISCES"; ObjectID = "3rw-VT-rdN"; */
+"3rw-VT-rdN.text" = "FISKENE";
+
+/* Class = "UILabel"; text = "ARIES"; ObjectID = "3y7-Pq-Rv2"; */
+"3y7-Pq-Rv2.text" = "VÆREN";
+
+/* Class = "UILabel"; text = "AQUARIUS"; ObjectID = "4Fc-DG-AjK"; */
+"4Fc-DG-AjK.text" = "VANNMANNEN";
+
+/* Class = "UILabel"; text = "Top 50 - Global "; ObjectID = "4iS-rk-PXd"; */
+"4iS-rk-PXd.text" = "Topp 50 - Globalt ";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "4yE-F3-sUJ"; */
+"4yE-F3-sUJ.text" = "0";
+
+/* Class = "UILabel"; text = "Legal Agreements"; ObjectID = "57M-Q1-Qtg"; */
+"57M-Q1-Qtg.text" = "Juridiske avtaler";
+
+/* Class = "UITextField"; placeholder = "Search "; ObjectID = "5lG-wD-cid"; */
+"5lG-wD-cid.placeholder" = "Søk ";
+
+/* Class = "UILabel"; text = "a moment ago"; ObjectID = "5ry-SJ-5OT"; */
+"5ry-SJ-5OT.text" = "for et øyeblikk siden";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "6AV-Ph-g2J"; */
+"6AV-Ph-g2J.text" = "0";
+
+/* Class = "UILabel"; text = "Media Name"; ObjectID = "6pg-sI-lzH"; */
+"6pg-sI-lzH.text" = "Medienavn";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "6t1-N9-Xc5"; */
+"6t1-N9-Xc5.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "7Ly-Vy-7Fi"; */
+"7Ly-Vy-7Fi.text" = "0";
+
+/* Class = "UILabel"; text = "16 Jun 2023"; ObjectID = "7Vu-zN-Ct5"; */
+"7Vu-zN-Ct5.text" = "16. juni 2023";
+
+/* Class = "UILabel"; text = "Arijit Singh"; ObjectID = "7bt-c0-9wS"; */
+"7bt-c0-9wS.text" = "Arijit Singh";
+
+/* Class = "UILabel"; text = "$49.99/month"; ObjectID = "8fL-zl-qkY"; */
+"8fL-zl-qkY.text" = "$49.99/måned";
+
+/* Class = "UILabel"; text = "my MINK Premium"; ObjectID = "8lQ-Qy-zIm"; */
+"8lQ-Qy-zIm.text" = "my MINK Premium";
+
+/* Class = "UILabel"; text = "No posts available"; ObjectID = "9Lk-c2-iAh"; */
+"9Lk-c2-iAh.text" = "Ingen innlegg tilgjengelig";
+
+/* Class = "UILabel"; text = "Active"; ObjectID = "9Pu-x1-cXV"; */
+"9Pu-x1-cXV.text" = "Aktiv";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "9SI-EP-oQa"; */
+"9SI-EP-oQa.text" = "Innlegg";
+
+/* Class = "UILabel"; text = "Add Social Media"; ObjectID = "A2A-Ur-fh0"; */
+"A2A-Ur-fh0.text" = "Legg til sosiale medier";
+
+/* Class = "UILabel"; text = "Delete Account"; ObjectID = "A6f-wz-R84"; */
+"A6f-wz-R84.text" = "Slett konto";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Akd-lR-eQr"; */
+"Akd-lR-eQr.text" = "0";
+
+/* Class = "UILabel"; text = "Edit Task"; ObjectID = "Al0-M4-YuU"; */
+"Al0-M4-YuU.text" = "Rediger oppgave";
+
+/* Class = "UITextField"; placeholder = "Enter task title"; ObjectID = "Ath-vJ-t7u"; */
+"Ath-vJ-t7u.placeholder" = "Skriv inn oppgavetittel";
+
+/* Class = "UILabel"; text = "my MINK Chatbot"; ObjectID = "BRf-kh-Uab"; */
+"BRf-kh-Uab.text" = "my MINK Chatbot";
+
+/* Class = "UILabel"; text = "When your account is in public mode. All users can see your contents. When it is private, only the people that you are following or your followers can see your contents."; ObjectID = "Bgf-py-gg4"; */
+"Bgf-py-gg4.text" = "Når kontoen din er i offentlig modus, kan alle brukere se innholdet ditt. Når den er privat, kan kun de du følger eller følgerne dine se innholdet ditt.";
+
+/* Class = "UILabel"; text = "| 02:39 PM"; ObjectID = "Bid-tW-gJI"; */
+"Bid-tW-gJI.text" = "| 14:39";
+
+/* Class = "UILabel"; text = "You are charged and socially active and spend most of your evenings outside. You may get into the habit of dining from outside regularly, which may take a toll on your health. You may consume a lot alcohol with your friends, and you will regret it later. Focus on your health, now more than ever."; ObjectID = "C46-pc-igD"; */
+"C46-pc-igD.text" = "Du er energisk og sosialt aktiv og tilbringer de fleste kveldene ute. Du kan bli vant til å spise ute regelmessig, noe som kan påvirke helsen din. Du kan også drikke mye alkohol med venner, og du vil angre senere. Fokuser på helsen din nå mer enn noensinne.";
+
+/* Class = "UILabel"; text = "LEO"; ObjectID = "C5g-sk-tHA"; */
+"C5g-sk-tHA.text" = "LØVEN";
+
+/* Class = "UILabel"; text = "CANCER"; ObjectID = "CHV-Dt-hVI"; */
+"CHV-Dt-hVI.text" = "KREPSEN";
+
+/* Class = "UILabel"; text = "$2343"; ObjectID = "CSF-cs-wgr"; */
+"CSF-cs-wgr.text" = "$2343";
+
+/* Class = "UITextView"; text = "📞 VIDEO CALL"; ObjectID = "Cfm-a7-F6I"; */
+"Cfm-a7-F6I.text" = "📞 VIDEOSAMTALE";
+
+/* Class = "UILabel"; text = "Media Name"; ObjectID = "D8d-Xt-8sv"; */
+"D8d-Xt-8sv.text" = "Medienavn";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "DUN-y8-LfF"; */
+"DUN-y8-LfF.text" = "Pris";
+
+/* Class = "UILabel"; text = "Market"; ObjectID = "Dvv-ga-EGz"; */
+"Dvv-ga-EGz.text" = "Marked";
+
+/* Class = "UIButton"; normalTitle = "Add Autograph"; ObjectID = "EXr-Yn-RpY"; */
+"EXr-Yn-RpY.normalTitle" = "Legg til autograf";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Eg0-79-sn5"; */
+"Eg0-79-sn5.text" = "0";
+
+/* Class = "UILabel"; text = "Me"; ObjectID = "EpA-BG-ilv"; */
+"EpA-BG-ilv.text" = "Meg";
+
+/* Class = "UILabel"; text = "\"Roaming the world, one adventure at a time.\""; ObjectID = "FEJ-Q3-t5y"; */
+"FEJ-Q3-t5y.text" = "\"Utforsker verden, ett eventyr om gangen.\"";
+
+/* Class = "UILabel"; text = "GEMINI"; ObjectID = "FWi-OA-vTe"; */
+"FWi-OA-vTe.text" = "TVILLINGENE";
+
+/* Class = "UILabel"; text = "Library"; ObjectID = "FZW-qL-Z5M"; */
+"FZW-qL-Z5M.text" = "Bibliotek";
+
+/* Class = "UILabel"; text = "Market Cap"; ObjectID = "GTo-cX-JBL"; */
+"GTo-cX-JBL.text" = "Markedsverdi";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Gk4-VS-lOP"; */
+"Gk4-VS-lOP.text" = "0";
+
+/* Class = "UILabel"; text = "Sponsored"; ObjectID = "IQv-M4-0OS"; */
+"IQv-M4-0OS.text" = "Sponset";
+
+/* Class = "UILabel"; text = "Song Name"; ObjectID = "Ias-9i-0y4"; */
+"Ias-9i-0y4.text" = "Sangnavn";
+
+/* Class = "UITextField"; placeholder = "Enter Current Password"; ObjectID = "Jgt-QW-kIp"; */
+"Jgt-QW-kIp.placeholder" = "Skriv inn nåværende passord";
+
+/* Class = "UILabel"; text = "Post"; ObjectID = "Joa-QW-PnX"; */
+"Joa-QW-PnX.text" = "Innlegg";
+
+/* Class = "UILabel"; text = "support@mymink.com.au"; ObjectID = "LXK-5Y-Yp8"; */
+"LXK-5Y-Yp8.text" = "support@mymink.com.au";
+
+/* Class = "UILabel"; text = "Followers"; ObjectID = "LeL-cO-lNo"; */
+"LeL-cO-lNo.text" = "Følgere";
+
+/* Class = "UILabel"; text = "3:16"; ObjectID = "Lnb-sA-vbN"; */
+"Lnb-sA-vbN.text" = "3:16";
+
+/* Class = "UILabel"; text = "LIBRA"; ObjectID = "LvL-rP-zyj"; */
+"LvL-rP-zyj.text" = "VEKTEN";
+
+/* Class = "UILabel"; text = "Enable 2FA"; ObjectID = "MFg-4M-3M9"; */
+"MFg-4M-3M9.text" = "Aktiver 2FA";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "Mo3-dc-HNx"; */
+"Mo3-dc-HNx.text" = "|";
+
+/* Class = "UILabel"; text = "VIRGO"; ObjectID = "N1L-ko-OI0"; */
+"N1L-ko-OI0.text" = "JOMFRUEN";
+
+/* Class = "UILabel"; text = "AUD"; ObjectID = "NC0-Rg-Xbt"; */
+"NC0-Rg-Xbt.text" = "AUD";
+
+/* Class = "UILabel"; text = "2.8%"; ObjectID = "NEM-Kr-X5U"; */
+"NEM-Kr-X5U.text" = "2,8%";
+
+/* Class = "UITextField"; placeholder = "Search "; ObjectID = "NvM-cB-ZhO"; */
+"NvM-cB-ZhO.placeholder" = "Søk ";
+
+/* Class = "UIButton"; normalTitle = "Change Password"; ObjectID = "Nyv-2q-44T"; */
+"Nyv-2q-44T.normalTitle" = "Endre passord";
+
+/* Class = "UITextField"; placeholder = "Confirm New Password"; ObjectID = "OBs-wH-0dz"; */
+"OBs-wH-0dz.placeholder" = "Bekreft nytt passord";
+
+/* Class = "UITextField"; placeholder = "Enter New Password"; ObjectID = "P1B-v4-rXL"; */
+"P1B-v4-rXL.placeholder" = "Skriv inn nytt passord";
+
+/* Class = "UILabel"; text = "LEO"; ObjectID = "PNG-q8-v2G"; */
+"PNG-q8-v2G.text" = "LØVEN";
+
+/* Class = "UILabel"; text = "Edit Social Media"; ObjectID = "PVw-dg-lmn"; */
+"PVw-dg-lmn.text" = "Rediger sosiale medier";
+
+/* Class = "UILabel"; text = "Change Password"; ObjectID = "PYb-S1-lGE"; */
+"PYb-S1-lGE.text" = "Endre passord";
+
+/* Class = "UILabel"; text = "Who can see your contents"; ObjectID = "QN2-OP-QdX"; */
+"QN2-OP-QdX.text" = "Hvem kan se innholdet ditt";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Qlx-LU-GFS"; */
+"Qlx-LU-GFS.text" = "0";
+
+/* Class = "UILabel"; text = "Bitcoin"; ObjectID = "QtW-PL-cug"; */
+"QtW-PL-cug.text" = "Bitcoin";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "R8t-rz-0oh"; */
+"R8t-rz-0oh.normalTitle" = "Oppdater";
+
+/* Class = "UILabel"; text = "Views"; ObjectID = "RTL-kG-iF9"; */
+"RTL-kG-iF9.text" = "Visninger";
+
+/* Class = "UILabel"; text = "a moment ago"; ObjectID = "Rto-Em-rut"; */
+"Rto-Em-rut.text" = "for et øyeblikk siden";
+
+/* Class = "UILabel"; text = "Social Media"; ObjectID = "RyB-6W-YO4"; */
+"RyB-6W-YO4.text" = "Sosiale medier";
+
+/* Class = "UILabel"; text = "Full Name"; ObjectID = "S8b-zo-9V8"; */
+"S8b-zo-9V8.text" = "Fullt navn";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "SGD-V4-jWf"; */
+"SGD-V4-jWf.text" = "Innlegg";
+
+/* Class = "UILabel"; text = "TAURUS"; ObjectID = "SI9-Ry-1bZ"; */
+"SI9-Ry-1bZ.text" = "TYREN";
+
+/* Class = "UILabel"; text = "Daily Horoscopes"; ObjectID = "T9X-O2-4Vs"; */
+"T9X-O2-4Vs.text" = "Daglige horoskoper";
+
+/* Class = "UILabel"; text = "$2343"; ObjectID = "TBN-Ox-Z1h"; */
+"TBN-Ox-Z1h.text" = "$2343";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "TS9-Xl-Yqu"; */
+"TS9-Xl-Yqu.text" = "0";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "Ubb-tL-C63"; */
+"Ubb-tL-C63.text" = "|";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "UgT-Y5-tTm"; */
+"UgT-Y5-tTm.normalTitle" = "Legg til";
+
+/* Class = "UILabel"; text = "ARIES"; ObjectID = "UxY-Gc-ebw"; */
+"UxY-Gc-ebw.text" = "VÆREN";
+
+/* Class = "UILabel"; text = "my MINK Chatbot"; ObjectID = "VIU-33-GGN"; */
+"VIU-33-GGN.text" = "my MINK Chatbot";
+
+/* Class = "UILabel"; text = "Upload your picture"; ObjectID = "VQy-fc-b7U"; */
+"VQy-fc-b7U.text" = "Last opp bildet ditt";
+
+/* Class = "UILabel"; text = "Coin"; ObjectID = "Vqu-OF-9Kb"; */
+"Vqu-OF-9Kb.text" = "Mynt";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "WXG-46-W1N"; */
+"WXG-46-W1N.text" = "0";
+
+/* Class = "UILabel"; text = "Artist"; ObjectID = "Xk2-wf-BRb"; */
+"Xk2-wf-BRb.text" = "Artist";
+
+/* Class = "UIButton"; normalTitle = "Update Profile"; ObjectID = "YCh-xe-d14"; */
+"YCh-xe-d14.normalTitle" = "Oppdater profil";
+
+/* Class = "UITextField"; placeholder = "Location"; ObjectID = "YKu-jY-HHy"; */
+"YKu-jY-HHy.placeholder" = "Plassering";
+
+/* Class = "UILabel"; text = "Posts"; ObjectID = "Z10-dP-cIC"; */
+"Z10-dP-cIC.text" = "Innlegg";
+
+/* Class = "UILabel"; text = "Kesariya Bharmaastra"; ObjectID = "ZR2-Ak-Rjm"; */
+"ZR2-Ak-Rjm.text" = "Kesariya Bharmaastra";
+
+/* Class = "UILabel"; text = "45/23, near shiv shree cinema, totalaa marg tarana"; ObjectID = "ajx-zq-Wat"; */
+"ajx-zq-Wat.text" = "45/23, nær Shiv Shree Cinema, Totalaa Marg, Tarana";
+
+/* Class = "UILabel"; text = "No tasks available"; ObjectID = "anE-1v-hKf"; */
+"anE-1v-hKf.text" = "Ingen oppgaver tilgjengelig";
+
+/* Class = "UILabel"; text = "Deactivate Account"; ObjectID = "azm-j7-EmT"; */
+"azm-j7-EmT.text" = "Deaktiver konto";
+
+/* Class = "UILabel"; text = "Vijay Rathore"; ObjectID = "bEg-7s-ol9"; */
+"bEg-7s-ol9.text" = "Vijay Rathore";
+
+/* Class = "UILabel"; text = "www.mymink.com.au"; ObjectID = "bJj-db-zcm"; */
+"bJj-db-zcm.text" = "www.mymink.com.au";
+
+/* Class = "UILabel"; text = "Profile Link"; ObjectID = "bK2-gA-w0E"; */
+"bK2-gA-w0E.text" = "Profil-lenke";
+
+/* Class = "UILabel"; text = "Business Promotion"; ObjectID = "cBE-9E-rKm"; */
+"cBE-9E-rKm.text" = "Forretningsfremmelse";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "cDI-Cy-hAq"; */
+"cDI-Cy-hAq.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "cRr-EM-D0Z"; */
+"cRr-EM-D0Z.text" = "0";
+
+/* Class = "UILabel"; text = "No posts available"; ObjectID = "cXL-yd-eul"; */
+"cXL-yd-eul.text" = "Ingen innlegg tilgjengelig";
+
+/* Class = "UILabel"; text = "Today's Horoscope"; ObjectID = "chb-m0-YGD"; */
+"chb-m0-YGD.text" = "Dagens horoskop";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "dKS-8e-HT2"; */
+"dKS-8e-HT2.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "dOC-Wq-yhi"; */
+"dOC-Wq-yhi.text" = "0";
+
+/* Class = "UITextView"; text = "📞 VIDEO CALL"; ObjectID = "dVf-Oy-ii9"; */
+"dVf-Oy-ii9.text" = "📞 VIDEOSAMTALE";
+
+/* Class = "UITextField"; placeholder = "Full Name"; ObjectID = "dko-D0-GfB"; */
+"dko-D0-GfB.placeholder" = "Fullt navn";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "e6a-kG-6ND"; */
+"e6a-kG-6ND.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "eGG-RN-BbX"; */
+"eGG-RN-BbX.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "eWu-Vb-vrr"; */
+"eWu-Vb-vrr.text" = "0";
+
+/* Class = "UILabel"; text = "Friends or Events"; ObjectID = "enP-FY-LhB"; */
+"enP-FY-LhB.text" = "Venner eller hendelser";
+
+/* Class = "UILabel"; text = "Biography"; ObjectID = "f2c-hV-Cwa"; */
+"f2c-hV-Cwa.text" = "Biografi";
+
+/* Class = "UITextField"; placeholder = "Enter task title"; ObjectID = "fHn-ER-eEo"; */
+"fHn-ER-eEo.placeholder" = "Skriv inn oppgavetittel";
+
+/* Class = "UITextField"; placeholder = "Search "; ObjectID = "fHv-Ma-psJ"; */
+"fHv-Ma-psJ.placeholder" = "Søk ";
+
+/* Class = "UILabel"; text = "No songs available"; ObjectID = "fZq-LX-A7k"; */
+"fZq-LX-A7k.text" = "Ingen sanger tilgjengelig";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "fhh-Tc-3Tz"; */
+"fhh-Tc-3Tz.text" = "0";
+
+/* Class = "UILabel"; text = "Salaar Night Show  "; ObjectID = "fiq-vH-OSz"; */
+"fiq-vH-OSz.text" = "Salaar nattforestilling  ";
+
+/* Class = "UILabel"; text = "+917869992340"; ObjectID = "gk3-R1-joO"; */
+"gk3-R1-joO.text" = "+917869992340";
+
+/* Class = "UILabel"; text = "Developer"; ObjectID = "h2r-6T-R3M"; */
+"h2r-6T-R3M.text" = "Utvikler";
+
+/* Class = "UILabel"; text = "To Do"; ObjectID = "hUX-RF-fB0"; */
+"hUX-RF-fB0.text" = "Oppgave";
+
+/* Class = "UILabel"; text = "Music "; ObjectID = "hj4-D5-cby"; */
+"hj4-D5-cby.text" = "Musikk ";
+
+/* Class = "UILabel"; text = "SAGITTARIUS"; ObjectID = "iIR-3o-3ho"; */
+"iIR-3o-3ho.text" = "SKYTTEN";
+
+/* Class = "UILabel"; text = "Membership"; ObjectID = "iln-Hh-Sa7"; */
+"iln-Hh-Sa7.text" = "Medlemskap";
+
+/* Class = "UILabel"; text = "A To do is a digital task manager that allows user to organise, track and prioritise their daily tasks and reminders in a simple, user-friendly interface. It helps users stay focused and efficient by managing their personal and professional responsibilities in one accessible location"; ObjectID = "kI0-e0-QNb"; */
+"kI0-e0-QNb.text" = "En oppgave-app er en digital oppgavebehandler som lar brukeren organisere, spore og prioritere daglige oppgaver og påminnelser i et enkelt og brukervennlig grensesnitt. Den hjelper brukere med å holde seg fokuserte og effektive ved å håndtere sine personlige og profesjonelle forpliktelser på ett tilgjengelig sted.";
+
+/* Class = "UILabel"; text = "Vijay Rathore"; ObjectID = "kKk-hj-aZe"; */
+"kKk-hj-aZe.text" = "Vijay Rathore";
+
+/* Class = "UILabel"; text = "Licence Agreement"; ObjectID = "kSu-q0-exJ"; */
+"kSu-q0-exJ.text" = "Lisensavtale";
+
+/* Class = "UILabel"; text = "00 : 00"; ObjectID = "kqz-J0-fx8"; */
+"kqz-J0-fx8.text" = "00 : 00";
+
+/* Class = "UILabel"; text = "To-Do"; ObjectID = "kvt-jC-FyZ"; */
+"kvt-jC-FyZ.text" = "Oppgave";
+
+/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "lAe-Q7-gnQ"; */
+"lAe-Q7-gnQ.text" = "Personvernpolicy";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "lG9-Na-GxN"; */
+"lG9-Na-GxN.normalTitle" = "Last opp";
+
+/* Class = "UILabel"; text = "Private Account"; ObjectID = "mCt-3x-9Tl"; */
+"mCt-3x-9Tl.text" = "Privat konto";
+
+/* Class = "UILabel"; text = "BTC"; ObjectID = "mXw-za-WFq"; */
+"mXw-za-WFq.text" = "BTC";
+
+/* Class = "UILabel"; text = "18 Feb 2024"; ObjectID = "mYn-UN-068"; */
+"mYn-UN-068.text" = "18. februar 2024";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "miY-pb-OqT"; */
+"miY-pb-OqT.text" = "0";
+
+/* Class = "UILabel"; text = "Joined on 26 Jun 2023"; ObjectID = "mif-5e-pew"; */
+"mif-5e-pew.text" = "Ble med 26. juni 2023";
+
+/* Class = "UIButton"; normalTitle = "Unsubscribe"; ObjectID = "o3B-EQ-Hhw"; */
+"o3B-EQ-Hhw.normalTitle" = "Meld av";
+
+/* Class = "UILabel"; text = "|"; ObjectID = "oMW-JM-ZK1"; */
+"oMW-JM-ZK1.text" = "|";
+
+/* Class = "UILabel"; text = "Daily Horoscopes"; ObjectID = "oSn-ay-OwU"; */
+"oSn-ay-OwU.text" = "Daglige horoskoper";
+
+/* Class = "UILabel"; text = "Cryptocurrency"; ObjectID = "ooB-Xe-7sp"; */
+"ooB-Xe-7sp.text" = "Kryptovaluta";
+
+/* Class = "UIButton"; normalTitle = "Get Started"; ObjectID = "pUx-7D-l8G"; */
+"pUx-7D-l8G.normalTitle" = "Kom i gang";
+
+/* Class = "UILabel"; text = "CAPRICORNUS"; ObjectID = "pkV-gi-Oze"; */
+"pkV-gi-Oze.text" = "STEINBUKKEN";
+
+/* Class = "UILabel"; text = "Music Player"; ObjectID = "ppz-ia-UrQ"; */
+"ppz-ia-UrQ.text" = "Musikkspiller";
+
+/* Class = "UILabel"; text = "Disclaimer"; ObjectID = "qZJ-KQ-69C"; */
+"qZJ-KQ-69C.text" = "Ansvarsfraskrivelse";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "rJG-Fo-zly"; */
+"rJG-Fo-zly.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "rKX-yl-2ZI"; */
+"rKX-yl-2ZI.text" = "0";
+
+/* Class = "UILabel"; text = "03:20 PM"; ObjectID = "rh2-bY-ubz"; */
+"rh2-bY-ubz.text" = "15:20";
+
+/* Class = "UILabel"; text = "Following"; ObjectID = "sFu-d8-7Kb"; */
+"sFu-d8-7Kb.text" = "Følger";
+
+/* Class = "UILabel"; text = "Cryptocurrency"; ObjectID = "tHs-0V-dJc"; */
+"tHs-0V-dJc.text" = "Kryptovaluta";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "tct-aX-g2u"; */
+"tct-aX-g2u.text" = "0";
+
+/* Class = "UILabel"; text = "Profile Link"; ObjectID = "tyP-hx-UqZ"; */
+"tyP-hx-UqZ.text" = "Profil-lenke";
+
+/* Class = "UILabel"; text = "SCORPIO"; ObjectID = "u3Z-gX-xJE"; */
+"u3Z-gX-xJE.text" = "SKORPIONEN";
+
+/* Class = "UILabel"; text = "@softment"; ObjectID = "uUW-YH-tPK"; */
+"uUW-YH-tPK.text" = "@softment";
+
+/* Class = "UILabel"; text = "Astoria, OR, USA"; ObjectID = "uat-TB-o1J"; */
+"uat-TB-o1J.text" = "Astoria, OR, USA";
+
+/* Class = "UILabel"; text = "Terms Of Use"; ObjectID = "uro-k6-Fcp"; */
+"uro-k6-Fcp.text" = "Bruksvilkår";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "uz3-hA-QZP"; */
+"uz3-hA-QZP.text" = "0";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "w65-oQ-cfX"; */
+"w65-oQ-cfX.text" = "1";
+
+/* Class = "UILabel"; text = "Due today"; ObjectID = "wLR-sH-o0n"; */
+"wLR-sH-o0n.text" = "Forfaller i dag";
+
+/* Class = "UILabel"; text = "VIJAY_RATHORE"; ObjectID = "wYT-f9-qEw"; */
+"wYT-f9-qEw.text" = "VIJAY_RATHORE";
+
+/* Class = "UILabel"; text = "Who can see your contents"; ObjectID = "wxe-U7-T8F"; */
+"wxe-U7-T8F.text" = "Hvem kan se innholdet ditt";
+
+/* Class = "UIButton"; normalTitle = "Add Task"; ObjectID = "ylN-w7-aXy"; */
+"ylN-w7-aXy.normalTitle" = "Legg til oppgave";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "yu8-9v-Zs9"; */
+"yu8-9v-Zs9.text" = "0";
+
+/* Class = "UILabel"; text = "Add Task"; ObjectID = "zOZ-81-9Bm"; */
+"zOZ-81-9Bm.text" = "Legg til oppgave";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "zYV-0n-itF"; */
+"zYV-0n-itF.normalTitle" = "Legg til";

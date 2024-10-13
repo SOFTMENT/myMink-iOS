@@ -1,0 +1,47 @@
+/* Class = "UILabel"; text = "30 days left"; ObjectID = "3Pk-t7-ZUe"; */
+"3Pk-t7-ZUe.text" = "Осталось 30 дней";
+
+/* Class = "UILabel"; text = "Rate App"; ObjectID = "3l5-uf-GFs"; */
+"3l5-uf-GFs.text" = "Оценить приложение";
+
+/* Class = "UILabel"; text = "Contact Us"; ObjectID = "AbW-ah-ecL"; */
+"AbW-ah-ecL.text" = "Свяжитесь с нами";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "Awo-fv-pJB"; */
+"Awo-fv-pJB.text" = "Настройки";
+
+/* Class = "UILabel"; text = "Legal Agreements"; ObjectID = "GWc-BA-BO2"; */
+"GWc-BA-BO2.text" = "Юридические соглашения";
+
+/* Class = "UILabel"; text = "Saved Posts"; ObjectID = "Izs-Hz-hAV"; */
+"Izs-Hz-hAV.text" = "Сохраненные публикации";
+
+/* Class = "UILabel"; text = "support@mymink.com.au"; ObjectID = "JYg-YX-12X"; */
+"JYg-YX-12X.text" = "support@mymink.com.au";
+
+/* Class = "UILabel"; text = "English"; ObjectID = "Qrb-df-lH1"; */
+"Qrb-df-lH1.text" = "Английский";
+
+/* Class = "UILabel"; text = "Share App"; ObjectID = "ahq-jz-KPT"; */
+"ahq-jz-KPT.text" = "Поделиться приложением";
+
+/* Class = "UILabel"; text = "Language"; ObjectID = "da6-2f-uXA"; */
+"da6-2f-uXA.text" = "Язык";
+
+/* Class = "UILabel"; text = "Account Privacy"; ObjectID = "f0R-S4-SfB"; */
+"f0R-S4-SfB.text" = "Конфиденциальность аккаунта";
+
+/* Class = "UILabel"; text = "Edit Profile"; ObjectID = "mFJ-0X-A0I"; */
+"mFJ-0X-A0I.text" = "Редактировать профиль";
+
+/* Class = "UILabel"; text = "Logout"; ObjectID = "nwQ-Y0-CIE"; */
+"nwQ-Y0-CIE.text" = "Выйти";
+
+/* Class = "UILabel"; text = "my MINK"; ObjectID = "vGP-Hk-xG8"; */
+"vGP-Hk-xG8.text" = "my MINK";
+
+/* Class = "UILabel"; text = "support@softment.in"; ObjectID = "vjH-6v-sq8"; */
+"vjH-6v-sq8.text" = "support@softment.in";
+
+/* Class = "UILabel"; text = "Logout"; ObjectID = "wPb-tl-MVc"; */
+"wPb-tl-MVc.text" = "Выйти";
