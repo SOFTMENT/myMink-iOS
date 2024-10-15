@@ -74,8 +74,10 @@ class HomeViewController: UIViewController {
         } else {
             getAllPosts()
         }
+        
+        
     }
-
+ 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateProfilePicAndName()

@@ -1805,6 +1805,7 @@ exports.scheduledSubscriptionUpdate = functions.pubsub
 
       usersSnapshot.forEach((userDoc) => {
         const userId = userDoc.id;
+
         const isAccountDeactivate = userDoc.data().isAccountDeactivate || false;
         updatePromises.push(updateSubscription(userId, isAccountDeactivate));
       });
@@ -1855,14 +1856,22 @@ async function updateSubscription(userId, isAccountDeactivate) {
   try {
     const subscriptions = await getSubscriptionInfo(userId); // Fetch subscriptions array
 
+    console.log(subscriptions);
+
     if (!subscriptions || subscriptions.length === 0) {
       throw new Error(`No active subscriptions found for user ${userId}`);
     }
 
-    // Extract relevant subscription information (find an active subscription)
+    // Extract relevant subscription information (find an active or trialing subscription)
     const activeSubscription = subscriptions.find(
-      (sub) => sub.status === "active"
+      (sub) => sub.status === "active" || sub.status === "trialing"
     );
+
+    console.log("Active Subscriptions");
+
+    console.log(subscriptions);
+
+    console.log("Active Subscriptions END HERE");
 
     if (!activeSubscription) {
       console.log(`No active subscription for user ${userId}`);
@@ -1873,8 +1882,7 @@ async function updateSubscription(userId, isAccountDeactivate) {
       return;
     }
 
-    const { product_id, current_period_ends_at, status, entitlements } =
-      activeSubscription;
+    const { product_id, current_period_ends_at, status } = activeSubscription;
 
     // Check for entitlements with "gives_access: true"
     let activeEntitlement = null;
@@ -1910,7 +1918,7 @@ async function updateSubscription(userId, isAccountDeactivate) {
           ? "trialing"
           : "inactive", // Active, trialing, or inactive
       daysLeft: daysLeft >= 0 ? daysLeft : 0, // Ensure non-negative days left
-      isAccountActive: status === "active" || isFreeTrial ? true : false, // Only active if subscription is active or trialing
+      isAccountActive: status === "active" || status === "trialing", // Only active if subscription is active or trialing
     };
 
     // Firestore reference for the user

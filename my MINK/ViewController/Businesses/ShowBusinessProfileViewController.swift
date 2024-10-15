@@ -13,10 +13,8 @@ class ShowBusinessProfileViewController : UIViewController {
     
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var noPostsAvailable: UILabel!
-    
     @IBOutlet weak var postCount: UILabel!
     @IBOutlet weak var subsriberLoading: LottieAnimationView!
-    
     @IBOutlet weak var coverPicture: SDAnimatedImageView!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var profilePicture: SDAnimatedImageView!
