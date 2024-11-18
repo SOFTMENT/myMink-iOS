@@ -129,6 +129,8 @@ class CompleteProfileViewController: UIViewController {
         UserModel.data!.biography = sBio
         UserModel.data!.website = website.text
         UserModel.data!.location = address.text
+        UserModel.data!.username = sUsername
+       
 
         ProgressHUDShow(text: "")
 

@@ -7,6 +7,7 @@ target 'my MINK' do
   
   # Pods for my MINK
   pod 'Firebase/Firestore'
+
   pod 'Firebase/Analytics'
   pod 'Firebase/DynamicLinks'
   pod 'Firebase/Auth'

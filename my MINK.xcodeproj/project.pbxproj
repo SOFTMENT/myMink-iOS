@@ -942,7 +942,6 @@
 		5D3521A12A39056D005117CA /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
-				5D3521982A38FC74005117CA /* TabbarViewController.swift */,
 			);
 			path = Tabbar;
 			sourceTree = "<group>";
@@ -1218,6 +1217,7 @@
 				5DC9CAE92A86E12700DCB864 /* MyLongPressGest.swift */,
 				5DE950D12A98E87A00829D9B /* PlayerPool.swift */,
 				5D6F501E2A9CC7DC006D97E2 /* ReturnPlayerProtocal.swift */,
+				5D3521982A38FC74005117CA /* TabbarViewController.swift */,
 				5D3DFC242AB46B8100566335 /* UpdatePostDelegate.swift */,
 				5D92EBE82B56AAB400164D73 /* CustomPlayerItem.swift */,
 				5D4E1DD12BCE257A009B9497 /* ProductDelegate.swift */,
@@ -2406,8 +2406,8 @@
 				CODE_SIGN_ENTITLEMENTS = "my MINK/my MINKDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 174;
-				DEVELOPMENT_TEAM = 3A38VTTBM4;
+				CURRENT_PROJECT_VERSION = 180;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2438,7 +2438,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.48;
+				MARKETING_VERSION = 2.0.54;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2633,8 +2633,8 @@
 				CODE_SIGN_ENTITLEMENTS = "my MINK/my MINK.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 174;
-				DEVELOPMENT_TEAM = 3A38VTTBM4;
+				CURRENT_PROJECT_VERSION = 180;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2665,7 +2665,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.48;
+				MARKETING_VERSION = 2.0.54;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",

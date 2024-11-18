@@ -53,6 +53,7 @@ class HomeViewController: UIViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupInitialViews()
         setupLocationManager()
         setupRefreshControl()
@@ -75,8 +76,9 @@ class HomeViewController: UIViewController {
             getAllPosts()
         }
         
-        
+       
     }
+    
  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -179,7 +181,7 @@ class HomeViewController: UIViewController {
 
     
     private func setupPlayerPool() {
-        playerPool = PlayerPool(playerCount: 6)
+        playerPool = PlayerPool(playerCount: 6, className: "home")
     }
 
     private func startWeatherTimer() {
@@ -809,7 +811,7 @@ class HomeViewController: UIViewController {
         postModels.removeAll()
         tableView.reloadData()
     }
-
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "commentSeg" {
@@ -872,6 +874,7 @@ class HomeViewController: UIViewController {
     }
 
     deinit {
+        NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: nil)
         followerListner?.remove()
         NotificationCenter.default.removeObserver(self)
     }

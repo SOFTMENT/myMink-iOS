@@ -18,7 +18,7 @@ class PostSearchResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        playerPool = PlayerPool(playerCount: 15)
+        playerPool = PlayerPool(playerCount: 15, className: "search")
     }
 
     override func viewWillDisappear(_: Bool) {
@@ -71,6 +71,10 @@ class PostSearchResultsViewController: UIViewController {
 
     func playAllPlayers() {
         activePlayers.forEach { $0.play() }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: nil)
     }
 
     public func notifyAdapter(postModels: [PostModel]) {

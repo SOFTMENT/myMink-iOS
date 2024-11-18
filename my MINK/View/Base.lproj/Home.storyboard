@@ -1178,7 +1178,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28°C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sal-7O-qQK">
-                            <rect key="frame" x="7.5" y="40" width="25" height="13"/>
+                            <rect key="frame" x="8" y="40" width="24" height="13"/>
                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="11"/>
                             <color key="textColor" red="0.1382020712" green="0.1960362792" blue="0.31755620239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -3890,7 +3890,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please align the QR Code within the scanner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qac-qr-YJn">
-                                <rect key="frame" x="67.5" y="614" width="279" height="17"/>
+                                <rect key="frame" x="76" y="614" width="262" height="17"/>
                                 <fontDescription key="fontDescription" name="PantonNarrow-Regular" family="Panton Narrow" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -4561,10 +4561,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kVU-IO-IFA"/>
+        <segue reference="qaL-2n-wZX"/>
         <segue reference="aFM-8B-1Nc"/>
         <segue reference="VSS-yJ-Apj"/>
-        <segue reference="bWY-75-R84"/>
+        <segue reference="UUy-rr-VvJ"/>
         <segue reference="vwa-uC-qPJ"/>
         <segue reference="D5y-P5-l9D"/>
     </inferredMetricsTieBreakers>

@@ -35,116 +35,94 @@ class MembershipViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        
         fetchSubscriptionInfo()
         fetchAvailablePackages()
+        checkUserSubscriptionStatus()
     }
     
+    // This method fetches available subscription packages and displays them
     func fetchAvailablePackages() {
-        Purchases.shared.getProducts([PriceID.month.rawValue, PriceID.year.rawValue, PriceID.lifetime.rawValue]) { (products) in
-                // Display the products (monthly, yearly, lifetime) to the user
-                for product in products {
-                    print("Product available: \(product.localizedTitle) - \(product.price)")
-                    
-                    // If there's a free trial, display the trial info
-                    if let introDiscount = product.introductoryDiscount {
-                        let trialPeriod = introDiscount.subscriptionPeriod
-                        let trialDuration = "\(trialPeriod.value) \(self.unitDescription(for: trialPeriod.unit))"
-                        print("Free Trial: \(trialDuration) for \(product.localizedTitle)")
-                    }
+        Purchases.shared.getProducts([PriceID.month.rawValue, PriceID.year.rawValue, PriceID.lifetime.rawValue]) { products in
+            for product in products {
+                print("Product available: \(product.localizedTitle) - \(product.price)")
+                
+                if let introDiscount = product.introductoryDiscount {
+                    let trialPeriod = introDiscount.subscriptionPeriod
+                    let trialDuration = "\(trialPeriod.value) \(self.unitDescription(for: trialPeriod.unit))"
+                    print("Free Trial: \(trialDuration) for \(product.localizedTitle)")
                 }
             }
         }
-        
-        // Helper function to get the description of the subscription unit
-        func unitDescription(for unit: SubscriptionPeriod.Unit) -> String {
-            switch unit {
-            case .day:
-                return "day(s)"
-            case .week:
-                return "week(s)"
-            case .month:
-                return "month(s)"
-            case .year:
-                return "year(s)"
-            @unknown default:
-                return "unknown unit"
+    }
+    
+    // Helper to get the description of the subscription unit
+    func unitDescription(for unit: SubscriptionPeriod.Unit) -> String {
+        switch unit {
+        case .day: return "day(s)"
+        case .week: return "week(s)"
+        case .month: return "month(s)"
+        case .year: return "year(s)"
+        @unknown default: return "unknown unit"
+        }
+    }
+    
+    // Handles purchasing a subscription
+    func purchase(productIdentifier: String) {
+        self.ProgressHUDShow(text: "Purchasing...")
+        print("SOFTMET PRODUCT IDENTIFIER \(productIdentifier)")
+        Purchases.shared.getProducts([productIdentifier]) { products in
+            guard let productToPurchase = products.first else {
+                self.showError("Product not found")
+                self.ProgressHUDHide()
+                return
+            }
+            
+            if let currentUser = FirebaseStoreManager.auth.currentUser {
+                let userId = currentUser.uid  // Use Firebase UID as the App User ID
+                Purchases.shared.logIn(userId) { customerInfo, created, error in
+                    if let error = error {
+                        self.ProgressHUDHide()
+                        self.showError("Error logging in: \(error.localizedDescription)")
+                    } else {
+                        Purchases.shared.purchase(product: productToPurchase) { transaction, purchaserInfo, error, userCancelled in
+                            if let error = error {
+                                self.ProgressHUDHide()
+                                self.showError("Purchase Failed", error.localizedDescription)
+                            } else if let purchaserInfo = purchaserInfo {
+                                print("SOFTMET PURCHASE SUCCESSFUL: \(purchaserInfo)")
+                                self.unlockPremiumFeatures(for: purchaserInfo)
+                            }
+                        }
+                    }
+                }
+            } else {
+                print("User not logged in to Firebase.")
             }
         }
-        
-      func purchase(productIdentifier: String) {
-          self.ProgressHUDShow(text: "Purchasing...")
-          Purchases.shared.getProducts([productIdentifier]) { (products) in
-              guard let productToPurchase = products.first else {
-                  self.showError("Product not found")
-                  self.ProgressHUDHide()
-                  return
-              }
-              
-              
-              // First, get the user’s unique ID (e.g., from FirebaseAuth)
-              if let currentUser = FirebaseStoreManager.auth.currentUser {
-                  let userId = currentUser.uid  // Use Firebase UID as the App User ID
-                  
-                  // Log the user in to RevenueCat using their unique user ID
-                  Purchases.shared.logIn(userId) { (customerInfo, created, error) in
-                      if let error = error {
-                          self.ProgressHUDHide()
-                          self.showError("Error logging in: \(error.localizedDescription)")
-                        
-                      } else {
-                          Purchases.shared.purchase(product: productToPurchase) { (transaction, purchaserInfo, error, userCancelled) in
-                              if let error = error {
-                                  self.ProgressHUDHide()
-                                  self.showError("Purchase Failed ",error.localizedDescription)
-                               
-                              }
-                              else if let purchaserInfo = purchaserInfo {
-                                  // Call unlockPremiumFeatures with the purchaser info
-                                  self.unlockPremiumFeatures(for: purchaserInfo)
-                              }
-                          }
-                      }
-                  }
-              } else {
-                  print("User not logged in to Firebase.")
-              }
-
-          }
-      }
-        
+    }
+    
+    // Unlocks premium features based on the user’s active entitlements
     func unlockPremiumFeatures(for purchaserInfo: CustomerInfo) {
-        // Check if the user has the "Premium" entitlement active
+      
         if let entitlement = purchaserInfo.entitlements["Premium"], entitlement.isActive {
-
-            
-            // Get the active subscription product identifier
             let activeSubscriptions = entitlement.productIdentifier
             
-            // Check if the active subscription is monthly, yearly, or lifetime
             if activeSubscriptions.contains("in.softment.monthly") {
-            
                 self.updateUserModel(planId: .month)
                 self.updateSubscriptionInFirestore()
             } else if activeSubscriptions.contains("in.softment.yearly") {
-               
                 self.updateUserModel(planId: .year)
                 self.updateSubscriptionInFirestore()
             } else if activeSubscriptions.contains("in.softment.lifetime") {
-              
                 self.setLifetimeMembership()
-             
             }
-           
-        }
-        else{
+        } else {
             self.ProgressHUDHide()
         }
-        
     }
     
+    // Sets lifetime membership status in Firestore
     private func setLifetimeMembership() {
-      
         UserModel.data?.isAccountActive = true
         UserModel.data?.entitlementStatus = "active"
         UserModel.data?.activeEntitlement = PriceID.lifetime.rawValue
@@ -167,6 +145,16 @@ class MembershipViewController: UIViewController {
             }
     }
     
+    // Check and update subscription status for the user on login or app open
+    func checkUserSubscriptionStatus() {
+        Purchases.shared.getCustomerInfo { customerInfo, error in
+            if let customerInfo = customerInfo, customerInfo.entitlements["Premium"]?.isActive == true {
+                self.unlockPremiumFeatures(for: customerInfo)
+            } else {
+                print("No active subscription for this user")
+            }
+        }
+    }
     
     private func setupViews() {
         [montView, yearView, lifetimeView, startFreeBtn, mostPopularView].forEach {
@@ -206,7 +194,6 @@ class MembershipViewController: UIViewController {
             guard let self = self else { return }
             self.yearView.isHidden = !isActive
             self.yearlyPrice.text = String(format: "$%@ USD per year".localized(), price)
-
         }
         
         getSubscriptionInfo(planID: "ID_LIFETIME") { [weak self] price, isActive in
@@ -217,58 +204,53 @@ class MembershipViewController: UIViewController {
     }
 
     private func updateUserModel(planId: PriceID) {
-        
         UserModel.data?.daysLeft = 3
         UserModel.data?.entitlementStatus = "trialing"
         UserModel.data?.isAccountActive = true
         UserModel.data?.activeEntitlement = planId.rawValue
-        
     }
     
-    // Function to send userId to Firebase Cloud Function
-       func updateSubscriptionInFirestore() {
-           guard let userID = FirebaseStoreManager.auth.currentUser?.uid else {
-               self.logoutPlease()
-               self.ProgressHUDHide()
-               return
-           }
-           
-           // Call Firebase Cloud Function with only userId
-           let functions = Functions.functions()
-           functions.httpsCallable("updateSubscriptionFromClient").call(["userId": userID]) { result, error in
-               self.ProgressHUDHide()
-               if let error = error {
-                  
-                   self.showError("Error updating subscription in Firestore: \(error.localizedDescription)")
-               } else {
-                   self.gotoSuccessPage()
-               }
-           }
-       }
+    func updateSubscriptionInFirestore() {
+        guard let userID = FirebaseStoreManager.auth.currentUser?.uid else {
+            self.logoutPlease()
+            self.ProgressHUDHide()
+            return
+        }
+        let functions = Functions.functions()
+        functions.httpsCallable("updateSubscriptionFromClient").call(["userId": userID]) { result, error in
+            self.ProgressHUDHide()
+            if let error = error {
+                self.showError("Error updating subscription in Firestore: \(error.localizedDescription)")
+            } else {
+                self.gotoSuccessPage()
+            }
+        }
+    }
+    
     private func gotoSuccessPage() {
         performSegue(withIdentifier: "successSeg", sender: nil)
     }
-
+    
     @objc private func crownClicked() {
         performSegue(withIdentifier: "vipCodeSeg", sender: nil)
     }
-
+    
     @objc private func backBtnClicked() {
         dismiss(animated: true)
     }
-
+    
     @objc private func termsOfUseClicked() {
         if let url = URL(string: "https://mymink.com.au/terms-of-use/") {
             UIApplication.shared.open(url)
         }
     }
-
+    
     @objc private func privacyPolicyClicked() {
         if let url = URL(string: "https://mymink.com.au/privacy-policy/") {
             UIApplication.shared.open(url)
         }
     }
-
+    
     @objc private func handlePlanSelection(_ sender: UITapGestureRecognizer) {
         if sender.view == montView {
             setChecks(type: .month)
@@ -300,8 +282,5 @@ class MembershipViewController: UIViewController {
         else if membershipType == .lifetime {
             self.purchase(productIdentifier: PriceID.lifetime.rawValue)
         }
-        
     }
-
-    
 }

@@ -41,7 +41,7 @@ class PostViewController: UIViewController {
         self.backView.layer.cornerRadius = 8
         self.backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backBtnClicked)))
 
-        self.playerPool = PlayerPool(playerCount: 6)
+        self.playerPool = PlayerPool(playerCount: 6, className: "post")
 
         if let userModel = self.userModel {
             self.topUsername.text = userModel.username!.uppercased()
@@ -117,6 +117,10 @@ class PostViewController: UIViewController {
             }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: nil)
+    }
+
     private func updateCommentCount(for postID: String) {
         guard let index = postModels.firstIndex(where: { $0.postID == postID }) else { return }
             let indexPath = IndexPath(row: index, section: 0)

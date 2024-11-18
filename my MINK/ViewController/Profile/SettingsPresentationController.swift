@@ -193,7 +193,9 @@ class SettingsPresentationController: UIPresentationController {
             if UserModel.data?.activeEntitlement == PriceID.lifetime.rawValue {
                 profileVC.settingsVC.membershipView.isHidden = true
             } else {
-                if let daysLeft = UserModel.data?.daysLeft, daysLeft > 0 {
+                
+                
+                if let daysLeft = UserModel.data?.daysLeft, daysLeft > 0, let isActive =  UserModel.data?.entitlementStatus , (isActive == "active" || isActive == "trialing"){
                 if let status = UserModel.data?.entitlementStatus, status == "trialing" {
                     profileVC.settingsVC.timeLeft.text = daysLeft > 1
                         ? String(format: "%d free days".localized(), daysLeft)

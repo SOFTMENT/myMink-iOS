@@ -5,8 +5,11 @@ import Firebase
 class PlayerPool {
     // MARK: Lifecycle
 
-    init(playerCount: Int) {
+    let className : String?
+    init(playerCount: Int, className: String?) {
+        self.className = className
         self.loadPlayers(playerCount: playerCount)
+       
     }
 
     // MARK: Internal
@@ -29,7 +32,7 @@ class PlayerPool {
 
     func returnPlayer(_ player: AVPlayer?) {
         if let player = player {
-            NotificationCenter.default.removeObserver(player, name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+            NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
             self.availablePlayers.append(player)
         }
     }
@@ -46,13 +49,17 @@ class PlayerPool {
 
     @objc private func playerDidFinishPlaying(player: AVPlayer) {
         if let playerItem = player.currentItem as? CustomPlayerItem {
-            self.increaseWatchCount(id: playerItem.videoPostID)
+            if className != "search" {
+                self.increaseWatchCount(id: playerItem.videoPostID)
+            }
+
             player.seek(to: CMTime.zero)
             player.play()
         }
     }
 
     func increaseWatchCount(id: String?) {
+        
         guard let id = id else {
             return
         }

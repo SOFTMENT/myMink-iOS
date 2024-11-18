@@ -66,9 +66,10 @@ class VIPCodeViewController: UIViewController {
         UserModel.data?.isAccountActive = true
 
         let userUpdates: [String: Any] = [
-            "status": "active",
+            "entitlementStatus": "active",
             "isAccountActive": true,
             "activeEntitlement" : PriceID.lifetime.rawValue
+            
         ]
 
         FirebaseStoreManager.db.collection(Collections.users.rawValue)

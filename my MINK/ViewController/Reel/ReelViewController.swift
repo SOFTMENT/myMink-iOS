@@ -40,11 +40,15 @@ class ReelViewController: UIViewController {
         setupUI()
         setupObservers()
         setupManagers()
-        playerPool = PlayerPool(playerCount: 5)
+        playerPool = PlayerPool(playerCount: 5, className: "reel")
         
      
     }
-    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: nil)
+    }
+
     private func setupUI() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -87,10 +91,7 @@ class ReelViewController: UIViewController {
             }
         }
     }
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
+   
     private func setupManagers() {
         FavoritesManager.shared.favoriteChanged
             .sink { [weak self] postID in
@@ -287,7 +288,7 @@ class ReelViewController: UIViewController {
                         self.dataMayContinue = true
                     }
 
-                    self.postModels.sort { $0.postCreateDate! > $1.postCreateDate! }
+                    self.postModels.shuffle()
                     self.ProgressHUDHide()
 
                     if isManual {
@@ -539,9 +540,7 @@ extension ReelViewController: UITableViewDelegate, UITableViewDataSource {
                             if let videoData = SDImageCache.shared.diskImageData(forKey: url.absoluteString) {
                                 let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                                 let fileURL = documentsDirectoryURL.appendingPathComponent(url.lastPathComponent)
-
                                 try? videoData.write(to: fileURL, options: .atomic)
-
                                 let playerItem = CustomPlayerItem(url: fileURL, videoPostID: postModel.postID ?? "123")
                                 cell.player!.replaceCurrentItem(with: playerItem)
                             } else {

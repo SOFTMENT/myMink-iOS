@@ -11,7 +11,7 @@ class WelcomeViewController: UIViewController {
         self.handleFirstTimeAppLaunch()
         self.navigateToNextScreen()
         
-     
+       
     }
 
     private func handleFirstTimeAppLaunch() {
